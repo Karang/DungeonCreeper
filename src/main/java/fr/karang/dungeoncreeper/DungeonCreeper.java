@@ -27,6 +27,10 @@
 package fr.karang.dungeoncreeper;
 
 import org.spout.api.Engine;
+import org.spout.api.command.CommandRegistrationsFactory;
+import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
+import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
+import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.geo.World;
 import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
@@ -34,6 +38,7 @@ import org.spout.api.math.Vector3;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 
+import fr.karang.dungeoncreeper.command.AdministrationCommands;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class DungeonCreeper extends CommonPlugin {
@@ -52,6 +57,10 @@ public class DungeonCreeper extends CommonPlugin {
 		if (engine.debugMode() || engine.getPlatform()==Platform.SERVER) {
 			setupWorld();
 		}
+
+		//Commands
+		CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
+		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
 		
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
 	}
