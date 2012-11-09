@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 
 public class Bridge extends DungeonMaterial {
 
-	public Bridge(int id) {
+	public Bridge() {
 		super("Bridge", "");
 	}
 

@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 
 public class Floor extends DungeonMaterial {
 
-	public Floor(int id) {
+	public Floor() {
 		super("Floor", "");
 	}
 

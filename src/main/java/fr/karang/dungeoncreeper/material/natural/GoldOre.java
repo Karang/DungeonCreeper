@@ -26,10 +26,10 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class GoldOre extends BlockMaterial {
-	public GoldOre(int id) {
+public class GoldOre extends DCMaterial {
+	public GoldOre() {
 		super("Gold Ore", "model://DungeonCreeper/resources/block/natural/goldore/goldore.spm");
 	}
 }

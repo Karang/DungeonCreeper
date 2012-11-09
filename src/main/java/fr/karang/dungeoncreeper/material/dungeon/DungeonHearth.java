@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 
 public class DungeonHearth extends DungeonMaterial {
 
-	public DungeonHearth(int id) {
+	public DungeonHearth() {
 		super("Dungeon Hearth", "");
 	}
 

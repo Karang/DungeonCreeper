@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class DungeonMaterial extends BlockMaterial {
+public class DungeonMaterial extends DCMaterial {
 
 	public DungeonMaterial(String name, String model) {
 		super(name, model);

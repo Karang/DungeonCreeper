@@ -26,11 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class UnbreakableDirt extends BlockMaterial {
+public class UnbreakableDirt extends DCMaterial {
 
-	public UnbreakableDirt(int id) {
+	public UnbreakableDirt() {
 		super("Unbreakable Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
 		setHardness(-1.0F);
 	}

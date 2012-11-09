@@ -29,22 +29,21 @@ package fr.karang.dungeoncreeper.material;
 import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.natural.*;
-import fr.karang.dungeoncreeper.material.dungeon.*;
 
 public class DCMaterials {
 	// Natural materials
 	public static final BlockMaterial AIR = BlockMaterial.AIR;
-	public static final UnbreakableDirt UNBREAKABLE_DIRT = new UnbreakableDirt(1);
-	public static final Dirt DIRT = new Dirt(2);
-	public static final UnclaimedFloor UNCLAIMED_FLOOR = new UnclaimedFloor(3);
-	public static final Lava LAVA = new Lava(4);
-	public static final GoldOre GOLD_ORE = new GoldOre(5);
-	public static final GemOre GEM_ORE = new GemOre(6);
+	public static final UnbreakableDirt UNBREAKABLE_DIRT = new UnbreakableDirt();
+	public static final Dirt DIRT = new Dirt();
+	public static final UnclaimedFloor UNCLAIMED_FLOOR = new UnclaimedFloor();
+	public static final Lava LAVA = new Lava();
+	public static final GoldOre GOLD_ORE = new GoldOre();
+	public static final GemOre GEM_ORE = new GemOre();
 	
 	// Dungeon materials
-	/*public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth(100);
-	public static final Wall WALL = new Wall(101);
-	public static final Floor FLOOR = new Floor(102);
-	public static final Bridge BRIDGE = new Bridge(103);
-	public static final Chest CHEST = new Chest(104);*/
+	/*public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
+	public static final Wall WALL = new Wall();
+	public static final Floor FLOOR = new Floor();
+	public static final Bridge BRIDGE = new Bridge();
+	public static final Chest CHEST = new Chest();*/
 }

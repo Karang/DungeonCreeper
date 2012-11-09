@@ -26,11 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class GemOre extends BlockMaterial {
+public class GemOre extends DCMaterial {
 
-	public GemOre(int id) {
+	public GemOre() {
 		super("Gem Ore", "model://DungeonCreeper/resources/block/natural/gemore/gemore.spm");
 	}
 

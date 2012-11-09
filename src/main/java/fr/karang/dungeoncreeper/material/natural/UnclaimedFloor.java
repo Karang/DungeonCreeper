@@ -26,11 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class UnclaimedFloor extends BlockMaterial {
+public class UnclaimedFloor extends DCMaterial {
 
-	public UnclaimedFloor(int id) {
+	public UnclaimedFloor() {
 		super("Unclaimed Floor", "model://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.spm");
 	}
 

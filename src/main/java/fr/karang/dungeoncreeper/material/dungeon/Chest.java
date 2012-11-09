@@ -30,7 +30,7 @@ import org.spout.api.material.BlockMaterial;
 
 public class Chest extends BlockMaterial {
 
-	public Chest(int id) {
+	public Chest() {
 		super("Chest", "");
 	}
 

@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 
 public class Wall extends DungeonMaterial {
 
-	public Wall(int id) {
+	public Wall() {
 		super("Wall", "");
 	}
 

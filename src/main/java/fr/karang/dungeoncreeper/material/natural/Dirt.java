@@ -26,10 +26,10 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class Dirt extends BlockMaterial {
-	public Dirt(int id) {
+public class Dirt extends DCMaterial {
+	public Dirt() {
 		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
 	}
 }

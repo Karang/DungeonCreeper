@@ -26,10 +26,10 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.material.BlockMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class Lava extends BlockMaterial {
-	public Lava(int id) {
+public class Lava extends DCMaterial {
+	public Lava() {
 		super("Lava", "model://DungeonCreeper/resources/block/natural/lava/lava.spm");
 	}
 }
