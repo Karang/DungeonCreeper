@@ -56,7 +56,7 @@ public class DungeonGenerator implements WorldGenerator {
 		for (int x = xx ; x < xx+16 ; x++) {
 			for (int z = zz ; z < zz+16 ; z++) {
 				for (int y = 0 ; y < 16 ; y++) {
-					if ((x==0 && chunkX==0) || (x==15 && chunkX==dungeonWidth) || (z==0 && chunkZ==dungeonLength) || (z==15 && chunkZ==dungeonLength)) {
+					if ((x==0 && chunkX==0) || (x-xx==15 && chunkX==dungeonWidth) || (z==0 && chunkZ==0) || (z-zz==15 && chunkZ==dungeonLength)) {
 						blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
 					} else {
 						if (y < 2) { // floor layer
