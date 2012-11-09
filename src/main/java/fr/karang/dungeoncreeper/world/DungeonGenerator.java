@@ -73,7 +73,7 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 	
 	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
-		if (chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>dungeonWidth || chunkY>dungeonHeight || chunkZ>dungeonLength) { 
+		if (!isChunkInDungeon(chunkX, chunkY, chunkZ)) { 
 			return; // Chunk out of bound
 		}
 		int xx = chunkX<<4, zz = chunkZ<<4;
@@ -95,6 +95,10 @@ public class DungeonGenerator implements WorldGenerator {
 		}
 	}
 
+	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
+		return !(chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>dungeonWidth || chunkY>dungeonHeight || chunkZ>dungeonLength);
+	}
+	
 	public Point getSpectatorSpawn(World world) {
 		return new Point(world, dungeonWidth*16/2, 5, dungeonHeight*16/2);
 	}
