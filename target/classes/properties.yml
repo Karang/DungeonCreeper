@@ -1,7 +1,7 @@
 name: DungeonCreeper
 version: ${releaseVersion} b0
 description: A spout game, remake of the famous Dungeon Keeper.
-authors: [Karang]
+authors: [Karang,L5D]
 website: https://github.com/Karang/DungeonCreeper
 
 main: fr.karang.dungeoncreeper.DungeonCreeper
