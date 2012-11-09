@@ -1,7 +1,7 @@
 name: DungeonCreeper
 version: ${releaseVersion} b${buildNumber}
 description: ${project.description}
-authors: [Karang]
+authors: [Karang,L5D]
 website: https://github.com/Karang/DungeonCreeper
 
 main: fr.karang.dungeoncreeper.DungeonCreeper

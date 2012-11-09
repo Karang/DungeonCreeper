@@ -47,6 +47,12 @@
 			<email>arthur.hennequin@free.fr</email>
 			<url>http://arthur.hennequin.free.fr/</url>
 		</developer>
+		<developer>
+			<id>l5d</id>
+			<name>l5d</name>
+			<email>cholley.thibaut@gmail.com</email>
+			<url>http://arthur.hennequin.free.fr/</url>
+		</developer>
 	</developers>
 
 	<!-- Continuous integration -->
