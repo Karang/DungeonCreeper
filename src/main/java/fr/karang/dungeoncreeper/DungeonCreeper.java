@@ -62,7 +62,7 @@ public class DungeonCreeper extends CommonPlugin {
 	}
 	
 	private void setupWorld() {
-		DungeonGenerator generator = new DungeonGenerator(5, 5);
+		DungeonGenerator generator = new DungeonGenerator();
 		World world = engine.loadWorld("Dungeon", generator);
 		world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 	}
