@@ -26,11 +26,14 @@
  */
 package fr.karang.dungeoncreeper;
 
+import java.util.logging.Level;
+
 import org.spout.api.Engine;
 import org.spout.api.command.CommandRegistrationsFactory;
 import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
 import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
 import org.spout.api.command.annotated.SimpleInjector;
+import org.spout.api.exception.ConfigurationException;
 import org.spout.api.geo.World;
 import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
@@ -55,6 +58,12 @@ public class DungeonCreeper extends CommonPlugin {
 	
 	@Override
 	public void onEnable() {
+		try {
+			config.load();
+		} catch (ConfigurationException e) {
+			getLogger().log(Level.WARNING, "Error loading DungeonCreeper configuration: ", e);
+		}
+		
 		if (engine.debugMode() || engine.getPlatform()==Platform.SERVER) {
 			setupWorld();
 		}

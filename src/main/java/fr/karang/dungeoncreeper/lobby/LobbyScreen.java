@@ -24,14 +24,20 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material;
+package fr.karang.dungeoncreeper.lobby;
 
-import org.spout.api.material.BlockMaterial;
+import org.spout.api.Spout;
+import org.spout.api.gui.Screen;
+import org.spout.api.plugin.Platform;
 
-public abstract class DCMaterial extends BlockMaterial{
-
-	public DCMaterial(String name, String model) {
-		super(name, model);
+public class LobbyScreen extends Screen {
+	
+	public LobbyScreen(Lobby lobby) {
+		if (Spout.getPlatform()!=Platform.CLIENT) {
+			throw new IllegalStateException("Only clients can have a lobby screen.");
+		}
+		
+		this.setTakesInput(false);
+		//TODO: Player list, world list
 	}
-
 }

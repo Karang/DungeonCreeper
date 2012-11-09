@@ -28,13 +28,25 @@ package fr.karang.dungeoncreeper;
 
 import java.io.File;
 
+import org.spout.api.exception.ConfigurationException;
+import org.spout.api.util.config.ConfigurationHolder;
 import org.spout.api.util.config.ConfigurationHolderConfiguration;
 import org.spout.api.util.config.yaml.YamlConfiguration;
 
 public class DungeonConfig extends ConfigurationHolderConfiguration {
-
+	
+	// Worlds config
+	public static final ConfigurationHolder WORLD_MAX_WIDTH = new ConfigurationHolder(10, "world", "maxwidth");
+	public static final ConfigurationHolder WORLD_MAX_LENGTH = new ConfigurationHolder(10, "world", "maxlength");
+	public static final ConfigurationHolder WORLD_MAX_PLAYERS = new ConfigurationHolder(20, "world", "maxplayers");
+	
 	public DungeonConfig(File dataFolder) {
 		super(new YamlConfiguration(new File(dataFolder, "config.yml")));
 	}
 
+	@Override
+	public void load() throws ConfigurationException {
+		super.load();
+		super.save();
+	}
 }

@@ -56,9 +56,13 @@ public class DungeonPopulator extends Populator {
 		for (int x=startX ; x<startX+16 ; x++) {
 			for (int z=startZ ; z<startZ+16 ; z++) {
 				WorldGeneratorObject obj = materials.get(gen.getColor(x, z));
-				if (obj == null)
+				if (obj == null) {
+					//TODO: New Team?
 					obj = NaturalObject.DIRT;
-				obj.placeObject(chunk.getWorld(), x, 1, z);
+				}
+				if (obj.canPlaceObject(chunk.getWorld(), x, 1, z)) {
+					obj.placeObject(chunk.getWorld(), x, 1, z);
+				}
 			}
 		}
 	}

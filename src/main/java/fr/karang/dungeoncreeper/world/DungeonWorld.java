@@ -24,14 +24,33 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material;
+package fr.karang.dungeoncreeper.world;
 
-import org.spout.api.material.BlockMaterial;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public abstract class DCMaterial extends BlockMaterial{
+import org.spout.api.geo.World;
 
-	public DCMaterial(String name, String model) {
-		super(name, model);
+import fr.karang.dungeoncreeper.player.DCPlayer;
+import fr.karang.dungeoncreeper.player.Team;
+
+public class DungeonWorld {
+	private World world;
+	private Map<String, Team> teams = new HashMap<String, Team>();
+	private List<DCPlayer> players = new ArrayList<DCPlayer>();
+	
+	public DungeonWorld(World world) {
+		this.world = world;
 	}
-
+	
+	public void join(DCPlayer player, String team) {
+		teams.get(team).playerJoin(player);
+		players.add(player);
+	}
+	
+	public World getWorld() {
+		return world;
+	}
 }
