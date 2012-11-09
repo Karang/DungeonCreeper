@@ -42,6 +42,13 @@
           <include>LICENSE.txt</include>
         </includes>
       </resource>
+      <resource>
+        <targetPath>.</targetPath>
+        <directory>${basedir}/src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
     </resources>
     <plugins>
       <plugin>
