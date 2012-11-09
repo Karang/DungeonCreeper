@@ -1,0 +1,12 @@
+name: DungeonCreeper
+version: ${releaseVersion} b${buildNumber}
+description: ${project.description}
+authors: [Karang]
+website: https://github.com/Karang/DungeonCreeper
+
+main: fr.karang.dungeoncreeper.DungeonCreeper
+load: startup
+platform: BOTH
+
+data:
+    protocol: 39
