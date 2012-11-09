@@ -49,6 +49,10 @@ public class DungeonGenerator implements WorldGenerator {
 	private final int dungeonHeight = 1; // The dungeon is 1 chunk high
 	private final int dungeonLength;
 	
+	// Dungeon size (in blocks)
+	private final int dungeonBlockWidth;
+	private final int dungeonBlockLength;
+	
 	private Texture textureMap;
 	private Map<Integer, BlockMaterial> materials = new HashMap<Integer, BlockMaterial>();
 	
@@ -56,6 +60,8 @@ public class DungeonGenerator implements WorldGenerator {
 		textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/map.png");
 		this.dungeonWidth = textureMap.getImage().getWidth() / Chunk.BLOCKS.SIZE;
 		this.dungeonLength = textureMap.getImage().getHeight() / Chunk.BLOCKS.SIZE;
+		this.dungeonBlockWidth = textureMap.getImage().getWidth();
+		this.dungeonBlockLength = textureMap.getImage().getHeight();
 		
 		//Récup d'une couleur
 		//new Color(textureMap.getImage().getRGB(0, 0))
@@ -81,12 +87,11 @@ public class DungeonGenerator implements WorldGenerator {
 		for (int x = xx ; x < xx + Chunk.BLOCKS.SIZE ; x++) {
 			for (int z = zz ; z < zz + Chunk.BLOCKS.SIZE ; z++) {
 				for (int y = 0 ; y < Chunk.BLOCKS.SIZE ; y++) {
-					int x2 = x + chunkX * Chunk.BLOCKS.SIZE;
-					int z2 = z + chunkZ * Chunk.BLOCKS.SIZE;
-					
-					if( x2 >= 0 && x2 < textureMap.getImage().getWidth() && z2 >= 0 && z2 < textureMap.getImage().getHeight()){
-						BlockMaterial material = materials.get(new Color(textureMap.getImage().getRGB(x2, z2)).getRGB());
-						if(material == null)
+					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
+						blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
+					} else {
+						BlockMaterial material = materials.get(textureMap.getImage().getRGB(x, z));
+						if (material == null)
 							material = DCMaterials.UNBREAKABLE_DIRT;
 						blockData.set(x, y, z, material.getId());
 					}
