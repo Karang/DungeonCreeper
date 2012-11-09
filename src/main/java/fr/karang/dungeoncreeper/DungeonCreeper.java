@@ -44,16 +44,17 @@ import fr.karang.dungeoncreeper.world.DungeonGenerator;
 public class DungeonCreeper extends CommonPlugin {
 	private static DungeonCreeper instance;
 	private Engine engine;
+	private DungeonConfig config;
 	
 	@Override
 	public void onLoad() {
 		instance = this;
 		engine = getEngine();
+		config = new DungeonConfig(getDataFolder());
 	}
 	
 	@Override
 	public void onEnable() {
-		
 		if (engine.debugMode() || engine.getPlatform()==Platform.SERVER) {
 			setupWorld();
 		}
@@ -76,6 +77,10 @@ public class DungeonCreeper extends CommonPlugin {
 		if (world.getAge()<=0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 		}
+	}
+	
+	public DungeonConfig getConfig() {
+		return config;
 	}
 	
 	public static DungeonCreeper getInstance() {
