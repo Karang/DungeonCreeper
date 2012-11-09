@@ -26,28 +26,39 @@
  */
 package fr.karang.dungeoncreeper.world.populator;
 
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import org.spout.api.generator.Populator;
 import org.spout.api.generator.WorldGeneratorObject;
-import org.spout.api.geo.World;
+import org.spout.api.geo.cuboid.Chunk;
 
-import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-public class HearthRoomObject extends WorldGeneratorObject {
-
-	private static int HALFSIZE = 5;
+public class DungeonPopulator extends Populator {
+	
+	private static Map<Integer, WorldGeneratorObject> materials = new HashMap<Integer, WorldGeneratorObject>();
+	
+	static {
+		materials.put(new Color(237,28,36).getRGB(), NaturalObject.LAVA);
+		materials.put(new Color(255,255,0).getRGB(), NaturalObject.GOLD_ORE);
+		materials.put(new Color(163,92,112).getRGB(), NaturalObject.GEM_ORE);
+		materials.put(new Color(185,122,87).getRGB(), NaturalObject.DIRT);
+		materials.put(new Color(255,255,255).getRGB(), NaturalObject.CAVERN);
+	}
 	
 	@Override
-	public boolean canPlaceObject(World w, int x, int y, int z) {
-		return true;
-	}
-
-	@Override
-	public void placeObject(World w, int x, int y, int z) {
-		// Make place
-		for (int xx=x-HALFSIZE ; xx<x+HALFSIZE ; xx++) {
-			for (int zz=z-HALFSIZE ; zz<z+HALFSIZE ; zz++) {
-				for (int yy=y ; y<y+2 ; y++) {
-					w.getBlock(xx, yy, zz).setMaterial(DCMaterials.AIR);
-				}
+	public void populate(Chunk chunk, Random random) {
+		DungeonGenerator gen = (DungeonGenerator) chunk.getWorld().getGenerator();
+		int startX = chunk.getX()<<4, startZ = chunk.getZ()<<4;
+		for (int x=startX ; x<startX+16 ; x++) {
+			for (int z=startZ ; z<startZ+16 ; z++) {
+				WorldGeneratorObject obj = materials.get(gen.getColor(x, z));
+				if (obj == null)
+					obj = NaturalObject.DIRT;
+				obj.placeObject(chunk.getWorld(), x, 1, z);
 			}
 		}
 	}

@@ -26,9 +26,8 @@
  */
 package fr.karang.dungeoncreeper.world;
 
-import java.awt.Color;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.spout.api.Spout;
 import org.spout.api.generator.GeneratorPopulator;
@@ -37,11 +36,11 @@ import org.spout.api.generator.WorldGenerator;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.render.Texture;
 import org.spout.api.util.cuboid.CuboidShortBuffer;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
 
 public class DungeonGenerator implements WorldGenerator {
 	// Dungeon size (in chunks)
@@ -54,7 +53,7 @@ public class DungeonGenerator implements WorldGenerator {
 	private final int dungeonBlockLength;
 	
 	private Texture textureMap;
-	private Map<Integer, BlockMaterial> materials = new HashMap<Integer, BlockMaterial>();
+	private List<Populator> populators = new ArrayList<Populator>();
 	
 	public DungeonGenerator() {
 		textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/map.png");
@@ -63,19 +62,7 @@ public class DungeonGenerator implements WorldGenerator {
 		this.dungeonBlockWidth = textureMap.getImage().getWidth();
 		this.dungeonBlockLength = textureMap.getImage().getHeight();
 		
-		//Récup d'une couleur
-		//new Color(textureMap.getImage().getRGB(0, 0))
-		initColorMaterial();
-	}
-	
-	private void initColorMaterial(){
-		materials.put(new Color(237,28,36).getRGB(), DCMaterials.LAVA);
-		materials.put(new Color(255,255,0).getRGB(), DCMaterials.GOLD_ORE);
-		materials.put(new Color(163,92,112).getRGB(), DCMaterials.GEM_ORE);
-		materials.put(new Color(237,28,36).getRGB(), DCMaterials.LAVA);
-		materials.put(new Color(185,122,87).getRGB(), DCMaterials.DIRT);
-		materials.put(new Color(0,0,0).getRGB(), DCMaterials.UNBREAKABLE_DIRT);
-		materials.put(new Color(255,255,255).getRGB(), DCMaterials.AIR);
+		populators.add(new DungeonPopulator());
 	}
 	
 	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
@@ -90,14 +77,19 @@ public class DungeonGenerator implements WorldGenerator {
 					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
 						blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
 					} else {
-						BlockMaterial material = materials.get(textureMap.getImage().getRGB(x, z));
-						if (material == null)
-							material = DCMaterials.UNBREAKABLE_DIRT;
-						blockData.set(x, y, z, material.getId());
+						if (y==0 || y==4) {
+							blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
+						} else if (y<4){
+							blockData.set(x, y, z, DCMaterials.DIRT.getId());
+						}
 					}
 				}
 			}
 		}
+	}
+	
+	public int getColor(int x, int z) {
+		return textureMap.getImage().getRGB(x, z);
 	}
 
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
@@ -113,7 +105,7 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 
 	public Populator[] getPopulators() {
-		return new Populator[0];
+		return populators.toArray(new Populator[populators.size()]);
 	}
 
 	public GeneratorPopulator[] getGeneratorPopulators() {
