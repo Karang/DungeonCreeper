@@ -29,7 +29,6 @@ package fr.karang.dungeoncreeper.material;
 import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.dungeon.*;
-import fr.karang.dungeoncreeper.material.items.PickAxe;
 import fr.karang.dungeoncreeper.material.natural.*;
 
 public class DCMaterials {
@@ -48,9 +47,4 @@ public class DCMaterials {
 	public static final Floor FLOOR = new Floor();
 	public static final Bridge BRIDGE = new Bridge();
 	public static final GoldBag GOLD_BAG = new GoldBag();
-	
-	/*
-	 * Items
-	 */
-	public static final PickAxe PICKAXE = new PickAxe("PickAxe");
 }
