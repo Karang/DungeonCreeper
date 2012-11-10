@@ -24,14 +24,36 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.dungeon;
+package fr.karang.dungeoncreeper.player;
 
-import org.spout.api.material.BlockMaterial;
+import org.spout.api.component.components.EntityComponent;
 
-public class Chest extends BlockMaterial {
+import fr.karang.dungeoncreeper.data.DungeonData;
 
-	public Chest() {
-		super("Chest", "");
+/**
+ * The Imp is your most important creature you have. They do
+ * everything that your other creatures can't, including digging,
+ * claiming land, installing traps, rescuing knocked out creatures,
+ * etc. They do not fight, and instead will run from battle. In
+ * order to expand, you need these.
+ * 
+ * @source http://dungeonkeeper.wikia.com/wiki/Imp
+ */
+public class Imp extends EntityComponent {
+	
+	@Override
+	public void onAttached() {
+		getData().put(DungeonData.HEALTH, 10);
+		getData().put(DungeonData.MAX_HEALTH, 10);
+		getData().put(DungeonData.GOLD_AMOUNT, 0);
+		getData().put(DungeonData.DAMAGES, 0);
 	}
-
+	
+	public void addGold(int amount) {
+		getData().put(DungeonData.GOLD_AMOUNT, getGold()+amount);
+	}
+	
+	public int getGold() {
+		return getData().get(DungeonData.GOLD_AMOUNT);
+	}
 }

@@ -24,8 +24,37 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player;
+package fr.karang.dungeoncreeper.material.dungeon;
 
-public class Minion {
+import org.spout.api.chat.style.ChatStyle;
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.event.player.PlayerInteractEvent.Action;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.material.BlockMaterial;
+import org.spout.api.material.block.BlockFace;
+
+import fr.karang.dungeoncreeper.player.Imp;
+
+public class GoldBag extends BlockMaterial {
+
+	public GoldBag() {
+		super("Gold Bag", "");
+	}
+	
+	@Override
+	public void onInteractBy(Entity entity, Block block, Action type, BlockFace clickedFace) {
+		if (type!=Action.LEFT_CLICK && type!=Action.RIGHT_CLICK) {
+			return;
+		}
+		
+		if (entity instanceof Player) {
+			if (entity.has(Imp.class)) {
+				entity.get(Imp.class);
+			} else {
+				((Player) entity).sendMessage(ChatStyle.RED, "Only minions can grab gold bags.");
+			}
+		}
+	}
 
 }

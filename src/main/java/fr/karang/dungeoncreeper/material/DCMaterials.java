@@ -28,6 +28,7 @@ package fr.karang.dungeoncreeper.material;
 
 import org.spout.api.material.BlockMaterial;
 
+import fr.karang.dungeoncreeper.material.dungeon.*;
 import fr.karang.dungeoncreeper.material.natural.*;
 
 public class DCMaterials {
@@ -41,9 +42,9 @@ public class DCMaterials {
 	public static final GemOre GEM_ORE = new GemOre();
 	
 	// Dungeon materials
-	/*public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
+	public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
 	public static final Wall WALL = new Wall();
 	public static final Floor FLOOR = new Floor();
 	public static final Bridge BRIDGE = new Bridge();
-	public static final Chest CHEST = new Chest();*/
+	public static final GoldBag GOLD_BAG = new GoldBag();
 }
