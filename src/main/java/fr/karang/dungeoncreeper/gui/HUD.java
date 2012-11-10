@@ -41,6 +41,7 @@ import org.spout.api.render.RenderMaterial;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 public class HUD extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
@@ -59,9 +60,9 @@ public class HUD extends Screen {
 		
 		skillBar.add(RenderPartsHolderComponent.class);
 		List<Skill>test = new ArrayList<Skill>();
-		test.add(Skill.getSkill(0));
-		test.add(Skill.getSkill(0));
-		test.add(Skill.getSkill(0));
+		test.add(Skills.DIG);
+		test.add(Skills.CLAIM);
+		test.add(Skills.ATTACKSWORD);
 		buildSkillBar(test);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
@@ -75,7 +76,7 @@ public class HUD extends Screen {
 			icon.setColor(Color.WHITE);
 			icon.setRenderMaterial(skillMaterial);
 			icon.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
-			icon.setSource(new Rectangle(0, 0, 32f/256f, 32f/256f));
+			icon.setSource(skill.getUv());
 			bar.add(icon);
 			x += SKILL_OFFSET * SCALE;
 		}

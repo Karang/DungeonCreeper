@@ -30,9 +30,9 @@ import org.spout.api.entity.Entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class Teleport extends Skill {
+public class Speed extends Skill {
 
-	public Teleport() {
+	public Speed() {
 		super(0);
 	}
 

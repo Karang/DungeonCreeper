@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.math.Rectangle;
 
 public abstract class Skill {
 	
@@ -65,4 +66,8 @@ public abstract class Skill {
 	}
 	
 	public abstract void handle(Entity source);
+	
+	public Rectangle getUv() {
+		return new Rectangle(0, 0, 32f/256f, 32f/256f);
+	}
 }

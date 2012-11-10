@@ -27,6 +27,7 @@
 package fr.karang.dungeoncreeper.player.skill.attacks;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
@@ -40,4 +41,8 @@ public class AttackSword extends Skill {
 		//TODO : raycast on entity, damage it
 	}
 	
+	@Override
+	public Rectangle getUv() {
+		return new Rectangle(32f/256f, 0, 32f/256f, 32f/256f);
+	}
 }
