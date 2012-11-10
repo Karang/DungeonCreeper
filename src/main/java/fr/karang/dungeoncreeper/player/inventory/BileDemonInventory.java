@@ -24,33 +24,14 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material;
+package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.material.BlockMaterial;
+import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.material.dungeon.*;
-import fr.karang.dungeoncreeper.material.items.PickAxe;
-import fr.karang.dungeoncreeper.material.natural.*;
-
-public class DCMaterials {
-	// Natural materials
-	public static final BlockMaterial AIR = BlockMaterial.AIR;
-	public static final UnbreakableDirt UNBREAKABLE_DIRT = new UnbreakableDirt();
-	public static final Dirt DIRT = new Dirt();
-	public static final UnclaimedFloor UNCLAIMED_FLOOR = new UnclaimedFloor();
-	public static final Lava LAVA = new Lava();
-	public static final GoldOre GOLD_ORE = new GoldOre();
-	public static final GemOre GEM_ORE = new GemOre();
+/**
+ * @source http://dungeonkeeper.wikia.com/wiki/Bile_Demon
+ */
+public class BileDemonInventory extends Inventory {
 	
-	// Dungeon materials
-	public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
-	public static final Wall WALL = new Wall();
-	public static final Floor FLOOR = new Floor();
-	public static final Bridge BRIDGE = new Bridge();
-	public static final GoldBag GOLD_BAG = new GoldBag();
-	
-	/*
-	 * Items
-	 */
-	public static final PickAxe PICKAXE = new PickAxe("PickAxe");
+
 }
