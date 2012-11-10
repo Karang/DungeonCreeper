@@ -68,6 +68,6 @@ public abstract class Skill {
 	public abstract void handle(Entity source);
 	
 	public Rectangle getUv() {
-		return new Rectangle(0, 0, 32f/256f, 23f/256f);
+		return new Rectangle(0, 0, 32f/256f, 32f/256f);
 	}
 }
