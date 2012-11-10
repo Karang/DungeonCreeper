@@ -45,7 +45,7 @@ public class HearthRoomObject extends WorldGeneratorObject {
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
 		// Make place
-		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y+3, z+RADIUS, DCMaterials.AIR);
+		fill(w, x-RADIUS, y+1, z-RADIUS, x+RADIUS, y+3, z+RADIUS, DCMaterials.AIR);
 		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, DCMaterials.FLOOR);
 		
 		// Make the lava pool
