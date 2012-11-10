@@ -31,13 +31,13 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
+import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.equipment.Imp;
 
-public class GoldBag extends BlockMaterial {
+public class GoldBag extends DCMaterial {
 
 	public GoldBag() {
 		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
