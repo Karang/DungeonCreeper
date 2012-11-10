@@ -38,6 +38,7 @@ import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 
 import fr.karang.dungeoncreeper.command.AdministrationCommands;
+import fr.karang.dungeoncreeper.command.PlayerCommands;
 import fr.karang.dungeoncreeper.lobby.Lobby;
 
 public class DungeonCreeper extends CommonPlugin {
@@ -71,6 +72,7 @@ public class DungeonCreeper extends CommonPlugin {
 		// Commands
 		CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
 		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
+		engine.getRootCommand().addSubCommands(this, PlayerCommands.class, commandRegFactory);
 		engine.getEventManager().registerEvents(new DungeonListener(this), this);
 		
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
