@@ -90,7 +90,7 @@ public class PlayerCommands {
 		}
 
 		Player player = (Player) source;
-		//TODO : Use primary selected skill
+		player.get(CreatureComponent.class).primaryInterract();
 	}
 	
 	@Command(aliases = "interact2", usage = "", desc = "Secondary interaction", min = 0, max = 0)
@@ -101,7 +101,7 @@ public class PlayerCommands {
 		}
 
 		Player player = (Player) source;
-		//TODO : Use secondary selected skill
+		player.get(CreatureComponent.class).secondaryInterract();
 	}
 
 }

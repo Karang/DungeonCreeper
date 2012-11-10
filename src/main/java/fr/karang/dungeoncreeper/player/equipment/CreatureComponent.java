@@ -64,4 +64,14 @@ public abstract class CreatureComponent extends EntityComponent {
 	public void setSlot(int slot){
 		getData().put(DungeonData.SKILLSLOT, slot);
 	}
+
+	public void primaryInterract() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void secondaryInterract() {
+		// TODO Auto-generated method stub
+		
+	}
 }
