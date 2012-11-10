@@ -26,7 +26,9 @@
  */
 package fr.karang.dungeoncreeper.player;
 
-public class DCPlayer {
+import org.spout.api.component.components.EntityComponent;
+
+public class DungeonPlayer extends EntityComponent {
 	private Team team;
 	
 	public void setTeam(Team team) {

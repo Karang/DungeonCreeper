@@ -26,49 +26,82 @@
  */
 package fr.karang.dungeoncreeper.lobby;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.spout.api.Client;
+import org.spout.api.Engine;
 import org.spout.api.Spout;
+import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 import org.spout.api.plugin.Platform;
 
-import fr.karang.dungeoncreeper.player.DCPlayer;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
-import fr.karang.dungeoncreeper.world.DungeonWorld;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class Lobby {
-	
-	private List<DCPlayer> players = new ArrayList<DCPlayer>();
-	private List<DungeonWorld> worlds = new ArrayList<DungeonWorld>();
+	private Engine engine;
+	private List<Player> players = new ArrayList<Player>();
+	private List<DungeonGame> games = new ArrayList<DungeonGame>();
 	private LobbyScreen screen;
+	private int gameId = 0;
 	
 	public Lobby() {
-		if (Spout.getPlatform()==Platform.CLIENT) {
+		engine = Spout.getEngine();
+		if (engine.getPlatform() == Platform.CLIENT) {
 			screen = new LobbyScreen(this);
-			((Client) Spout.getEngine()).getScreenStack().openScreen(screen);
+			((Client) engine).getScreenStack().openScreen(screen);
 		}
 	}
 	
-	public List<DCPlayer> getPlayers() {
-		return players;
+	public void playerJoin(Player player) {
+		player.add(DungeonPlayer.class);
+		players.add(player);
 	}
 	
-	public List<DungeonWorld> getWorlds() {
-		return worlds;
-	}
-	
-	public void createNewWorldGame() {
-		//TODO: Unique world name
-		DungeonGenerator generator = new DungeonGenerator();
-		World world = Spout.getEngine().loadWorld("Dungeon", generator);
+	public void createNewGame() {
+		DungeonGenerator generator = new DungeonGenerator("texture://DungeonCreeper/resources/map.png");
+		World world = Spout.getEngine().loadWorld("dungeon_"+gameId, generator);
 		if (world.getAge()<=0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 		}
-		worlds.add(new DungeonWorld(world));
+		games.add(new DungeonGame(world));
+		gameId++;
+	}
+	
+	public void removeAllGames() {
+		for (DungeonGame game : games) {
+			removeGame(game);
+		}
+	}
+	
+	public void removeGame(DungeonGame game) {
+		engine.unloadWorld(game.getWorld(), false);
+		deleteFolder(game.getWorld().getDirectory());
+		games.remove(game);
+	}
+	
+	private void deleteFolder(File file) {
+		if (file.exists()) {
+			if (file.isDirectory()) {
+				for (File subFile : file.listFiles()) {
+					deleteFolder(subFile);
+				}
+			}
+			file.delete();
+		}
+	}
+	
+	public List<Player> getPlayers() {
+		return players;
+	}
+	
+	public List<DungeonGame> getGames() {
+		return games;
 	}
 }

@@ -42,7 +42,7 @@ import org.spout.api.util.cuboid.CuboidShortBuffer;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
 
-public class DungeonGenerator implements WorldGenerator {
+public class DungeonGenerator implements WorldGenerator {	
 	// Dungeon size (in chunks)
 	private final int dungeonWidth;
 	private final int dungeonHeight = 1; // The dungeon is 1 chunk high
@@ -55,8 +55,8 @@ public class DungeonGenerator implements WorldGenerator {
 	private Texture textureMap;
 	private List<Populator> populators = new ArrayList<Populator>();
 	
-	public DungeonGenerator() {
-		textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/map.png");
+	public DungeonGenerator(String map) {
+		this.textureMap = (Texture) Spout.getFilesystem().getResource(map);
 		this.dungeonWidth = textureMap.getImage().getWidth() / Chunk.BLOCKS.SIZE;
 		this.dungeonLength = textureMap.getImage().getHeight() / Chunk.BLOCKS.SIZE;
 		this.dungeonBlockWidth = textureMap.getImage().getWidth();
@@ -115,5 +115,4 @@ public class DungeonGenerator implements WorldGenerator {
 	public String getName() {
 		return "Dungeon";
 	}
-
 }

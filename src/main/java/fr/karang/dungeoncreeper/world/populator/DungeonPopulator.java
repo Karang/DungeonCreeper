@@ -42,11 +42,11 @@ public class DungeonPopulator extends Populator {
 	private static Map<Integer, WorldGeneratorObject> materials = new HashMap<Integer, WorldGeneratorObject>();
 	
 	static {
-		materials.put(new Color(237,28,36).getRGB(), NaturalObject.LAVA);
-		materials.put(new Color(255,255,0).getRGB(), NaturalObject.GOLD_ORE);
-		materials.put(new Color(163,92,112).getRGB(), NaturalObject.GEM_ORE);
-		materials.put(new Color(185,122,87).getRGB(), NaturalObject.DIRT);
-		materials.put(new Color(255,255,255).getRGB(), NaturalObject.CAVERN);
+		materials.put(new Color(229, 0, 28).getRGB(), NaturalObject.LAVA);
+		materials.put(new Color(255, 243, 10).getRGB(), NaturalObject.GOLD_ORE);
+		materials.put(new Color(144, 48, 147).getRGB(), NaturalObject.GEM_ORE);
+		materials.put(new Color(169, 102, 69).getRGB(), NaturalObject.DIRT);
+		materials.put(new Color(108, 108, 108).getRGB(), NaturalObject.CAVERN);
 	}
 	
 	@Override

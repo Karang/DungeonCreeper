@@ -31,21 +31,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 
-import fr.karang.dungeoncreeper.player.DCPlayer;
 import fr.karang.dungeoncreeper.player.Team;
 
-public class DungeonWorld {
+public class DungeonGame {
 	private World world;
 	private Map<String, Team> teams = new HashMap<String, Team>();
-	private List<DCPlayer> players = new ArrayList<DCPlayer>();
+	private List<Player> players = new ArrayList<Player>();
 	
-	public DungeonWorld(World world) {
+	private boolean canJoin;
+	
+	public DungeonGame(World world) {
 		this.world = world;
+		this.canJoin = true;
 	}
 	
-	public void join(DCPlayer player, String team) {
+	public void start() {
+		canJoin = false;
+		for (Team team : teams.values()) {
+			team.respawnPlayers();
+		}
+	}
+	
+	public boolean canJoin() {
+		return canJoin;
+	}
+	
+	public void join(Player player, String team) {
 		teams.get(team).playerJoin(player);
 		players.add(player);
 	}

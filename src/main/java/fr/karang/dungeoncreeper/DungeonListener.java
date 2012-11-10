@@ -24,55 +24,22 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player;
+package fr.karang.dungeoncreeper;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
+import org.spout.api.event.EventHandler;
+import org.spout.api.event.Listener;
+import org.spout.api.event.player.PlayerJoinEvent;
 
-import org.spout.api.entity.Player;
-import org.spout.api.geo.discrete.Point;
-import org.spout.api.geo.discrete.Transform;
-import org.spout.api.math.Quaternion;
-import org.spout.api.math.Vector3;
-
-public class Team {
-	private final String name;
-	private final Color color;
-	private List<Player> players = new ArrayList<Player>();
-	private Transform spawn;
+public class DungeonListener implements Listener {
 	
-	public Team(String name, Color color, Point spawn) {
-		this.name = name;
-		this.color = color;
-		this.spawn = new Transform(spawn, Quaternion.IDENTITY, Vector3.ONE);
+	private DungeonCreeper plugin;
+	
+	public DungeonListener(DungeonCreeper plugin) {
+		this.plugin = plugin;
 	}
 	
-	public void respawnPlayers() {
-		for (Player player : players) {
-			player.teleport(spawn);
-		}
-	}
-	
-	public void playerJoin(Player player) {
-		players.add(player);
-		player.get(DungeonPlayer.class).setTeam(this);
-	}
-	
-	public void playerQuit(Player player) {
-		players.remove(player);
-		player.get(DungeonPlayer.class).setTeam(null);
-	}
-	
-	public List<Player> getPlayers() {
-		return players;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public Color getColor() {
-		return color;
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		plugin.getLobby().playerJoin(event.getPlayer());
 	}
 }

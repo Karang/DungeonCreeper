@@ -34,20 +34,17 @@ import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
 import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
 import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.exception.ConfigurationException;
-import org.spout.api.geo.World;
-import org.spout.api.geo.discrete.Transform;
-import org.spout.api.math.Quaternion;
-import org.spout.api.math.Vector3;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 
 import fr.karang.dungeoncreeper.command.AdministrationCommands;
-import fr.karang.dungeoncreeper.world.DungeonGenerator;
+import fr.karang.dungeoncreeper.lobby.Lobby;
 
 public class DungeonCreeper extends CommonPlugin {
 	private static DungeonCreeper instance;
 	private Engine engine;
 	private DungeonConfig config;
+	private Lobby lobby;
 	
 	@Override
 	public void onLoad() {
@@ -64,28 +61,29 @@ public class DungeonCreeper extends CommonPlugin {
 			getLogger().log(Level.WARNING, "Error loading DungeonCreeper configuration: ", e);
 		}
 		
+		lobby = new Lobby();
+		
+		// World
 		if (engine.debugMode() || engine.getPlatform()==Platform.SERVER) {
-			setupWorld();
+			lobby.createNewGame();
 		}
 
-		//Commands
+		// Commands
 		CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
 		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
+		engine.getEventManager().registerEvents(new DungeonListener(this), this);
 		
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
 	}
 
 	@Override
 	public void onDisable() {
+		lobby.removeAllGames();
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " disabled.");
 	}
 	
-	private void setupWorld() {
-		DungeonGenerator generator = new DungeonGenerator();
-		World world = engine.loadWorld("Dungeon", generator);
-		if (world.getAge()<=0) {
-			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
-		}
+	public Lobby getLobby() {
+		return lobby;
 	}
 	
 	public DungeonConfig getConfig() {
