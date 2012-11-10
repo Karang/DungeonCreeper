@@ -53,7 +53,7 @@ public class GoldBag extends BlockMaterial {
 			if (entity.has(Imp.class)) {
 				//TODO: check the player's team
 				//TODO: get the real amount of gold
-				entity.get(Imp.class).addGold(5);
+				//entity.get(Imp.class).addGold(5); Replace by a item added in the imp inventory
 				block.setMaterial(DCMaterials.AIR);
 			} else {
 				((Player) entity).sendMessage(ChatStyle.RED, "Only imps can grab gold bags.");

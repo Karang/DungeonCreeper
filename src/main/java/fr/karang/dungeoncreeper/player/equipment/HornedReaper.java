@@ -26,28 +26,16 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.component.components.EntityComponent;
+import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 
 /**
  * @source http://dungeonkeeper.wikia.com/wiki/Horned_Reaper
  */
-public class HornedReaper extends EntityComponent {
-	
-	@Override
-	public void onAttached() {
-		getData().put(DungeonData.HEALTH, 10);
-		getData().put(DungeonData.MAX_HEALTH, 10);
-		getData().put(DungeonData.GOLD_AMOUNT, 0);
-		getData().put(DungeonData.DAMAGES, 0);
-	}
-	
-	public void addGold(int amount) {
-		getData().put(DungeonData.GOLD_AMOUNT, getGold()+amount);
-	}
-	
-	public int getGold() {
-		return getData().get(DungeonData.GOLD_AMOUNT);
+public class HornedReaper extends CreatureComponent {
+
+	public Inventory getInventory() {
+		return getData().get(DungeonCreeperData.HornedReaper_Inventory);
 	}
 }

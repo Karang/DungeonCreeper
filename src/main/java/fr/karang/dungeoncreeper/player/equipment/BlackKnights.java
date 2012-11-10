@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.component.components.EntityComponent;
+import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 
 /**
  * The Imp is your most important creature you have. They do
@@ -39,21 +39,9 @@ import fr.karang.dungeoncreeper.data.DungeonData;
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Black_Knight
  */
-public class BlackKnights extends EntityComponent {
-	
-	@Override
-	public void onAttached() {
-		getData().put(DungeonData.HEALTH, 10);
-		getData().put(DungeonData.MAX_HEALTH, 10);
-		getData().put(DungeonData.GOLD_AMOUNT, 0);
-		getData().put(DungeonData.DAMAGES, 0);
-	}
-	
-	public void addGold(int amount) {
-		getData().put(DungeonData.GOLD_AMOUNT, getGold()+amount);
-	}
-	
-	public int getGold() {
-		return getData().get(DungeonData.GOLD_AMOUNT);
+public class BlackKnights extends CreatureComponent {
+
+	public Inventory getInventory() {
+		return getData().get(DungeonCreeperData.BlackKnights_Inventory);
 	}
 }
