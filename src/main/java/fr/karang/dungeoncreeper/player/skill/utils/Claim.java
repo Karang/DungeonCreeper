@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
@@ -44,6 +45,11 @@ public class Claim extends Skill {
 		if (block!=null && isNextClaimedBlock(block)){
 			//TODO : Claim territory & Declaim enemy territory
 		}
+	}
+	
+	@Override
+	public Rectangle getUv() {
+		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
 	}
 	
 	private boolean isNextClaimedBlock(Block block){
