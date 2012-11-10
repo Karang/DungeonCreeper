@@ -97,6 +97,10 @@ public class Lobby {
 		}
 	}
 	
+	public LobbyScreen getScreen() {
+		return screen;
+	}
+	
 	public List<Player> getPlayers() {
 		return players;
 	}

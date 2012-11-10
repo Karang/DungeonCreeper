@@ -26,11 +26,23 @@
  */
 package fr.karang.dungeoncreeper.lobby;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.spout.api.Spout;
+import org.spout.api.chat.ChatArguments;
 import org.spout.api.gui.Screen;
+import org.spout.api.gui.Widget;
+import org.spout.api.gui.component.LabelComponent;
+import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+
 public class LobbyScreen extends Screen {
+	
+	private List<Widget> games = new ArrayList<Widget>();
+	private float gameListOffset = 0.9f;
 	
 	public LobbyScreen(Lobby lobby) {
 		if (Spout.getPlatform()!=Platform.CLIENT) {
@@ -39,5 +51,23 @@ public class LobbyScreen extends Screen {
 		
 		this.setTakesInput(false);
 		//TODO: Player list, world list
+	}
+	
+	public void addGame(ChatArguments title) {
+		Widget game = new Widget();
+		game.setGeometry(new Rectangle(0, gameListOffset, 0, 0));
+		LabelComponent txt = game.add(LabelComponent.class);
+		txt.setText(title);
+		games.add(game);
+		attachWidget(DungeonCreeper.getInstance(), game);
+		gameListOffset -= 0.1f;
+	}
+	
+	public void refresh() {
+		for (Widget game : games) {
+			removeWidget(game);
+		}
+		games.clear();
+		gameListOffset = 0.9f;
 	}
 }
