@@ -33,8 +33,8 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public class HandToHand extends Skill {
 
-	public HandToHand() {
-		super(0,1000);
+	public HandToHand(int id) {
+		super(id,1000);
 	}
 	
 	public void handle(Entity source){

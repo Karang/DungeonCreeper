@@ -35,8 +35,8 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public class Claim extends Skill {
 
-	public Claim() {
-		super(0);
+	public Claim(int id) {
+		super(id);
 	}
 
 	@Override

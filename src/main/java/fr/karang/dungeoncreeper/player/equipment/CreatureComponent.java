@@ -26,15 +26,14 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
-import fr.karang.dungeoncreeper.player.skill.Skills;
 
 public abstract class CreatureComponent extends EntityComponent {
 

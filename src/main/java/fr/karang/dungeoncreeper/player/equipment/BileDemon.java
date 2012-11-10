@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;

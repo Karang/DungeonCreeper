@@ -32,8 +32,8 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public class Teleport extends Skill {
 
-	public Teleport() {
-		super(0);
+	public Teleport(int id) {
+		super(id);
 	}
 
 	@Override

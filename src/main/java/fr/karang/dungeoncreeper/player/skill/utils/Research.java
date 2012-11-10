@@ -32,8 +32,8 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public class Research extends Skill {
 
-	public Research() {
-		super(0);
+	public Research(int id) {
+		super(id);
 	}
 
 	@Override

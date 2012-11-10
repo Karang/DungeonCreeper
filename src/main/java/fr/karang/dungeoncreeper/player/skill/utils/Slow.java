@@ -4,14 +4,17 @@ import org.spout.api.entity.Entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class Haste extends Skill {
+public class Slow extends Skill {
 
-	public Haste(int id) {
+	public Slow(int id) {
 		super(id);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void handle(Entity source) {
-		//TODO : Speed up the entity
+		// TODO Auto-generated method stub
+
 	}
+
 }
