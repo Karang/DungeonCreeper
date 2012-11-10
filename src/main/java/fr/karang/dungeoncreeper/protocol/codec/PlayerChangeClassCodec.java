@@ -12,7 +12,7 @@ import fr.karang.dungeoncreeper.protocol.message.PlayerChangeClassMessage;
 public class PlayerChangeClassCodec extends MessageCodec<PlayerChangeClassMessage> {
 
 	public PlayerChangeClassCodec() {
-		super(PlayerChangeClassMessage.class, 0x0);
+		super(PlayerChangeClassMessage.class, 0x14);
 	}
 
 	@Override

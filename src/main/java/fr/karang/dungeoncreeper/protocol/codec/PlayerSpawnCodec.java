@@ -11,7 +11,7 @@ import fr.karang.dungeoncreeper.protocol.message.PlayerSpawnMessage;
 
 public class PlayerSpawnCodec extends MessageCodec<PlayerSpawnMessage>{
 	public PlayerSpawnCodec() {
-		super(PlayerSpawnMessage.class, 0x0);
+		super(PlayerSpawnMessage.class, 0x10);
 	}
 
 	@Override

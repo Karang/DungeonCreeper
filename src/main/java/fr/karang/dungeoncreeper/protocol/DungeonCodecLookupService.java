@@ -17,7 +17,8 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			//bind(PlayerDamageCodec.class); // 0x12
 			//bind(PlayerSkillCodec.class); // 0x13
 			bind(PlayerChangeClassCodec.class); // 0x14
-			//bind(PlayerChatCodec.class); // 0x15
+			bind(PlayerChatCodec.class); // 0x15
+			bind(PlayerKickCodec.class); // 0x16
 			
 			// Team messages
 			//bind(TeamColorCodec.class); // 0x20

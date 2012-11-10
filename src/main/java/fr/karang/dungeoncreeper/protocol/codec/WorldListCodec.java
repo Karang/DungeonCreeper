@@ -12,7 +12,7 @@ import fr.karang.dungeoncreeper.protocol.message.WorldListMessage;
 public class WorldListCodec extends MessageCodec<WorldListMessage> {
 
 	public WorldListCodec() {
-		super(WorldListMessage.class, 0x1);
+		super(WorldListMessage.class, 0x0);
 	}
 
 	@Override

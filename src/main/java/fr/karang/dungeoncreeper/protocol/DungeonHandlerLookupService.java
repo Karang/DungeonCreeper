@@ -13,15 +13,16 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 
 			// Players messages
 			bind(PlayerSpawnMessage.class, PlayerSpawnHandler.class); // 0x10
-			//bind(PlayerMoveCodec.class); // 0x11
-			//bind(PlayerDamageCodec.class); // 0x12
-			//bind(PlayerSkillCodec.class); // 0x13
+			//bind(PlayerMoveMessage.class, PlayerMoveHandler.class); // 0x11
+			//bind(PlayerDamageMessage.class, PlayerDamageHandler.class); // 0x12
+			//bind(PlayerSkillMessage.class, PlayerSkillHandler.class); // 0x13
 			bind(PlayerChangeClassMessage.class, PlayerChangeClassHandler.class); // 0x14
-			//bind(PlayerChatCodec.class); // 0x15
-
+			bind(PlayerChatMessage.class, PlayerChatHandler.class); // 0x15
+			bind(PlayerKickMessage.class, PlayerKickHandler.class); // 0x16
+			
 			// Team messages
-			//bind(TeamColorCodec.class); // 0x20
-			//bind(TeamGoldCodec.class); // 0x21
+			//bind(TeamColorMessage.class, TeamColorHandler.class); // 0x20
+			//bind(TeamGoldMessage.class, TeamGoldHandler.class); // 0x21
 
 			// World messages
 		} catch (Exception e) {
