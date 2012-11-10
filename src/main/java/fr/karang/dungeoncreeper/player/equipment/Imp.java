@@ -26,10 +26,7 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
 import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -54,9 +51,5 @@ public class Imp extends CreatureComponent {
 	@Override
 	public void onAttached() {
 		getData().put(DungeonData.GOLD_AMOUNT, 0);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.Imp_Inventory);
 	}
 }

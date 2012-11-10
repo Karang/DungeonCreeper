@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.spout.api.component.components.EntityComponent;
-import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
@@ -48,8 +47,6 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.SKILLSLOT, 0);
 		getData().put(DungeonData.LEVEL, 1);
 	}
-	
-	public abstract Inventory getInventory();
 
 	public void addSkill(Skill skill, int level) {
 		requiredLevel.put(skill, level);

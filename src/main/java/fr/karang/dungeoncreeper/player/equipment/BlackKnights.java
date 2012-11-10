@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -44,9 +41,5 @@ public class BlackKnights extends CreatureComponent {
 
 	public BlackKnights(){
 		addSkill(Skills.ATTACKSWORD, 1);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.BlackKnights_Inventory);
 	}
 }

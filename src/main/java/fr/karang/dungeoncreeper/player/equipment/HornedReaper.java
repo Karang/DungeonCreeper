@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -38,9 +35,5 @@ public class HornedReaper extends CreatureComponent {
 
 	public HornedReaper(){
 		addSkill(Skills.STUN_FIREBALL, 1);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.HornedReaper_Inventory);
 	}
 }

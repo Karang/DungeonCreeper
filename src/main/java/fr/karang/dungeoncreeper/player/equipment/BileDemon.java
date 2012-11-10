@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -40,10 +37,6 @@ public class BileDemon extends CreatureComponent {
 		addSkill(Skills.HANDTOHAND, 1);
 		addSkill(Skills.GAS_CLOUD, 4);
 		addSkill(Skills.GAS_MISSILE, 8);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.BileDemon_Inventory);
 	}
 	
 }

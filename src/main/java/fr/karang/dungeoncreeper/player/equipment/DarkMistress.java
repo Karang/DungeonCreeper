@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -42,9 +39,5 @@ public class DarkMistress extends CreatureComponent {
 		addSkill(Skills.LIGHTNING, 4);
 		addSkill(Skills.FREEZE, 8);
 		addSkill(Skills.HAIL_STORM, 10);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.DarkMistress_Inventory);
 	}
 }

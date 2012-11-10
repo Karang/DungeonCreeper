@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -42,9 +39,5 @@ public class DarkAngels extends CreatureComponent {
 		addSkill(Skills.DISRUPTION, 4);
 		addSkill(Skills.HAILSTORM, 8);
 		addSkill(Skills.SKELETON_ARMY, 10);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.DarkAngels_Inventory);
 	}
 }

@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -40,9 +37,5 @@ public class Rogue extends CreatureComponent {
 	public Rogue(){
 		addSkill(Skills.ATTACKSWORD, 1);
 		addSkill(Skills.INVISIBILITY, 1);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.Rogue_Inventory);
 	}
 }

@@ -26,9 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -47,9 +44,5 @@ public class Warlock extends CreatureComponent {
 		addSkill(Skills.FIREBALL, 1);
 		addSkill(Skills.HEAL, 2);
 		addSkill(Skills.FIREBOMB, 8);
-	}
-	
-	public Inventory getInventory() {
-		return getData().get(DungeonCreeperData.Warlock_Inventory);
 	}
 }
