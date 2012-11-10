@@ -29,7 +29,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 public class Wall extends DungeonMaterial {
 
 	public Wall() {
-		super("Wall", "");
+		super("Wall", "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 	}
 
 }

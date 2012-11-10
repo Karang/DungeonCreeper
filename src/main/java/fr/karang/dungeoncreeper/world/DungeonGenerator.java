@@ -97,7 +97,7 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 	
 	public Point getSpectatorSpawn(World world) {
-		return new Point(world, dungeonWidth*16/2, 5, dungeonHeight*16/2);
+		return new Point(world, dungeonWidth * Chunk.BLOCKS.SIZE / 2, 5, dungeonHeight * Chunk.BLOCKS.SIZE / 2);
 	}
 	
 	public int[][] getSurfaceHeight(World world, int chunkX, int chunkZ) {

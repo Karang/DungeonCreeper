@@ -29,7 +29,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 public class DungeonHearth extends DungeonMaterial {
 
 	public DungeonHearth() {
-		super("Dungeon Hearth", "");
+		super("Dungeon Hearth", "model://DungeonCreeper/resources/block/dungeon/dungeonHearth/dungeonHearth.spm");
 	}
 
 }

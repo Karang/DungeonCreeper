@@ -29,7 +29,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 public class Bridge extends DungeonMaterial {
 
 	public Bridge() {
-		super("Bridge", "");
+		super("Bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
 	}
 
 }

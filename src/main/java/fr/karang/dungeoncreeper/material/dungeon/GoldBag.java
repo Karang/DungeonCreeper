@@ -40,7 +40,7 @@ import fr.karang.dungeoncreeper.player.Imp;
 public class GoldBag extends BlockMaterial {
 
 	public GoldBag() {
-		super("Gold Bag", "");
+		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
 	}
 	
 	@Override
