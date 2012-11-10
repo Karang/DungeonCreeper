@@ -34,6 +34,7 @@ import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Imp;
 
 public class GoldBag extends BlockMaterial {
@@ -50,9 +51,12 @@ public class GoldBag extends BlockMaterial {
 		
 		if (entity instanceof Player) {
 			if (entity.has(Imp.class)) {
-				entity.get(Imp.class);
+				//TODO: check the player's team
+				//TODO: get the real amount of gold
+				entity.get(Imp.class).addGold(5);
+				block.setMaterial(DCMaterials.AIR);
 			} else {
-				((Player) entity).sendMessage(ChatStyle.RED, "Only minions can grab gold bags.");
+				((Player) entity).sendMessage(ChatStyle.RED, "Only imps can grab gold bags.");
 			}
 		}
 	}

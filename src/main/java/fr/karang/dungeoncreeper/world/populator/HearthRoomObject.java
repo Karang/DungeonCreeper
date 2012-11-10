@@ -28,12 +28,14 @@ package fr.karang.dungeoncreeper.world.populator;
 
 import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
+import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
 
 public class HearthRoomObject extends WorldGeneratorObject {
 
-	private static int HALFSIZE = 5;
+	private static int RADIUS = 4;
+	private static int POOLRADIUS = 2;
 	
 	@Override
 	public boolean canPlaceObject(World w, int x, int y, int z) {
@@ -43,13 +45,30 @@ public class HearthRoomObject extends WorldGeneratorObject {
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
 		// Make place
-		for (int xx=x-HALFSIZE ; xx<x+HALFSIZE ; xx++) {
-			for (int zz=z-HALFSIZE ; zz<z+HALFSIZE ; zz++) {
-				for (int yy=y ; y<y+2 ; y++) {
-					w.getBlock(xx, yy, zz).setMaterial(DCMaterials.AIR);
+		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y+3, z+RADIUS, DCMaterials.AIR);
+		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, DCMaterials.FLOOR);
+		
+		// Make the lava pool
+		fill(w, x-POOLRADIUS, y, z-POOLRADIUS, x+POOLRADIUS, y, z+POOLRADIUS, DCMaterials.LAVA);
+		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, DCMaterials.FLOOR);
+		
+		// Place the dungeon hearth
+		w.getBlock(x, y+3, z).setMaterial(DCMaterials.DUNGEON_HEARTH);
+		
+		// And the pillars
+		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
+		fill(w, x-POOLRADIUS-1, y+1, z+POOLRADIUS+1, x-POOLRADIUS-1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
+		fill(w, x+POOLRADIUS+1, y+1, z-POOLRADIUS-1, x+POOLRADIUS+1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
+		fill(w, x-POOLRADIUS-1, y+1, z-POOLRADIUS-1, x-POOLRADIUS-1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
+	}
+	
+	private void fill(World w, int x1, int y1, int z1, int x2, int y2, int z2, BlockMaterial material) {
+		for (int x=x1 ; x<=x2 ; x++) {
+			for (int y=y1 ; y<=y2 ; y++) {
+				for (int z=z1 ; z<=z2 ; z++) {
+					w.getBlock(x, y, z).setMaterial(material);
 				}
 			}
 		}
 	}
-
 }
