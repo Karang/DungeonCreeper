@@ -52,10 +52,6 @@
  */
 package fr.karang.dungeoncreeper.command;
 
-import org.spout.api.Client;
-import org.spout.api.Server;
-import org.spout.api.Spout;
-import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
@@ -73,7 +69,7 @@ public class PlayerCommands {
 		this.plugin = plugin;
 	}
 
-	/*@Command(aliases = "slot", usage = "[id]", desc = "Change of slot", min = 1, max = 1)
+	@Command(aliases = "slot", usage = "[id]", desc = "Change of slot", min = 1, max = 1)
 	@CommandPermissions("dungeoncreeper.command.slot")
 	public void changeClass(CommandContext args, CommandSource source) throws CommandException {
 		if (!(source instanceof Player)) {
@@ -83,7 +79,7 @@ public class PlayerCommands {
 		int slot = Integer.parseInt(args.get(0).getPlainString());
 
 		Player player = (Player) source;
-		player.get(CreatureComponent.class).getInventory().setSelectedSlot(slot);
-	}*/
+		player.get(CreatureComponent.class).setSlot(slot);
+	}
 
 }

@@ -18,6 +18,7 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.HEALTH, 10);
 		getData().put(DungeonData.MAX_HEALTH, 10);
 		getData().put(DungeonData.DAMAGES, 0);
+		getData().put(DungeonData.SKILLSLOT, 0);
 	}
 	
 	public abstract Inventory getInventory();
@@ -32,5 +33,9 @@ public abstract class CreatureComponent extends EntityComponent {
 	
 	public Skill getSkill(Class<? extends Skill> skill) {
 		return skills.get(skill);
+	}
+	
+	public void setSlot(int slot){
+		getData().put(DungeonData.SKILLSLOT, slot);
 	}
 }
