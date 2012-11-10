@@ -26,15 +26,22 @@
  */
 package fr.karang.dungeoncreeper.player.equipment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * @source http://dungeonkeeper.wikia.com/wiki/Bile_Demon
  */
 public class BileDemon extends CreatureComponent {
-
+	
+	public BileDemon(){
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.BileDemon_Inventory);
 	}

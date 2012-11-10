@@ -34,9 +34,11 @@ import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 public abstract class CreatureComponent extends EntityComponent {
 
+	private Map<Skill, Integer> requiredLevel = new HashMap<Skill, Integer>();
 	private Map<Class<? extends Skill>, Skill> skills = new HashMap<Class<? extends Skill>, Skill>();
 	
 	@Override
@@ -45,11 +47,13 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.MAX_HEALTH, 10);
 		getData().put(DungeonData.DAMAGES, 0);
 		getData().put(DungeonData.SKILLSLOT, 0);
+		getData().put(DungeonData.LEVEL, 1);
 	}
 	
 	public abstract Inventory getInventory();
 
-	public void addSkill(Skill skill) {
+	public void addSkill(Skill skill, int level) {
+		requiredLevel.put(skill, level);
 		skills.put(skill.getClass(), skill);
 	}
 	

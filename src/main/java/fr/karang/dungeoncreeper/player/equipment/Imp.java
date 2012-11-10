@@ -31,6 +31,7 @@ import org.spout.api.inventory.Inventory;
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * The Imp is your most important creature you have. They do
@@ -43,10 +44,17 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
  */
 public class Imp extends CreatureComponent {
 	
+	public Imp(){
+		addSkill(Skills.DIG, 1);
+		addSkill(Skills.CLAIM, 1);
+		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.SPEED, 4);
+		addSkill(Skills.TELEPORT, 8);
+	}
+	
 	@Override
 	public void onAttached() {
 		getData().put(DungeonData.GOLD_AMOUNT, 0);
-		addSkill(Skill.getSkill(0)); // DIG
 	}
 	
 	public Inventory getInventory() {
