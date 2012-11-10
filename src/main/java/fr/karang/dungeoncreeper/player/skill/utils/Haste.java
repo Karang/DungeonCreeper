@@ -4,9 +4,9 @@ import org.spout.api.entity.Entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class Speed extends Skill {
+public class Haste extends Skill {
 
-	public Speed() {
+	public Haste() {
 		super(0);
 	}
 

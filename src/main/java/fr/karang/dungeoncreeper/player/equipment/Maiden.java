@@ -29,13 +29,20 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Maiden
  */
 public class Maiden extends CreatureComponent {
-
+	
+	public Maiden(){
+		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.MAIDEN_WEB, 1);
+		addSkill(Skills.POISON_SPIT, 1);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Maiden_Inventory);
 	}

@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
@@ -36,6 +37,13 @@ import fr.karang.dungeoncreeper.player.DungeonCreeperData;
  */
 public class Vampire extends CreatureComponent {
 
+	public Vampire(){
+		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.SLOW, 3);
+		addSkill(Skills.BITE, 8);
+		addSkill(Skills.RAISE_DEAD, 10);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Vampire_Inventory);
 	}

@@ -29,13 +29,20 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Dark_Elf
  */
 public class DarkElf extends CreatureComponent {
-
+	
+	public DarkElf(){
+		addSkill(Skills.ARROW, 1);
+		addSkill(Skills.KNIVES, 4);
+		addSkill(Skills.GUIDED_BOLT, 8);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.DarkElf_Inventory);
 	}

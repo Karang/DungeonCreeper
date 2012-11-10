@@ -29,13 +29,18 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Firefly
  */
 public class Firefly extends CreatureComponent {
-
+	
+	public Firefly(){
+		addSkill(Skills.WHIRLWIND, 8);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Firefly_Inventory);
 	}

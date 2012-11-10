@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
@@ -36,6 +37,10 @@ import fr.karang.dungeoncreeper.player.DungeonCreeperData;
  */
 public class Skeleton extends CreatureComponent {
 
+	public Skeleton(){
+		addSkill(Skills.ATTACKSWORD, 1);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Skeleton_Inventory);
 	}

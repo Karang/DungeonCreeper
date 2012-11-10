@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
@@ -36,6 +37,12 @@ import fr.karang.dungeoncreeper.player.DungeonCreeperData;
  */
 public class Salamender extends CreatureComponent {
 
+	public Salamender(){
+		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.FIREBALL, 4);
+		addSkill(Skills.SPIT, 8);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Salamender_Inventory);
 	}

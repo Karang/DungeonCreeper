@@ -29,13 +29,18 @@ package fr.karang.dungeoncreeper.player.equipment;
 import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Troll
  */
 public class Troll extends CreatureComponent {
-
+	
+	public Troll(){
+		addSkill(Skills.HANDTOHAND, 1);
+	}
+	
 	public Inventory getInventory() {
 		return getData().get(DungeonCreeperData.Troll_Inventory);
 	}
