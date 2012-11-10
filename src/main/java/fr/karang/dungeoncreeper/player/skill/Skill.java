@@ -8,10 +8,15 @@ public class Skill {
 	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
 	
 	private final int id;
-	private int cooldown = 0;
+	private long cooldown;
 	
 	public Skill(int id) {
+		this(id, 0L);
+	}
+	
+	public Skill(int id, long cooldown) {
 		this.id = id;
+		this.cooldown = cooldown;
 		skills.put(id, this);
 	}
 	
@@ -19,7 +24,7 @@ public class Skill {
 		this.cooldown = cooldown;
 	}
 	
-	public int getCooldown() {
+	public long getCooldown() {
 		return cooldown;
 	}
 	
