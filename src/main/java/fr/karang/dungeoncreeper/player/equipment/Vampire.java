@@ -24,41 +24,31 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.dungeon;
+package fr.karang.dungeoncreeper.player.equipment;
 
-import org.spout.api.chat.style.ChatStyle;
-import org.spout.api.entity.Entity;
-import org.spout.api.entity.Player;
-import org.spout.api.event.player.PlayerInteractEvent.Action;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.BlockMaterial;
-import org.spout.api.material.block.BlockFace;
+import org.spout.api.component.components.EntityComponent;
 
-import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.player.equipment.Imp;
+import fr.karang.dungeoncreeper.data.DungeonData;
 
-public class GoldBag extends BlockMaterial {
-
-	public GoldBag() {
-		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
-	}
+/**
+ * 
+ * @source http://dungeonkeeper.wikia.com/wiki/Vampire
+ */
+public class Vampire extends EntityComponent {
 	
 	@Override
-	public void onInteractBy(Entity entity, Block block, Action type, BlockFace clickedFace) {
-		if (type!=Action.LEFT_CLICK && type!=Action.RIGHT_CLICK) {
-			return;
-		}
-		
-		if (entity instanceof Player) {
-			if (entity.has(Imp.class)) {
-				//TODO: check the player's team
-				//TODO: get the real amount of gold
-				entity.get(Imp.class).addGold(5);
-				block.setMaterial(DCMaterials.AIR);
-			} else {
-				((Player) entity).sendMessage(ChatStyle.RED, "Only imps can grab gold bags.");
-			}
-		}
+	public void onAttached() {
+		getData().put(DungeonData.HEALTH, 10);
+		getData().put(DungeonData.MAX_HEALTH, 10);
+		getData().put(DungeonData.GOLD_AMOUNT, 0);
+		getData().put(DungeonData.DAMAGES, 0);
 	}
-
+	
+	public void addGold(int amount) {
+		getData().put(DungeonData.GOLD_AMOUNT, getGold()+amount);
+	}
+	
+	public int getGold() {
+		return getData().get(DungeonData.GOLD_AMOUNT);
+	}
 }

@@ -24,22 +24,17 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player;
+package fr.karang.dungeoncreeper.player.equipment;
 
 import org.spout.api.component.components.EntityComponent;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 
 /**
- * The Imp is your most important creature you have. They do
- * everything that your other creatures can't, including digging,
- * claiming land, installing traps, rescuing knocked out creatures,
- * etc. They do not fight, and instead will run from battle. In
- * order to expand, you need these.
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Imp
+ * @source http://dungeonkeeper.wikia.com/wiki/Rogue
  */
-public class Imp extends EntityComponent {
+public class Rogue extends EntityComponent {
 	
 	@Override
 	public void onAttached() {

@@ -3,7 +3,7 @@ package fr.karang.dungeoncreeper.protocol.message;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.protocol.Message;
 
-import fr.karang.dungeoncreeper.player.Imp;
+import fr.karang.dungeoncreeper.player.equipment.Imp;
 
 public class PlayerChangeClassMessage implements Message {
 
