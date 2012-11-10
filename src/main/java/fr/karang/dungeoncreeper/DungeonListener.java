@@ -26,9 +26,14 @@
  */
 package fr.karang.dungeoncreeper;
 
+import org.spout.api.Client;
+import org.spout.api.Spout;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.player.PlayerJoinEvent;
+import org.spout.api.event.server.ClientEnableEvent;
+
+import fr.karang.dungeoncreeper.gui.HUD;
 
 public class DungeonListener implements Listener {
 	
@@ -42,4 +47,11 @@ public class DungeonListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		plugin.getLobby().playerJoin(event.getPlayer());
 	}
+	
+	@EventHandler
+	public void onClientEnable(ClientEnableEvent event) {
+		final HUD hud = new HUD();
+		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
+	}
+
 }
