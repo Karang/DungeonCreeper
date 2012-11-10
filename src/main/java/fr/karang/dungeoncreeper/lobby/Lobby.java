@@ -41,8 +41,8 @@ import org.spout.api.math.Vector3;
 import org.spout.api.plugin.Platform;
 
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.world.DungeonGenerator;
 import fr.karang.dungeoncreeper.world.DungeonGame;
+import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class Lobby {
 	private Engine engine;
@@ -108,4 +108,5 @@ public class Lobby {
 	public List<DungeonGame> getGames() {
 		return games;
 	}
+
 }

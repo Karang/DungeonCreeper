@@ -73,11 +73,11 @@ public class DungeonGenerator implements WorldGenerator {
 
 		for (int x = xx ; x < xx + Chunk.BLOCKS.SIZE ; x++) {
 			for (int z = zz ; z < zz + Chunk.BLOCKS.SIZE ; z++) {
-				for (int y = 0 ; y < Chunk.BLOCKS.SIZE ; y++) {
+				for (int y = 0 ; y < 4 /*Chunk.BLOCKS.SIZE*/ ; y++) {
 					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
 						blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
 					} else {
-						if (y==0 || y==4) {
+						if (y==0 /*|| y==4*/) { // To obtain a good view from height
 							blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
 						} else if (y<4){
 							blockData.set(x, y, z, DCMaterials.DIRT.getId());
@@ -89,6 +89,8 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 	
 	public int getColor(int x, int z) {
+		if(x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength)
+			return -1;
 		return textureMap.getImage().getRGB(x, z);
 	}
 

@@ -37,6 +37,7 @@ public class NaturalObject extends WorldGeneratorObject {
 	public static NaturalObject GOLD_ORE = new NaturalObject(DCMaterials.GOLD_ORE);
 	public static NaturalObject GEM_ORE = new NaturalObject(DCMaterials.GEM_ORE);
 	public static NaturalObject CAVERN = new NaturalObject(DCMaterials.AIR);
+	public static NaturalObject UNBREAKABLE = new NaturalObject(DCMaterials.UNBREAKABLE_DIRT);
 	public static LavaObject LAVA = new LavaObject();
 	
 	private final BlockMaterial material;

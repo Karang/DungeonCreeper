@@ -31,12 +31,19 @@ import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.player.Team;
 
 public class HearthRoomObject extends WorldGeneratorObject {
 
 	private static int RADIUS = 4;
 	private static int POOLRADIUS = 2;
 	
+	Team team;
+	
+	public HearthRoomObject(Team team) {
+		this.team = team;
+	}
+
 	@Override
 	public boolean canPlaceObject(World w, int x, int y, int z) {
 		return true;
