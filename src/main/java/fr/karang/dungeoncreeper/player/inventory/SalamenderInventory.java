@@ -26,16 +26,14 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.data.DungeonData;
 
 /**
  * 
  * @source http://dungeonkeeper.wikia.com/wiki/Salamander
  */
 public class SalamenderInventory extends Inventory {
+	private static final long serialVersionUID = -2151535024890553727L;
 	
 
 }

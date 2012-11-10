@@ -26,16 +26,13 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-
 /**
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Mistress
  */
 public class DarkMistressInventory extends Inventory {
+	private static final long serialVersionUID = -3242882031227772446L;
 	
 
 }

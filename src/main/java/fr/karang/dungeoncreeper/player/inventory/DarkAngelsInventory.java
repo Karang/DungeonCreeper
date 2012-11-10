@@ -26,16 +26,12 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-
 /**
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Dark_Angel
  */
 public class DarkAngelsInventory extends Inventory {
+	private static final long serialVersionUID = -8454012503529654806L;
 	
-
 }

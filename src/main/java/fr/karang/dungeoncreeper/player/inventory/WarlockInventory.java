@@ -26,21 +26,13 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-
 /**
- * The Imp is your most important creature you have. They do
- * everything that your other creatures can't, including digging,
- * claiming land, installing traps, rescuing knocked out creatures,
- * etc. They do not fight, and instead will run from battle. In
- * order to expand, you need these.
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Warlock
  */
 public class WarlockInventory extends Inventory {
+	private static final long serialVersionUID = 6453800520620319358L;
 	
 
 }

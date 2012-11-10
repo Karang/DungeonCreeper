@@ -26,10 +26,8 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
 
 /**
  * The Imp is your most important creature you have. They do
@@ -41,6 +39,7 @@ import fr.karang.dungeoncreeper.data.DungeonData;
  * @source http://dungeonkeeper.wikia.com/wiki/Imp
  */
 public class ImpInventory extends Inventory {
+	private static final long serialVersionUID = 6216245541895424881L;
 	
 
 }

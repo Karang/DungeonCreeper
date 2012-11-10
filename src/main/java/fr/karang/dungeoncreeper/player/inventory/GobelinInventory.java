@@ -26,15 +26,13 @@
  */
 package fr.karang.dungeoncreeper.player.inventory;
 
-import org.spout.api.component.components.EntityComponent;
 import org.spout.api.inventory.Inventory;
-
-import fr.karang.dungeoncreeper.data.DungeonData;
 
 /**
  * @source http://dungeonkeeper.wikia.com/wiki/Goblin
  */
 public class GobelinInventory extends Inventory {
+	private static final long serialVersionUID = 6716335456699428966L;
 	
 
 }

@@ -32,6 +32,7 @@ import org.spout.api.inventory.Inventory;
  * @source http://dungeonkeeper.wikia.com/wiki/Bile_Demon
  */
 public class BileDemonInventory extends Inventory {
+	private static final long serialVersionUID = 7511151749962209286L;
 	
 
 }
