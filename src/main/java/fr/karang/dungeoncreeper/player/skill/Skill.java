@@ -3,7 +3,9 @@ package fr.karang.dungeoncreeper.player.skill;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Skill {
+import org.spout.api.entity.Entity;
+
+public abstract class Skill {
 	
 	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
 	
@@ -35,4 +37,6 @@ public class Skill {
 	public static Skill getSkill(int skillId) {
 		return skills.get(skillId);
 	}
+	
+	public abstract void handle(Entity source);
 }

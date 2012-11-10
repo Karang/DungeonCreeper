@@ -81,5 +81,27 @@ public class PlayerCommands {
 		Player player = (Player) source;
 		player.get(CreatureComponent.class).setSlot(slot);
 	}
+	
+	@Command(aliases = "interact1", usage = "", desc = "Primary interaction", min = 0, max = 0)
+	@CommandPermissions("dungeoncreeper.command.interact1")
+	public void interact1(CommandContext args, CommandSource source) throws CommandException {
+		if (!(source instanceof Player)) {
+			throw new CommandException("You must be a player to change your class.");
+		}
+
+		Player player = (Player) source;
+		//TODO : Use primary selected skill
+	}
+	
+	@Command(aliases = "interact2", usage = "", desc = "Secondary interaction", min = 0, max = 0)
+	@CommandPermissions("dungeoncreeper.command.interact1")
+	public void interact2(CommandContext args, CommandSource source) throws CommandException {
+		if (!(source instanceof Player)) {
+			throw new CommandException("You must be a player to change your class.");
+		}
+
+		Player player = (Player) source;
+		//TODO : Use secondary selected skill
+	}
 
 }
