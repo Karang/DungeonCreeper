@@ -30,7 +30,6 @@ import org.spout.api.inventory.Inventory;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.DungeonCreeperData;
-import fr.karang.dungeoncreeper.player.skill.Dig;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 /**
