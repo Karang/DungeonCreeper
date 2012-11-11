@@ -102,6 +102,18 @@ public class DungeonGenerator implements WorldGenerator {
 		return !(chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>dungeonWidth || chunkY>dungeonHeight || chunkZ>dungeonLength);
 	}
 	
+	public int getSize() {
+		return dungeonWidth * dungeonHeight * dungeonLength;
+	}
+	
+	public int getWidth() {
+		return dungeonWidth;
+	}
+	
+	public int getLength() {
+		return dungeonLength;
+	}
+	
 	public Point getSpectatorSpawn(World world) {
 		return new Point(world, dungeonWidth * Chunk.BLOCKS.SIZE / 2, 5, dungeonHeight * Chunk.BLOCKS.SIZE / 2);
 	}

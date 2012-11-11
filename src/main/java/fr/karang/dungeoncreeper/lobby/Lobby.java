@@ -44,10 +44,12 @@ import org.spout.api.protocol.Session;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
+import fr.karang.dungeoncreeper.thread.DungeonLoaderThread;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class Lobby {
+	private static final int LOADER_THREAD_COUNT = 16;
 	private Engine engine;
 	private List<Player> players = new ArrayList<Player>();
 	private List<DungeonGame> games = new ArrayList<DungeonGame>();
@@ -63,6 +65,7 @@ public class Lobby {
 	}
 	
 	public void playerJoin(Player player) {
+		System.out.println("Player joined the lobby!");
 		player.add(DungeonPlayer.class);
 		players.add(player);
 	}
@@ -70,9 +73,37 @@ public class Lobby {
 	public void createNewGame() {
 		DungeonGenerator generator = new DungeonGenerator("texture://DungeonCreeper/resources/map.png");
 		World world = Spout.getEngine().loadWorld("dungeon_"+gameId, generator);
+		
 		if (world.getAge()<=0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 		}
+		
+		int total = generator.getSize();
+		int step = total / 10;
+		DungeonLoaderThread[] loaderThreads = new DungeonLoaderThread[LOADER_THREAD_COUNT];
+		
+		for (int i = 0; i < LOADER_THREAD_COUNT; i++) {
+			loaderThreads[i] = new DungeonLoaderThread(total, step);
+		}
+
+		for (int X=0 ; X<generator.getWidth() ; X++) {
+			for (int Z=0 ; Z<generator.getLength() ; Z++) {
+				DungeonLoaderThread.addChunk(world, X, 1, Z);
+			}
+		}
+
+		for (int i = 0; i < LOADER_THREAD_COUNT; i++) {
+			loaderThreads[i].start();
+		}
+
+		for (int i = 0; i < LOADER_THREAD_COUNT; i++) {
+			try {
+				loaderThreads[i].join();
+			} catch (InterruptedException ie) {
+				engine.getLogger().info("Interrupted when waiting for spawn area to load");
+			}
+		}
+		
 		games.add(new DungeonGame(world,gameId));
 		gameId++;
 	}
