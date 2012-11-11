@@ -41,7 +41,7 @@ import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
 import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
 
 public class DungeonProtocol extends Protocol {
-
+	public static final byte PROTOCOL_VERSION = 0;
 	public static final int defaultPort = 25565;
 	
 	public DungeonProtocol() {
@@ -82,7 +82,7 @@ public class DungeonProtocol extends Protocol {
 
 	@Override
 	public Message getIntroductionMessage(String playerName) {
-		return new PlayerHandshakeMessage(playerName, "localhost", 25556);//TODO : Configure host & port
+		return new PlayerHandshakeMessage(PROTOCOL_VERSION, playerName, "localhost", 25565);//TODO : Configure host & port
 	}
 
 	@Override

@@ -37,6 +37,10 @@ public class DungeonConfig extends ConfigurationHolderConfiguration {
 	// Client config
 	public static final ConfigurationHolder USERNAME = new ConfigurationHolder("Imp", "client", "username");
 	
+	// Server config
+	public static final ConfigurationHolder HOST = new ConfigurationHolder("127.0.0.1", "server", "host");
+	public static final ConfigurationHolder PORT = new ConfigurationHolder(25565, "server", "port");
+	
 	// Worlds config
 	public static final ConfigurationHolder WORLD_MAX_WIDTH = new ConfigurationHolder(10, "world", "maxwidth");
 	public static final ConfigurationHolder WORLD_MAX_LENGTH = new ConfigurationHolder(10, "world", "maxlength");
