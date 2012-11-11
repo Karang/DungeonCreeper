@@ -38,6 +38,7 @@ import org.spout.api.protocol.Session;
 
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
+import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
 
 public class DungeonProtocol extends Protocol {
 
@@ -81,8 +82,7 @@ public class DungeonProtocol extends Protocol {
 
 	@Override
 	public Message getIntroductionMessage(String playerName) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PlayerHandshakeMessage(playerName, "localhost", 25556);//TODO : Configure host & port
 	}
 
 	@Override

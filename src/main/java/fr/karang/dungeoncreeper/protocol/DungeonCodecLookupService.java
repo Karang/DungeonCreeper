@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.protocol;
 import org.spout.api.protocol.CodecLookupService;
 
 import fr.karang.dungeoncreeper.protocol.codec.*;
+import fr.karang.dungeoncreeper.protocol.codec.conn.PlayerHandshakeCodec;
 
 public class DungeonCodecLookupService extends CodecLookupService {
 
@@ -36,6 +37,9 @@ public class DungeonCodecLookupService extends CodecLookupService {
 		try {
 			// Lobby messages
 			bind(WorldListCodec.class); // 0x00
+			
+			// Conn message
+			bind(PlayerHandshakeCodec.class); // 0x02
 			
 			// Players messages
 			bind(PlayerSpawnCodec.class); // 0x10
