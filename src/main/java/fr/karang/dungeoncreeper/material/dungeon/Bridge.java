@@ -26,10 +26,21 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import org.spout.api.material.Material;
+
 public class Bridge extends DungeonMaterial {
 
-	public Bridge() {
-		super("Bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	public static Bridge BRIDGE_RED = new Bridge("Red Bridge","model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	public static Bridge BRIDGE_BLUE = new Bridge("Blue Bridge", 1, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	public static Bridge BRIDGE_YELLOW = new Bridge("Yellow Bridge", 2, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	public static Bridge BRIDGE_GREEN = new Bridge("Green Bridge", 3, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	
+	public Bridge(String name, String model) {
+		super(name, model);
 	}
-
+	
+	public Bridge(String name, int data, Material parent, String model) {
+		super(name, data, parent, model);
+	}
+	
 }

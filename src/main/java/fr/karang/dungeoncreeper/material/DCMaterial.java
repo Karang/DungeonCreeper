@@ -27,11 +27,20 @@
 package fr.karang.dungeoncreeper.material;
 
 import org.spout.api.material.BlockMaterial;
+import org.spout.api.material.Material;
 
 public abstract class DCMaterial extends BlockMaterial {
 
 	public DCMaterial(String name, String model) {
 		super((short)0, name, model);
+	}
+	
+	public DCMaterial(short dataMask, String name, String model) {
+		super(dataMask, name, model);
+	}
+	
+	public DCMaterial(String name, int data, Material parent, String model) {
+		super(name, data, parent, model);
 	}
 
 }

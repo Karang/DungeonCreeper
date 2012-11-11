@@ -26,7 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,13 +35,49 @@ import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 
+import fr.karang.dungeoncreeper.material.dungeon.Bridge;
+import fr.karang.dungeoncreeper.material.dungeon.Floor;
+import fr.karang.dungeoncreeper.material.dungeon.Wall;
+
 public class Team {
+	
+	public enum TeamColor{
+		RED(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
+		BLUE(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
+		GREEN(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
+		YELLOW(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED);
+		
+		private final Floor floor;
+		private final Wall wall;
+		private final Bridge bridge;
+		
+		TeamColor(Floor floor, Wall wall, Bridge bridge){
+			this.floor = floor;
+			this.wall = wall;
+			this.bridge = bridge;
+		}
+
+		public Floor getFloor() {
+			return floor;
+		}
+
+		public Wall getWall() {
+			return wall;
+		}
+
+		public Bridge getBridge() {
+			return bridge;
+		}
+		
+		
+	}
+	
 	private final String name;
-	private final Color color;
+	private final TeamColor color;
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	
-	public Team(String name, Color color, Point spawn) {
+	public Team(String name, TeamColor color, Point spawn) {
 		this.name = name;
 		this.color = color;
 		this.spawn = new Transform(spawn, Quaternion.IDENTITY, Vector3.ONE);
@@ -72,7 +107,7 @@ public class Team {
 		return name;
 	}
 	
-	public Color getColor() {
+	public TeamColor getColor() {
 		return color;
 	}
 }

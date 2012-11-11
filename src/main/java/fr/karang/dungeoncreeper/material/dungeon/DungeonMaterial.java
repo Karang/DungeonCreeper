@@ -26,12 +26,20 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import org.spout.api.material.Material;
+
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class DungeonMaterial extends DCMaterial {
 
+	private static final short dataMask = 0x3;
+	
 	public DungeonMaterial(String name, String model) {
-		super(name, model);
+		super(dataMask, name, model);
+	}
+	
+	public DungeonMaterial(String name, int data, Material parent, String model) {
+		super(name, data, parent, model);
 	}
 
 }

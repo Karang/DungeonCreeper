@@ -43,8 +43,10 @@ public class DCMaterials {
 	
 	// Dungeon materials
 	public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
-	public static final Wall WALL = new Wall();
-	public static final Floor FLOOR = new Floor();
-	public static final Bridge BRIDGE = new Bridge();
 	public static final GoldBag GOLD_BAG = new GoldBag();
+	
+	//
+	/*public static final Wall WALL = new Wall();
+	public static final Floor FLOOR = new Floor();
+	public static final Bridge BRIDGE = new Bridge();*/
 }

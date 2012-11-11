@@ -71,7 +71,7 @@ public class DungeonPopulator extends Populator {
 				
 				if (obj == null) {
 					//TODO: New Team?
-					Team team = new Team("Test", new Color(color), new Point(chunk.getWorld(), 0, 0, 0));
+					Team team = new Team("Test", Team.TeamColor.RED, new Point(chunk.getWorld(), 0, 0, 0));
 					obj = new HearthRoomObject(team);
 				}
 				

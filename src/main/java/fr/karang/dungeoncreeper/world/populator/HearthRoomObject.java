@@ -53,20 +53,20 @@ public class HearthRoomObject extends WorldGeneratorObject {
 	public void placeObject(World w, int x, int y, int z) {
 		// Make place
 		fill(w, x-RADIUS, y+1, z-RADIUS, x+RADIUS, y+3, z+RADIUS, DCMaterials.AIR);
-		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, DCMaterials.FLOOR);
+		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, team.getColor().getFloor());
 		
 		// Make the lava pool
 		fill(w, x-POOLRADIUS, y, z-POOLRADIUS, x+POOLRADIUS, y, z+POOLRADIUS, DCMaterials.LAVA);
-		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, DCMaterials.FLOOR);
+		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, team.getColor().getFloor());
 		
 		// Place the dungeon hearth
 		w.getBlock(x, y+3, z).setMaterial(DCMaterials.DUNGEON_HEARTH);
 		
 		// And the pillars
-		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
-		fill(w, x-POOLRADIUS-1, y+1, z+POOLRADIUS+1, x-POOLRADIUS-1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
-		fill(w, x+POOLRADIUS+1, y+1, z-POOLRADIUS-1, x+POOLRADIUS+1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
-		fill(w, x-POOLRADIUS-1, y+1, z-POOLRADIUS-1, x-POOLRADIUS-1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
+		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, team.getColor().getWall());
+		fill(w, x-POOLRADIUS-1, y+1, z+POOLRADIUS+1, x-POOLRADIUS-1, y+3, z+POOLRADIUS+1, team.getColor().getWall());
+		fill(w, x+POOLRADIUS+1, y+1, z-POOLRADIUS-1, x+POOLRADIUS+1, y+3, z-POOLRADIUS-1, team.getColor().getWall());
+		fill(w, x-POOLRADIUS-1, y+1, z-POOLRADIUS-1, x-POOLRADIUS-1, y+3, z-POOLRADIUS-1, team.getColor().getWall());
 	}
 	
 	private void fill(World w, int x1, int y1, int z1, int x2, int y2, int z2, BlockMaterial material) {

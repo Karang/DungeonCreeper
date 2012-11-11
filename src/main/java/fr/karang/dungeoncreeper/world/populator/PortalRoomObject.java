@@ -46,10 +46,10 @@ public class PortalRoomObject extends WorldGeneratorObject{
 	public void placeObject(World w, int x, int y, int z) {
 		// Make place
 		fill(w, x-WIDTH-1, y+1, z-1, x+WIDTH, y+HEIGHT, z+1, DCMaterials.AIR);
-		fill(w, x-WIDTH-1, y, z-1, x+WIDTH, y, z+1, DCMaterials.FLOOR);
+		fill(w, x-WIDTH-1, y, z-1, x+WIDTH, y, z+1, DCMaterials.UNCLAIMED_FLOOR);
 		
 		// Make portal // TODO: make proper materials
-		fill(w, x-WIDTH, y, z, x+WIDTH, y+HEIGHT-1, z, DCMaterials.WALL);
+		fill(w, x-WIDTH, y, z, x+WIDTH, y+HEIGHT-1, z, DCMaterials.DIRT);
 		fill(w, x-WIDTH+1, y+1, z, x+WIDTH-1, y+HEIGHT-2, z, DCMaterials.AIR);
 	}
 
