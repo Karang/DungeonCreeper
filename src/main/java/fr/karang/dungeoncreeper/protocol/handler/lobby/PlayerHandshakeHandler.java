@@ -33,8 +33,6 @@ import org.spout.api.event.player.PlayerConnectEvent;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.lobby.Lobby;
 import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 
@@ -54,10 +52,6 @@ public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessag
 				session.disconnect(false, new Object[]{"Pseudo already used."});
 			
 			System.out.println("Player connected.");
-			
-			Lobby lobby = DungeonCreeper.getInstance().getLobby();
-			lobby.sendPlayerList(session);
-			lobby.sendGameList(session);
 			
 			Spout.getEngine().getEventManager().callEvent(new PlayerConnectEvent(session, message.getUsername()));
 		} else {

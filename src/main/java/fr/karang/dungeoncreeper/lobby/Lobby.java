@@ -71,6 +71,8 @@ public class Lobby {
 	public void playerJoin(Player player) {
 		System.out.println("Player joined the lobby!");
 		player.add(DungeonPlayer.class);
+		sendPlayerList(player.getSession());
+		sendGameList(player.getSession());
 		players.add(player);
 	}
 	
@@ -143,6 +145,7 @@ public class Lobby {
 	public void sendPlayerList(Session session) {
 		for (Player player : players) {
 			session.send(false, true, new PlayerListMessage(player.getName()));
+			player.getSession().send(false, true, new PlayerListMessage(session.getPlayer().getName()));
 		}
 	}
 	
