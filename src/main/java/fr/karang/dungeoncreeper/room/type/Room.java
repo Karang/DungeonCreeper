@@ -41,13 +41,13 @@ public abstract class Room {
 	}
 
 	public boolean hasRequired(Team team) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO : Implement in each room type
+		return true;
 	}
 
 	public Rectangle getUv() {
-		// TODO Auto-generated method stub
-		return null;
+		// Fallback
+		return new Rectangle(0f, 0f, 1f, 1f);
 	}
 
 
