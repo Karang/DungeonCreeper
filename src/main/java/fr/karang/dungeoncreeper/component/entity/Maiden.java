@@ -24,19 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Salamander
+ * @source http://dungeonkeeper.wikia.com/wiki/Maiden
  */
-public class Salamender extends CreatureComponent {
-
-	public Salamender(){
-		addSkill(Skills.ATTACKSWORD, 1);
-		addSkill(Skills.FIREBALL, 4);
-		addSkill(Skills.SPIT, 8);
+public class Maiden extends CreatureComponent {
+	
+	public Maiden(){
+		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.MAIDEN_WEB, 1);
+		addSkill(Skills.POISON_SPIT, 1);
 	}
 }

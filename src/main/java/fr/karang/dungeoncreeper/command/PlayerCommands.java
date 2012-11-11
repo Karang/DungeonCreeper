@@ -60,7 +60,7 @@ import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.player.equipment.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 
 public class PlayerCommands {
 	private final DungeonCreeper plugin;

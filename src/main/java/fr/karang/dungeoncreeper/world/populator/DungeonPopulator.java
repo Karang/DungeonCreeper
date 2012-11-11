@@ -37,6 +37,7 @@ import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
 import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class DungeonPopulator extends Populator {
@@ -71,7 +72,7 @@ public class DungeonPopulator extends Populator {
 				
 				if (obj == null) {
 					//TODO: New Team?
-					Team team = new Team("Test", Team.TeamColor.RED, new Point(chunk.getWorld(), 0, 0, 0));
+					Team team = new Team("Test", Team.TeamColor.RED, new Point(chunk.getWorld(), 0, 0, 0), new DungeonGame(chunk.getWorld(), 0));
 					obj = new HearthRoomObject(team);
 				}
 				

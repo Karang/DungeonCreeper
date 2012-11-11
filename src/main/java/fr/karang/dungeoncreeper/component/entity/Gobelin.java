@@ -24,40 +24,16 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.utils;
+package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.component.components.HitBlockComponent;
-import org.spout.api.entity.Entity;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.math.Rectangle;
+import fr.karang.dungeoncreeper.player.skill.Skills;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.player.skill.Skill;
-import fr.karang.dungeoncreeper.room.Room.Rooms;
-
-public class Claim extends Skill {
-
-	public Claim(int id) {
-		super(id);
-	}
-
-	@Override
-	public void handle(Entity source) {
-		Block block = source.get(HitBlockComponent.class).getTargetBlock();
-		if (block!=null && isNextClaimedBlock(block)){
-			//TODO : Claim territory & Declaim enemy territory
-		}
-	}
+/**
+ * @source http://dungeonkeeper.wikia.com/wiki/Goblin
+ */
+public class Gobelin extends CreatureComponent {
 	
-	@Override
-	public Rectangle getUv() {
-		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
+	public Gobelin(){
+		addSkill(Skills.ATTACKSWORD, 1);
 	}
-	
-	private boolean isNextClaimedBlock(Block block){
-		//TODO : Check if neigbour block is claim
-		
-		return true;
-	}
-	
 }

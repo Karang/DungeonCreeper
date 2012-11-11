@@ -29,9 +29,9 @@ package fr.karang.dungeoncreeper.protocol.message;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.protocol.Message;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.player.Equipments;
-import fr.karang.dungeoncreeper.player.equipment.CreatureComponent;
-import fr.karang.dungeoncreeper.player.equipment.Imp;
 
 public class PlayerChangeClassMessage implements Message {
 

@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 

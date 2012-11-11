@@ -33,9 +33,9 @@ import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
 
+import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.player.equipment.Imp;
 
 public class GoldBag extends DCMaterial {
 

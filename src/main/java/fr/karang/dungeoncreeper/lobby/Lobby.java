@@ -70,7 +70,7 @@ public class Lobby {
 		if (world.getAge()<=0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 		}
-		games.add(new DungeonGame(world));
+		games.add(new DungeonGame(world,gameId));
 		gameId++;
 	}
 	

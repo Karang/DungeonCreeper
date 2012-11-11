@@ -24,32 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * The Imp is your most important creature you have. They do
- * everything that your other creatures can't, including digging,
- * claiming land, installing traps, rescuing knocked out creatures,
- * etc. They do not fight, and instead will run from battle. In
- * order to expand, you need these.
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Imp
+ * @source http://dungeonkeeper.wikia.com/wiki/Salamander
  */
-public class Imp extends CreatureComponent {
-	
-	public Imp(){
-		addSkill(Skills.DIG, 1);
-		addSkill(Skills.CLAIM, 1);
-		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.HASTE, 4);
-		addSkill(Skills.TELEPORT, 8);
-	}
-	
-	@Override
-	public void onAttached() {
-		getData().put(DungeonData.GOLD_AMOUNT, 0);
+public class Salamender extends CreatureComponent {
+
+	public Salamender(){
+		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.FIREBALL, 4);
+		addSkill(Skills.SPIT, 8);
 	}
 }

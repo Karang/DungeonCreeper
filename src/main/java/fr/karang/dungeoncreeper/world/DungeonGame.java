@@ -37,13 +37,16 @@ import org.spout.api.geo.World;
 import fr.karang.dungeoncreeper.player.Team;
 
 public class DungeonGame {
+	
+	private final int id;
 	private World world;
 	private Map<String, Team> teams = new HashMap<String, Team>();
 	private List<Player> players = new ArrayList<Player>();
 	
 	private boolean canJoin;
 	
-	public DungeonGame(World world) {
+	public DungeonGame(World world, int id) {
+		this.id = id;
 		this.world = world;
 		this.canJoin = true;
 	}
@@ -66,5 +69,9 @@ public class DungeonGame {
 	
 	public World getWorld() {
 		return world;
+	}
+
+	public int getId() {
+		return id;
 	}
 }

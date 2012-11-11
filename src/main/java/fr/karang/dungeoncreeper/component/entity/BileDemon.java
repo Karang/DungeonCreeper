@@ -24,16 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Goblin
+ * @source http://dungeonkeeper.wikia.com/wiki/Bile_Demon
  */
-public class Gobelin extends CreatureComponent {
+public class BileDemon extends CreatureComponent {
 	
-	public Gobelin(){
-		addSkill(Skills.ATTACKSWORD, 1);
+	public BileDemon(){
+		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.GAS_CLOUD, 4);
+		addSkill(Skills.GAS_MISSILE, 8);
 	}
+	
 }

@@ -38,6 +38,8 @@ import org.spout.api.math.Vector3;
 import fr.karang.dungeoncreeper.material.dungeon.Bridge;
 import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
+import fr.karang.dungeoncreeper.room.Room;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class Team {
 	
@@ -72,13 +74,18 @@ public class Team {
 		
 	}
 	
+	private final DungeonGame game;
+	
 	private final String name;
 	private final TeamColor color;
+	private final List<Room> rooms = new ArrayList<Room>();
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
+	private int gold = 0;
 	
-	public Team(String name, TeamColor color, Point spawn) {
+	public Team(String name, TeamColor color, Point spawn, DungeonGame game) {
 		this.name = name;
+		this.game = game;
 		this.color = color;
 		this.spawn = new Transform(spawn, Quaternion.IDENTITY, Vector3.ONE);
 	}
@@ -109,5 +116,17 @@ public class Team {
 	
 	public TeamColor getColor() {
 		return color;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public DungeonGame getGame() {
+		return game;
 	}
 }

@@ -24,17 +24,17 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Troll
+ * @source http://dungeonkeeper.wikia.com/wiki/Skeleton
  */
-public class Troll extends CreatureComponent {
-	
-	public Troll(){
-		addSkill(Skills.HANDTOHAND, 1);
+public class Skeleton extends CreatureComponent {
+
+	public Skeleton(){
+		addSkill(Skills.ATTACKSWORD, 1);
 	}
 }

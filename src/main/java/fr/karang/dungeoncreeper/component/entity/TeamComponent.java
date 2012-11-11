@@ -24,19 +24,29 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
-import fr.karang.dungeoncreeper.player.skill.Skills;
+import org.spout.api.component.components.EntityComponent;
 
-/**
- * 
- * @source http://dungeonkeeper.wikia.com/wiki/Maiden
- */
-public class Maiden extends CreatureComponent {
+import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.player.Team;
+
+public class TeamComponent extends EntityComponent {
+
+	private Team team;
 	
-	public Maiden(){
-		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.MAIDEN_WEB, 1);
-		addSkill(Skills.POISON_SPIT, 1);
+	public TeamComponent(Team team){
+		this.team = team;
 	}
+	
+	@Override
+	public void onAttached() {
+		getData().put(DungeonData.GAME, team.getColor().ordinal());
+		getData().put(DungeonData.TEAM, team.getGame().getId());
+	}
+
+	public Team getTeam(){
+		return team;
+	}
+
 }

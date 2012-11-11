@@ -24,17 +24,20 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Skeleton
+ * @source http://dungeonkeeper.wikia.com/wiki/Dark_Elf
  */
-public class Skeleton extends CreatureComponent {
-
-	public Skeleton(){
-		addSkill(Skills.ATTACKSWORD, 1);
+public class DarkElf extends CreatureComponent {
+	
+	public DarkElf(){
+		addSkill(Skills.ARROW, 1);
+		addSkill(Skills.KNIVES, 4);
+		addSkill(Skills.GUIDED_BOLT, 8);
 	}
+	
 }

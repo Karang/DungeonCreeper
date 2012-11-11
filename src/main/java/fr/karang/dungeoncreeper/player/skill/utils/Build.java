@@ -26,27 +26,45 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
-import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.TeamComponent;
+import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.room.Room.Rooms;
 
-public class Claim extends Skill {
+public class Build extends Skill {
 
-	public Claim(int id) {
+	public Build(int id) {
 		super(id);
 	}
 
 	@Override
 	public void handle(Entity source) {
-		Block block = source.get(HitBlockComponent.class).getTargetBlock();
-		if (block!=null && isNextClaimedBlock(block)){
-			//TODO : Claim territory & Declaim enemy territory
+		Rooms room = source.get(Imp.class).getRoomClaim();
+		Team team = source.get(TeamComponent.class).getTeam();
+		Rectangle rect = source.get(Imp.class).getBuildRect();
+		
+		if( rect == null ){
+			if(source instanceof Player)
+				((Player)source).sendMessage("Sélection incomplète !");
+			return;
 		}
+		
+		int price = room.getRoom().getBuyPrice() * (int)(rect.getWidth() * rect.getHeight());
+		
+		if (team.getGold() < price){
+			if(source instanceof Player)
+				((Player)source).sendMessage("Votre équipe ne possède pas assez d'or");
+			return;
+		}
+		
+		//TODO : Vérifier que la sélection est libre (pas de mur, pas de pièce)
+		//TODO : Construire la pièce, la remplir, débiter l'or
 	}
 	
 	@Override

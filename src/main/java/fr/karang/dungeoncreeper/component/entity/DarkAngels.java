@@ -24,18 +24,20 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Rogue
+ * @source http://dungeonkeeper.wikia.com/wiki/Dark_Angel
  */
-public class Rogue extends CreatureComponent {
+public class DarkAngels extends CreatureComponent {
 
-	public Rogue(){
+	public DarkAngels(){
 		addSkill(Skills.ATTACKSWORD, 1);
-		addSkill(Skills.INVISIBILITY, 1);
+		addSkill(Skills.DISRUPTION, 4);
+		addSkill(Skills.HAILSTORM, 8);
+		addSkill(Skills.SKELETON_ARMY, 10);
 	}
 }

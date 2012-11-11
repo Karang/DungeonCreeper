@@ -24,17 +24,17 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.equipment;
+package fr.karang.dungeoncreeper.component.entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
  * 
- * @source http://dungeonkeeper.wikia.com/wiki/Firefly
+ * @source http://dungeonkeeper.wikia.com/wiki/Troll
  */
-public class Firefly extends CreatureComponent {
+public class Troll extends CreatureComponent {
 	
-	public Firefly(){
-		addSkill(Skills.WHIRLWIND, 8);
+	public Troll(){
+		addSkill(Skills.HANDTOHAND, 1);
 	}
 }

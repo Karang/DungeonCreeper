@@ -29,23 +29,23 @@ package fr.karang.dungeoncreeper.player;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.karang.dungeoncreeper.player.equipment.BileDemon;
-import fr.karang.dungeoncreeper.player.equipment.BlackKnights;
-import fr.karang.dungeoncreeper.player.equipment.CreatureComponent;
-import fr.karang.dungeoncreeper.player.equipment.DarkAngels;
-import fr.karang.dungeoncreeper.player.equipment.DarkElf;
-import fr.karang.dungeoncreeper.player.equipment.DarkMistress;
-import fr.karang.dungeoncreeper.player.equipment.Firefly;
-import fr.karang.dungeoncreeper.player.equipment.Gobelin;
-import fr.karang.dungeoncreeper.player.equipment.HornedReaper;
-import fr.karang.dungeoncreeper.player.equipment.Imp;
-import fr.karang.dungeoncreeper.player.equipment.Maiden;
-import fr.karang.dungeoncreeper.player.equipment.Rogue;
-import fr.karang.dungeoncreeper.player.equipment.Salamender;
-import fr.karang.dungeoncreeper.player.equipment.Skeleton;
-import fr.karang.dungeoncreeper.player.equipment.Troll;
-import fr.karang.dungeoncreeper.player.equipment.Vampire;
-import fr.karang.dungeoncreeper.player.equipment.Warlock;
+import fr.karang.dungeoncreeper.component.entity.BileDemon;
+import fr.karang.dungeoncreeper.component.entity.BlackKnights;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.DarkAngels;
+import fr.karang.dungeoncreeper.component.entity.DarkElf;
+import fr.karang.dungeoncreeper.component.entity.DarkMistress;
+import fr.karang.dungeoncreeper.component.entity.Firefly;
+import fr.karang.dungeoncreeper.component.entity.Gobelin;
+import fr.karang.dungeoncreeper.component.entity.HornedReaper;
+import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.Maiden;
+import fr.karang.dungeoncreeper.component.entity.Rogue;
+import fr.karang.dungeoncreeper.component.entity.Salamender;
+import fr.karang.dungeoncreeper.component.entity.Skeleton;
+import fr.karang.dungeoncreeper.component.entity.Troll;
+import fr.karang.dungeoncreeper.component.entity.Vampire;
+import fr.karang.dungeoncreeper.component.entity.Warlock;
 
 public class Equipments {
 
