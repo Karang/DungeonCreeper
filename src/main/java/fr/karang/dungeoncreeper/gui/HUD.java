@@ -64,20 +64,38 @@ public class HUD extends Screen {
 		test.add(Skills.CLAIM);
 		test.add(Skills.ATTACKSWORD);
 		buildSkillBar(test);
+		setCooldown(2, 0.7f);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
+	}
+	
+	public void setCooldown(int slot, float percent) {
+		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(slot);
+		float x = cooldown.getSprite().getX();
+		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
 	}
 	
 	public void buildSkillBar(List<Skill> skills) {
 		RenderPartsHolderComponent bar = skillBar.get(RenderPartsHolderComponent.class);
 		float x = - (skills.size() * SKILL_OFFSET * SCALE) / 2f;
+		int nbSlots = skills.size();
+		for (int j=0 ; j<nbSlots ; j++) {
+			RenderPart cooldown = new RenderPart();
+			cooldown.setColor(Color.WHITE);
+			cooldown.setRenderMaterial(skillMaterial);
+			cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, 0));
+			cooldown.setSource(new Rectangle(0, 224f/256f, 32f/256f, 32f/256f));
+			bar.add(cooldown, j);
+			x += SKILL_OFFSET * SCALE;
+		}
+		x = - (skills.size() * SKILL_OFFSET * SCALE) / 2f;
 		for (Skill skill : skills) {
 			RenderPart icon = new RenderPart();
 			icon.setColor(Color.WHITE);
 			icon.setRenderMaterial(skillMaterial);
 			icon.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 			icon.setSource(skill.getUv());
-			bar.add(icon);
+			bar.add(icon, nbSlots++);
 			x += SKILL_OFFSET * SCALE;
 		}
 	}
