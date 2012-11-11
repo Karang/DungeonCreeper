@@ -31,6 +31,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.TeamComponent;
@@ -77,14 +78,19 @@ public class Claim extends Skill {
 					Team.TeamColor.NEUTRAL.getFloor().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
 					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
 					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
+					team.getGame().setTerritory(x, z, Team.TeamColor.NEUTRAL);
 				}
 			}else{
 				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
-					team.getColor().getFloor().onPlacement(block, team.getColor().getFloor().getData(), cause);
+					BlockMaterial floor = team.getColor().getFloor();
+					floor.onPlacement(block, floor.getData(), cause);
 				}else{
-					team.getColor().getFloor().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), team.getColor().getFloor().getData(), cause);
-					team.getColor().getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), team.getColor().getWall().getData(), cause);
-					team.getColor().getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), team.getColor().getWall().getData(), cause);
+					BlockMaterial floor = team.getColor().getFloor();
+					BlockMaterial wall = team.getColor().getWall();
+					floor.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), floor.getData(), cause);
+					wall.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), wall.getData(), cause);
+					wall.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), wall.getData(), cause);
+					team.getGame().setTerritory(x, z, team.getColor());
 				}
 			}
 		}
