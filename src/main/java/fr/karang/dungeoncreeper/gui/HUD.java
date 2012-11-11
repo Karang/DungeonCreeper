@@ -50,6 +50,7 @@ public class HUD extends Screen {
 	
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private Widget skillBar = new Widget();
+	private int nbSlots = 0;
 	
 	public HUD() {
 		if (Spout.getPlatform()!=Platform.CLIENT) {
@@ -65,37 +66,60 @@ public class HUD extends Screen {
 		test.add(Skills.ATTACKSWORD);
 		buildSkillBar(test);
 		setCooldown(2, 0.7f);
+		selectSecondarySlot(2);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
 	}
 	
+	public void selectSecondarySlot(int slot) {
+		RenderPart select = skillBar.get(RenderPartsHolderComponent.class).get(0);
+		float x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
+		select.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
+	}
+	
 	public void setCooldown(int slot, float percent) {
-		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(slot);
+		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(2+slot);
 		float x = cooldown.getSprite().getX();
 		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
 	}
 	
 	public void buildSkillBar(List<Skill> skills) {
 		RenderPartsHolderComponent bar = skillBar.get(RenderPartsHolderComponent.class);
-		float x = - (skills.size() * SKILL_OFFSET * SCALE) / 2f;
-		int nbSlots = skills.size();
+		nbSlots = skills.size();
+		float x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f;
+		
+		RenderPart selectSecondary = new RenderPart();
+		selectSecondary.setColor(Color.WHITE);
+		selectSecondary.setRenderMaterial(skillMaterial);
+		selectSecondary.setSprite(new Rectangle(x + SKILL_OFFSET * SCALE, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
+		selectSecondary.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		bar.add(selectSecondary, 0);
+		
+		RenderPart selectPrincipal = new RenderPart();
+		selectPrincipal.setColor(Color.WHITE);
+		selectPrincipal.setRenderMaterial(skillMaterial);
+		selectPrincipal.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
+		selectPrincipal.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		bar.add(selectPrincipal, 1);
+		
 		for (int j=0 ; j<nbSlots ; j++) {
 			RenderPart cooldown = new RenderPart();
 			cooldown.setColor(Color.WHITE);
 			cooldown.setRenderMaterial(skillMaterial);
 			cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, 0));
 			cooldown.setSource(new Rectangle(0, 224f/256f, 32f/256f, 32f/256f));
-			bar.add(cooldown, j);
+			bar.add(cooldown, 2+j);
 			x += SKILL_OFFSET * SCALE;
 		}
-		x = - (skills.size() * SKILL_OFFSET * SCALE) / 2f;
+		x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f;
+		int i = nbSlots;
 		for (Skill skill : skills) {
 			RenderPart icon = new RenderPart();
 			icon.setColor(Color.WHITE);
 			icon.setRenderMaterial(skillMaterial);
 			icon.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 			icon.setSource(skill.getUv());
-			bar.add(icon, nbSlots++);
+			bar.add(icon, 2 + i++);
 			x += SKILL_OFFSET * SCALE;
 		}
 	}
