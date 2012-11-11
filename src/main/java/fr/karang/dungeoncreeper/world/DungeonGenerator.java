@@ -42,7 +42,11 @@ import org.spout.api.util.cuboid.CuboidShortBuffer;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
 
-public class DungeonGenerator implements WorldGenerator {	
+public class DungeonGenerator implements WorldGenerator {
+	
+	//  Floor altitude
+	public final static int FLOOR_HEIGHT = 1;
+	
 	// Dungeon size (in chunks)
 	private final int dungeonWidth;
 	private final int dungeonHeight = 1; // The dungeon is 1 chunk high

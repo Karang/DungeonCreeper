@@ -35,6 +35,8 @@ import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.component.entity.TeamComponent;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.room.instance.RoomInstance;
+import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 public class Build extends Skill {
@@ -48,23 +50,31 @@ public class Build extends Skill {
 		Rooms room = source.get(Imp.class).getRoomClaim();
 		Team team = source.get(TeamComponent.class).getTeam();
 		Rectangle rect = source.get(Imp.class).getBuildRect();
-		
+
 		if( rect == null ){
 			if(source instanceof Player)
 				((Player)source).sendMessage("Sélection incomplète !");
 			return;
 		}
-		
+
 		int price = room.getRoom().getBuyPrice() * (int)(rect.getWidth() * rect.getHeight());
-		
+
 		if (team.getGold() < price){
 			if(source instanceof Player)
 				((Player)source).sendMessage("Votre équipe ne possède pas assez d'or");
 			return;
 		}
-		
+
 		//TODO : Vérifier que la sélection est libre (pas de mur, pas de pièce)
-		//TODO : Construire la pièce, la remplir, débiter l'or
+		if(!Room.validToBuild(source.getWorld(),rect,team)){
+			if(source instanceof Player)
+				((Player)source).sendMessage("La sélection contient des zones non-capturées");
+			return;
+		}
+
+		team.addRoom(new RoomInstance(room, rect));
+		team.setGold(team.getGold() - price);
+		//TODO : Construire la pièce
 	}
 	
 	@Override

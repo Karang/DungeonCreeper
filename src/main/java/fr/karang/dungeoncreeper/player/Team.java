@@ -41,6 +41,7 @@ import fr.karang.dungeoncreeper.material.dungeon.Bridge;
 import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
 import fr.karang.dungeoncreeper.room.instance.RoomContainer;
+import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 
@@ -55,11 +56,15 @@ public class Team {
 		private final Floor floor;
 		private final Wall wall;
 		private final Bridge bridge;
+		private final short data;
 		
 		TeamColor(Floor floor, Wall wall, Bridge bridge){
 			this.floor = floor;
 			this.wall = wall;
 			this.bridge = bridge;
+			
+			//Assume all material of one team has the same data
+			data = floor.getData();
 		}
 
 		public Floor getFloor() {
@@ -73,7 +78,10 @@ public class Team {
 		public Bridge getBridge() {
 			return bridge;
 		}
-		
+
+		public short getData() {
+			return data;
+		}
 		
 	}
 	
@@ -140,5 +148,25 @@ public class Team {
 			return container.getSurface() >= surface;
 
 			return false;
+	}
+
+	public void addRoom(RoomInstance roomInstance) {
+		RoomContainer container = rooms.get(roomInstance.getRoom());
+		
+		if( container == null){
+			container = new RoomContainer(roomInstance.getRoom());
+			rooms.put(roomInstance.getRoom(), container);
+		}
+		
+		container.addRoom(roomInstance);
+	}
+
+	public void removeRoom(RoomInstance roomInstance) {
+		RoomContainer container = rooms.get(roomInstance.getRoom());
+		
+		if( container == null)
+			throw new IllegalStateException("RoomContainer unfinded");
+		
+		container.removeRoom(roomInstance);
 	}
 }
