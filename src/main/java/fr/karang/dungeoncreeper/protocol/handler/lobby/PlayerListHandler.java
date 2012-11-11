@@ -24,8 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.room.type;
+package fr.karang.dungeoncreeper.protocol.handler.lobby;
 
-public class UnholyTemple extends Room {
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.lobby.Lobby;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
+
+public class PlayerListHandler extends MessageHandler<PlayerListMessage> {
+	@Override
+	public void handleClient(Session session, PlayerListMessage message) {
+		Lobby lobby = DungeonCreeper.getInstance().getLobby();
+		lobby.getScreen().addPlayer(message.getName());
+	}
 }

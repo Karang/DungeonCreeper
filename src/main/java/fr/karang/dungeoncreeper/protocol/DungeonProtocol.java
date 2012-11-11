@@ -36,13 +36,20 @@ import org.spout.api.protocol.MessageCodec;
 import org.spout.api.protocol.Protocol;
 import org.spout.api.protocol.Session;
 
+import fr.karang.dungeoncreeper.DungeonConfig;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
-import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 
 public class DungeonProtocol extends Protocol {
 	public static final byte PROTOCOL_VERSION = 0;
 	public static final int defaultPort = 25565;
+	
+	/*
+	 * C->S Client send handshake
+	 * S->C Server send player list
+	 * S->C Server send world list
+	 */
 	
 	public DungeonProtocol() {
 		super("Dungeon", defaultPort, new DungeonCodecLookupService(), new DungeonHandlerLookupService());
@@ -82,8 +89,7 @@ public class DungeonProtocol extends Protocol {
 
 	@Override
 	public Message getIntroductionMessage(String playerName) {
-		System.out.println("Getting handshake " + playerName);
-		return new PlayerHandshakeMessage(PROTOCOL_VERSION, playerName, "localhost", 25565);//TODO : Configure host & port
+		return new PlayerHandshakeMessage(PROTOCOL_VERSION, DungeonConfig.USERNAME.getString(), "localhost", 25565);//TODO : Configure host & port
 	}
 
 	@Override

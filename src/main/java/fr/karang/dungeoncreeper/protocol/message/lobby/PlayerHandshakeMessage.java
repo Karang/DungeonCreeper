@@ -50,37 +50,63 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec.conn;
+package fr.karang.dungeoncreeper.protocol.message.lobby;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import org.spout.api.protocol.MessageCodec;
+import org.spout.api.protocol.Message;
+import org.spout.api.util.SpoutToStringStyle;
 
-import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
-import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
+public final class PlayerHandshakeMessage implements Message {
+	private final String username, hostname;
+	private final int port;
+	private final byte version;
 
-public final class PlayerHandshakeCodec extends MessageCodec<PlayerHandshakeMessage> {
-	public PlayerHandshakeCodec() {
-		super(PlayerHandshakeMessage.class, 0x02);
+	public PlayerHandshakeMessage(byte version, String username, String hostname, int port) {
+		this.version = version;
+		this.username = username;
+		this.hostname = hostname;
+		this.port = port;
+	}
+
+	public byte getProtocolVersion() {
+		return version;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public String getHostname() {
+		return hostname;
+	}
+
+	public int getPort() {
+		return port;
 	}
 
 	@Override
-	public PlayerHandshakeMessage decode(ChannelBuffer buffer) {
-		byte version = buffer.readByte();
-		String username = ChannelBufferUtils.readString(buffer);
-		String hostname = ChannelBufferUtils.readString(buffer);
-		int port = buffer.readInt();
-		return new PlayerHandshakeMessage(version, username, hostname, port);
+	public String toString() {
+		return new ToStringBuilder(this, SpoutToStringStyle.INSTANCE)
+				.append("username", username)
+				.append("hostname", hostname)
+				.append("port", port)
+				.toString();
 	}
 
 	@Override
-	public ChannelBuffer encode(PlayerHandshakeMessage message) {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeByte(message.getProtocolVersion());
-		ChannelBufferUtils.writeString(buffer, message.getUsername());
-		ChannelBufferUtils.writeString(buffer, message.getHostname());
-		buffer.writeInt(message.getPort());
-		return buffer;
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final PlayerHandshakeMessage other = (PlayerHandshakeMessage) obj;
+		return new org.apache.commons.lang3.builder.EqualsBuilder()
+				.append(this.username, other.username)
+				.append(this.hostname, other.hostname)
+				.append(this.port, other.port)
+				.isEquals();
 	}
 }

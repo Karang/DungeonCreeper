@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec;
+package fr.karang.dungeoncreeper.protocol.codec.lobby;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ import org.jboss.netty.buffer.ChannelBuffers;
 import org.spout.api.protocol.MessageCodec;
 
 import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
-import fr.karang.dungeoncreeper.protocol.message.WorldListMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
 
 public class WorldListCodec extends MessageCodec<WorldListMessage> {
 

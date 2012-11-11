@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
+import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
 import org.spout.api.gui.component.LabelComponent;
@@ -41,6 +42,7 @@ import fr.karang.dungeoncreeper.DungeonCreeper;
 
 public class LobbyScreen extends Screen {
 	
+	private Widget players = new Widget();
 	private List<Widget> games = new ArrayList<Widget>();
 	private float gameListOffset = 0.9f;
 	
@@ -50,10 +52,19 @@ public class LobbyScreen extends Screen {
 		}
 		
 		this.setTakesInput(false);
-		//TODO: Player list, world list
+		
+		LabelComponent playerList = players.add(LabelComponent.class);
+		playerList.setText(new ChatArguments(ChatStyle.YELLOW));
+	}
+	
+	public void addPlayer(String name) {
+		System.out.println("Player list: " + name);
+		LabelComponent playerList = players.get(LabelComponent.class);
+		playerList.setText(playerList.getText().append(name, ", "));
 	}
 	
 	public void addGame(ChatArguments title) {
+		System.out.println("World list: " + title);
 		Widget game = new Widget();
 		game.setGeometry(new Rectangle(0, gameListOffset, 0, 0));
 		LabelComponent txt = game.add(LabelComponent.class);

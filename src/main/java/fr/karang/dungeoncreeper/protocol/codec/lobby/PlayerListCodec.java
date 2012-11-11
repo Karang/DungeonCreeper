@@ -24,36 +24,33 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
+package fr.karang.dungeoncreeper.protocol.codec.lobby;
 
-package fr.karang.dungeoncreeper.protocol.handler.conn;
+import java.io.IOException;
 
-import org.spout.api.Spout;
-import org.spout.api.entity.Player;
-import org.spout.api.protocol.MessageHandler;
-import org.spout.api.protocol.Session;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+import org.spout.api.protocol.MessageCodec;
 
-import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
-import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
+import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
 
-public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessage> {
+public class PlayerListCodec extends MessageCodec<PlayerListMessage> {
+
+	public PlayerListCodec() {
+		super(PlayerListMessage.class, 0x01);
+	}
+	
 	@Override
-	public void handleServer(Session session, PlayerHandshakeMessage message) {
-		Session.State state = session.getState();
-		System.out.println("Player handshake: " + message.getUsername());
-		
-		if (message.getProtocolVersion() != DungeonProtocol.PROTOCOL_VERSION) {
-			session.disconnect(false, new Object[]{"Outdated version."});
-		}
-		
-		if (state == Session.State.EXCHANGE_HANDSHAKE) {
-			Player player = Spout.getEngine().getPlayer(message.getUsername(), true);
+	public PlayerListMessage decode(ChannelBuffer buffer) throws IOException {
+		String name = ChannelBufferUtils.readString(buffer);
+		return new PlayerListMessage(name);
+	}
 
-			if (player != null)
-				session.disconnect(false, new Object[]{"Pseudo already used."});
-			
-			System.out.println("Player connected.");
-		} else {
-			session.disconnect(false, new Object[]{"Handshake already exchanged."});
-		}
+	@Override
+	public ChannelBuffer encode(PlayerListMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		ChannelBufferUtils.writeString(buffer, message.getName());
+		return buffer;
 	}
 }

@@ -29,17 +29,16 @@ package fr.karang.dungeoncreeper.protocol;
 import org.spout.api.protocol.HandlerLookupService;
 
 import fr.karang.dungeoncreeper.protocol.handler.*;
-import fr.karang.dungeoncreeper.protocol.handler.conn.*;
+import fr.karang.dungeoncreeper.protocol.handler.lobby.*;
 import fr.karang.dungeoncreeper.protocol.message.*;
-import fr.karang.dungeoncreeper.protocol.message.conn.*;
+import fr.karang.dungeoncreeper.protocol.message.lobby.*;
 
 public class DungeonHandlerLookupService extends HandlerLookupService {
 	public DungeonHandlerLookupService() {
 		try {
 			// Lobby messages
 			bind(WorldListMessage.class, WorldListHandler.class); // 0x00
-
-			// Conn message
+			bind(PlayerListMessage.class, PlayerListHandler.class); //0x01
 			bind(PlayerHandshakeMessage.class, PlayerHandshakeHandler.class); // 0x02
 			
 			// Players messages

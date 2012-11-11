@@ -24,17 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.handler;
+package fr.karang.dungeoncreeper.protocol.handler.lobby;
 
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.protocol.message.WorldListMessage;
+import fr.karang.dungeoncreeper.lobby.Lobby;
+import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
 
 public class WorldListHandler extends MessageHandler<WorldListMessage> {
 	@Override
 	public void handleClient(Session session, WorldListMessage message) {
-		DungeonCreeper.getInstance().getLobby().getScreen().addGame(message.getTitle());
+		Lobby lobby = DungeonCreeper.getInstance().getLobby();
+		lobby.getScreen().addGame(message.getTitle());
 	}
 }

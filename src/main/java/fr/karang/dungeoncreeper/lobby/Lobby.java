@@ -39,8 +39,11 @@ import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 import org.spout.api.plugin.Platform;
+import org.spout.api.protocol.Session;
 
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
@@ -96,6 +99,18 @@ public class Lobby {
 				}
 			}
 			file.delete();
+		}
+	}
+	
+	public void sendPlayerList(Session session) {
+		for (Player player : players) {
+			session.send(false, true, new PlayerListMessage(player.getName()));
+		}
+	}
+	
+	public void sendGameList(Session session) {
+		for (DungeonGame game : games) {
+			session.send(false, true, new WorldListMessage(game.getWorld().getName(), 0, 10));
 		}
 	}
 	
