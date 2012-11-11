@@ -34,6 +34,8 @@ import org.spout.api.util.config.ConfigurationHolderConfiguration;
 import org.spout.api.util.config.yaml.YamlConfiguration;
 
 public class DungeonConfig extends ConfigurationHolderConfiguration {
+	// Client config
+	public static final ConfigurationHolder USERNAME = new ConfigurationHolder("Imp", "client", "username");
 	
 	// Worlds config
 	public static final ConfigurationHolder WORLD_MAX_WIDTH = new ConfigurationHolder(10, "world", "maxwidth");

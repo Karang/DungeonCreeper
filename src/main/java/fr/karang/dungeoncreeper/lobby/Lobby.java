@@ -76,8 +76,10 @@ public class Lobby {
 	
 	public void removeAllGames() {
 		for (DungeonGame game : games) {
-			removeGame(game);
+			engine.unloadWorld(game.getWorld(), false);
+			deleteFolder(game.getWorld().getDirectory());
 		}
+		games.clear();
 	}
 	
 	public void removeGame(DungeonGame game) {
