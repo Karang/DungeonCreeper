@@ -53,8 +53,10 @@ public class LobbyScreen extends Screen {
 		
 		this.setTakesInput(false);
 		
+		players.setGeometry(new Rectangle(0,0,0,0));
 		LabelComponent playerList = players.add(LabelComponent.class);
-		playerList.setText(new ChatArguments(ChatStyle.YELLOW));
+		playerList.setText(new ChatArguments(ChatStyle.YELLOW, "Online players: "));
+		attachWidget(DungeonCreeper.getInstance(), players);
 	}
 	
 	public void addPlayer(String name) {

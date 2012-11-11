@@ -54,6 +54,6 @@ public class WorldListMessage implements Message {
 	}
 	
 	public ChatArguments getTitle() {
-		return new ChatArguments(ChatStyle.BLUE, name, " ", onlinePlayers, " / ", maxPlayers);
+		return new ChatArguments(ChatStyle.BLUE, name, " ", ChatStyle.RED, onlinePlayers, " / ", maxPlayers);
 	}
 }
