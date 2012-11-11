@@ -32,7 +32,6 @@ import org.spout.api.entity.Player;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
 import fr.karang.dungeoncreeper.protocol.message.conn.PlayerHandshakeMessage;
 
@@ -40,7 +39,7 @@ public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessag
 	@Override
 	public void handleServer(Session session, PlayerHandshakeMessage message) {
 		Session.State state = session.getState();
-		DungeonCreeper.getInstance().getLogger().info("Player handshake: " + message.getUsername());
+		System.out.println("Player handshake: " + message.getUsername());
 		
 		if (message.getProtocolVersion() != DungeonProtocol.PROTOCOL_VERSION) {
 			session.disconnect(false, new Object[]{"Outdated version."});
@@ -52,7 +51,7 @@ public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessag
 			if (player != null)
 				session.disconnect(false, new Object[]{"Pseudo already used."});
 			
-			DungeonCreeper.getInstance().getLogger().info("Player connected.");
+			System.out.println("Player connected.");
 		} else {
 			session.disconnect(false, new Object[]{"Handshake already exchanged."});
 		}

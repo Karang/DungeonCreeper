@@ -82,6 +82,7 @@ public class DungeonProtocol extends Protocol {
 
 	@Override
 	public Message getIntroductionMessage(String playerName) {
+		System.out.println("Getting handshake " + playerName);
 		return new PlayerHandshakeMessage(PROTOCOL_VERSION, playerName, "localhost", 25565);//TODO : Configure host & port
 	}
 
