@@ -26,11 +26,14 @@
  */
 package fr.karang.dungeoncreeper.material;
 
+import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.Team.TeamColor;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public abstract class DCMaterial extends BlockMaterial {
 
@@ -45,16 +48,37 @@ public abstract class DCMaterial extends BlockMaterial {
 	public DCMaterial(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
-
-	public boolean isClaimable(){
-		return false;
+	
+	public final DungeonGame getGame(Block block){
+		return DungeonCreeper.getInstance().getLobby().getGame(block.getWorld());
 	}
 	
-	public TeamColor getOwner(){
-		if(isClaimable()){
-			return Team.TeamColor.values()[getData()];
-		}
-		return null;
+	public final TeamColor getOwner(Block block){
+		DungeonGame game = getGame(block);
+		return game.getTerritory(block.getX(), block.getZ());
+	}
+	
+	public boolean isClaimedBy(Block block, Team team){
+		return getOwner(block) == team.getColor();
+	}
+
+	public boolean isClaimedBlockByOtherTeam(Block block, Team team){
+		TeamColor owner = getOwner(block);
+		if(owner == null)
+			return false;
+		return owner != team.getColor();
+	}
+
+	public boolean isNextClaimedBlock(Block block, Team team){
+		if(isClaimedBy(block.getWorld().getBlock(block.getX() + 1, block.getY(), block.getZ()), team))
+			return true;
+		if(isClaimedBy(block.getWorld().getBlock(block.getX() - 1, block.getY(), block.getZ()), team))
+			return true;
+		if(isClaimedBy(block.getWorld().getBlock(block.getX(), block.getY(), block.getZ() + 1), team))
+			return true;
+		if(isClaimedBy(block.getWorld().getBlock(block.getX(), block.getY(), block.getZ() - 1), team))
+			return true;
+		return true;
 	}
 	
 }

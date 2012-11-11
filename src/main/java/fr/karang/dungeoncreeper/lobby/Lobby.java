@@ -28,7 +28,10 @@ package fr.karang.dungeoncreeper.lobby;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.spout.api.Client;
 import org.spout.api.Engine;
@@ -40,6 +43,7 @@ import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 import org.spout.api.plugin.Platform;
 import org.spout.api.protocol.Session;
+import org.spout.api.render.Texture;
 
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
@@ -52,7 +56,7 @@ public class Lobby {
 	private static final int LOADER_THREAD_COUNT = 16;
 	private Engine engine;
 	private List<Player> players = new ArrayList<Player>();
-	private List<DungeonGame> games = new ArrayList<DungeonGame>();
+	private Map<World,DungeonGame> games = new HashMap<World,DungeonGame>();
 	private LobbyScreen screen;
 	private int gameId = 0;
 	
@@ -71,8 +75,11 @@ public class Lobby {
 	}
 	
 	public void createNewGame() {
-		DungeonGenerator generator = new DungeonGenerator("texture://DungeonCreeper/resources/map.png");
+		Texture textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/map.png");
+		DungeonGame game = new DungeonGame(gameId,textureMap.getWidth(),textureMap.getHeight());
+		DungeonGenerator generator = new DungeonGenerator(game,textureMap);
 		World world = Spout.getEngine().loadWorld("dungeon_"+gameId, generator);
+		game.setWorld(world);
 		
 		if (world.getAge()<=0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
@@ -104,14 +111,14 @@ public class Lobby {
 			}
 		}
 		
-		games.add(new DungeonGame(world,gameId));
+		games.put(world,game);
 		gameId++;
 	}
 	
 	public void removeAllGames() {
-		for (DungeonGame game : games) {
-			engine.unloadWorld(game.getWorld(), false);
-			deleteFolder(game.getWorld().getDirectory());
+		for (Entry<World, DungeonGame> entry : games.entrySet()) {
+			engine.unloadWorld(entry.getKey(), false);
+			deleteFolder(entry.getKey().getDirectory());
 		}
 		games.clear();
 	}
@@ -140,7 +147,7 @@ public class Lobby {
 	}
 	
 	public void sendGameList(Session session) {
-		for (DungeonGame game : games) {
+		for (DungeonGame game : games.values()) {
 			session.send(false, true, new WorldListMessage(game.getWorld().getName(), 0, 10));
 		}
 	}
@@ -152,9 +159,14 @@ public class Lobby {
 	public List<Player> getPlayers() {
 		return players;
 	}
-	
-	public List<DungeonGame> getGames() {
-		return games;
+
+	public DungeonGame getGame(World world) {
+		DungeonGame game = games.get(world);
+		
+		if( game == null )
+			throw new IllegalStateException("No game in this world");
+		
+		return game;
 	}
 
 }

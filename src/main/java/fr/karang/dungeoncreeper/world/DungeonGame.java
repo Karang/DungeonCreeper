@@ -33,8 +33,10 @@ import java.util.Map;
 
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
+import org.spout.api.geo.discrete.Point;
 
 import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.player.Team.TeamColor;
 
 public class DungeonGame {
 	
@@ -43,12 +45,22 @@ public class DungeonGame {
 	private Map<String, Team> teams = new HashMap<String, Team>();
 	private List<Player> players = new ArrayList<Player>();
 	
+	private final TeamColor[][] territory;
+	private final int width,height;
+	
 	private boolean canJoin;
 	
-	public DungeonGame(World world, int id) {
+	public DungeonGame(int id, int width, int height) {
 		this.id = id;
-		this.world = world;
 		this.canJoin = true;
+		
+		this.width = width;
+		this.height = height;
+		territory = new TeamColor[width][height];
+	}
+	
+	public void setWorld(World world){
+		this.world = world;
 	}
 	
 	public void start() {
@@ -73,5 +85,31 @@ public class DungeonGame {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setTerritory(int x, int z, TeamColor color) {
+		if(x < 0 || x >= width || z < 0 || x >= height)
+			throw new IllegalAccessError("Out of array");
+		territory[x][z] = color;
+	}
+
+	public TeamColor getTerritory(int x, int z) {
+		if(x < 0 || x >= width || z < 0 || x >= height)
+			throw new IllegalAccessError("Out of array");
+		return territory[x][z];
+	}
+
+	public Team createTeam(int color, Point point) {
+		for(TeamColor t : TeamColor.values()){
+			if(t.getColor() == color){
+				Team team = teams.get(t.getName());
+				if( team == null ){
+					team = new Team(t, point, this);
+					teams.put(t.getName(), team);
+				}
+				return team;
+			}
+		}
+		return null;
 	}
 }

@@ -43,8 +43,4 @@ public class Floor extends DungeonMaterial {
 	public Floor(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
-
-	public boolean isClaimable(){
-		return true;
-	}
 }

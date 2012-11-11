@@ -31,7 +31,6 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.TeamComponent;
@@ -53,23 +52,25 @@ public class Claim extends Skill {
 		Team team = source.get(TeamComponent.class).getTeam();
 		BlockCause cause = new BlockCause(source);
 		if (block!=null){
-			World world  = source.getWorld();
-			int x = block.getX();
-			int z = block.getZ();
+			DCMaterial material = (DCMaterial) block.getMaterial();
 
-			if(isClaimedBlock(world, x, z, team)){
+			if(material.isClaimedBy(block, team)){
 				if(source instanceof Player)
 					((Player)source).sendMessage("Block déjà claim");
 				return;
 			}
 
-			if(!isNextClaimedBlock(world, x, z, team)){
+			if(!material.isNextClaimedBlock(block, team)){
 				if(source instanceof Player)
 					((Player)source).sendMessage("Pas de block voisin claim");
 				return;
 			}
+			
+			World world = block.getWorld();
+			int x = block.getX();
+			int z = block.getZ();
 
-			if(isClaimedBlockByOtherTeam(world, x, z, team)){
+			if(material.isClaimedBlockByOtherTeam(block, team)){
 				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
 					Team.TeamColor.NEUTRAL.getFloor().onPlacement(block,Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
 				}else{
@@ -92,36 +93,6 @@ public class Claim extends Skill {
 	@Override
 	public Rectangle getUv() {
 		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
-	}
-
-	private boolean isClaimedBlock(World world, int x, int z, Team team){
-		BlockMaterial material = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z).getMaterial();
-		if(material instanceof DCMaterial){
-			return ((DCMaterial)material).getOwner() == team.getColor();
-		}
-		return false;
-	}
-
-	private boolean isClaimedBlockByOtherTeam(World world, int x, int z, Team team){
-		BlockMaterial material = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z).getMaterial();
-		if(material instanceof DCMaterial){
-			return ((DCMaterial)material).isClaimable() && ((DCMaterial)material).getOwner() != team.getColor();
-		}
-		return false;
-	}
-
-	private boolean isNextClaimedBlock(World world, int x, int z, Team team){
-
-		if(isClaimedBlock(world, x + 1, z, team))
-			return true;
-		if(isClaimedBlock(world, x - 1, z, team))
-			return true;
-		if(isClaimedBlock(world, x , z + 1, team))
-			return true;
-		if(isClaimedBlock(world, x , z - 1, team))
-			return true;
-
-		return true;
 	}
 
 }

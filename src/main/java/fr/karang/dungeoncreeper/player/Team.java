@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper.player;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,24 +47,29 @@ import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class Team {
-	
+
 	public enum TeamColor{
-		NEUTRAL(Floor.FLOOR_NEUTRAL,Wall.WALL_NEUTRAL,Bridge.BRIDGE_NEUTRAL),
-		RED(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
-		BLUE(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
-		GREEN(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
-		YELLOW(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED);
-		
+		NEUTRAL("Neutral", Floor.FLOOR_NEUTRAL,Wall.WALL_NEUTRAL,Bridge.BRIDGE_NEUTRAL,Color.GRAY),
+		RED("Red",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.RED),
+		BLUE("Blue",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.BLUE),
+		GREEN("Green",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.GREEN),
+		YELLOW("Yellow",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.YELLOW);
+
+		private final String name;
+
 		private final Floor floor;
 		private final Wall wall;
 		private final Bridge bridge;
 		private final short data;
-		
-		TeamColor(Floor floor, Wall wall, Bridge bridge){
+		private final int color;
+
+		TeamColor(String name, Floor floor, Wall wall, Bridge bridge, Color color){
+			this.name = name;
 			this.floor = floor;
 			this.wall = wall;
 			this.bridge = bridge;
-			
+			this.color = color.getRGB();
+
 			//Assume all material of one team has the same data
 			data = floor.getData();
 		}
@@ -83,49 +89,51 @@ public class Team {
 		public short getData() {
 			return data;
 		}
-		
+
+		public String getName() {
+			return name;
+		}
+
+		public int getColor() {
+			return color;
+		}
+
 	}
-	
+
 	private final DungeonGame game;
-	
-	private final String name;
+
 	private final TeamColor color;
 	private final Map<Rooms,RoomContainer> rooms = new HashMap<Rooms,RoomContainer>();
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	private int gold = 0;
-	
-	public Team(String name, TeamColor color, Point spawn, DungeonGame game) {
-		this.name = name;
+
+	public Team(TeamColor color, Point spawn, DungeonGame game) {
 		this.game = game;
 		this.color = color;
 		this.spawn = new Transform(spawn, Quaternion.IDENTITY, Vector3.ONE);
 	}
-	
+
 	public void respawnPlayers() {
 		for (Player player : players) {
 			player.teleport(spawn);
 		}
 	}
-	
+
 	public void playerJoin(Player player) {
 		players.add(player);
 		player.get(DungeonPlayer.class).setTeam(this);
 	}
-	
+
 	public void playerQuit(Player player) {
 		players.remove(player);
 		player.get(DungeonPlayer.class).setTeam(null);
 	}
-	
+
 	public List<Player> getPlayers() {
 		return players;
 	}
-	
-	public String getName() {
-		return name;
-	}
-	
+
 	public TeamColor getColor() {
 		return color;
 	}
@@ -153,21 +161,21 @@ public class Team {
 
 	public void addRoom(RoomInstance roomInstance) {
 		RoomContainer container = rooms.get(roomInstance.getRoom());
-		
+
 		if( container == null){
 			container = new RoomContainer(roomInstance.getRoom());
 			rooms.put(roomInstance.getRoom(), container);
 		}
-		
+
 		container.addRoom(roomInstance);
 	}
 
 	public void removeRoom(RoomInstance roomInstance) {
 		RoomContainer container = rooms.get(roomInstance.getRoom());
-		
+
 		if( container == null)
 			throw new IllegalStateException("RoomContainer unfinded");
-		
+
 		container.removeRoom(roomInstance);
 	}
 }

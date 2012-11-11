@@ -43,8 +43,4 @@ public class Wall extends DungeonMaterial {
 	public Wall(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
-	
-	public boolean isClaimable(){
-		return true;
-	}
 }

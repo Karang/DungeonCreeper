@@ -28,7 +28,6 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
-import org.spout.api.geo.cuboid.Block;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
@@ -80,12 +79,6 @@ public class Build extends Skill {
 	@Override
 	public Rectangle getUv() {
 		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
-	}
-	
-	private boolean isNextClaimedBlock(Block block){
-		//TODO : Check if neigbour block is claim
-		
-		return true;
 	}
 	
 }

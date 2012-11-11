@@ -57,10 +57,12 @@ public class DungeonGenerator implements WorldGenerator {
 	private final int dungeonBlockLength;
 	
 	private Texture textureMap;
+	private final DungeonGame game;
 	private List<Populator> populators = new ArrayList<Populator>();
 	
-	public DungeonGenerator(String map) {
-		this.textureMap = (Texture) Spout.getFilesystem().getResource(map);
+	public DungeonGenerator(DungeonGame game, Texture textureMap) {
+		this.game = game;
+		this.textureMap = textureMap;
 		this.dungeonWidth = textureMap.getImage().getWidth() / Chunk.BLOCKS.SIZE;
 		this.dungeonLength = textureMap.getImage().getHeight() / Chunk.BLOCKS.SIZE;
 		this.dungeonBlockWidth = textureMap.getImage().getWidth();
@@ -132,5 +134,9 @@ public class DungeonGenerator implements WorldGenerator {
 
 	public String getName() {
 		return "Dungeon";
+	}
+
+	public DungeonGame getGame() {
+		return game;
 	}
 }
