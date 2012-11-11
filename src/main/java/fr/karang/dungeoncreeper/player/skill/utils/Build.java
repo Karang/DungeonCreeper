@@ -35,7 +35,7 @@ import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.component.entity.TeamComponent;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
-import fr.karang.dungeoncreeper.room.Room.Rooms;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 public class Build extends Skill {
 

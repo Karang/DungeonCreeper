@@ -26,7 +26,9 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
+import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skills;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 /**
  * @source http://dungeonkeeper.wikia.com/wiki/Goblin
@@ -35,5 +37,9 @@ public class Gobelin extends CreatureComponent {
 	
 	public Gobelin(){
 		addSkill(Skills.ATTACKSWORD, 1);
+	}
+	
+	public boolean hasRequired(Team team){
+		return team.hasRoom(Rooms.LAIR,5);
 	}
 }

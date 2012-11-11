@@ -32,6 +32,7 @@ import java.util.Map;
 import org.spout.api.component.components.EntityComponent;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public abstract class CreatureComponent extends EntityComponent {
@@ -73,5 +74,9 @@ public abstract class CreatureComponent extends EntityComponent {
 	public void secondaryInterract() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean hasRequired(Team team){
+		return true;
 	}
 }

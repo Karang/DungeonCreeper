@@ -39,4 +39,6 @@ public class BileDemon extends CreatureComponent {
 		addSkill(Skills.GAS_MISSILE, 8);
 	}
 	
+	
+	
 }

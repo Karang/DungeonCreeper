@@ -27,7 +27,9 @@
 package fr.karang.dungeoncreeper.player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.spout.api.entity.Player;
 import org.spout.api.geo.discrete.Point;
@@ -38,7 +40,8 @@ import org.spout.api.math.Vector3;
 import fr.karang.dungeoncreeper.material.dungeon.Bridge;
 import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
-import fr.karang.dungeoncreeper.room.Room;
+import fr.karang.dungeoncreeper.room.instance.RoomContainer;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class Team {
@@ -78,7 +81,7 @@ public class Team {
 	
 	private final String name;
 	private final TeamColor color;
-	private final List<Room> rooms = new ArrayList<Room>();
+	private final Map<Rooms,RoomContainer> rooms = new HashMap<Rooms,RoomContainer>();
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	private int gold = 0;
@@ -128,5 +131,14 @@ public class Team {
 
 	public DungeonGame getGame() {
 		return game;
+	}
+
+	public boolean hasRoom(Rooms type, int surface) {
+		RoomContainer container = rooms.get(type);
+
+		if( container != null )
+			return container.getSurface() >= surface;
+
+			return false;
 	}
 }

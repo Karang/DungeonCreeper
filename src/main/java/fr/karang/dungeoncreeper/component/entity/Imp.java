@@ -31,7 +31,7 @@ import org.spout.api.math.Vector2;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
-import fr.karang.dungeoncreeper.room.Room.Rooms;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 /**
  * The Imp is your most important creature you have. They do

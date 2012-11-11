@@ -1,4 +1,4 @@
-package fr.karang.dungeoncreeper.room;
+package fr.karang.dungeoncreeper.room.type;
 
 public class UnholyTemple extends Room {
 
