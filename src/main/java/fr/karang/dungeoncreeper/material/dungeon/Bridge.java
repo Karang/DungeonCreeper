@@ -35,9 +35,10 @@ public class Bridge extends DungeonMaterial {
 	public static Bridge BRIDGE_BLUE = new Bridge("Blue Bridge", 2, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
 	public static Bridge BRIDGE_YELLOW = new Bridge("Yellow Bridge", 3, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
 	public static Bridge BRIDGE_GREEN = new Bridge("Green Bridge", 4, BRIDGE_RED, "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+	private static final short dataMask = 0x7;
 
 	public Bridge(String name, String model) {
-		super(name, model);
+		super(dataMask, name, model);
 	}
 
 	public Bridge(String name, int data, Material parent, String model) {

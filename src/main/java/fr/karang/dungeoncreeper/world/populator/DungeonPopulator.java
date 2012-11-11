@@ -63,17 +63,20 @@ public class DungeonPopulator extends Populator {
 		for (int x = startX ; x < startX + Chunk.BLOCKS.SIZE ; x++) {
 			for (int z = startZ ; z < startZ + Chunk.BLOCKS.SIZE ; z++) {
 				int color = gen.getColor(x, z);
-				
+
 				if(color == -1) //out of the texture
 					continue;
-				
+
 				WorldGeneratorObject obj = materials.get(color);
-				
+
 				if (obj == null) {
 					Team team = gen.getGame().createTeam(color,new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
 					if(team != null)
-					obj = new HearthRoomObject(team);
+						obj = new HearthRoomObject(team);
 				}
+
+				if(obj == null)
+					continue;
 				
 				if (obj.canPlaceObject(chunk.getWorld(), x, 1, z)) {
 					obj.placeObject(chunk.getWorld(), x, 1, z);

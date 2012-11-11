@@ -35,9 +35,10 @@ public class Wall extends DungeonMaterial {
 	public static Wall WALL_BLUE = new Wall("Blue Wall", 2, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 	public static Wall WALL_YELLOW = new Wall("Yellow Wall", 3, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 	public static Wall WALL_GREEN = new Wall("Green Wall", 4, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	private static final short dataMask = 0x7;
 	
 	public Wall(String name, String model) {
-		super(name, model);
+		super(dataMask,name, model);
 	}
 	
 	public Wall(String name, int data, Material parent, String model) {

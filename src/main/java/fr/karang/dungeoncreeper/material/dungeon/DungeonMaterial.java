@@ -32,9 +32,11 @@ import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class DungeonMaterial extends DCMaterial {
 
-	private static final short dataMask = 0x3;
-	
 	public DungeonMaterial(String name, String model) {
+		super(name, model);
+	}
+	
+	public DungeonMaterial(short dataMask, String name, String model) {
 		super(dataMask, name, model);
 	}
 	
