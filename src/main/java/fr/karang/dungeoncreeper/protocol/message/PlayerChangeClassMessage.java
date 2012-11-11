@@ -29,6 +29,8 @@ package fr.karang.dungeoncreeper.protocol.message;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.protocol.Message;
 
+import fr.karang.dungeoncreeper.player.Equipments;
+import fr.karang.dungeoncreeper.player.equipment.CreatureComponent;
 import fr.karang.dungeoncreeper.player.equipment.Imp;
 
 public class PlayerChangeClassMessage implements Message {
@@ -48,11 +50,13 @@ public class PlayerChangeClassMessage implements Message {
 	public int getClassId() {
 		return classId;
 	}
-	
+
 	public Class<? extends EntityComponent> getPlayerClass() {
-		if (classId==1) { // Imp
-			return Imp.class;
-		}
+		Class<? extends CreatureComponent> classs = Equipments.getCreatureComponentById(classId);
+
+		if (classs != null)
+			return classs;
+
 		return Imp.class; // Fallback
 	}
 }
