@@ -1,5 +1,5 @@
 name: DungeonCreeper
-version: ${releaseVersion} b${buildNumber}
+version: b${buildNumber}
 description: ${project.description}
 authors: [Karang,L5D]
 website: https://github.com/Karang/DungeonCreeper
@@ -9,4 +9,4 @@ load: startup
 platform: BOTH
 
 data:
-    protocol: 39
+    protocol: 42

@@ -36,10 +36,12 @@ import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.exception.ConfigurationException;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
+import org.spout.api.protocol.Protocol;
 
 import fr.karang.dungeoncreeper.command.AdministrationCommands;
 import fr.karang.dungeoncreeper.command.PlayerCommands;
 import fr.karang.dungeoncreeper.lobby.Lobby;
+import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
 
 public class DungeonCreeper extends CommonPlugin {
 	private static DungeonCreeper instance;
@@ -52,6 +54,7 @@ public class DungeonCreeper extends CommonPlugin {
 		instance = this;
 		engine = getEngine();
 		config = new DungeonConfig(getDataFolder());
+		Protocol.registerProtocol(new DungeonProtocol());
 	}
 	
 	@Override
