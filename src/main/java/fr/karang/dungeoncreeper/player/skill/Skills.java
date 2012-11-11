@@ -28,8 +28,8 @@ package fr.karang.dungeoncreeper.player.skill;
 
 import fr.karang.dungeoncreeper.player.skill.attacks.AttackSword;
 import fr.karang.dungeoncreeper.player.skill.attacks.HandToHand;
-import fr.karang.dungeoncreeper.player.skill.mics.RaiseDead;
-import fr.karang.dungeoncreeper.player.skill.mics.SkeletonArmy;
+import fr.karang.dungeoncreeper.player.skill.misc.RaiseDead;
+import fr.karang.dungeoncreeper.player.skill.misc.SkeletonArmy;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Arrow;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Bite;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Disruption;

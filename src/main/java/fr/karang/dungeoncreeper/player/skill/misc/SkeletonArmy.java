@@ -24,15 +24,15 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.mics;
+package fr.karang.dungeoncreeper.player.skill.misc;
 
 import org.spout.api.entity.Entity;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class RaiseDead extends Skill {
+public class SkeletonArmy extends Skill {
 
-	public RaiseDead(int id) {
+	public SkeletonArmy(int id) {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}
