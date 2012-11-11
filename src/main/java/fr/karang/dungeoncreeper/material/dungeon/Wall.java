@@ -30,10 +30,11 @@ import org.spout.api.material.Material;
 
 public class Wall extends DungeonMaterial {
 
-	public static Wall WALL_RED = new Wall("Red Wall","model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
-	public static Wall WALL_BLUE = new Wall("Blue Wall", 1, WALL_RED, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
-	public static Wall WALL_YELLOW = new Wall("Yellow Wall", 2, WALL_RED, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
-	public static Wall WALL_GREEN = new Wall("Green Wall", 3, WALL_RED, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	public static Wall WALL_NEUTRAL = new Wall("Neutral Wall","model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	public static Wall WALL_RED = new Wall("Red Wall", 1, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	public static Wall WALL_BLUE = new Wall("Blue Wall", 2, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	public static Wall WALL_YELLOW = new Wall("Yellow Wall", 3, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
+	public static Wall WALL_GREEN = new Wall("Green Wall", 4, WALL_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 	
 	public Wall(String name, String model) {
 		super(name, model);
@@ -43,4 +44,7 @@ public class Wall extends DungeonMaterial {
 		super(name, data, parent, model);
 	}
 	
+	public boolean isClaimable(){
+		return true;
+	}
 }

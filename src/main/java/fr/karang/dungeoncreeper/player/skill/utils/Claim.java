@@ -28,12 +28,18 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 
 import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Rectangle;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.TeamComponent;
+import fr.karang.dungeoncreeper.event.BlockCause;
+import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
-import fr.karang.dungeoncreeper.room.type.Room.Rooms;
+import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class Claim extends Skill {
 
@@ -44,20 +50,78 @@ public class Claim extends Skill {
 	@Override
 	public void handle(Entity source) {
 		Block block = source.get(HitBlockComponent.class).getTargetBlock();
-		if (block!=null && isNextClaimedBlock(block)){
-			//TODO : Claim territory & Declaim enemy territory
+		Team team = source.get(TeamComponent.class).getTeam();
+		BlockCause cause = new BlockCause(source);
+		if (block!=null){
+			World world  = source.getWorld();
+			int x = block.getX();
+			int z = block.getZ();
+
+			if(isClaimedBlock(world, x, z, team)){
+				if(source instanceof Player)
+					((Player)source).sendMessage("Block déjà claim");
+				return;
+			}
+
+			if(!isNextClaimedBlock(world, x, z, team)){
+				if(source instanceof Player)
+					((Player)source).sendMessage("Pas de block voisin claim");
+				return;
+			}
+
+			if(isClaimedBlockByOtherTeam(world, x, z, team)){
+				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
+					Team.TeamColor.NEUTRAL.getFloor().onPlacement(block,Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
+				}else{
+					Team.TeamColor.NEUTRAL.getFloor().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
+					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
+					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
+				}
+			}else{
+				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
+					team.getColor().getFloor().onPlacement(block, team.getColor().getFloor().getData(), cause);
+				}else{
+					team.getColor().getFloor().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), team.getColor().getFloor().getData(), cause);
+					team.getColor().getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), team.getColor().getWall().getData(), cause);
+					team.getColor().getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), team.getColor().getWall().getData(), cause);
+				}
+			}
 		}
 	}
-	
+
 	@Override
 	public Rectangle getUv() {
 		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
 	}
-	
-	private boolean isNextClaimedBlock(Block block){
-		//TODO : Check if neigbour block is claim
-		
+
+	private boolean isClaimedBlock(World world, int x, int z, Team team){
+		BlockMaterial material = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z).getMaterial();
+		if(material instanceof DCMaterial){
+			return ((DCMaterial)material).getOwner() == team.getColor();
+		}
+		return false;
+	}
+
+	private boolean isClaimedBlockByOtherTeam(World world, int x, int z, Team team){
+		BlockMaterial material = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z).getMaterial();
+		if(material instanceof DCMaterial){
+			return ((DCMaterial)material).isClaimable() && ((DCMaterial)material).getOwner() != team.getColor();
+		}
+		return false;
+	}
+
+	private boolean isNextClaimedBlock(World world, int x, int z, Team team){
+
+		if(isClaimedBlock(world, x + 1, z, team))
+			return true;
+		if(isClaimedBlock(world, x - 1, z, team))
+			return true;
+		if(isClaimedBlock(world, x , z + 1, team))
+			return true;
+		if(isClaimedBlock(world, x , z - 1, team))
+			return true;
+
 		return true;
 	}
-	
+
 }

@@ -48,6 +48,7 @@ import fr.karang.dungeoncreeper.world.DungeonGame;
 public class Team {
 	
 	public enum TeamColor{
+		NEUTRAL(Floor.FLOOR_NEUTRAL,Wall.WALL_NEUTRAL,Bridge.BRIDGE_NEUTRAL),
 		RED(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
 		BLUE(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),
 		GREEN(Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED),

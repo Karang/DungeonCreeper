@@ -29,6 +29,9 @@ package fr.karang.dungeoncreeper.material;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 
+import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.player.Team.TeamColor;
+
 public abstract class DCMaterial extends BlockMaterial {
 
 	public DCMaterial(String name, String model) {
@@ -43,4 +46,15 @@ public abstract class DCMaterial extends BlockMaterial {
 		super(name, data, parent, model);
 	}
 
+	public boolean isClaimable(){
+		return false;
+	}
+	
+	public TeamColor getOwner(){
+		if(isClaimable()){
+			return Team.TeamColor.values()[getData()];
+		}
+		return null;
+	}
+	
 }
