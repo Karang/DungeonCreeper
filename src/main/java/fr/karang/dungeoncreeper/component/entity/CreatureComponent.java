@@ -26,19 +26,23 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.spout.api.Spout;
 import org.spout.api.component.components.EntityComponent;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public abstract class CreatureComponent extends EntityComponent {
 
 	private Map<Skill, Integer> requiredLevel = new HashMap<Skill, Integer>();
-	private Map<Class<? extends Skill>, Skill> skills = new HashMap<Class<? extends Skill>, Skill>();
+	private List<Skill> skills = new ArrayList<Skill>();
 	
 	@Override
 	public void onAttached() {
@@ -51,15 +55,15 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void addSkill(Skill skill, int level) {
 		requiredLevel.put(skill, level);
-		skills.put(skill.getClass(), skill);
+		skills.add(skill);
 	}
 	
-	public boolean hasSkill(Class<? extends Skill> skill) {
-		return skills.containsKey(skill);
+	public Skill getPrimarySkill() {
+		return skills.get(0);
 	}
 	
-	public Skill getSkill(Class<? extends Skill> skill) {
-		return skills.get(skill);
+	public Skill getSecondarySkill() {
+		return skills.get(getData().get(DungeonData.SKILLSLOT));
 	}
 	
 	public void setSlot(int slot){
@@ -67,13 +71,19 @@ public abstract class CreatureComponent extends EntityComponent {
 	}
 
 	public void primaryInterract() {
-		// TODO Auto-generated method stub
-		
+		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getPrimarySkill()));
+		if (event.isCancelled()) {
+			return;
+		}
+		event.getSkill().handle(event.getEntity());
 	}
 
 	public void secondaryInterract() {
-		// TODO Auto-generated method stub
-		
+		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
+		if (event.isCancelled()) {
+			return;
+		}
+		event.getSkill().handle(event.getEntity());
 	}
 	
 	public boolean hasRequired(Team team){
