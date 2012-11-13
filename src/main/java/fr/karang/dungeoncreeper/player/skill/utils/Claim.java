@@ -31,12 +31,12 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.TeamComponent;
 import fr.karang.dungeoncreeper.event.BlockCause;
 import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
@@ -73,23 +73,22 @@ public class Claim extends Skill {
 
 			if(material.isClaimedBlockByOtherTeam(block, team)){
 				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
-					Team.TeamColor.NEUTRAL.getFloor().onPlacement(block,Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
+					DCMaterials.DIRT.onPlacement(block,DCMaterials.DIRT.getData(), cause);
+					team.getGame().setTerritory(x, z, null);
 				}else{
-					Team.TeamColor.NEUTRAL.getFloor().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), Team.TeamColor.NEUTRAL.getFloor().getData(), cause);
-					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
-					Team.TeamColor.NEUTRAL.getWall().onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), Team.TeamColor.NEUTRAL.getWall().getData(), cause);
-					team.getGame().setTerritory(x, z, Team.TeamColor.NEUTRAL);
+					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), cause);
+					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.DIRT.getData(), cause);
+					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), DCMaterials.DIRT.getData(), cause);
+					team.getGame().setTerritory(x, z, null);
 				}
 			}else{
 				if(block.getY() == DungeonGenerator.FLOOR_HEIGHT){
-					BlockMaterial floor = team.getColor().getFloor();
-					floor.onPlacement(block, floor.getData(), cause);
+					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), cause);
+					team.getGame().setTerritory(x, z, team.getColor());
 				}else{
-					BlockMaterial floor = team.getColor().getFloor();
-					BlockMaterial wall = team.getColor().getWall();
-					floor.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), floor.getData(), cause);
-					wall.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), wall.getData(), cause);
-					wall.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), wall.getData(), cause);
+					DCMaterials.FLOOR.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.FLOOR.getData(), cause);
+					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.WALL.getData(), cause);
+					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 2, z), DCMaterials.WALL.getData(), cause);
 					team.getGame().setTerritory(x, z, team.getColor());
 				}
 			}

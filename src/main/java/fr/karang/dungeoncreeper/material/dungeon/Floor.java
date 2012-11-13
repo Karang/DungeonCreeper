@@ -26,22 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import org.spout.api.material.Material;
 
 public class Floor extends DungeonMaterial {
 
-	public static Floor FLOOR_NEUTRAL = new Floor("Neutral Bridge","model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
-	public static Floor FLOOR_RED = new Floor("Red Bridge", 1,FLOOR_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
-	public static Floor FLOOR_BLUE = new Floor("Blue Floor", 2, FLOOR_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
-	public static Floor FLOOR_YELLOW = new Floor("Yellow Floor", 3, FLOOR_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
-	public static Floor FLOOR_GREEN = new Floor("Green Floor", 4, FLOOR_NEUTRAL, "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
-	private static final short dataMask = 0x7;
-	
-	public Floor(String name, String model) {
-		super(dataMask, name, model);
+	public Floor() {
+		super("Floor", "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
 	}
-	
-	public Floor(String name, int data, Material parent, String model) {
-		super(name, data, parent, model);
-	}
+
 }

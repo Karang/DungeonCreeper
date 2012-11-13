@@ -29,6 +29,8 @@ package fr.karang.dungeoncreeper.material;
 import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.dungeon.*;
+import fr.karang.dungeoncreeper.material.dungeon.room.Hatchery;
+import fr.karang.dungeoncreeper.material.dungeon.room.Lair;
 import fr.karang.dungeoncreeper.material.natural.*;
 
 public class DCMaterials {
@@ -43,10 +45,19 @@ public class DCMaterials {
 	
 	// Dungeon materials
 	public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
+	public static final Wall WALL = new Wall();
+	public static final Floor FLOOR = new Floor();
+	public static final Bridge BRIDGE = new Bridge();
+	
+	// Dungeon rooms
+	public static final Lair LAIR = new Lair();
+	public static final Hatchery HATCHERY = new Hatchery();
+	
+	// Dungeon decorations
 	public static final GoldBag GOLD_BAG = new GoldBag();
 	
-	//
-	/*public static final Wall WALL = new Wall();
-	public static final Floor FLOOR = new Floor();
-	public static final Bridge BRIDGE = new Bridge();*/
+	//Add BatchEffect
+	static{
+		
+	}
 }

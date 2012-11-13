@@ -38,9 +38,6 @@ import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 
-import fr.karang.dungeoncreeper.material.dungeon.Bridge;
-import fr.karang.dungeoncreeper.material.dungeon.Floor;
-import fr.karang.dungeoncreeper.material.dungeon.Wall;
 import fr.karang.dungeoncreeper.room.instance.RoomContainer;
 import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
@@ -49,45 +46,18 @@ import fr.karang.dungeoncreeper.world.DungeonGame;
 public class Team {
 
 	public enum TeamColor{
-		NEUTRAL("Neutral", Floor.FLOOR_NEUTRAL,Wall.WALL_NEUTRAL,Bridge.BRIDGE_NEUTRAL,Color.GRAY),
-		RED("Red",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.RED),
-		BLUE("Blue",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.BLUE),
-		GREEN("Green",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.GREEN),
-		YELLOW("Yellow",Floor.FLOOR_RED,Wall.WALL_RED,Bridge.BRIDGE_RED,Color.YELLOW);
+		NEUTRAL("Neutral", Color.GRAY),
+		RED("Red", Color.RED),
+		BLUE("Blue", Color.BLUE),
+		GREEN("Green", Color.GREEN),
+		YELLOW("Yellow", Color.YELLOW);
 
 		private final String name;
-
-		private final Floor floor;
-		private final Wall wall;
-		private final Bridge bridge;
-		private final short data;
 		private final int color;
 
-		TeamColor(String name, Floor floor, Wall wall, Bridge bridge, Color color){
+		TeamColor(String name, Color color){
 			this.name = name;
-			this.floor = floor;
-			this.wall = wall;
-			this.bridge = bridge;
 			this.color = color.getRGB();
-
-			//Assume all material of one team has the same data
-			data = floor.getData();
-		}
-
-		public Floor getFloor() {
-			return floor;
-		}
-
-		public Wall getWall() {
-			return wall;
-		}
-
-		public Bridge getBridge() {
-			return bridge;
-		}
-
-		public short getData() {
-			return data;
 		}
 
 		public String getName() {

@@ -29,7 +29,6 @@ package fr.karang.dungeoncreeper.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.spout.api.Spout;
 import org.spout.api.generator.GeneratorPopulator;
 import org.spout.api.generator.Populator;
 import org.spout.api.generator.WorldGenerator;
@@ -43,23 +42,23 @@ import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
 
 public class DungeonGenerator implements WorldGenerator {
-	
+
 	//  Floor altitude
 	public final static int FLOOR_HEIGHT = 1;
-	
+
 	// Dungeon size (in chunks)
 	private final int dungeonWidth;
 	private final int dungeonHeight = 1; // The dungeon is 1 chunk high
 	private final int dungeonLength;
-	
+
 	// Dungeon size (in blocks)
 	private final int dungeonBlockWidth;
 	private final int dungeonBlockLength;
-	
+
 	private Texture textureMap;
 	private final DungeonGame game;
 	private List<Populator> populators = new ArrayList<Populator>();
-	
+
 	public DungeonGenerator(DungeonGame game, Texture textureMap) {
 		this.game = game;
 		this.textureMap = textureMap;
@@ -67,10 +66,10 @@ public class DungeonGenerator implements WorldGenerator {
 		this.dungeonLength = textureMap.getImage().getHeight() / Chunk.BLOCKS.SIZE;
 		this.dungeonBlockWidth = textureMap.getImage().getWidth();
 		this.dungeonBlockLength = textureMap.getImage().getHeight();
-		
+
 		populators.add(new DungeonPopulator());
 	}
-	
+
 	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
 		if (!isChunkInDungeon(chunkX, chunkY, chunkZ)) { 
 			return; // Chunk out of bound
@@ -93,7 +92,7 @@ public class DungeonGenerator implements WorldGenerator {
 			}
 		}
 	}
-	
+
 	public int getColor(int x, int z) {
 		if(x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength)
 			return -1;
@@ -103,23 +102,23 @@ public class DungeonGenerator implements WorldGenerator {
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
 		return !(chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>dungeonWidth || chunkY>dungeonHeight || chunkZ>dungeonLength);
 	}
-	
+
 	public int getSize() {
 		return dungeonWidth * dungeonHeight * dungeonLength;
 	}
-	
+
 	public int getWidth() {
 		return dungeonWidth;
 	}
-	
+
 	public int getLength() {
 		return dungeonLength;
 	}
-	
+
 	public Point getSpectatorSpawn(World world) {
 		return new Point(world, dungeonWidth * Chunk.BLOCKS.SIZE / 2, 5, dungeonHeight * Chunk.BLOCKS.SIZE / 2);
 	}
-	
+
 	public int[][] getSurfaceHeight(World world, int chunkX, int chunkZ) {
 		return new int[Chunk.BLOCKS.SIZE][Chunk.BLOCKS.SIZE];
 	}

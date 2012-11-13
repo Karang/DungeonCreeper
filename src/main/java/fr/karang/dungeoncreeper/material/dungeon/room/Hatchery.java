@@ -24,26 +24,12 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.dungeon;
+package fr.karang.dungeoncreeper.material.dungeon.room;
 
-import org.spout.api.material.Material;
+import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
-import fr.karang.dungeoncreeper.material.DCMaterial;
-
-public class DungeonMaterial extends DCMaterial {
-
-	public DungeonMaterial(String name, String model) {
-		super(name, model);
-		//TODO : Correct the method to add BatchEffect, not RenderEffect to Material
-		//addBatchEffect(BatchEffects.TEAM_BATCH_EFFECT);
+public class Hatchery extends DungeonMaterial {
+	public Hatchery() {
+		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm"); // TODO : Make Lair design
 	}
-	
-	public DungeonMaterial(short dataMask, String name, String model) {
-		super(dataMask, name, model);
-	}
-	
-	public DungeonMaterial(String name, int data, Material parent, String model) {
-		super(name, data, parent, model);
-	}
-
 }

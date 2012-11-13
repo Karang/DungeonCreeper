@@ -30,6 +30,8 @@ import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.math.Rectangle;
 
+import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
@@ -83,13 +85,11 @@ public abstract class Room {
 		for(int x = (int) rect.getX() ; x < rect.getX() + rect.getHeight() ; x++){
 			for(int z = (int) rect.getY() ; z < rect.getY() + rect.getHeight() ; z++){
 				Block block = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z);
-				if(block.getData() != team.getColor().getData())
+				if(!((DCMaterial)block.getMaterial()).isClaimedBy(block, team) || block.getMaterial() != DCMaterials.FLOOR)
 					return false;
 			}
 		}
 		return true;
 	}
-
-
 
 }

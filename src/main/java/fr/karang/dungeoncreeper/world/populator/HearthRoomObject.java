@@ -30,16 +30,18 @@ import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class HearthRoomObject extends WorldGeneratorObject {
 
 	private static int RADIUS = 4;
 	private static int POOLRADIUS = 2;
-	
+
 	Team team;
-	
+
 	public HearthRoomObject(Team team) {
 		this.team = team;
 	}
@@ -51,24 +53,33 @@ public class HearthRoomObject extends WorldGeneratorObject {
 
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
+		DungeonGame party = DungeonCreeper.getInstance().getLobby().getGame(w);
+
+		//Claim territory
+		for(int i = x - RADIUS; i < x + RADIUS; i++){
+			for(int j = z - RADIUS; j < z + RADIUS; j++){
+				party.setTerritory(x, z, team.getColor());
+			}
+		}
+
 		// Make place
 		fill(w, x-RADIUS, y+1, z-RADIUS, x+RADIUS, y+3, z+RADIUS, DCMaterials.AIR);
-		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, team.getColor().getFloor());
-		
+		fill(w, x-RADIUS, y, z-RADIUS, x+RADIUS, y, z+RADIUS, DCMaterials.FLOOR);
+
 		// Make the lava pool
 		fill(w, x-POOLRADIUS, y, z-POOLRADIUS, x+POOLRADIUS, y, z+POOLRADIUS, DCMaterials.LAVA);
-		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, team.getColor().getFloor());
-		
+		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, DCMaterials.FLOOR);
+
 		// Place the dungeon hearth
 		w.getBlock(x, y+3, z).setMaterial(DCMaterials.DUNGEON_HEARTH);
-		
+
 		// And the pillars
-		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, team.getColor().getWall());
-		fill(w, x-POOLRADIUS-1, y+1, z+POOLRADIUS+1, x-POOLRADIUS-1, y+3, z+POOLRADIUS+1, team.getColor().getWall());
-		fill(w, x+POOLRADIUS+1, y+1, z-POOLRADIUS-1, x+POOLRADIUS+1, y+3, z-POOLRADIUS-1, team.getColor().getWall());
-		fill(w, x-POOLRADIUS-1, y+1, z-POOLRADIUS-1, x-POOLRADIUS-1, y+3, z-POOLRADIUS-1, team.getColor().getWall());
+		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
+		fill(w, x-POOLRADIUS-1, y+1, z+POOLRADIUS+1, x-POOLRADIUS-1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);
+		fill(w, x+POOLRADIUS+1, y+1, z-POOLRADIUS-1, x+POOLRADIUS+1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
+		fill(w, x-POOLRADIUS-1, y+1, z-POOLRADIUS-1, x-POOLRADIUS-1, y+3, z-POOLRADIUS-1, DCMaterials.WALL);
 	}
-	
+
 	private void fill(World w, int x1, int y1, int z1, int x2, int y2, int z2, BlockMaterial material) {
 		for (int x=x1 ; x<=x2 ; x++) {
 			for (int y=y1 ; y<=y2 ; y++) {
