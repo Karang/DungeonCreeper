@@ -49,7 +49,7 @@ public class DungeonPopulator extends Populator {
 		materials.put(new Color(144, 48, 147).getRGB(), NaturalObject.GEM_ORE);
 		materials.put(new Color(169, 102, 69).getRGB(), NaturalObject.DIRT);
 		materials.put(new Color(108, 108, 108).getRGB(), NaturalObject.CAVERN);
-		materials.put(new Color(0, 0, 0).getRGB(), NaturalObject.UNBREAKABLE);
+		materials.put(new Color(0, 0, 0).getRGB(), NaturalObject.SOLID_ROCK);
 	}
 
 	@Override

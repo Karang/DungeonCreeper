@@ -28,10 +28,10 @@ package fr.karang.dungeoncreeper.material.natural;
 
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class UnbreakableDirt extends DCMaterial {
+public class SolidRock extends DCMaterial {
 
-	public UnbreakableDirt() {
-		super("Unbreakable Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
+	public SolidRock() {
+		super("Unbreakable Dirt", "model://DungeonCreeper/resources/block/natural/solidrock/solidrock.spm");
 		setHardness(-1.0F);
 	}
 

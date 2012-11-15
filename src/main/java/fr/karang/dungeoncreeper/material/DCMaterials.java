@@ -36,7 +36,7 @@ import fr.karang.dungeoncreeper.material.natural.*;
 public class DCMaterials {
 	// Natural materials
 	public static final BlockMaterial AIR = BlockMaterial.AIR;
-	public static final UnbreakableDirt UNBREAKABLE_DIRT = new UnbreakableDirt();
+	public static final SolidRock SOLID_ROCK = new SolidRock();
 	public static final Dirt DIRT = new Dirt();
 	public static final UnclaimedFloor UNCLAIMED_FLOOR = new UnclaimedFloor();
 	public static final Lava LAVA = new Lava();

@@ -80,10 +80,10 @@ public class DungeonGenerator implements WorldGenerator {
 			for (int z = zz ; z < zz + Chunk.BLOCKS.SIZE ; z++) {
 				for (int y = 0 ; y < 4 /*Chunk.BLOCKS.SIZE*/ ; y++) {
 					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
-						blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
+						blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
 					} else {
 						if (y==0 /*|| y==4*/) { // To obtain a good view from height
-							blockData.set(x, y, z, DCMaterials.UNBREAKABLE_DIRT.getId());
+							blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
 						} else if (y<4){
 							blockData.set(x, y, z, DCMaterials.DIRT.getId());
 						}
