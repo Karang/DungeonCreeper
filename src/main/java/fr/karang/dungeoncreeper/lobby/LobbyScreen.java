@@ -37,11 +37,12 @@ import org.spout.api.gui.Widget;
 import org.spout.api.gui.component.LabelComponent;
 import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
+import org.spout.api.render.Font;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 
 public class LobbyScreen extends Screen {
-	
+	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget players = new Widget();
 	private List<Widget> games = new ArrayList<Widget>();
 	private float gameListOffset = 0.9f;
@@ -55,6 +56,7 @@ public class LobbyScreen extends Screen {
 		
 		players.setGeometry(new Rectangle(0,0,0,0));
 		LabelComponent playerList = players.add(LabelComponent.class);
+		playerList.setFont(FONT);
 		playerList.setText(new ChatArguments(ChatStyle.YELLOW, "Online players: "));
 		attachWidget(DungeonCreeper.getInstance(), players);
 	}
@@ -70,6 +72,7 @@ public class LobbyScreen extends Screen {
 		Widget game = new Widget();
 		game.setGeometry(new Rectangle(0, gameListOffset, 0, 0));
 		LabelComponent txt = game.add(LabelComponent.class);
+		txt.setFont(FONT);
 		txt.setText(title);
 		games.add(game);
 		attachWidget(DungeonCreeper.getInstance(), game);
