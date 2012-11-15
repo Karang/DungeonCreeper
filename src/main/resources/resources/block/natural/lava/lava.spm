@@ -1,2 +1,2 @@
-Mesh: texturemesh://DungeonCreeper/resources/block/natural/lava/lava.uvs
+Mesh: cubemesh://DungeonCreeper/resources/block/natural/lava/lava.uvs
 Material: material://DungeonCreeper/resources/terrain.smt

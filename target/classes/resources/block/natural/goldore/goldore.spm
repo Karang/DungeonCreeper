@@ -1,2 +1,2 @@
-Mesh: texturemesh://DungeonCreeper/resources/block/natural/goldore/goldore.uvs
+Mesh: cubemesh://DungeonCreeper/resources/block/natural/goldore/goldore.uvs
 Material: material://DungeonCreeper/resources/terrain.smt

@@ -1,2 +1,2 @@
-Mesh: texturemesh://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.uvs
+Mesh: cubemesh://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.uvs
 Material: material://DungeonCreeper/resources/terrain.smt

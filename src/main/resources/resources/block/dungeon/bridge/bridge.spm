@@ -1,2 +1,2 @@
-Mesh: texturemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs
+Mesh: cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs
 Material: material://DungeonCreeper/resources/terrain.smt
