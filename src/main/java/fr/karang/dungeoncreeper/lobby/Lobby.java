@@ -77,7 +77,7 @@ public class Lobby {
 	}
 	
 	public void createNewGame() {
-		Texture textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/map.png");
+		Texture textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/4rivers.png");
 		DungeonGame game = new DungeonGame(gameId,textureMap.getWidth(),textureMap.getHeight());
 		DungeonGenerator generator = new DungeonGenerator(game,textureMap);
 		World world = Spout.getEngine().loadWorld("dungeon_"+gameId, generator);
