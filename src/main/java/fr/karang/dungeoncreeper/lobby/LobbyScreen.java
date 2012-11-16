@@ -27,8 +27,6 @@
 package fr.karang.dungeoncreeper.lobby;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
@@ -53,9 +51,8 @@ public class LobbyScreen extends Screen {
 	private final RenderMaterial colorMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://Spout/resources/resources/materials/GUIColorMaterial.smt");
 	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget players = new Widget();
-	private List<Widget> games = new ArrayList<Widget>();
 	private Widget[][] gamesTab = new Widget[5][3];
-	private float gameListOffset = 0.9f;
+	private int idGame;
 	
 	public LobbyScreen(Lobby lobby) {
 		if (Spout.getPlatform()!=Platform.CLIENT) {
@@ -100,28 +97,25 @@ public class LobbyScreen extends Screen {
 	}
 	
 	public void addPlayer(String name) {
-		System.out.println("Player list: " + name);
 		LabelComponent playerList = players.get(LabelComponent.class);
 		playerList.setText(playerList.getText().append(name, ", "));
 	}
 	
-	public void addGame(ChatArguments title) {
-		System.out.println("World list: " + title);
-		Widget game = new Widget();
-		game.setGeometry(new Rectangle(0, gameListOffset, 0, 0));
-		LabelComponent txt = game.add(LabelComponent.class);
-		txt.setFont(FONT);
-		txt.setText(title);
-		games.add(game);
-		attachWidget(DungeonCreeper.getInstance(), game);
-		gameListOffset -= 0.1f;
+	public void addGame(String title, int onlinePlayers, int maxPlayers) {
+		final LabelComponent txtTitle = gamesTab[idGame][0].add(LabelComponent.class);
+		txtTitle.setText(new ChatArguments(title));
+		final LabelComponent txtOnline = gamesTab[idGame][1].add(LabelComponent.class);
+		txtOnline.setText(new ChatArguments(onlinePlayers));
+		final LabelComponent txtMax = gamesTab[idGame][2].add(LabelComponent.class);
+		txtMax.setText(new ChatArguments(maxPlayers));
 	}
 	
 	public void refresh() {
-		for (Widget game : games) {
-			removeWidget(game);
+		for (int x=0 ; x<3 ; x++) {
+			for (int y=0 ; y<5 ; y++) {
+				LabelComponent txt = gamesTab[idGame][0].add(LabelComponent.class);
+				txt.setText(new ChatArguments());
+			}
 		}
-		games.clear();
-		gameListOffset = 0.9f;
 	}
 }

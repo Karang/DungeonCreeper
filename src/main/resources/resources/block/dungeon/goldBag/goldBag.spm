@@ -1,2 +1,2 @@
-Mesh: cubemesh://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.uvs
+Mesh: blockmesh://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.obj
 Material: material://DungeonCreeper/resources/terrain.smt

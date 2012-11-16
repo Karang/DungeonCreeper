@@ -71,7 +71,7 @@ public class HearthRoomObject extends WorldGeneratorObject {
 		fill(w, x-POOLRADIUS+1, y, z-POOLRADIUS+1, x+POOLRADIUS-1, y, z+POOLRADIUS-1, DCMaterials.FLOOR);
 
 		// Place the dungeon hearth
-		w.getBlock(x, y+3, z).setMaterial(DCMaterials.DUNGEON_HEARTH);
+		w.getBlock(x, y+3, z).setMaterial(DCMaterials.GOLD_BAG);
 
 		// And the pillars
 		fill(w, x+POOLRADIUS+1, y+1, z+POOLRADIUS+1, x+POOLRADIUS+1, y+3, z+POOLRADIUS+1, DCMaterials.WALL);

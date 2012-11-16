@@ -37,6 +37,6 @@ public class WorldListHandler extends MessageHandler<WorldListMessage> {
 	@Override
 	public void handleClient(Session session, WorldListMessage message) {
 		Lobby lobby = DungeonCreeper.getInstance().getLobby();
-		lobby.getScreen().addGame(message.getTitle());
+		lobby.getScreen().addGame(message.getTitle(), message.getOnlinePlayers(), message.getMaxPlayers());
 	}
 }

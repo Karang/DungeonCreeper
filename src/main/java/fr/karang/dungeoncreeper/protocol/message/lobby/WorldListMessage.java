@@ -26,8 +26,6 @@
  */
 package fr.karang.dungeoncreeper.protocol.message.lobby;
 
-import org.spout.api.chat.ChatArguments;
-import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.protocol.Message;
 
 public class WorldListMessage implements Message {
@@ -53,7 +51,7 @@ public class WorldListMessage implements Message {
 		return maxPlayers;
 	}
 	
-	public ChatArguments getTitle() {
-		return new ChatArguments(ChatStyle.BLUE, name, " ", ChatStyle.RED, onlinePlayers, " / ", maxPlayers);
+	public String getTitle() {
+		return name;
 	}
 }
