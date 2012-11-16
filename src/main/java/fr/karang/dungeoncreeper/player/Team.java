@@ -32,26 +32,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.spout.api.Spout;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.geo.discrete.Transform;
+import org.spout.api.material.Material;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
+import org.spout.api.model.mesh.Mesh;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.room.instance.RoomContainer;
 import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class Team {
-
+	
 	public enum TeamColor{
+		/*
+		*	Neutral :128/128/128
+		*	Red :255/0/0
+		*	Blue :0/0/255
+		*	Green :0/255/0
+		*	Yellow :255/255/0
+		*/
+		
 		NEUTRAL("Neutral", Color.GRAY),
 		RED("Red", Color.RED),
 		BLUE("Blue", Color.BLUE),
 		GREEN("Green", Color.GREEN),
 		YELLOW("Yellow", Color.YELLOW);
 
+		private Map<Material,Mesh> teamMesh = new HashMap<Material, Mesh>();
 		private final String name;
 		private final int color;
 
@@ -66,6 +79,30 @@ public class Team {
 
 		public int getColor() {
 			return color;
+		}
+
+		public Mesh getTeamMesh(Material material) {
+			return teamMesh.get(material);
+		}
+		
+		static{
+			NEUTRAL.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			RED.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			BLUE.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			GREEN.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			
+			NEUTRAL.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			RED.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			BLUE.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			GREEN.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			
+			NEUTRAL.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			RED.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			BLUE.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			GREEN.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
 		}
 
 	}
