@@ -43,12 +43,15 @@ public class Dig extends Skill {
 	@Override
 	public void handle(Entity source) {
 		Block block = source.get(HitBlockComponent.class).getTargetBlock();
-		if (block!=null){
-			if(block == DCMaterials.DIRT){
+		if (block!=null) {
+			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
 				block.setMaterial(BlockMaterial.AIR);
-			}else if(block == DCMaterials.GEM_ORE){
+			} else if (block.getMaterial().isMaterial(DCMaterials.GEM_ORE)) {
 				//TODO : Give gold
-			}else if(block == DCMaterials.GOLD_BAG){
+			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_BAG)) {
+				//TODO : Give gold
+				block.setMaterial(BlockMaterial.AIR);
+			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_ORE)) {
 				//TODO : Give gold
 				block.setMaterial(BlockMaterial.AIR);
 			}
