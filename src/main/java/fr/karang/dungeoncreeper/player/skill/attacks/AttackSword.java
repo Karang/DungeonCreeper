@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class AttackSword extends Skill {
 
 	public AttackSword(int id) {
-		super(id,1000);
+		super(id, 1000, "attacksword");
 	}
 	
 	public void handle(Entity source){

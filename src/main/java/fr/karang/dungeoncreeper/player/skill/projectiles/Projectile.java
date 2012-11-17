@@ -32,8 +32,8 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 
 public abstract class Projectile extends Skill {
 
-	public Projectile(int id) {
-		super(id);
+	public Projectile(int id, String skill_name) {
+		super(id, "proj_" + skill_name);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Haste extends Skill {
 
 	public Haste(int id) {
-		super(id);
+		super(id, "haste");
 	}
 
 	@Override

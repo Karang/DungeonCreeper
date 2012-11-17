@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class GasCloud extends Skill {
 
 	public GasCloud(int id) {
-		super(id);
+		super(id, "gascloud");
 		// TODO Auto-generated constructor stub
 	}
 

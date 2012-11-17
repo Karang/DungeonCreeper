@@ -30,7 +30,7 @@ package fr.karang.dungeoncreeper.player.skill.projectiles;
 public class Arrow extends Projectile {
 
 	public Arrow(int id) {
-		super(id);
+		super(id, "arrow");
 		// TODO Auto-generated constructor stub
 	}
 

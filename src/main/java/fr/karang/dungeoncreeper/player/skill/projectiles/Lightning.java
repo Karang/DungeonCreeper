@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Lightning extends Skill {
 
 	public Lightning(int id) {
-		super(id);
+		super(id, "lightning");
 		// TODO Auto-generated constructor stub
 	}
 

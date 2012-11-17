@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Heal extends Skill {
 
 	public Heal(int id) {
-		super(id);
+		super(id, "heal");
 		// TODO Auto-generated constructor stub
 	}
 

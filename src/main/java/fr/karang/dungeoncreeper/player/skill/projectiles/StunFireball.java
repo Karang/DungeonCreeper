@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class StunFireball extends Skill {
 
 	public StunFireball(int id) {
-		super(id);
+		super(id, "stunfireball");
 		// TODO Auto-generated constructor stub
 	}
 

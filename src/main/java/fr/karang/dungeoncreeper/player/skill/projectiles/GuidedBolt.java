@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class GuidedBolt extends Skill {
 
 	public GuidedBolt(int id) {
-		super(id);
+		super(id, "guidedbolt");
 		// TODO Auto-generated constructor stub
 	}
 

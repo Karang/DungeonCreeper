@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Freeze extends Skill {
 
 	public Freeze(int id) {
-		super(id);
+		super(id, "freeze");
 		// TODO Auto-generated constructor stub
 	}
 

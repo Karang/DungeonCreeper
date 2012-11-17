@@ -54,7 +54,7 @@ public class DungeonListener implements Listener {
 	public void onClientEnable(ClientEnableEvent event) {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
 		player.add(Imp.class);
-		final HUD hud = new HUD();
+		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
 	}
 

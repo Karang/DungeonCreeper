@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class FireBall extends Skill {
 
 	public FireBall(int id) {
-		super(id);
+		super(id, "fireball");
 		// TODO Auto-generated constructor stub
 	}
 

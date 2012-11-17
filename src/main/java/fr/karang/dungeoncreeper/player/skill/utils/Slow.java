@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Slow extends Skill {
 
 	public Slow(int id) {
-		super(id);
+		super(id, "slow");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Speed extends Skill {
 
 	public Speed(int id) {
-		super(id);
+		super(id, "speed");
 	}
 
 	@Override

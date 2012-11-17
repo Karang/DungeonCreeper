@@ -41,7 +41,7 @@ import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 public class Build extends Skill {
 
 	public Build(int id) {
-		super(id);
+		super(id, "build");
 	}
 
 	@Override

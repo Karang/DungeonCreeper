@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
+import org.spout.api.entity.Player;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
 import org.spout.api.gui.component.RenderPartsHolderComponent;
@@ -51,12 +52,14 @@ public class HUD extends Screen {
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
+	private final Player player;
 	
-	public HUD() {
+	public HUD(Player player) {
 		if (Spout.getPlatform()!=Platform.CLIENT) {
 			throw new IllegalStateException("Only clients can have an HUD screen.");
 		}
 		
+		this.player = player;
 		this.setTakesInput(false);
 		
 		skillBar.add(RenderPartsHolderComponent.class);
@@ -68,6 +71,12 @@ public class HUD extends Screen {
 		//selectSecondarySlot(2);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
+	}
+	
+	@Override
+	public void onTick(float dt) {
+		CreatureComponent cc = player.get(CreatureComponent.class);
+		
 	}
 	
 	public void selectSecondarySlot(int slot) {

@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class HailStorm extends Skill {
 
 	public HailStorm(int id) {
-		super(id);
+		super(id, "hailstorm");
 		// TODO Auto-generated constructor stub
 	}
 

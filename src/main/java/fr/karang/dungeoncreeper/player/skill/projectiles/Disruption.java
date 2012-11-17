@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Disruption extends Skill {
 
 	public Disruption(int id) {
-		super(id);
+		super(id, "disruption");
 		// TODO Auto-generated constructor stub
 	}
 

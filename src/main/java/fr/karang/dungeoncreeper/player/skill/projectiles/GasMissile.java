@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class GasMissile extends Skill {
 
 	public GasMissile(int id) {
-		super(id);
+		super(id, "gasmissile");
 		// TODO Auto-generated constructor stub
 	}
 

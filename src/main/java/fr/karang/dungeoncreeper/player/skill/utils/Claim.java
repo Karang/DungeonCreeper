@@ -44,7 +44,7 @@ import fr.karang.dungeoncreeper.world.DungeonGenerator;
 public class Claim extends Skill {
 
 	public Claim(int id) {
-		super(id);
+		super(id, "claim");
 	}
 
 	@Override

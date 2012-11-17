@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Knives extends Skill {
 
 	public Knives(int id) {
-		super(id);
+		super(id, "knives");
 		// TODO Auto-generated constructor stub
 	}
 

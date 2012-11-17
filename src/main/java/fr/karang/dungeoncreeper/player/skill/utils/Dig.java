@@ -37,7 +37,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Dig extends Skill {
 
 	public Dig(int id) {
-		super(id);
+		super(id, "dig");
 	}
 
 	@Override

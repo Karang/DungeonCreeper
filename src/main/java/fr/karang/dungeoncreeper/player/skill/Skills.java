@@ -40,7 +40,7 @@ import fr.karang.dungeoncreeper.player.skill.projectiles.GasCloud;
 import fr.karang.dungeoncreeper.player.skill.projectiles.GasMissile;
 import fr.karang.dungeoncreeper.player.skill.projectiles.GuidedBolt;
 import fr.karang.dungeoncreeper.player.skill.projectiles.HailStorm;
-import fr.karang.dungeoncreeper.player.skill.projectiles.Invisibylity;
+import fr.karang.dungeoncreeper.player.skill.projectiles.Invisibility;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Knives;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Lightning;
 import fr.karang.dungeoncreeper.player.skill.projectiles.MaidenWeb;
@@ -76,7 +76,7 @@ public class Skills {
 	public static final Skill TELEPORT = new Teleport(id++);
 	public static final Skill FIREBALL = new FireBall(id++);
 	public static final Skill HEAL = new Heal(id++);
-	public static final Skill INVISIBILITY = new Invisibylity(id++);
+	public static final Skill INVISIBILITY = new Invisibility(id++);
 	public static final Skill WHIRLWIND = new Whirlwind(id++);
 	public static final Skill SLOW = new Slow(id++);
 	public static final Skill RAISE_DEAD = new RaiseDead(id++);

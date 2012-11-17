@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class RaiseDead extends Skill {
 
 	public RaiseDead(int id) {
-		super(id);
+		super(id, "raisedead");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class PoisonSpit extends Skill {
 
 	public PoisonSpit(int id) {
-		super(id);
+		super(id, "poisonspit");
 		// TODO Auto-generated constructor stub
 	}
 

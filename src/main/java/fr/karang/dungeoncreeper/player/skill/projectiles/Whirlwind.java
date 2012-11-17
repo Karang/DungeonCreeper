@@ -33,7 +33,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class Whirlwind extends Skill {
 
 	public Whirlwind(int id) {
-		super(id);
+		super(id, "whirlwind");
 		// TODO Auto-generated constructor stub
 	}
 

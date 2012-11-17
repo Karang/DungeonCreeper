@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.map.DefaultedKey;
+import org.spout.api.map.DefaultedKeyImpl;
 import org.spout.api.math.Rectangle;
 
 public abstract class Skill {
@@ -37,24 +39,36 @@ public abstract class Skill {
 	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
 	
 	private final int id;
-	private long cooldown;
+	private final long max_cooldown;
+	private final DefaultedKey<Long> KEY_COOLDOWN;
 	
-	public Skill(int id) {
-		this(id, 0L);
+	public Skill(int id, String skill_name) {
+		this(id, 0L, skill_name);
 	}
 	
-	public Skill(int id, long cooldown) {
+	public Skill(int id, long max_cooldown, String skill_name) {
 		this.id = id;
-		this.cooldown = cooldown;
+		this.max_cooldown = max_cooldown;
+		this.KEY_COOLDOWN =  new DefaultedKeyImpl<Long>("cd_" + skill_name, 0L);
 		skills.put(id, this);
 	}
 	
-	public void setCooldown(int cooldown) {
-		this.cooldown = cooldown;
+	public float getCooldown(Entity source) {
+		return source.getData().get(KEY_COOLDOWN) / max_cooldown;
 	}
 	
-	public long getCooldown() {
-		return cooldown;
+	public void initCooldown(Entity source) {
+		source.getData().put(KEY_COOLDOWN, max_cooldown);
+	}
+	
+	public void updateCooldown(float dt, Entity source) {
+		long cd = source.getData().get(KEY_COOLDOWN);
+		cd -= dt;
+		if (cd < 0) {
+			source.getData().put(KEY_COOLDOWN, 0L);
+		} else {
+			source.getData().put(KEY_COOLDOWN, cd);
+		}
 	}
 	
 	public int getId() {
