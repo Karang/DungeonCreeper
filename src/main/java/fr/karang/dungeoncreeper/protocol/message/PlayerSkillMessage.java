@@ -51,4 +51,8 @@ public class PlayerSkillMessage implements Message {
 	public boolean getEndCoolDown() {
 		return endCooldown;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

@@ -31,8 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.component.components.EntityComponent;
+import org.spout.api.entity.Player;
+import org.spout.api.entity.state.PlayerInputState;
+import org.spout.api.input.InputManager;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
@@ -52,6 +56,32 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.SKILLSLOT, 0);
 		getData().put(DungeonData.LEVEL, 1);
 	}
+	
+	@Override
+	public void onTick(float dt) {
+		PlayerInputState input = ((Player) getOwner()).input();
+		if (input.getFire1()) {
+			System.out.println();
+		}
+		
+		if (input.getFire2()) {
+			System.out.println("fire 2");
+		}
+		
+		if (input.getSelectDown()) {
+			int slot = getSlot()-1;
+			setSlot((slot<0) ? skills.size()-1 : slot);
+		}
+		
+		if (input.getSelectDown()) {
+			int slot = getSlot()+1;
+			setSlot((slot>=skills.size()) ? 0 : slot);
+		}
+	}
+	
+	public List<Skill> getSkills() {
+		return skills;
+	}
 
 	public void addSkill(Skill skill, int level) {
 		requiredLevel.put(skill, level);
@@ -64,6 +94,10 @@ public abstract class CreatureComponent extends EntityComponent {
 	
 	public Skill getSecondarySkill() {
 		return skills.get(getData().get(DungeonData.SKILLSLOT));
+	}
+	
+	private int getSlot(){
+		return getData().get(DungeonData.SKILLSLOT);
 	}
 	
 	public void setSlot(int slot){

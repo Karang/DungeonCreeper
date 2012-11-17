@@ -109,4 +109,8 @@ public final class PlayerHandshakeMessage implements Message {
 				.append(this.port, other.port)
 				.isEquals();
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

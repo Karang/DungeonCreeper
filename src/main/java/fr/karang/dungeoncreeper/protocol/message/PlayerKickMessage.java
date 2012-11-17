@@ -39,4 +39,8 @@ public class PlayerKickMessage implements Message {
 	public String getReason() {
 		return reason;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

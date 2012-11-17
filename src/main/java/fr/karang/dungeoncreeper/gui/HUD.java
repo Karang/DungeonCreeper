@@ -27,9 +27,9 @@
 package fr.karang.dungeoncreeper.gui;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
@@ -40,8 +40,8 @@ import org.spout.api.plugin.Platform;
 import org.spout.api.render.RenderMaterial;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skill;
-import fr.karang.dungeoncreeper.player.skill.Skills;
 
 public class HUD extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
@@ -60,13 +60,12 @@ public class HUD extends Screen {
 		this.setTakesInput(false);
 		
 		skillBar.add(RenderPartsHolderComponent.class);
-		List<Skill>test = new ArrayList<Skill>();
-		test.add(Skills.DIG);
-		test.add(Skills.CLAIM);
-		test.add(Skills.ATTACKSWORD);
-		buildSkillBar(test);
+		
+		CreatureComponent cc = ((Client)Spout.getEngine()).getActivePlayer().get(CreatureComponent.class);
+		buildSkillBar(cc.getSkills());
+		
 		setCooldown(2, 0.7f);
-		selectSecondarySlot(2);
+		//selectSecondarySlot(2);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
 	}

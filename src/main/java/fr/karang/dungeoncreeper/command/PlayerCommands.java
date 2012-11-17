@@ -82,24 +82,26 @@ public class PlayerCommands {
 		player.get(CreatureComponent.class).setSlot(slot);
 	}
 	
-	@Command(aliases = "interact1", usage = "", desc = "Primary interaction", min = 0, max = 0)
+	@Command(aliases = "+fire_1", usage = "", desc = "Primary interaction", min = 0, max = 0)
 	@CommandPermissions("dungeoncreeper.command.interact1")
 	public void interact1(CommandContext args, CommandSource source) throws CommandException {
 		if (!(source instanceof Player)) {
 			throw new CommandException("You must be a player to change your class.");
 		}
 
+		System.out.println("fire 1");
 		Player player = (Player) source;
 		player.get(CreatureComponent.class).primaryInterract();
 	}
 	
-	@Command(aliases = "interact2", usage = "", desc = "Secondary interaction", min = 0, max = 0)
+	@Command(aliases = "+fire_2", usage = "", desc = "Secondary interaction", min = 0, max = 0)
 	@CommandPermissions("dungeoncreeper.command.interact1")
 	public void interact2(CommandContext args, CommandSource source) throws CommandException {
 		if (!(source instanceof Player)) {
 			throw new CommandException("You must be a player to change your class.");
 		}
 
+		System.out.println("fire 2");
 		Player player = (Player) source;
 		player.get(CreatureComponent.class).secondaryInterract();
 	}

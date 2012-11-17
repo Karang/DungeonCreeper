@@ -54,4 +54,8 @@ public class PlayerSpawnMessage implements Message {
 	public float getZ() {
 		return z;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

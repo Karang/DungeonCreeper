@@ -39,4 +39,8 @@ public class PlayerListMessage implements Message {
 	public String getName() {
 		return name;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

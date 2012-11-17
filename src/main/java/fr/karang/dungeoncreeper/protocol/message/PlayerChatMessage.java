@@ -39,4 +39,8 @@ public class PlayerChatMessage implements Message {
 	public String getMessage() {
 		return message;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

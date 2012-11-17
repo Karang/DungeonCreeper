@@ -54,4 +54,8 @@ public class WorldListMessage implements Message {
 	public String getTitle() {
 		return name;
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }

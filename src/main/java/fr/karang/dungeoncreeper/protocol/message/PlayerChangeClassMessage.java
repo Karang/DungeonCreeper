@@ -59,4 +59,8 @@ public class PlayerChangeClassMessage implements Message {
 
 		return Imp.class; // Fallback
 	}
+
+	public int getChannelId() {
+		return 0;
+	}
 }
