@@ -51,13 +51,14 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.HEALTH, 10);
 		getData().put(DungeonData.MAX_HEALTH, 10);
 		getData().put(DungeonData.DAMAGES, 0);
-		getData().put(DungeonData.SKILLSLOT, 0);
+		getData().put(DungeonData.SKILLSLOT, 1);
 		getData().put(DungeonData.LEVEL, 1);
 	}
 	
 	@Override
 	public void onTick(float dt) {
 		PlayerInputState input = ((Player) getOwner()).input();
+		
 		if (input.getFire1()) {
 			primaryInterract();
 		}
@@ -89,20 +90,26 @@ public abstract class CreatureComponent extends EntityComponent {
 	public void setSlot(int slot){
 		getData().put(DungeonData.SKILLSLOT, slot);
 	}
+	
+	public int getSlot() {
+		return getData().get(DungeonData.SKILLSLOT);
+	}
 
 	public void primaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getPrimarySkill()));
-		if (event.isCancelled()) {
+		if (event.isCancelled() || event.getSkill().getCooldown(event.getEntity())!=0) {
 			return;
 		}
+		event.getSkill().initCooldown(event.getEntity());
 		event.getSkill().handle(event.getEntity());
 	}
 
 	public void secondaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
-		if (event.isCancelled()) {
+		if (event.isCancelled() || event.getSkill().getCooldown(event.getEntity())!=0) {
 			return;
 		}
+		event.getSkill().initCooldown(event.getEntity());
 		event.getSkill().handle(event.getEntity());
 	}
 	

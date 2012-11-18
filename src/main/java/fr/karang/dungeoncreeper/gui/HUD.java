@@ -52,6 +52,7 @@ public class HUD extends Screen {
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
+	private int slot = 1;
 	private final Player player;
 	
 	public HUD(Player player) {
@@ -67,7 +68,7 @@ public class HUD extends Screen {
 		CreatureComponent cc = ((Client)Spout.getEngine()).getActivePlayer().get(CreatureComponent.class);
 		buildSkillBar(cc.getSkills());
 		
-		setCooldown(2, 0.7f);
+		//setCooldown(2, 0.7f);
 		//selectSecondarySlot(2);
 		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
@@ -76,10 +77,18 @@ public class HUD extends Screen {
 	@Override
 	public void onTick(float dt) {
 		CreatureComponent cc = player.get(CreatureComponent.class);
-		
+		int slot = 0;
+		for (Skill skill : cc.getSkills()) {
+			skill.updateCooldown(dt, player);
+			setCooldown(slot++, skill.getCooldown(player));
+		}
+		if (this.slot!=cc.getSlot()) {
+			selectSecondarySlot(cc.getSlot());
+		}
 	}
 	
 	public void selectSecondarySlot(int slot) {
+		this.slot = slot;
 		RenderPart select = skillBar.get(RenderPartsHolderComponent.class).get(0);
 		float x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
 		select.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
