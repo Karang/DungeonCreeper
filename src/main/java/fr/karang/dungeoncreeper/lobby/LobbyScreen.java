@@ -41,18 +41,19 @@ import org.spout.api.plugin.Platform;
 import org.spout.api.render.Font;
 import org.spout.api.render.RenderMaterial;
 
+import fr.karang.dungeoncreeper.DungeonConfig;
 import fr.karang.dungeoncreeper.DungeonCreeper;
 
 public class LobbyScreen extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final Color GUI_BROWN = new Color(110, 70, 0, 200);
 	private static final Color GUI_GREEN = new Color(100, 160, 0, 200);
-	//private static final Color GUI_GREY = new Color(128, 128, 128, 200);
+	private static final Color GUI_GREY = new Color(128, 128, 128, 200);
 	private final RenderMaterial colorMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://Spout/resources/resources/materials/GUIColorMaterial.smt");
 	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
-	private Widget players = new Widget();
 	private Widget[][] gamesTab = new Widget[5][3];
-	private int idGame;
+	private Widget[] playersTab = new Widget[6];
+	private int idGame, idPlayer;
 	
 	public LobbyScreen(Lobby lobby) {
 		if (Spout.getPlatform()!=Platform.CLIENT) {
@@ -61,22 +62,27 @@ public class LobbyScreen extends Screen {
 		
 		this.setTakesInput(false);
 		
-		newTextBox(new ChatArguments("Dungeon's name"), GUI_BROWN, -0.95f, 0.5f, 0.3f, 0.05f);
-		newTextBox(new ChatArguments("Online players"), GUI_BROWN, -0.64f, 0.5f, 0.3f, 0.05f);
-		newTextBox(new ChatArguments("Maximum players"), GUI_BROWN, -0.33f, 0.5f, 0.3f, 0.05f);
+		newTextBox(new ChatArguments("Dungeons:"), GUI_BROWN, -1.34f, 0.6f, 0.4f, 0.1f);
+		
+		newTextBox(new ChatArguments("Dungeon's name"), GUI_GREY, -0.95f, 0.5f, 0.3f, 0.05f);
+		newTextBox(new ChatArguments("Online players"), GUI_GREY, -0.64f, 0.5f, 0.3f, 0.05f);
+		newTextBox(new ChatArguments("Maximum players"), GUI_GREY, -0.33f, 0.5f, 0.3f, 0.05f);
 		
 		for (int x=0 ; x<3 ; x++) {
 			for (int y=0 ; y<5 ; y++) {
-				Widget box = newTextBox(new ChatArguments(""), GUI_GREEN, -0.95f+0.31f*x, 0.44f-0.06f*y, 0.3f, 0.05f);
+				Widget box = newTextBox(new ChatArguments(""), (x%2==0)?GUI_GREEN:GUI_BROWN, -0.95f+0.31f*x, 0.44f-0.06f*y, 0.3f, 0.05f);
 				gamesTab[y][x] = box;
 			}
 		}
 		
-		players.setGeometry(new Rectangle(0,0,0,0));
-		LabelComponent playerList = players.add(LabelComponent.class);
-		playerList.setFont(FONT);
-		playerList.setText(new ChatArguments(ChatStyle.YELLOW, "Online players: "));
-		attachWidget(DungeonCreeper.getInstance(), players);
+		newTextBox(new ChatArguments("Name"), GUI_BROWN, 1f, 0.6f, 0.4f, 0.1f);
+		newTextBox(new ChatArguments(DungeonConfig.USERNAME.getString()), GUI_GREY, 1f, 0.5f, 0.4f, 0.05f);
+		
+		newTextBox(new ChatArguments("Online players"), GUI_BROWN, 1f, 0.3f, 0.4f, 0.1f);
+		for (int i=0 ; i<6 ; i++) {
+			Widget box = newTextBox(new ChatArguments(""), GUI_GREEN, 1f, 0.24f-0.06f*i, 0.4f, 0.05f);
+			playersTab[i] = box;
+		}
 	}
 	
 	public Widget newTextBox(ChatArguments label, Color bg, float x, float y, float w, float h) {
@@ -97,8 +103,9 @@ public class LobbyScreen extends Screen {
 	}
 	
 	public void addPlayer(String name) {
-		LabelComponent playerList = players.get(LabelComponent.class);
-		playerList.setText(playerList.getText().append(name, ", "));
+		LabelComponent playerList = playersTab[idPlayer].get(LabelComponent.class);
+		playerList.setText(new ChatArguments(name));
+		idPlayer++;
 	}
 	
 	public void addGame(String title, int onlinePlayers, int maxPlayers) {
@@ -108,14 +115,16 @@ public class LobbyScreen extends Screen {
 		txtOnline.setText(new ChatArguments(onlinePlayers));
 		final LabelComponent txtMax = gamesTab[idGame][2].add(LabelComponent.class);
 		txtMax.setText(new ChatArguments(maxPlayers));
+		idGame++;
 	}
 	
 	public void refresh() {
 		for (int x=0 ; x<3 ; x++) {
 			for (int y=0 ; y<5 ; y++) {
-				LabelComponent txt = gamesTab[idGame][0].add(LabelComponent.class);
+				LabelComponent txt = gamesTab[y][x].add(LabelComponent.class);
 				txt.setText(new ChatArguments());
 			}
 		}
+		idGame = 0;
 	}
 }
