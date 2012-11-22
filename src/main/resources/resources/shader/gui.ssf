@@ -1,7 +1,7 @@
 GL30:
-    Vertex: file://DungeonCreeper/resources/shaders/basic/330.vert
-    Fragment: file://DungeonCreeper/resources/shaders/basic/330.frag
+    Vertex: file://DungeonCreeper/resources/shader/basic/330.vert
+    Fragment: file://DungeonCreeper/resources/shader/basic/330.frag
 GL20:
-    Vertex: file://DungeonCreeper/resources/shaders/basic/120.vert
-    Fragment: file://DungeonCreeper/resources/shaders/basic/120.frag
+    Vertex: file://DungeonCreeper/resources/shader/basic/120.vert
+    Fragment: file://DungeonCreeper/resources/shader/basic/120.frag
     

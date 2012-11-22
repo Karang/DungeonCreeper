@@ -30,7 +30,6 @@ import java.awt.Color;
 
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
-import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
 import org.spout.api.gui.component.LabelComponent;
@@ -49,7 +48,7 @@ public class LobbyScreen extends Screen {
 	private static final Color GUI_BROWN = new Color(110, 70, 0, 200);
 	private static final Color GUI_GREEN = new Color(100, 160, 0, 200);
 	private static final Color GUI_GREY = new Color(128, 128, 128, 200);
-	private final RenderMaterial colorMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://Spout/resources/resources/materials/GUIColorMaterial.smt");
+	private final RenderMaterial colorMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/GUIRoundedRect.smt");
 	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget[][] gamesTab = new Widget[5][3];
 	private Widget[] playersTab = new Widget[6];
