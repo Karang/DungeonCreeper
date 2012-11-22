@@ -1,6 +1,6 @@
-Shader: shader://Spout/resources/resources/shaders/textShader.ssf
+Shader: shader://Spout/resources/fallbacks/fallback.ssf
 
 MaterialParams:
     Diffuse: texture://DungeonCreeper/resources/terrain.png
-    Color: color(1,1,1,1)
+    BlendColor: color(1,1,1,1)
     
