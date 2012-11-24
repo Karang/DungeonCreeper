@@ -30,6 +30,7 @@ import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.BlockIterator;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
@@ -47,12 +48,13 @@ public class Teleport extends Skill {
 		source.get(HitBlockComponent.class).setRange(30f);
 		BlockIterator blockIt = source.get(HitBlockComponent.class).getAlignedBlocks();
 		Block block = blockIt.getTarget();
+		BlockFace face = blockIt.getBlockFace();
 		
 		if (block == null) {
 			return;
 		}
 		
 		// TODO: blockface relative
-		player.teleport(block.getPosition());
+		player.teleport(block.translate(face).getPosition());
 	}
 }

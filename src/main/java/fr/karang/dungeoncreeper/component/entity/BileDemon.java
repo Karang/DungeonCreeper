@@ -26,7 +26,6 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
