@@ -28,10 +28,16 @@ package fr.karang.dungeoncreeper.world.populator;
 
 import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
+import org.spout.api.material.BlockMaterial;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
 
-public class LavaObject extends WorldGeneratorObject {
+public class LiquidObject extends WorldGeneratorObject {
+	public LiquidObject(BlockMaterial material) {
+		this.material = material;
+	}
+	
+	private final BlockMaterial material;
 
 	@Override
 	public boolean canPlaceObject(World w, int x, int y, int z) {
@@ -40,7 +46,7 @@ public class LavaObject extends WorldGeneratorObject {
 
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
-		w.getBlock(x, y, z).setMaterial(DCMaterials.LAVA);
+		w.getBlock(x, y, z).setMaterial(material);
 		w.getBlock(x, y+1, z).setMaterial(DCMaterials.AIR);
 	}
 
