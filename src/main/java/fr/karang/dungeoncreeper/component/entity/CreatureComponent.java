@@ -84,7 +84,7 @@ public abstract class CreatureComponent extends EntityComponent {
 	}
 	
 	public Skill getSecondarySkill() {
-		return skills.get(getData().get(DungeonData.SKILLSLOT));
+		return skills.get(getSlot());
 	}
 	
 	public void setSlot(int slot){
@@ -106,6 +106,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void secondaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
+		System.out.println(getSlot() + ", " + event.getSkill());
 		if (event.isCancelled() || event.getSkill().getCooldown(event.getEntity())!=0) {
 			return;
 		}

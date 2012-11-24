@@ -47,9 +47,10 @@ public class Imp extends CreatureComponent {
 	private Rooms roomClaim = Rooms.LAIR;
 	private Vector2 point1, point2;
 	
-	public Imp(){
+	public Imp() {
 		addSkill(Skills.DIG, 1);
-		addSkill(Skills.CLAIM, 1);
+		addSkill(Skills.TELEPORT, 1);
+		//addSkill(Skills.CLAIM, 1);
 		addSkill(Skills.HANDTOHAND, 1);
 		addSkill(Skills.HASTE, 4);
 		addSkill(Skills.TELEPORT, 8);
@@ -57,6 +58,7 @@ public class Imp extends CreatureComponent {
 	
 	@Override
 	public void onAttached() {
+		super.onAttached();
 		getData().put(DungeonData.GOLD_AMOUNT, 0);
 	}
 

@@ -42,6 +42,7 @@ public class Dig extends Skill {
 
 	@Override
 	public void handle(Entity source) {
+		source.get(HitBlockComponent.class).setRange(4f);
 		Block block = source.get(HitBlockComponent.class).getTargetBlock();
 		if (block!=null) {
 			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
