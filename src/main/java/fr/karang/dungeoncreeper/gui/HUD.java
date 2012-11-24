@@ -71,6 +71,16 @@ public class HUD extends Screen {
 		//setCooldown(2, 0.7f);
 		//selectSecondarySlot(2);
 		
+		Widget cursor = new Widget();
+		
+		RenderPart part = new RenderPart();
+		part.setRenderMaterial(skillMaterial);
+		part.setSource(new Rectangle(0, 0.75f, 0.02f, 0.02f));
+		part.setSprite(new Rectangle(-0.025f*SCALE, -0.025f, 0.05f*SCALE, 0.05f));
+		
+		cursor.add(RenderPartsHolderComponent.class).add(part);
+		this.attachWidget(DungeonCreeper.getInstance(), cursor);
+		
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
 	}
 	

@@ -54,7 +54,6 @@ public class Teleport extends Skill {
 			return;
 		}
 		
-		// TODO: blockface relative
 		player.teleport(block.translate(face).getPosition());
 	}
 }
