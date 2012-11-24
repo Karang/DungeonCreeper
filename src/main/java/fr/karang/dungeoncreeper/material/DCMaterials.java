@@ -40,6 +40,7 @@ public class DCMaterials {
 	public static final Dirt DIRT = new Dirt();
 	public static final UnclaimedFloor UNCLAIMED_FLOOR = new UnclaimedFloor();
 	public static final Lava LAVA = new Lava();
+	public static final Water WATER = new Water();
 	public static final GoldOre GOLD_ORE = new GoldOre();
 	public static final GemOre GEM_ORE = new GemOre();
 	

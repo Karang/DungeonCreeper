@@ -50,6 +50,7 @@ public class DungeonPopulator extends Populator {
 		materials.put(new Color(169, 102, 69).getRGB(), NaturalObject.DIRT);
 		materials.put(new Color(108, 108, 108).getRGB(), NaturalObject.CAVERN);
 		materials.put(new Color(0, 0, 0).getRGB(), NaturalObject.SOLID_ROCK);
+		materials.put(new Color (70, 70, 225).getRGB(), NaturalObject.WATER);
 	}
 
 	@Override
