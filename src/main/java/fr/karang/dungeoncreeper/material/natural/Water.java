@@ -32,7 +32,6 @@ public class Water extends DCMaterial {
 
 	public Water() {
 		super("Water", "model://DungeonCreeper/resources/block/natural/water/water.spm");
-		// TODO Auto-generated constructor stub
 	}
 
 }
