@@ -40,4 +40,9 @@ public class Vampire extends CreatureComponent {
 		addSkill(Skills.BITE, 8);
 		addSkill(Skills.RAISE_DEAD, 10);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -40,4 +40,9 @@ public class DarkMistress extends CreatureComponent {
 		addSkill(Skills.FREEZE, 8);
 		addSkill(Skills.HAIL_STORM, 10);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -40,4 +40,9 @@ public class DarkAngels extends CreatureComponent {
 		addSkill(Skills.HAILSTORM, 8);
 		addSkill(Skills.SKELETON_ARMY, 10);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

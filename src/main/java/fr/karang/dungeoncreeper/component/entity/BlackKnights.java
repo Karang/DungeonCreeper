@@ -42,4 +42,9 @@ public class BlackKnights extends CreatureComponent {
 	public BlackKnights(){
 		addSkill(Skills.ATTACKSWORD, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -38,4 +38,9 @@ public class Rogue extends CreatureComponent {
 		addSkill(Skills.ATTACKSWORD, 1);
 		addSkill(Skills.INVISIBILITY, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

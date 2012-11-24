@@ -45,4 +45,9 @@ public class Warlock extends CreatureComponent {
 		addSkill(Skills.HEAL, 2);
 		addSkill(Skills.FIREBOMB, 8);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

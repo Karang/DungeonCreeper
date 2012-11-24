@@ -39,4 +39,9 @@ public class Maiden extends CreatureComponent {
 		addSkill(Skills.MAIDEN_WEB, 1);
 		addSkill(Skills.POISON_SPIT, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
+import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
@@ -39,6 +40,9 @@ public class BileDemon extends CreatureComponent {
 		addSkill(Skills.GAS_MISSILE, 8);
 	}
 	
-	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 	
 }

@@ -39,4 +39,9 @@ public class Salamender extends CreatureComponent {
 		addSkill(Skills.FIREBALL, 4);
 		addSkill(Skills.SPIT, 8);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

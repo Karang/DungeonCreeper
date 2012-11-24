@@ -42,4 +42,9 @@ public class Gobelin extends CreatureComponent {
 	public boolean hasRequired(Team team){
 		return team.hasRoom(Rooms.LAIR,5);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

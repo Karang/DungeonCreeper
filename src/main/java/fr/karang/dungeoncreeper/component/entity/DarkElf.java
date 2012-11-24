@@ -40,4 +40,8 @@ public class DarkElf extends CreatureComponent {
 		addSkill(Skills.GUIDED_BOLT, 8);
 	}
 	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -37,4 +37,9 @@ public class Troll extends CreatureComponent {
 	public Troll(){
 		addSkill(Skills.HANDTOHAND, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

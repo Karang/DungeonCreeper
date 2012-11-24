@@ -37,4 +37,9 @@ public class Firefly extends CreatureComponent {
 	public Firefly(){
 		addSkill(Skills.WHIRLWIND, 8);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -36,4 +36,9 @@ public class HornedReaper extends CreatureComponent {
 	public HornedReaper(){
 		addSkill(Skills.STUN_FIREBALL, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }

@@ -37,4 +37,9 @@ public class Skeleton extends CreatureComponent {
 	public Skeleton(){
 		addSkill(Skills.ATTACKSWORD, 1);
 	}
+	
+	@Override
+	public void onAttached() {
+		super.onAttached();
+	}
 }
