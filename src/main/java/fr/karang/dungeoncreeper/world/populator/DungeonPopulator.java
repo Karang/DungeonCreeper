@@ -75,7 +75,7 @@ public class DungeonPopulator extends Populator {
 						obj = new HearthRoomObject(team);
 				}
 
-				if(obj == null)
+				if (obj == null)
 					continue;
 				
 				if (obj.canPlaceObject(chunk.getWorld(), x, 1, z)) {

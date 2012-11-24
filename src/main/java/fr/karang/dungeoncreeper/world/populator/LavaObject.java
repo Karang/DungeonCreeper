@@ -42,7 +42,6 @@ public class LavaObject extends WorldGeneratorObject {
 	public void placeObject(World w, int x, int y, int z) {
 		w.getBlock(x, y, z).setMaterial(DCMaterials.LAVA);
 		w.getBlock(x, y+1, z).setMaterial(DCMaterials.AIR);
-		w.getBlock(x, y+2, z).setMaterial(DCMaterials.AIR);
 	}
 
 }

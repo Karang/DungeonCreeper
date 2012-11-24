@@ -78,7 +78,7 @@ public class DungeonGenerator implements WorldGenerator {
 
 		for (int x = xx ; x < xx + Chunk.BLOCKS.SIZE ; x++) {
 			for (int z = zz ; z < zz + Chunk.BLOCKS.SIZE ; z++) {
-				for (int y = 0 ; y < 4 /*Chunk.BLOCKS.SIZE*/ ; y++) {
+				for (int y = 0 ; y < 3 /*Chunk.BLOCKS.SIZE*/ ; y++) {
 					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
 						blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
 					} else {

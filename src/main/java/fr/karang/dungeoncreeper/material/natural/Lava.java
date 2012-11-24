@@ -32,4 +32,9 @@ public class Lava extends DCMaterial {
 	public Lava() {
 		super("Lava", "model://DungeonCreeper/resources/block/natural/lava/lava.spm");
 	}
+	
+	@Override
+	public byte getLightLevel(short data) {
+		return 15;
+	}
 }

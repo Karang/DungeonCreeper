@@ -62,10 +62,10 @@ public class Lobby {
 	
 	public Lobby() {
 		engine = Spout.getEngine();
-		if (engine.getPlatform() == Platform.CLIENT) {
+		/*if (engine.getPlatform() == Platform.CLIENT) {
 			screen = new LobbyScreen(this);
 			((Client) engine).getScreenStack().openScreen(screen);
-		}
+		}*/
 	}
 	
 	public void playerJoin(Player player) {

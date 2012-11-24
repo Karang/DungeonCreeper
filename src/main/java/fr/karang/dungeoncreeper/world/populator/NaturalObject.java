@@ -55,7 +55,6 @@ public class NaturalObject extends WorldGeneratorObject {
 	public void placeObject(World w, int x, int y, int z) {
 		w.getBlock(x, y, z).setMaterial(DCMaterials.UNCLAIMED_FLOOR);
 		w.getBlock(x, y+1, z).setMaterial(material);
-		w.getBlock(x, y+2, z).setMaterial(material);
 	}
 
 }

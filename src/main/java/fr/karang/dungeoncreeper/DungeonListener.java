@@ -28,6 +28,7 @@ package fr.karang.dungeoncreeper;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
+import org.spout.api.component.components.CameraComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
@@ -56,6 +57,10 @@ public class DungeonListener implements Listener {
 		player.add(Imp.class);
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
+		
+		CameraComponent camera = player.get(CameraComponent.class);
+		camera.setScale(0.5f);
+		camera.setSpeed(2f);
 	}
 
 }
