@@ -37,7 +37,7 @@ public class DarkAngels extends CreatureComponent {
 	public DarkAngels(){
 		addSkill(Skills.ATTACKSWORD, 1);
 		addSkill(Skills.DISRUPTION, 4);
-		addSkill(Skills.HAILSTORM, 8);
+		addSkill(Skills.HAIL_STORM, 8);
 		addSkill(Skills.SKELETON_ARMY, 10);
 	}
 	

@@ -78,7 +78,7 @@ public class Imp extends CreatureComponent {
 	}
 	
 	public Rectangle getBuildRect(){
-		if( point1 == null || point2 == null)
+		if (point1 == null || point2 == null)
 			return null;
 		int x = Math.min(point1.getFloorX(), point1.getFloorX());
 		int y = Math.min(point1.getFloorY(), point1.getFloorY());

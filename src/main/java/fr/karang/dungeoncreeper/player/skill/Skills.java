@@ -65,7 +65,34 @@ public class Skills {
 	 */
 	public static final Skill ATTACKSWORD = new AttackSword(id++);
 	public static final Skill HANDTOHAND = new HandToHand(id++);
+	public static final Skill BITE = new Bite(id++);
 
+	/**
+	 * Projectiles
+	 */
+	public static final Skill FIREBALL = new FireBall(id++);
+	public static final Skill ARROW = new Arrow(id++);
+	public static final Skill DISRUPTION = new Disruption(id++);
+	public static final Skill GAS_CLOUD = new GasCloud(id++);
+	public static final Skill GAS_MISSILE = new GasMissile(id++);
+	public static final Skill FIREBOMB = new FireBomb(id++);
+	public static final Skill POISON_SPIT = new PoisonSpit(id++);
+	public static final Skill SPIT = new Spit(id++);
+	public static final Skill KNIVES = new Knives(id++);
+	public static final Skill GUIDED_BOLT = new GuidedBolt(id++);
+	public static final Skill LIGHTNING = new Lightning(id++);
+	public static final Skill FREEZE = new Freeze(id++);
+	public static final Skill HAIL_STORM = new HailStorm(id++);
+	public static final Skill STUN_FIREBALL = new StunFireball(id++);
+	public static final Skill WHIRLWIND = new Whirlwind(id++);
+	
+	/**
+	 * Support
+	 */
+	public static final Skill HEAL = new Heal(id++);
+	public static final Skill INVISIBILITY = new Invisibility(id++);
+	public static final Skill HASTE = new Haste(id++);
+	public static final Skill SLOW = new Slow(id++);
 	
 	/**
 	 * Utils
@@ -74,28 +101,7 @@ public class Skills {
 	public static final Skill DIG = new Dig(id++);
 	public static final Skill RESEARCH = new Research(id++);
 	public static final Skill TELEPORT = new Teleport(id++);
-	public static final Skill FIREBALL = new FireBall(id++);
-	public static final Skill HEAL = new Heal(id++);
-	public static final Skill INVISIBILITY = new Invisibility(id++);
-	public static final Skill WHIRLWIND = new Whirlwind(id++);
-	public static final Skill SLOW = new Slow(id++);
 	public static final Skill RAISE_DEAD = new RaiseDead(id++);
-	public static final Skill DISRUPTION = new Disruption(id++);
-	public static final Skill HAILSTORM = new HailStorm(id++);
 	public static final Skill SKELETON_ARMY = new SkeletonArmy(id++);
-	public static final Skill GAS_CLOUD = new GasCloud(id++);
-	public static final Skill GAS_MISSILE = new GasMissile(id++);
-	public static final Skill ARROW = new Arrow(id++);
-	public static final Skill KNIVES = new Knives(id++);
-	public static final Skill GUIDED_BOLT = new GuidedBolt(id++);
-	public static final Skill LIGHTNING = new Lightning(id++);
-	public static final Skill FREEZE = new Freeze(id++);
-	public static final Skill HAIL_STORM = new HailStorm(id++);
-	public static final Skill STUN_FIREBALL = new StunFireball(id++);
-	public static final Skill HASTE = new Haste(id++);
 	public static final Skill MAIDEN_WEB = new MaidenWeb(id++);
-	public static final Skill POISON_SPIT = new PoisonSpit(id++);
-	public static final Skill SPIT = new Spit(id++);
-	public static final Skill BITE = new Bite(id++);
-	public static final Skill FIREBOMB = new FireBomb(id++);
 }

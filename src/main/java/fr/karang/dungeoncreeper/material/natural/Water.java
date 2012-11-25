@@ -32,6 +32,7 @@ public class Water extends DCMaterial {
 
 	public Water() {
 		super("Water", "model://DungeonCreeper/resources/block/natural/water/water.spm");
+		this.setTransparent().setOpacity(10);
 	}
 
 }
