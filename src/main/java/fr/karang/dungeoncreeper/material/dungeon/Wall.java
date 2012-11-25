@@ -41,7 +41,7 @@ public class Wall extends DungeonMaterial {
 
 	public Wall() {
 		super("Wall", "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
-		addBatchEffect(new MeshEffect() {
+		addMeshEffect(new MeshEffect() {
 			public void preMesh(SnapshotMesh snapshotMesh) {
 				World world = ((Point) snapshotMesh.getPosition()).getWorld();
 				Block block = world.getBlock(snapshotMesh.getPosition());
