@@ -32,21 +32,18 @@ import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.Team;
 
 public class TeamComponent extends EntityComponent {
-
-	private Team team;
-	
-	public TeamComponent(Team team){
-		this.team = team;
-	}
 	
 	@Override
 	public void onAttached() {
-		getData().put(DungeonData.GAME, team.getColor().ordinal());
-		getData().put(DungeonData.TEAM, team.getGame().getId());
+		getData().put(DungeonData.TEAM, -1);
+	}
+
+	public void setTeam(Team team){
+		getData().put(DungeonData.TEAM, team.getId());
 	}
 
 	public Team getTeam(){
-		return team;
+		return Team.getTeam(getData().get(DungeonData.TEAM));
 	}
 
 }

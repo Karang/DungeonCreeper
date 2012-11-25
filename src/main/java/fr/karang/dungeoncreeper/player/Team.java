@@ -107,6 +107,18 @@ public class Team {
 
 	}
 
+	private static int ID_GEN = 0;
+	private static Map<Integer,Team> teams = new HashMap<Integer, Team>();
+	
+	public static Team getTeam(int id){
+		return teams.get(id);
+	}
+	
+	private static void addTeam(Team team){
+		teams.put(team.getId(), team);
+	}
+	
+	private final int id;
 	private final DungeonGame game;
 
 	private final TeamColor color;
@@ -116,6 +128,8 @@ public class Team {
 	private int gold = 0;
 
 	public Team(TeamColor color, Point spawn, DungeonGame game) {
+		id = ID_GEN++;
+		addTeam(this);
 		this.game = game;
 		this.color = color;
 		this.spawn = new Transform(spawn, Quaternion.IDENTITY, Vector3.ONE);
@@ -184,5 +198,9 @@ public class Team {
 			throw new IllegalStateException("RoomContainer unfinded");
 
 		container.removeRoom(roomInstance);
+	}
+
+	public int getId() {
+		return id;
 	}
 }

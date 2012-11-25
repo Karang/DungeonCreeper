@@ -49,30 +49,40 @@ public class Claim extends Skill {
 
 	@Override
 	public void handle(Entity source) {
+		System.out.println("Claim");
 		Block block = source.get(HitBlockComponent.class).getTargetBlock();
 		Team team = source.get(TeamComponent.class).getTeam();
 		BlockCause cause = new BlockCause(source);
+
+		if(team == null){
+			throw new IllegalStateException("Must have a team");
+		}
 		
 		if (block != null){
 			DCMaterial material = (DCMaterial) block.getMaterial();
 
 			if (material.isClaimedBy(block, team)) {
-				if(source instanceof Player)
+				if(source instanceof Player){
+					System.out.println("Block déjà claim");
 					((Player)source).sendMessage("Block déjà claim");
+				}
 				return;
 			}
 
 			if (!material.isNextClaimedBlock(block, team)) {
-				if(source instanceof Player)
+				if(source instanceof Player){
+					System.out.println("Pas de block voisin claim");
 					((Player)source).sendMessage("Pas de block voisin claim");
+				}
 				return;
 			}
-			
+
 			World world = block.getWorld();
 			int x = block.getX();
 			int z = block.getZ();
 
 			if (material.isClaimedBlockByOtherTeam(block, team)) {
+				System.out.println("Declaim other team");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.DIRT.onPlacement(block,DCMaterials.DIRT.getData(), cause);
 					team.getGame().setTerritory(x, z, null);
@@ -82,6 +92,7 @@ public class Claim extends Skill {
 					team.getGame().setTerritory(x, z, null);
 				}
 			} else {
+				System.out.println("Claim");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), cause);
 					team.getGame().setTerritory(x, z, team.getColor());
@@ -91,6 +102,8 @@ public class Claim extends Skill {
 					team.getGame().setTerritory(x, z, team.getColor());
 				}
 			}
+		}else{
+			System.out.println("No target block");
 		}
 	}
 

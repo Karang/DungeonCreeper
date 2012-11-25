@@ -49,8 +49,7 @@ public class Imp extends CreatureComponent {
 	
 	public Imp() {
 		addSkill(Skills.DIG, 1);
-		addSkill(Skills.TELEPORT, 1);
-		//addSkill(Skills.CLAIM, 1);
+		addSkill(Skills.CLAIM, 1);
 		addSkill(Skills.HANDTOHAND, 1);
 		addSkill(Skills.HASTE, 4);
 		addSkill(Skills.TELEPORT, 8);

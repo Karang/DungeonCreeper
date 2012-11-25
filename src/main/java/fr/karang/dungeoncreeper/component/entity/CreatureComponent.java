@@ -35,6 +35,7 @@ import org.spout.api.Spout;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
+import org.spout.api.math.MathHelper;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
@@ -88,7 +89,7 @@ public abstract class CreatureComponent extends EntityComponent {
 	}
 	
 	public void setSlot(int slot){
-		getData().put(DungeonData.SKILLSLOT, slot);
+		getData().put(DungeonData.SKILLSLOT, MathHelper.clamp(slot, 1, skills.size() - 1));
 	}
 	
 	public int getSlot() {
@@ -98,6 +99,7 @@ public abstract class CreatureComponent extends EntityComponent {
 	public void primaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getPrimarySkill()));
 		if (event.isCancelled() || event.getSkill().getCooldown(event.getEntity())!=0) {
+			System.out.println("Action canceled");
 			return;
 		}
 		event.getSkill().initCooldown(event.getEntity());
@@ -108,6 +110,7 @@ public abstract class CreatureComponent extends EntityComponent {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
 		System.out.println(getSlot() + ", " + event.getSkill());
 		if (event.isCancelled() || event.getSkill().getCooldown(event.getEntity())!=0) {
+			System.out.println("Action canceled");
 			return;
 		}
 		event.getSkill().initCooldown(event.getEntity());

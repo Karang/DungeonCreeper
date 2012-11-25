@@ -52,15 +52,20 @@
  */
 package fr.karang.dungeoncreeper.command;
 
+import org.spout.api.Client;
+import org.spout.api.Spout;
 import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
 import org.spout.api.command.annotated.CommandPermissions;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
+import org.spout.api.plugin.Platform;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.TeamComponent;
+import fr.karang.dungeoncreeper.player.Team;
 
 public class PlayerCommands {
 	private final DungeonCreeper plugin;
@@ -71,14 +76,37 @@ public class PlayerCommands {
 
 	@Command(aliases = "slot", usage = "[id]", desc = "Change of slot", min = 1, max = 1)
 	@CommandPermissions("dungeoncreeper.command.slot")
-	public void changeClass(CommandContext args, CommandSource source) throws CommandException {
-		if (!(source instanceof Player)) {
-			throw new CommandException("You must be a player to change your class.");
+	public void changeSkill(CommandContext args, CommandSource source) throws CommandException {
+		Player player;
+		if(Spout.getEngine().getPlatform() == Platform.CLIENT){
+			player = ((Client)Spout.getEngine()).getActivePlayer();
+		}else{
+			if (!(source instanceof Player)) {
+				throw new CommandException("You must be a player to change your class.");
+			}
+			player = (Player) source;
 		}
 
 		int slot = Integer.parseInt(args.get(0).getPlainString());
 
-		Player player = (Player) source;
 		player.get(CreatureComponent.class).setSlot(slot);
+	}
+	
+	@Command(aliases = "join", usage = "[id]", desc = "Change of team", min = 1, max = 1)
+	@CommandPermissions("dungeoncreeper.command.slot")
+	public void changeTeam(CommandContext args, CommandSource source) throws CommandException {
+		Player player;
+		if(Spout.getEngine().getPlatform() == Platform.CLIENT){
+			player = ((Client)Spout.getEngine()).getActivePlayer();
+		}else{
+			if (!(source instanceof Player)) {
+				throw new CommandException("You must be a player to change your class.");
+			}
+			player = (Player) source;
+		}
+		
+		int id = Integer.parseInt(args.get(0).getPlainString());
+
+		player.get(TeamComponent.class).setTeam(Team.getTeam(id));
 	}
 }

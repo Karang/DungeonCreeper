@@ -28,12 +28,16 @@ package fr.karang.dungeoncreeper;
 
 import java.util.logging.Level;
 
+import org.spout.api.Client;
 import org.spout.api.Engine;
+import org.spout.api.Spout;
 import org.spout.api.command.CommandRegistrationsFactory;
 import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
 import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
 import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.exception.ConfigurationException;
+import org.spout.api.input.InputManager;
+import org.spout.api.input.Keyboard;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 import org.spout.api.protocol.Protocol;
@@ -77,6 +81,21 @@ public class DungeonCreeper extends CommonPlugin {
 		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
 		engine.getRootCommand().addSubCommands(this, PlayerCommands.class, commandRegFactory);
 		engine.getEventManager().registerEvents(new DungeonListener(this), this);
+		
+		
+		if (Spout.getPlatform() == Platform.CLIENT) {
+			InputManager input = ((Client) Spout.getEngine()).getInputManager();
+			input.bind(Keyboard.KEY_F1, "slot 0");
+			input.bind(Keyboard.KEY_F2, "slot 1");
+			input.bind(Keyboard.KEY_F3, "slot 2");
+			input.bind(Keyboard.KEY_F4, "slot 3");
+			input.bind(Keyboard.KEY_F5, "slot 4");
+			input.bind(Keyboard.KEY_F6, "slot 5");
+			input.bind(Keyboard.KEY_F7, "slot 6");
+			input.bind(Keyboard.KEY_F8, "slot 7");
+			input.bind(Keyboard.KEY_F9, "slot 8");
+			input.bind(Keyboard.KEY_F10, "slot 9");
+		}
 		
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
 	}

@@ -31,7 +31,6 @@ import org.spout.api.map.DefaultedKeyImpl;
 
 public class DungeonData {
 	public static final DefaultedKey<Integer> TEAM = new DefaultedKeyImpl<Integer>("team", 0);
-	public static final DefaultedKey<Integer> GAME = new DefaultedKeyImpl<Integer>("game", 0);
 	public static final DefaultedKey<Integer> HEALTH = new DefaultedKeyImpl<Integer>("health", 1);
 	public static final DefaultedKey<Integer> MAX_HEALTH = new DefaultedKeyImpl<Integer>("max_health", 1);
 	public static final DefaultedKey<Integer> GOLD_AMOUNT = new DefaultedKeyImpl<Integer>("gold_amount", 0);

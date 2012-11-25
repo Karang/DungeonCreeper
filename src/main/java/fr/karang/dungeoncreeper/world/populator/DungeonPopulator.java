@@ -31,12 +31,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.spout.api.Spout;
+import org.spout.api.entity.Player;
 import org.spout.api.generator.Populator;
 import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.TeamComponent;
 import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 public class DungeonPopulator extends Populator {
@@ -72,8 +77,10 @@ public class DungeonPopulator extends Populator {
 
 				if (obj == null) {
 					Team team = gen.getGame().createTeam(color,new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
-					if(team != null)
+					if(team != null){
+						System.out.println("Add Heart : " + team.getId());
 						obj = new HearthRoomObject(team);
+					}
 				}
 
 				if (obj == null)

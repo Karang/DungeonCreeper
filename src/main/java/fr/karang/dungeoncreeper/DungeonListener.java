@@ -34,9 +34,12 @@ import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.event.server.ClientEnableEvent;
+import org.spout.api.event.world.WorldLoadEvent;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.TeamComponent;
 import fr.karang.dungeoncreeper.gui.HUD;
+import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class DungeonListener implements Listener {
 	
@@ -49,18 +52,24 @@ public class DungeonListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		plugin.getLobby().playerJoin(event.getPlayer());
+		
+		
 	}
 	
 	@EventHandler
 	public void onClientEnable(ClientEnableEvent event) {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
+		
 		player.add(Imp.class);
+		
+		player.add(TeamComponent.class);//Put a null team, define it later
+		
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
 		
 		CameraComponent camera = player.get(CameraComponent.class);
 		camera.setScale(0.5f);
-		camera.setSpeed(2f);
+		camera.setSpeed(10f);
 	}
 
 }
