@@ -1,5 +1,4 @@
 # Spout uvs file
 # See TextureMeshLoader
-scale 16 16
-size 1 1
-rect 2 0
+scale 8 8
+rect 0 0

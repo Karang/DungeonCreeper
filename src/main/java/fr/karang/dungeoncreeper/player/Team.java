@@ -98,11 +98,11 @@ public class Team {
 			GREEN.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
 			YELLOW.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
 			
-			NEUTRAL.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			RED.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			BLUE.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			GREEN.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			YELLOW.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			NEUTRAL.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wall.uvs"));
+			RED.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallRed.uvs"));
+			BLUE.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallBlue.uvs"));
+			GREEN.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallGreen.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallYellow.uvs"));
 		}
 
 	}
