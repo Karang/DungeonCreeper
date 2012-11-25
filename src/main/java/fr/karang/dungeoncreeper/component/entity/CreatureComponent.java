@@ -98,7 +98,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void primaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getPrimarySkill()));
-		if (event.isCancelled() || event.getSkill().canUse(event.getEntity())) {
+		if (event.isCancelled() || !event.getSkill().canUse(event.getEntity())) {
 			System.out.println("Action canceled");
 			return;
 		}
@@ -108,7 +108,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void secondaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
-		if (event.isCancelled() || event.getSkill().canUse(event.getEntity())) {
+		if (event.isCancelled() || !event.getSkill().canUse(event.getEntity())) {
 			System.out.println("Action canceled");
 			return;
 		}

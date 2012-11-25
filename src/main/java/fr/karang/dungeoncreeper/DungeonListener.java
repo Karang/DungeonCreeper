@@ -37,6 +37,7 @@ import org.spout.api.event.server.ClientEnableEvent;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
 
 public class DungeonListener implements Listener {
 	
@@ -56,9 +57,7 @@ public class DungeonListener implements Listener {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
 		
 		player.add(Imp.class);
-		
-		//Debug TODO: this should be only when the client connect a server
-		plugin.getLobby().playerJoin(player);
+		player.add(DungeonPlayer.class);
 		
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
