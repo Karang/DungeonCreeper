@@ -29,16 +29,16 @@ package fr.karang.dungeoncreeper.material.dungeon;
 import org.spout.api.component.components.BlockComponent;
 import org.spout.api.material.ComplexMaterial;
 
-import fr.karang.dungeoncreeper.component.block.DungeonHearthComponent;
+import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
 
-public class DungeonHearth extends DungeonMaterial implements ComplexMaterial {
+public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
 
-	public DungeonHearth() {
-		super("Dungeon Hearth", "model://DungeonCreeper/resources/block/dungeon/dungeonHearth/dungeonHearth.spm");
+	public DungeonHeart() {
+		super("Dungeon Heart", "model://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.spm");
 	}
 
 	public BlockComponent createBlockComponent() {
-		return new DungeonHearthComponent();
+		return new DungeonHeartComponent();
 	}
 	
 }

@@ -59,7 +59,7 @@ import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
 
-public class DungeonHearthComponent extends BlockComponent {
+public class DungeonHeartComponent extends BlockComponent {
 	public void onInteractBy(Entity entity, Action action, BlockFace face) {
 	}
 

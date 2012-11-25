@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.material;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
+import org.spout.api.material.block.BlockFace;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.player.Team;
@@ -64,19 +65,19 @@ public abstract class DCMaterial extends BlockMaterial {
 
 	public boolean isClaimedBlockByOtherTeam(Block block, Team team){
 		TeamColor owner = getOwner(block);
-		if(owner == null)
+		if (owner == null)
 			return false;
 		return owner != team.getColor();
 	}
 
 	public boolean isNextClaimedBlock(Block block, Team team){
-		if(isClaimedBy(block.getWorld().getBlock(block.getX() + 1, block.getY(), block.getZ()), team))
+		if (isClaimedBy(block.translate(BlockFace.NORTH), team))
 			return true;
-		if(isClaimedBy(block.getWorld().getBlock(block.getX() - 1, block.getY(), block.getZ()), team))
+		if (isClaimedBy(block.translate(BlockFace.SOUTH), team))
 			return true;
-		if(isClaimedBy(block.getWorld().getBlock(block.getX(), block.getY(), block.getZ() + 1), team))
+		if (isClaimedBy(block.translate(BlockFace.WEST), team))
 			return true;
-		if(isClaimedBy(block.getWorld().getBlock(block.getX(), block.getY(), block.getZ() - 1), team))
+		if (isClaimedBy(block.translate(BlockFace.EAST), team))
 			return true;
 		return true;
 	}

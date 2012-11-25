@@ -45,7 +45,7 @@ public class DCMaterials {
 	public static final GemOre GEM_ORE = new GemOre();
 	
 	// Dungeon materials
-	public static final DungeonHearth DUNGEON_HEARTH = new DungeonHearth();
+	public static final DungeonHeart DUNGEON_HEART = new DungeonHeart();
 	public static final Wall WALL = new Wall();
 	public static final Floor FLOOR = new Floor();
 	public static final Bridge BRIDGE = new Bridge();

@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import org.spout.api.Spout;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.geo.discrete.Point;
 import org.spout.api.model.mesh.Mesh;
 import org.spout.api.render.effect.MeshEffect;
 import org.spout.api.render.effect.SnapshotMesh;
@@ -41,24 +41,23 @@ public class Wall extends DungeonMaterial {
 
 	public Wall() {
 		super("Wall", "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
-		addMeshEffect(new MeshEffect() {
-
+		addBatchEffect(new MeshEffect() {
 			public void preMesh(SnapshotMesh snapshotMesh) {
-				World world = snapshotMesh.getPosition().getWorld();
+				World world = ((Point) snapshotMesh.getPosition()).getWorld();
 				Block block = world.getBlock(snapshotMesh.getPosition());
-				DCMaterial material = (DCMaterial)block.getMaterial();
+				DCMaterial material = (DCMaterial) block.getMaterial();
 				TeamColor team = material.getOwner(block);
-				if(team != null){
+				
+				if (team != null) {
 					Mesh mesh = team.getTeamMesh(material);
-					if(mesh != null){
+					if (mesh != null) {
 						snapshotMesh.setMesh(mesh);
 					}
 				}
 			}
 
 			public void postMesh(SnapshotMesh snapshotMesh) {
-				// TODO Auto-generated method stub
-
+				
 			}
 		});
 	}
