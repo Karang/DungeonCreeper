@@ -31,7 +31,7 @@ import org.spout.api.entity.Player;
 import org.spout.api.math.Rectangle;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.component.entity.TeamComponent;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.room.instance.RoomInstance;
@@ -47,7 +47,7 @@ public class Build extends Skill {
 	@Override
 	public void handle(Entity source) {
 		Rooms room = source.get(Imp.class).getRoomClaim();
-		Team team = source.get(TeamComponent.class).getTeam();
+		Team team = source.get(DungeonPlayer.class).getTeam();
 		Rectangle rect = source.get(Imp.class).getBuildRect();
 
 		if( rect == null ){

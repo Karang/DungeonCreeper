@@ -60,7 +60,7 @@ public abstract class Skill {
 	}
 	
 	public float getCooldown(Entity source) {
-		if (max_cooldown==0L) {
+		if (max_cooldown == 0L) {
 			return 0f;
 		}
 		return (float) source.getData().get(KEY_COOLDOWN) / max_cooldown;
@@ -68,6 +68,13 @@ public abstract class Skill {
 	
 	public void initCooldown(Entity source) {
 		source.getData().put(KEY_COOLDOWN, max_cooldown);
+	}
+	
+	public boolean canUse(Entity source) {
+		if (max_cooldown == 0L) {
+			return true;
+		}
+		return (source.getData().get(KEY_COOLDOWN) == 0L);
 	}
 	
 	public void updateCooldown(float dt, Entity source) {

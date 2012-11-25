@@ -28,14 +28,19 @@ package fr.karang.dungeoncreeper.player;
 
 import org.spout.api.component.components.EntityComponent;
 
+import fr.karang.dungeoncreeper.data.DungeonData;
+
 public class DungeonPlayer extends EntityComponent {
-	private Team team;
-	
-	public void setTeam(Team team) {
-		this.team = team;
+	@Override
+	public void onAttached() {
+		getData().put(DungeonData.TEAM, -1);
 	}
 	
-	public Team getTeam() {
-		return team;
+	public void setTeam(Team team){
+		getData().put(DungeonData.TEAM, team.getId());
+	}
+
+	public Team getTeam(){
+		return Team.getTeam(getData().get(DungeonData.TEAM));
 	}
 }

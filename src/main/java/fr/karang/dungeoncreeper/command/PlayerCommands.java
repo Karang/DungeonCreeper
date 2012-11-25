@@ -64,7 +64,7 @@ import org.spout.api.plugin.Platform;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.component.entity.TeamComponent;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.player.Team;
 
 public class PlayerCommands {
@@ -107,6 +107,6 @@ public class PlayerCommands {
 		
 		int id = Integer.parseInt(args.get(0).getPlainString());
 
-		player.get(TeamComponent.class).setTeam(Team.getTeam(id));
+		player.get(DungeonPlayer.class).setTeam(Team.getTeam(id));
 	}
 }
