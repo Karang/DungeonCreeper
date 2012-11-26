@@ -87,7 +87,8 @@ public class Lobby {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
 		}
 		
-		int total = generator.getSize();
+		//TODO: fix that
+		/*int total = generator.getSize();
 		int step = total / 10;
 		DungeonLoaderThread[] loaderThreads = new DungeonLoaderThread[LOADER_THREAD_COUNT];
 		
@@ -111,7 +112,7 @@ public class Lobby {
 			} catch (InterruptedException ie) {
 				engine.getLogger().info("Interrupted when waiting for spawn area to load");
 			}
-		}
+		}*/
 		
 		games.put(world,game);
 		gameId++;
