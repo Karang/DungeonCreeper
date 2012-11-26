@@ -42,7 +42,6 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			
 			// Players messages
 			bind(PlayerSpawnCodec.class); // 0x10
-			//bind(PlayerMoveCodec.class); // 0x11
 			//bind(PlayerDamageCodec.class); // 0x12
 			bind(PlayerSkillCodec.class); // 0x13
 			bind(PlayerChangeClassCodec.class); // 0x14
@@ -52,6 +51,8 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			// Team messages
 			//bind(TeamColorCodec.class); // 0x20
 			//bind(TeamGoldCodec.class); // 0x21
+			
+			// EntityMessages
 			
 			// World messages
 			
