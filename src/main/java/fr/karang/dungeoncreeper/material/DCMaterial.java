@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper.material;
 
+import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
@@ -57,6 +58,11 @@ public abstract class DCMaterial extends BlockMaterial {
 	public final TeamColor getOwner(Block block){
 		DungeonGame game = getGame(block);
 		return game.getTerritory(block.getX(), block.getZ());
+	}
+	
+	public final TeamColor getOwner(World w, int x, int z){
+		DungeonGame game = DungeonCreeper.getInstance().getLobby().getGame(w);
+		return game.getTerritory(x, z);
 	}
 	
 	public boolean isClaimedBy(Block block, Team team){

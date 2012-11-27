@@ -27,8 +27,8 @@
 package fr.karang.dungeoncreeper.material.dungeon;
 
 import org.spout.api.geo.World;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.geo.discrete.Point;
+import org.spout.api.geo.cuboid.ChunkSnapshot;
+import org.spout.api.math.Vector3;
 import org.spout.api.model.mesh.Mesh;
 import org.spout.api.render.effect.MeshEffect;
 import org.spout.api.render.effect.SnapshotMesh;
@@ -43,10 +43,12 @@ public class Wall extends DungeonMaterial {
 		super("Wall", "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 		addMeshEffect(new MeshEffect() {
 			public void preMesh(SnapshotMesh snapshotMesh) {
-				World world = ((Point) snapshotMesh.getPosition()).getWorld();
-				Block block = world.getBlock(snapshotMesh.getPosition());
-				DCMaterial material = (DCMaterial) block.getMaterial();
-				TeamColor team = material.getOwner(block);
+				World world = snapshotMesh.getPosition().getWorld();
+				Vector3 v = snapshotMesh.getPosition();
+				
+				ChunkSnapshot c = snapshotMesh.getSnapshotModel().getChunkFromBlock(v.getFloorX(), v.getFloorY(), v.getFloorZ());
+				DCMaterial material = (DCMaterial) c.getBlockMaterial(v.getFloorX(), v.getFloorY(), v.getFloorZ());
+				TeamColor team = material.getOwner(world, v.getFloorX(), v.getFloorZ());
 				
 				if (team != null) {
 					Mesh mesh = team.getTeamMesh(material);

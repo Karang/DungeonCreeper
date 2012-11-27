@@ -34,10 +34,12 @@ import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.event.server.ClientEnableEvent;
+import org.spout.api.render.RenderMaterial;
 
 import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.render.RenderEffects;
 
 public class DungeonListener implements Listener {
 	
@@ -55,6 +57,10 @@ public class DungeonListener implements Listener {
 	@EventHandler
 	public void onClientEnable(ClientEnableEvent event) {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
+		
+		// Render materials
+		RenderMaterial rm = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/terrain.smt");
+		rm.addRenderEffect(RenderEffects.BUMP);
 		
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);

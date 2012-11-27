@@ -24,20 +24,28 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.batcheffect;
+package fr.karang.dungeoncreeper.render;
 
-import org.spout.api.math.Vector4;
+import org.spout.api.Client;
+import org.spout.api.Spout;
+import org.spout.api.entity.Player;
 import org.spout.api.render.effect.RenderEffect;
 import org.spout.api.render.effect.SnapshotRender;
 
-public class LightRenderEffect implements RenderEffect {
-
-	public void preRender(SnapshotRender snapshotRender) {
-		snapshotRender.getMaterial().getShader().setUniform("lightPos", new Vector4(0,0,0,0));
+public class BumpEffect implements RenderEffect {
+	
+	private Player player;
+	
+	public BumpEffect () {
+		player = ((Client) Spout.getEngine()).getActivePlayer();
+	}
+	
+	public void preRender(SnapshotRender snap) {
+		snap.getMaterial().getShader().setUniform("Camera", player.getTransform().getPosition());
 	}
 
+	
 	public void postRender(SnapshotRender snapshotRender) {
 		
 	}
-
 }

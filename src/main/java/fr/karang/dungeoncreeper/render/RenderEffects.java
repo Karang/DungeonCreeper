@@ -24,10 +24,8 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.batcheffect;
+package fr.karang.dungeoncreeper.render;
 
-import org.spout.api.render.effect.RenderEffect;
-
-public class BatchEffects {
-	public final static RenderEffect LIGHT = new LightRenderEffect();
+public class RenderEffects {
+	public static BumpEffect BUMP = new BumpEffect();
 }
