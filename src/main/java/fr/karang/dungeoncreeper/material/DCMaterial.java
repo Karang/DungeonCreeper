@@ -55,17 +55,17 @@ public abstract class DCMaterial extends BlockMaterial {
 		return DungeonCreeper.getInstance().getLobby().getGame(block.getWorld());
 	}
 	
-	public final TeamColor getOwner(Block block){
+	public final TeamColor getOwner(Block block) {
 		DungeonGame game = getGame(block);
 		return game.getTerritory(block.getX(), block.getZ());
 	}
 	
-	public final TeamColor getOwner(World w, int x, int z){
+	public final TeamColor getOwner(World w, int x, int z) {
 		DungeonGame game = DungeonCreeper.getInstance().getLobby().getGame(w);
 		return game.getTerritory(x, z);
 	}
 	
-	public boolean isClaimedBy(Block block, Team team){
+	public boolean isClaimedBy(Block block, Team team) {
 		return getOwner(block) == team.getColor();
 	}
 
@@ -85,7 +85,7 @@ public abstract class DCMaterial extends BlockMaterial {
 			return true;
 		if (isClaimedBy(block.translate(BlockFace.EAST), team))
 			return true;
-		return true;
+		return false;
 	}
 	
 }

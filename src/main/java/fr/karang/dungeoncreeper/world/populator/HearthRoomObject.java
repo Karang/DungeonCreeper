@@ -30,10 +30,8 @@ import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.world.DungeonGame;
 
 public class HearthRoomObject extends WorldGeneratorObject {
 
@@ -53,12 +51,11 @@ public class HearthRoomObject extends WorldGeneratorObject {
 
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
-		DungeonGame party = DungeonCreeper.getInstance().getLobby().getGame(w);
-
+		
 		//Claim territory
 		for(int i = x - RADIUS; i < x + RADIUS; i++){
 			for(int j = z - RADIUS; j < z + RADIUS; j++){
-				party.setTerritory(x, z, team.getColor());
+				team.getGame().setTerritory(x, z, team.getColor());
 			}
 		}
 

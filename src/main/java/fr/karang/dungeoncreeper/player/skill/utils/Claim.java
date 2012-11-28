@@ -70,7 +70,7 @@ public class Claim extends Skill {
 			}
 
 			if (!material.isNextClaimedBlock(block, team)) {
-				if(source instanceof Player){
+				if (source instanceof Player){
 					System.out.println("Pas de block voisin claim");
 					((Player)source).sendMessage("Pas de block voisin claim");
 				}
@@ -102,7 +102,7 @@ public class Claim extends Skill {
 					team.getGame().setTerritory(x, z, team.getColor());
 				}
 			}
-		}else{
+		} else {
 			System.out.println("No target block");
 		}
 	}

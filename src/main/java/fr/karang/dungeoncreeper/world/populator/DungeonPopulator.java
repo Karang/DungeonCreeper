@@ -71,8 +71,8 @@ public class DungeonPopulator extends Populator {
 				WorldGeneratorObject obj = materials.get(color);
 
 				if (obj == null) {
-					Team team = gen.getGame().createTeam(color,new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
-					if(team != null){
+					Team team = gen.getGame().createTeam(color, new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
+					if (team != null) {
 						System.out.println("Add Heart : " + team.getId());
 						obj = new HearthRoomObject(team);
 					}
