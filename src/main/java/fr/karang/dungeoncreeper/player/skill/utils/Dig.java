@@ -70,9 +70,16 @@ public class Dig extends Skill {
 	
 	@Override
 	public boolean stepCast(Entity source, float dt) {
+		Block block = getBlock(source);
+		
+		if (block == null) {
+			resetCast(source);
+			return false;
+		}
+		
 		if (getCastTime(source) == 0L) {
-			source.getData().put(BLOCK, getBlock(source).getPosition());
-		} else if (getBlock(source).getPosition().compareTo(source.getData().get(BLOCK)) != 0) {
+			source.getData().put(BLOCK, block.getPosition());
+		} else if (block.getPosition().compareTo(source.getData().get(BLOCK)) != 0) {
 			resetCast(source);
 			return false;
 		}
