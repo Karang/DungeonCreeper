@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -57,16 +57,13 @@ import fr.karang.dungeoncreeper.player.skill.utils.Slow;
 import fr.karang.dungeoncreeper.player.skill.utils.Teleport;
 
 public class Skills {
-	
 	public static int id = 0;
-	
 	/**
 	 * Attack
 	 */
 	public static final Skill ATTACKSWORD = new AttackSword(id++);
 	public static final Skill HANDTOHAND = new HandToHand(id++);
 	public static final Skill BITE = new Bite(id++);
-
 	/**
 	 * Projectiles
 	 */
@@ -85,7 +82,6 @@ public class Skills {
 	public static final Skill HAIL_STORM = new HailStorm(id++);
 	public static final Skill STUN_FIREBALL = new StunFireball(id++);
 	public static final Skill WHIRLWIND = new Whirlwind(id++);
-	
 	/**
 	 * Support
 	 */
@@ -93,7 +89,6 @@ public class Skills {
 	public static final Skill INVISIBILITY = new Invisibility(id++);
 	public static final Skill HASTE = new Haste(id++);
 	public static final Skill SLOW = new Slow(id++);
-	
 	/**
 	 * Utils
 	 */

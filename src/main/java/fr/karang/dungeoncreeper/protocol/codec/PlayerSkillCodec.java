@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -28,14 +28,13 @@ package fr.karang.dungeoncreeper.protocol.codec;
 
 import java.io.IOException;
 
+import fr.karang.dungeoncreeper.protocol.message.PlayerSkillMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
+
 import org.spout.api.protocol.MessageCodec;
 
-import fr.karang.dungeoncreeper.protocol.message.PlayerSkillMessage;
-
 public class PlayerSkillCodec extends MessageCodec<PlayerSkillMessage> {
-
 	public PlayerSkillCodec() {
 		super(PlayerSkillMessage.class, 0x13);
 	}

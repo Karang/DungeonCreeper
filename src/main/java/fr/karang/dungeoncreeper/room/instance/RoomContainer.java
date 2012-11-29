@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,26 +32,24 @@ import java.util.List;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 public class RoomContainer {
-
 	private final Rooms type;
 	private final List<RoomInstance> rooms = new ArrayList<RoomInstance>();
-	
 	private int surface = 0;
 
-	public RoomContainer(Rooms type){
+	public RoomContainer(Rooms type) {
 		this.type = type;
 	}
 
-	public void addRoom(RoomInstance room){
+	public void addRoom(RoomInstance room) {
 		rooms.add(room);
 		surface += room.getSurface();
 	}
-	
-	public void removeRoom(RoomInstance room){
+
+	public void removeRoom(RoomInstance room) {
 		rooms.remove(room);
 		surface -= room.getSurface();
 	}
-	
+
 	public Rooms getType() {
 		return type;
 	}

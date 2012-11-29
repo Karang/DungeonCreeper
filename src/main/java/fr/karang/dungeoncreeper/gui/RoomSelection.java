@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -30,6 +30,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.room.type.Room;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
+
 import org.spout.api.Spout;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
@@ -39,90 +44,85 @@ import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
 import org.spout.api.render.RenderMaterial;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.room.type.Room;
-import fr.karang.dungeoncreeper.room.type.Room.Rooms;
-
 public class RoomSelection extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
-	
 	private final RenderMaterial roomMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private Widget selectionScreen = new Widget();
 	private int nbRooms = 0;
-	
+
 	public RoomSelection(Team team) {
-		if (Spout.getPlatform()!=Platform.CLIENT) {
+		if (Spout.getPlatform() != Platform.CLIENT) {
 			throw new IllegalStateException("Only clients can have an RoomSelection screen.");
 		}
-		
+
 		this.setTakesInput(true);
-		
+
 		selectionScreen.add(RenderPartsHolderComponent.class);
-		
+
 		List<Room> rooms = getAvaivableRoom(team);
-		
+
 		buildSelectionScreen(rooms);
 		setCooldown(2, 0.7f);
 		selectSecondarySlot(2);
-		
+
 		this.attachWidget(DungeonCreeper.getInstance(), selectionScreen);
 	}
-	
-	public List<Room> getAvaivableRoom(Team team){
+
+	public List<Room> getAvaivableRoom(Team team) {
 		List<Room> list = new ArrayList<Room>();
-		
-		for(Rooms room : Room.Rooms.values()){
-			if(room.getRoom().hasRequired(team))
+
+		for (Rooms room : Room.Rooms.values()) {
+			if (room.getRoom().hasRequired(team)) {
 				list.add(room.getRoom());
+			}
 		}
-		
+
 		return list;
 	}
-	
+
 	public void selectSecondarySlot(int slot) {
 		RenderPart select = selectionScreen.get(RenderPartsHolderComponent.class).get(0);
-		float x = - (nbRooms * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
+		float x = -(nbRooms * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
 		select.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 	}
-	
+
 	public void setCooldown(int slot, float percent) {
-		RenderPart cooldown = selectionScreen.get(RenderPartsHolderComponent.class).get(2+slot);
+		RenderPart cooldown = selectionScreen.get(RenderPartsHolderComponent.class).get(2 + slot);
 		float x = cooldown.getSprite().getX();
 		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
 	}
-	
+
 	public void buildSelectionScreen(List<Room> rooms) {
 		RenderPartsHolderComponent bar = selectionScreen.get(RenderPartsHolderComponent.class);
 		nbRooms = rooms.size();
-		float x = - (nbRooms * SKILL_OFFSET * SCALE) / 2f;
-		
+		float x = -(nbRooms * SKILL_OFFSET * SCALE) / 2f;
+
 		RenderPart selectSecondary = new RenderPart();
 		selectSecondary.setColor(Color.WHITE);
 		selectSecondary.setRenderMaterial(roomMaterial);
 		selectSecondary.setSprite(new Rectangle(x + SKILL_OFFSET * SCALE, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
-		selectSecondary.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		selectSecondary.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectSecondary, 0);
-		
+
 		RenderPart selectPrincipal = new RenderPart();
 		selectPrincipal.setColor(Color.WHITE);
 		selectPrincipal.setRenderMaterial(roomMaterial);
 		selectPrincipal.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
-		selectPrincipal.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		selectPrincipal.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectPrincipal, 1);
-		
-		for (int j=0 ; j<nbRooms ; j++) {
+
+		for (int j = 0; j < nbRooms; j++) {
 			RenderPart cooldown = new RenderPart();
 			cooldown.setColor(Color.WHITE);
 			cooldown.setRenderMaterial(roomMaterial);
 			cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, 0));
-			cooldown.setSource(new Rectangle(0, 224f/256f, 32f/256f, 32f/256f));
-			bar.add(cooldown, 2+j);
+			cooldown.setSource(new Rectangle(0, 224f / 256f, 32f / 256f, 32f / 256f));
+			bar.add(cooldown, 2 + j);
 			x += SKILL_OFFSET * SCALE;
 		}
-		x = - (nbRooms * SKILL_OFFSET * SCALE) / 2f;
+		x = -(nbRooms * SKILL_OFFSET * SCALE) / 2f;
 		int i = nbRooms;
 		for (Room room : rooms) {
 			RenderPart icon = new RenderPart();

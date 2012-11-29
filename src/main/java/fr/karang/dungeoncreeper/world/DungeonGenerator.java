@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -29,6 +29,9 @@ package fr.karang.dungeoncreeper.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
+
 import org.spout.api.generator.GeneratorPopulator;
 import org.spout.api.generator.Populator;
 import org.spout.api.generator.WorldGenerator;
@@ -38,23 +41,16 @@ import org.spout.api.geo.discrete.Point;
 import org.spout.api.render.Texture;
 import org.spout.api.util.cuboid.CuboidShortBuffer;
 
-import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
-
 public class DungeonGenerator implements WorldGenerator {
-
 	//  Floor altitude
 	public final static int FLOOR_HEIGHT = 1;
-
 	// Dungeon size (in chunks)
 	private final int dungeonWidth;
 	private final int dungeonHeight = 1; // The dungeon is 1 chunk high
 	private final int dungeonLength;
-
 	// Dungeon size (in blocks)
 	private final int dungeonBlockWidth;
 	private final int dungeonBlockLength;
-
 	private Texture textureMap;
 	private final DungeonGame game;
 	private List<Populator> populators = new ArrayList<Populator>();
@@ -71,20 +67,20 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 
 	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
-		if (!isChunkInDungeon(chunkX, chunkY, chunkZ)) { 
+		if (!isChunkInDungeon(chunkX, chunkY, chunkZ)) {
 			return; // Chunk out of bound
 		}
-		int xx = chunkX<<4, zz = chunkZ<<4;
+		int xx = chunkX << 4, zz = chunkZ << 4;
 
-		for (int x = xx ; x < xx + Chunk.BLOCKS.SIZE ; x++) {
-			for (int z = zz ; z < zz + Chunk.BLOCKS.SIZE ; z++) {
-				for (int y = 0 ; y < 3 /*Chunk.BLOCKS.SIZE*/ ; y++) {
-					if ((x==0) || (x==dungeonBlockWidth) || (z==0) || (z==dungeonBlockLength)) {
+		for (int x = xx; x < xx + Chunk.BLOCKS.SIZE; x++) {
+			for (int z = zz; z < zz + Chunk.BLOCKS.SIZE; z++) {
+				for (int y = 0; y < 3 /*Chunk.BLOCKS.SIZE*/ ; y++) {
+					if ((x == 0) || (x == dungeonBlockWidth) || (z == 0) || (z == dungeonBlockLength)) {
 						blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
 					} else {
-						if (y==0 /*|| y==4*/) { // To obtain a good view from height
+						if (y == 0 /*|| y==4*/) { // To obtain a good view from height
 							blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
-						} else if (y<4){
+						} else if (y < 4) {
 							blockData.set(x, y, z, DCMaterials.DIRT.getId());
 						}
 					}
@@ -94,13 +90,14 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 
 	public int getColor(int x, int z) {
-		if(x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength)
+		if (x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength) {
 			return -1;
+		}
 		return textureMap.getImage().getRGB(x, z);
 	}
 
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
-		return !(chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>dungeonWidth || chunkY>dungeonHeight || chunkZ>dungeonLength);
+		return !(chunkX < 0 || chunkY < 0 || chunkZ < 0 || chunkX > dungeonWidth || chunkY > dungeonHeight || chunkZ > dungeonLength);
 	}
 
 	public int getSize() {

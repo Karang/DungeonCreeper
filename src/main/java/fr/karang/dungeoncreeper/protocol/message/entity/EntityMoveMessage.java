@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -29,10 +29,9 @@ package fr.karang.dungeoncreeper.protocol.message.entity;
 import org.spout.api.protocol.Message;
 
 public class EntityMoveMessage implements Message {
-
 	private final int id;
 	private final int deltaX, deltaY, deltaZ;
-	
+
 	public EntityMoveMessage(int id, int deltaX, int deltaY, int deltaZ) {
 		this.id = id;
 		this.deltaX = deltaX;
@@ -43,7 +42,7 @@ public class EntityMoveMessage implements Message {
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getDeltaX() {
 		return deltaX;
 	}
@@ -55,7 +54,7 @@ public class EntityMoveMessage implements Message {
 	public int getDeltaZ() {
 		return deltaZ;
 	}
-	
+
 	public int getChannelId() {
 		return 0;
 	}

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,6 +26,10 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.material.DCMaterials;
+
 import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
@@ -33,22 +37,17 @@ import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.material.DCMaterial;
-import fr.karang.dungeoncreeper.material.DCMaterials;
-
 public class GoldBag extends DCMaterial {
-
 	public GoldBag() {
 		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
 	}
-	
+
 	@Override
 	public void onInteractBy(Entity entity, Block block, Action type, BlockFace clickedFace) {
-		if (type!=Action.LEFT_CLICK && type!=Action.RIGHT_CLICK) {
+		if (type != Action.LEFT_CLICK && type != Action.RIGHT_CLICK) {
 			return;
 		}
-		
+
 		if (entity instanceof Player) {
 			if (entity.has(Imp.class)) {
 				//TODO: check the player's team
@@ -60,5 +59,4 @@ public class GoldBag extends DCMaterial {
 			}
 		}
 	}
-
 }

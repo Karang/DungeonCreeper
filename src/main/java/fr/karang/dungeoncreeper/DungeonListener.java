@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,6 +26,11 @@
  */
 package fr.karang.dungeoncreeper;
 
+import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.gui.HUD;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.render.RenderEffects;
+
 import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.component.components.CameraComponent;
@@ -36,41 +41,34 @@ import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.event.server.ClientEnableEvent;
 import org.spout.api.render.RenderMaterial;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.gui.HUD;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.render.RenderEffects;
-
 public class DungeonListener implements Listener {
-	
 	private DungeonCreeper plugin;
-	
+
 	public DungeonListener(DungeonCreeper plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		plugin.getLobby().playerJoin(event.getPlayer());
 	}
-	
+
 	@EventHandler
 	public void onClientEnable(ClientEnableEvent event) {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
-		
+
 		// Render materials
 		RenderMaterial rm = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/terrain.smt");
 		rm.addRenderEffect(RenderEffects.BUMP);
-		
+
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);
-		
+
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
-		
+
 		CameraComponent camera = player.get(CameraComponent.class);
 		camera.setScale(0.5f);
 		camera.setSpeed(10f);
 	}
-
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -30,15 +30,13 @@ import org.spout.api.entity.Entity;
 import org.spout.api.event.Cause;
 
 public class BlockCause implements Cause<Entity> {
-
 	private final Entity source;
-	
-	public BlockCause(Entity source){
+
+	public BlockCause(Entity source) {
 		this.source = source;
 	}
-	
+
 	public Entity getSource() {
 		return source;
 	}
-
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,13 +26,12 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
+
 import org.spout.api.component.components.BlockComponent;
 import org.spout.api.material.ComplexMaterial;
 
-import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
-
 public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
-
 	public DungeonHeart() {
 		super("Dungeon Heart", "model://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.spm");
 	}
@@ -40,5 +39,4 @@ public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
 	public BlockComponent createBlockComponent() {
 		return new DungeonHeartComponent();
 	}
-	
 }

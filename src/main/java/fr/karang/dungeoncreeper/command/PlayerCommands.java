@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -52,6 +52,11 @@
  */
 package fr.karang.dungeoncreeper.command;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.player.Team;
+
 import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.command.CommandContext;
@@ -61,11 +66,6 @@ import org.spout.api.command.annotated.CommandPermissions;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
 import org.spout.api.plugin.Platform;
-
-import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.player.Team;
 
 public class PlayerCommands {
 	private final DungeonCreeper plugin;
@@ -78,9 +78,9 @@ public class PlayerCommands {
 	@CommandPermissions("dungeoncreeper.command.slot")
 	public void changeSkill(CommandContext args, CommandSource source) throws CommandException {
 		Player player;
-		if(Spout.getEngine().getPlatform() == Platform.CLIENT){
-			player = ((Client)Spout.getEngine()).getActivePlayer();
-		}else{
+		if (Spout.getEngine().getPlatform() == Platform.CLIENT) {
+			player = ((Client) Spout.getEngine()).getActivePlayer();
+		} else {
 			if (!(source instanceof Player)) {
 				throw new CommandException("You must be a player to change your class.");
 			}
@@ -91,20 +91,20 @@ public class PlayerCommands {
 
 		player.get(CreatureComponent.class).setSlot(slot);
 	}
-	
+
 	@Command(aliases = "join", usage = "[id]", desc = "Change of team", min = 1, max = 1)
 	@CommandPermissions("dungeoncreeper.command.slot")
 	public void changeTeam(CommandContext args, CommandSource source) throws CommandException {
 		Player player;
-		if(Spout.getEngine().getPlatform() == Platform.CLIENT){
-			player = ((Client)Spout.getEngine()).getActivePlayer();
-		}else{
+		if (Spout.getEngine().getPlatform() == Platform.CLIENT) {
+			player = ((Client) Spout.getEngine()).getActivePlayer();
+		} else {
 			if (!(source instanceof Player)) {
 				throw new CommandException("You must be a player to change your class.");
 			}
 			player = (Player) source;
 		}
-		
+
 		int id = Integer.parseInt(args.get(0).getPlainString());
 
 		player.get(DungeonPlayer.class).setTeam(Team.getTeam(id));

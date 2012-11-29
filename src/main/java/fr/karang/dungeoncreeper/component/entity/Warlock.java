@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -34,18 +34,16 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  * claiming land, installing traps, rescuing knocked out creatures,
  * etc. They do not fight, and instead will run from battle. In
  * order to expand, you need these.
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Warlock
  */
 public class Warlock extends CreatureComponent {
-
-	public Warlock(){
+	public Warlock() {
 		addSkill(Skills.HANDTOHAND, 1);
 		addSkill(Skills.FIREBALL, 1);
 		addSkill(Skills.HEAL, 2);
 		addSkill(Skills.FIREBOMB, 8);
 	}
-	
+
 	@Override
 	public void onAttached() {
 		super.onAttached();
