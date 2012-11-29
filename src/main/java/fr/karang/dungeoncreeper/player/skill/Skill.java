@@ -40,15 +40,21 @@ public abstract class Skill {
 	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
 	private final int id;
 	private final long max_cooldown;
+	private final long cast_time;
 	private final DefaultedKey<Long> KEY_COOLDOWN;
 
 	public Skill(int id, String skill_name) {
 		this(id, 0L, skill_name);
 	}
-
+	
 	public Skill(int id, long max_cooldown, String skill_name) {
+		this(id, max_cooldown, 0L, skill_name);
+	}
+
+	public Skill(int id, long max_cooldown, long cast_time, String skill_name) {
 		this.id = id;
 		this.max_cooldown = max_cooldown;
+		this.cast_time = cast_time;
 		this.KEY_COOLDOWN =  new DefaultedKeyImpl<Long>("cd_" + skill_name, 0L);
 		skills.put(id, this);
 	}
@@ -92,7 +98,12 @@ public abstract class Skill {
 	public abstract void handle(Entity source);
 	
 	public boolean stepCast(Entity source, float dt) {
-		return true;
+		addCastTime(source, dt);
+		
+		if (getCastTime(source) >= cast_time) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void resetCast(Entity source) {

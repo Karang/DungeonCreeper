@@ -37,7 +37,7 @@ import org.spout.api.util.BlockIterator;
 
 public class Teleport extends Skill {
 	public Teleport(int id) {
-		super(id, 5000, "teleport");
+		super(id, 5000, 3000, "teleport");
 	}
 
 	@Override

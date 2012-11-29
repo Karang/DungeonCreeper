@@ -69,7 +69,7 @@ public abstract class CreatureComponent extends EntityComponent {
 				resetCast(1);
 			}
 		} else if (input.getInteract()) {
-			if (getCastType()==1) {
+			if (getCastType()==2) {
 				if (getSecondarySkill().canUse(getOwner()) && getSecondarySkill().stepCast(getOwner(), dt)) {
 					secondaryInterract();
 					resetCast(0);
