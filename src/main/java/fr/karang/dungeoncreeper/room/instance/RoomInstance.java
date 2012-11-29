@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,20 +26,19 @@
  */
 package fr.karang.dungeoncreeper.room.instance;
 
-import org.spout.api.math.Rectangle;
-
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
-public class RoomInstance {
+import org.spout.api.math.Rectangle;
 
+public class RoomInstance {
 	private final Rooms room;
 	private final Rectangle rect;
 	private final int surface;
 
-	public RoomInstance(Rooms room, Rectangle rect){
+	public RoomInstance(Rooms room, Rectangle rect) {
 		this.room = room;
 		this.rect = rect;
-		surface = (int)(rect.getHeight() * rect.getWidth());
+		surface = (int) (rect.getHeight() * rect.getWidth());
 	}
 
 	public Rooms getRoom() {
@@ -57,6 +56,4 @@ public class RoomInstance {
 	public int getSellPrice() {
 		return room.getRoom().getSellPrice() * surface;
 	}
-
-
 }

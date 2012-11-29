@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,12 +26,11 @@
  */
 package fr.karang.dungeoncreeper.player.skill.projectiles;
 
-import org.spout.api.entity.Entity;
-
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class Freeze extends Skill {
+import org.spout.api.entity.Entity;
 
+public class Freeze extends Skill {
 	public Freeze(int id) {
 		super(id, "freeze");
 		// TODO Auto-generated constructor stub
@@ -42,5 +41,4 @@ public class Freeze extends Skill {
 		// TODO Auto-generated method stub
 
 	}
-
 }

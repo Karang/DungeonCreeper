@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,12 +26,12 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.math.Rectangle;
-import org.spout.api.math.Vector2;
-
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
+
+import org.spout.api.math.Rectangle;
+import org.spout.api.math.Vector2;
 
 /**
  * The Imp is your most important creature you have. They do
@@ -39,14 +39,12 @@ import fr.karang.dungeoncreeper.room.type.Room.Rooms;
  * claiming land, installing traps, rescuing knocked out creatures,
  * etc. They do not fight, and instead will run from battle. In
  * order to expand, you need these.
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Imp
  */
 public class Imp extends CreatureComponent {
-	
 	private Rooms roomClaim = Rooms.LAIR;
 	private Vector2 point1, point2;
-	
+
 	public Imp() {
 		addSkill(Skills.DIG, 1);
 		addSkill(Skills.CLAIM, 1);
@@ -54,7 +52,7 @@ public class Imp extends CreatureComponent {
 		addSkill(Skills.HASTE, 4);
 		addSkill(Skills.TELEPORT, 8);
 	}
-	
+
 	@Override
 	public void onAttached() {
 		super.onAttached();
@@ -76,14 +74,15 @@ public class Imp extends CreatureComponent {
 	public void setPoint1(Vector2 point1) {
 		this.point1 = point1;
 	}
-	
-	public Rectangle getBuildRect(){
-		if (point1 == null || point2 == null)
+
+	public Rectangle getBuildRect() {
+		if (point1 == null || point2 == null) {
 			return null;
+		}
 		int x = Math.min(point1.getFloorX(), point1.getFloorX());
 		int y = Math.min(point1.getFloorY(), point1.getFloorY());
-		int height = Math.max(point1.getFloorX(), point1.getFloorX()) - x ;
-		int width = Math.max(point1.getFloorY(), point1.getFloorY()) - y ;
+		int height = Math.max(point1.getFloorX(), point1.getFloorX()) - x;
+		int width = Math.max(point1.getFloorY(), point1.getFloorY()) - y;
 		return new Rectangle(x, y, width, height);
 	}
 }

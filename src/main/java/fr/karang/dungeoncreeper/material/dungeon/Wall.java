@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,6 +26,9 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.player.Team.TeamColor;
+
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.ChunkSnapshot;
 import org.spout.api.math.Vector3;
@@ -33,23 +36,18 @@ import org.spout.api.model.mesh.Mesh;
 import org.spout.api.render.effect.MeshEffect;
 import org.spout.api.render.effect.SnapshotMesh;
 
-import fr.karang.dungeoncreeper.material.DCMaterial;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
-
-
 public class Wall extends DungeonMaterial {
-
 	public Wall() {
 		super("Wall", "model://DungeonCreeper/resources/block/dungeon/wall/wall.spm");
 		addMeshEffect(new MeshEffect() {
 			public void preMesh(SnapshotMesh snapshotMesh) {
 				World world = snapshotMesh.getPosition().getWorld();
 				Vector3 v = snapshotMesh.getPosition();
-				
+
 				ChunkSnapshot c = snapshotMesh.getSnapshotModel().getChunkFromBlock(v.getFloorX(), v.getFloorY(), v.getFloorZ());
 				DCMaterial material = (DCMaterial) c.getBlockMaterial(v.getFloorX(), v.getFloorY(), v.getFloorZ());
 				TeamColor team = material.getOwner(world, v.getFloorX(), v.getFloorZ());
-				
+
 				if (team != null) {
 					Mesh mesh = team.getTeamMesh(material);
 					if (mesh != null) {
@@ -59,9 +57,8 @@ public class Wall extends DungeonMaterial {
 			}
 
 			public void postMesh(SnapshotMesh snapshotMesh) {
-				
+
 			}
 		});
 	}
-
 }

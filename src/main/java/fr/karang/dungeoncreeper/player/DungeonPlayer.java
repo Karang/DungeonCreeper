@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,21 +26,21 @@
  */
 package fr.karang.dungeoncreeper.player;
 
-import org.spout.api.component.components.EntityComponent;
-
 import fr.karang.dungeoncreeper.data.DungeonData;
+
+import org.spout.api.component.components.EntityComponent;
 
 public class DungeonPlayer extends EntityComponent {
 	@Override
 	public void onAttached() {
 		getData().put(DungeonData.TEAM, -1);
 	}
-	
-	public void setTeam(Team team){
+
+	public void setTeam(Team team) {
 		getData().put(DungeonData.TEAM, team.getId());
 	}
 
-	public Team getTeam(){
+	public Team getTeam() {
 		return Team.getTeam(getData().get(DungeonData.TEAM));
 	}
 }

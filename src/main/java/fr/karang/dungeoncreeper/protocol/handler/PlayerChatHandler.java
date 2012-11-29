@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,19 +26,19 @@
  */
 package fr.karang.dungeoncreeper.protocol.handler;
 
+import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
+
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
-
-import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 
 public class PlayerChatHandler extends MessageHandler<PlayerChatMessage> {
 	@Override
 	public void handleServer(Session session, PlayerChatMessage message) {
-		
+
 	}
-	
+
 	@Override
 	public void handleClient(Session session, PlayerChatMessage message) {
-		
+
 	}
 }

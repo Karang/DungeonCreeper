@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
 import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
@@ -33,10 +35,7 @@ import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
 import org.spout.api.util.BlockIterator;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
-
 public class Teleport extends Skill {
-
 	public Teleport(int id) {
 		super(id, 5000, "teleport");
 	}
@@ -44,16 +43,16 @@ public class Teleport extends Skill {
 	@Override
 	public void handle(Entity source) {
 		Player player = (Player) source;
-		
+
 		source.get(HitBlockComponent.class).setRange(30f);
 		BlockIterator blockIt = source.get(HitBlockComponent.class).getAlignedBlocks();
 		Block block = blockIt.getTarget();
 		BlockFace face = blockIt.getBlockFace();
-		
+
 		if (block == null) {
 			return;
 		}
-		
+
 		player.teleport(block.translate(face).getPosition());
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,20 +26,25 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
+import fr.karang.dungeoncreeper.protocol.codec.PlayerChangeClassCodec;
+import fr.karang.dungeoncreeper.protocol.codec.PlayerChatCodec;
+import fr.karang.dungeoncreeper.protocol.codec.PlayerKickCodec;
+import fr.karang.dungeoncreeper.protocol.codec.PlayerSkillCodec;
+import fr.karang.dungeoncreeper.protocol.codec.PlayerSpawnCodec;
+import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
+import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
+import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
+
 import org.spout.api.protocol.CodecLookupService;
 
-import fr.karang.dungeoncreeper.protocol.codec.*;
-import fr.karang.dungeoncreeper.protocol.codec.lobby.*;
-
 public class DungeonCodecLookupService extends CodecLookupService {
-
 	public DungeonCodecLookupService() {
 		try {
 			// Lobby messages
 			bind(WorldListCodec.class); // 0x00
 			bind(PlayerListCodec.class); // 0x01
 			bind(PlayerHandshakeCodec.class); // 0x02
-			
+
 			// Players messages
 			bind(PlayerSpawnCodec.class); // 0x10
 			//bind(PlayerDamageCodec.class); // 0x12
@@ -47,16 +52,16 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			bind(PlayerChangeClassCodec.class); // 0x14
 			bind(PlayerChatCodec.class); // 0x15
 			bind(PlayerKickCodec.class); // 0x16
-			
+
 			// Team messages
 			//bind(TeamColorCodec.class); // 0x20
 			//bind(TeamGoldCodec.class); // 0x21
-			
+
 			// EntityMessages
-			
+
 			// World messages
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
 		}
 	}

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -24,8 +24,10 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-
 package fr.karang.dungeoncreeper.protocol.handler.lobby;
+
+import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 
 import org.spout.api.Spout;
 import org.spout.api.entity.Player;
@@ -33,26 +35,24 @@ import org.spout.api.event.player.PlayerConnectEvent;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
-import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
-
 public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessage> {
 	@Override
 	public void handleServer(Session session, PlayerHandshakeMessage message) {
 		System.out.println("Player handshake: " + message.getUsername());
-		
+
 		if (message.getProtocolVersion() != DungeonProtocol.PROTOCOL_VERSION) {
 			session.disconnect(false, new Object[]{"Outdated version."});
 		}
-		
+
 		if (session.getState() == Session.State.EXCHANGE_HANDSHAKE) {
 			Player player = Spout.getEngine().getPlayer(message.getUsername(), true);
 
-			if (player != null)
+			if (player != null) {
 				session.disconnect(false, new Object[]{"Pseudo already used."});
-			
+			}
+
 			System.out.println("Player connected.");
-			
+
 			Spout.getEngine().getEventManager().callEvent(new PlayerConnectEvent(session, message.getUsername()));
 		} else {
 			session.disconnect(false, new Object[]{"Handshake already exchanged."});

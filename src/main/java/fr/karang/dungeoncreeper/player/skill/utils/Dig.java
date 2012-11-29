@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,16 +26,15 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
 import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 
-import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.player.skill.Skill;
-
 public class Dig extends Skill {
-
 	public Dig(int id) {
 		super(id, 200, "dig");
 	}
@@ -44,7 +43,7 @@ public class Dig extends Skill {
 	public void handle(Entity source) {
 		source.get(HitBlockComponent.class).setRange(4f);
 		Block block = source.get(HitBlockComponent.class).getTargetBlock();
-		if (block!=null) {
+		if (block != null) {
 			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
 				block.setMaterial(BlockMaterial.AIR);
 			} else if (block.getMaterial().isMaterial(DCMaterials.GEM_ORE)) {

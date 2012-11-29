@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,25 +32,25 @@ public class WorldListMessage implements Message {
 	private String name;
 	private int onlinePlayers;
 	private int maxPlayers;
-	
+
 	public WorldListMessage(String name, int onlinePlayers, int maxPlayers) {
 		this.name = name;
 		this.onlinePlayers = onlinePlayers;
 		this.maxPlayers = maxPlayers;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getOnlinePlayers() {
 		return onlinePlayers;
 	}
-	
+
 	public int getMaxPlayers() {
 		return maxPlayers;
 	}
-	
+
 	public String getTitle() {
 		return name;
 	}

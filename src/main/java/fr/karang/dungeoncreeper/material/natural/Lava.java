@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public class Lava extends DCMaterial {
 	public Lava() {
 		super("Lava", "model://DungeonCreeper/resources/block/natural/lava/lava.spm");
 	}
-	
+
 	@Override
 	public byte getLightLevel(short data) {
 		return 15;

@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,12 +26,12 @@
  */
 package fr.karang.dungeoncreeper.protocol.handler.lobby;
 
-import org.spout.api.protocol.MessageHandler;
-import org.spout.api.protocol.Session;
-
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.lobby.Lobby;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
+
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
 public class WorldListHandler extends MessageHandler<WorldListMessage> {
 	@Override

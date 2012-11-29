@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -28,6 +28,11 @@ package fr.karang.dungeoncreeper;
 
 import java.util.logging.Level;
 
+import fr.karang.dungeoncreeper.command.AdministrationCommands;
+import fr.karang.dungeoncreeper.command.PlayerCommands;
+import fr.karang.dungeoncreeper.lobby.Lobby;
+import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
+
 import org.spout.api.Client;
 import org.spout.api.Engine;
 import org.spout.api.Spout;
@@ -42,17 +47,12 @@ import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 import org.spout.api.protocol.Protocol;
 
-import fr.karang.dungeoncreeper.command.AdministrationCommands;
-import fr.karang.dungeoncreeper.command.PlayerCommands;
-import fr.karang.dungeoncreeper.lobby.Lobby;
-import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
-
 public class DungeonCreeper extends CommonPlugin {
 	private static DungeonCreeper instance;
 	private Engine engine;
 	private DungeonConfig config;
 	private Lobby lobby;
-	
+
 	@Override
 	public void onLoad() {
 		instance = this;
@@ -60,7 +60,7 @@ public class DungeonCreeper extends CommonPlugin {
 		config = new DungeonConfig(getDataFolder());
 		Protocol.registerProtocol(new DungeonProtocol());
 	}
-	
+
 	@Override
 	public void onEnable() {
 		try {
@@ -68,11 +68,11 @@ public class DungeonCreeper extends CommonPlugin {
 		} catch (ConfigurationException e) {
 			getLogger().log(Level.WARNING, "Error loading DungeonCreeper configuration: ", e);
 		}
-		
+
 		lobby = new Lobby();
-		
+
 		// World
-		if (engine.debugMode() || engine.getPlatform()==Platform.SERVER) {
+		if (engine.debugMode() || engine.getPlatform() == Platform.SERVER) {
 			lobby.createNewGame();
 		}
 
@@ -81,8 +81,7 @@ public class DungeonCreeper extends CommonPlugin {
 		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
 		engine.getRootCommand().addSubCommands(this, PlayerCommands.class, commandRegFactory);
 		engine.getEventManager().registerEvents(new DungeonListener(this), this);
-		
-		
+
 		if (Spout.getPlatform() == Platform.CLIENT) {
 			InputManager input = ((Client) Spout.getEngine()).getInputManager();
 			input.bind(Keyboard.KEY_F1, "slot 0");
@@ -96,7 +95,7 @@ public class DungeonCreeper extends CommonPlugin {
 			input.bind(Keyboard.KEY_F9, "slot 8");
 			input.bind(Keyboard.KEY_F10, "slot 9");
 		}
-		
+
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
 	}
 
@@ -105,17 +104,16 @@ public class DungeonCreeper extends CommonPlugin {
 		lobby.removeAllGames();
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " disabled.");
 	}
-	
+
 	public Lobby getLobby() {
 		return lobby;
 	}
-	
+
 	public DungeonConfig getConfig() {
 		return config;
 	}
-	
+
 	public static DungeonCreeper getInstance() {
 		return instance;
 	}
-
 }

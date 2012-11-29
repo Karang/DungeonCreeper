@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,54 +32,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.player.Team.TeamColor;
+
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
 import org.spout.api.geo.discrete.Point;
 
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
-
 public class DungeonGame {
-	
 	private final int id;
 	private World world;
 	private Map<String, Team> teams = new HashMap<String, Team>();
 	private List<Player> players = new ArrayList<Player>();
-	
 	private final TeamColor[][] territory;
-	private final int width,height;
-	
+	private final int width, height;
 	private boolean canJoin;
-	
+
 	public DungeonGame(int id, int width, int height) {
 		this.id = id;
 		this.canJoin = true;
-		
+
 		this.width = width;
 		this.height = height;
 		territory = new TeamColor[width][height];
 	}
-	
-	public void setWorld(World world){
+
+	public void setWorld(World world) {
 		this.world = world;
 	}
-	
+
 	public void start() {
 		canJoin = false;
 		for (Team team : teams.values()) {
 			team.respawnPlayers();
 		}
 	}
-	
+
 	public boolean canJoin() {
 		return canJoin;
 	}
-	
+
 	public void join(Player player, String team) {
 		teams.get(team).playerJoin(player);
 		players.add(player);
 	}
-	
+
 	public World getWorld() {
 		return world;
 	}
@@ -89,22 +86,24 @@ public class DungeonGame {
 	}
 
 	public void setTerritory(int x, int z, TeamColor color) {
-		if(x < 0 || x >= width || z < 0 || x >= height)
+		if (x < 0 || x >= width || z < 0 || x >= height) {
 			throw new IllegalAccessError("Out of array");
+		}
 		territory[x][z] = color;
 	}
 
 	public TeamColor getTerritory(int x, int z) {
-		if(x < 0 || x >= width || z < 0 || x >= height)
+		if (x < 0 || x >= width || z < 0 || x >= height) {
 			throw new IllegalAccessError("Out of array");
+		}
 		return territory[x][z];
 	}
 
 	public Team createTeam(int color, Point point) {
-		for(TeamColor t : TeamColor.values()){
-			if(t.getColor() == color){
+		for (TeamColor t : TeamColor.values()) {
+			if (t.getColor() == color) {
 				Team team = teams.get(t.getName());
-				if( team == null ){
+				if (team == null) {
 					team = new Team(t, point, this);
 					teams.put(t.getName(), team);
 				}

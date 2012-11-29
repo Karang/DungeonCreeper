@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,28 +26,27 @@
  */
 package fr.karang.dungeoncreeper.world.populator;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
+
 import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
-
-import fr.karang.dungeoncreeper.material.DCMaterials;
 
 public class LiquidObject extends WorldGeneratorObject {
 	public LiquidObject(BlockMaterial material) {
 		this.material = material;
 	}
-	
+
 	private final BlockMaterial material;
 
 	@Override
 	public boolean canPlaceObject(World w, int x, int y, int z) {
-		return w.getBlock(x, y+1, z).getMaterial().isMaterial(DCMaterials.DIRT);
+		return w.getBlock(x, y + 1, z).getMaterial().isMaterial(DCMaterials.DIRT);
 	}
 
 	@Override
 	public void placeObject(World w, int x, int y, int z) {
 		w.getBlock(x, y, z).setMaterial(material);
-		w.getBlock(x, y+1, z).setMaterial(DCMaterials.AIR);
+		w.getBlock(x, y + 1, z).setMaterial(DCMaterials.AIR);
 	}
-
 }

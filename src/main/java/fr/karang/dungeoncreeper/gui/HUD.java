@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -29,6 +29,10 @@ package fr.karang.dungeoncreeper.gui;
 import java.awt.Color;
 import java.util.List;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
 import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.entity.Player;
@@ -40,50 +44,45 @@ import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
 import org.spout.api.render.RenderMaterial;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.player.skill.Skill;
-
 public class HUD extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
-	
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
 	private int slot = 1;
 	private final Player player;
-	
+
 	public HUD(Player player) {
-		if (Spout.getPlatform()!=Platform.CLIENT) {
+		if (Spout.getPlatform() != Platform.CLIENT) {
 			throw new IllegalStateException("Only clients can have an HUD screen.");
 		}
-		
+
 		this.player = player;
 		this.setTakesInput(false);
-		
+
 		skillBar.add(RenderPartsHolderComponent.class);
-		
-		CreatureComponent cc = ((Client)Spout.getEngine()).getActivePlayer().get(CreatureComponent.class);
+
+		CreatureComponent cc = ((Client) Spout.getEngine()).getActivePlayer().get(CreatureComponent.class);
 		buildSkillBar(cc.getSkills());
-		
+
 		//setCooldown(2, 0.7f);
 		//selectSecondarySlot(2);
-		
+
 		Widget cursor = new Widget();
-		
+
 		RenderPart part = new RenderPart();
 		part.setRenderMaterial(skillMaterial);
 		part.setSource(new Rectangle(0, 0.75f, 0.02f, 0.02f));
-		part.setSprite(new Rectangle(-0.025f*SCALE, -0.025f, 0.05f*SCALE, 0.05f));
-		
+		part.setSprite(new Rectangle(-0.025f * SCALE, -0.025f, 0.05f * SCALE, 0.05f));
+
 		cursor.add(RenderPartsHolderComponent.class).add(part);
 		this.attachWidget(DungeonCreeper.getInstance(), cursor);
-		
+
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
 	}
-	
+
 	@Override
 	public void onTick(float dt) {
 		CreatureComponent cc = player.get(CreatureComponent.class);
@@ -92,53 +91,53 @@ public class HUD extends Screen {
 			skill.updateCooldown(dt, player);
 			setCooldown(slot++, skill.getCooldown(player));
 		}
-		if (this.slot!=cc.getSlot()) {
+		if (this.slot != cc.getSlot()) {
 			selectSecondarySlot(cc.getSlot());
 		}
 	}
-	
+
 	public void selectSecondarySlot(int slot) {
 		this.slot = slot;
 		RenderPart select = skillBar.get(RenderPartsHolderComponent.class).get(0);
-		float x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
+		float x = -(nbSlots * SKILL_OFFSET * SCALE) / 2f + slot * SKILL_OFFSET * SCALE;
 		select.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 	}
-	
+
 	public void setCooldown(int slot, float percent) {
-		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(2+slot);
+		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(2 + slot);
 		float x = cooldown.getSprite().getX();
 		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
 	}
-	
+
 	public void buildSkillBar(List<Skill> skills) {
 		RenderPartsHolderComponent bar = skillBar.get(RenderPartsHolderComponent.class);
 		nbSlots = skills.size();
-		float x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f;
-		
+		float x = -(nbSlots * SKILL_OFFSET * SCALE) / 2f;
+
 		RenderPart selectSecondary = new RenderPart();
 		selectSecondary.setColor(Color.WHITE);
 		selectSecondary.setRenderMaterial(skillMaterial);
 		selectSecondary.setSprite(new Rectangle(x + SKILL_OFFSET * SCALE, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
-		selectSecondary.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		selectSecondary.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectSecondary, 0);
-		
+
 		RenderPart selectPrincipal = new RenderPart();
 		selectPrincipal.setColor(Color.WHITE);
 		selectPrincipal.setRenderMaterial(skillMaterial);
 		selectPrincipal.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
-		selectPrincipal.setSource(new Rectangle(32f/256f, 224f/256f, 32f/256f, 32f/256f));
+		selectPrincipal.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectPrincipal, 1);
-		
-		for (int j=0 ; j<nbSlots ; j++) {
+
+		for (int j = 0; j < nbSlots; j++) {
 			RenderPart cooldown = new RenderPart();
 			cooldown.setColor(Color.WHITE);
 			cooldown.setRenderMaterial(skillMaterial);
 			cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, 0));
-			cooldown.setSource(new Rectangle(0, 224f/256f, 32f/256f, 32f/256f));
-			bar.add(cooldown, 2+j);
+			cooldown.setSource(new Rectangle(0, 224f / 256f, 32f / 256f, 32f / 256f));
+			bar.add(cooldown, 2 + j);
 			x += SKILL_OFFSET * SCALE;
 		}
-		x = - (nbSlots * SKILL_OFFSET * SCALE) / 2f;
+		x = -(nbSlots * SKILL_OFFSET * SCALE) / 2f;
 		int i = nbSlots;
 		for (Skill skill : skills) {
 			RenderPart icon = new RenderPart();

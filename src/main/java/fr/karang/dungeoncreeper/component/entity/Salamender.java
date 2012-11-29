@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -29,17 +29,15 @@ package fr.karang.dungeoncreeper.component.entity;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * 
  * @source http://dungeonkeeper.wikia.com/wiki/Salamander
  */
 public class Salamender extends CreatureComponent {
-
-	public Salamender(){
+	public Salamender() {
 		addSkill(Skills.ATTACKSWORD, 1);
 		addSkill(Skills.FIREBALL, 4);
 		addSkill(Skills.SPIT, 8);
 	}
-	
+
 	@Override
 	public void onAttached() {
 		super.onAttached();
