@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,13 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
-import org.spout.api.component.components.HitBlockComponent;
-import org.spout.api.entity.Entity;
-import org.spout.api.entity.Player;
-import org.spout.api.geo.World;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.math.Rectangle;
-
 import fr.karang.dungeoncreeper.event.BlockCause;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
@@ -41,8 +34,14 @@ import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-public class Claim extends Skill {
+import org.spout.api.component.components.HitBlockComponent;
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.math.Rectangle;
 
+public class Claim extends Skill {
 	public Claim(int id) {
 		super(id, "claim");
 	}
@@ -54,25 +53,25 @@ public class Claim extends Skill {
 		Team team = source.get(DungeonPlayer.class).getTeam();
 		BlockCause cause = new BlockCause(source);
 
-		if (team == null){
+		if (team == null) {
 			throw new IllegalStateException("Must have a team");
 		}
-		
-		if (block != null){
+
+		if (block != null) {
 			DCMaterial material = (DCMaterial) block.getMaterial();
 
 			if (material.isClaimedBy(block, team)) {
-				if(source instanceof Player){
+				if (source instanceof Player) {
 					System.out.println("Block déjà claim");
-					((Player)source).sendMessage("Block déjà claim");
+					((Player) source).sendMessage("Block déjà claim");
 				}
 				return;
 			}
 
 			if (!material.isNextClaimedBlock(block, team)) {
-				if (source instanceof Player){
+				if (source instanceof Player) {
 					System.out.println("Pas de block voisin claim");
-					((Player)source).sendMessage("Pas de block voisin claim");
+					((Player) source).sendMessage("Pas de block voisin claim");
 				}
 				return;
 			}
@@ -84,7 +83,7 @@ public class Claim extends Skill {
 			if (material.isClaimedBlockByOtherTeam(block, team)) {
 				System.out.println("Declaim other team");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
-					DCMaterials.DIRT.onPlacement(block,DCMaterials.DIRT.getData(), cause);
+					DCMaterials.DIRT.onPlacement(block, DCMaterials.DIRT.getData(), cause);
 					team.getGame().setTerritory(x, z, null);
 				} else {
 					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), cause);
@@ -109,7 +108,6 @@ public class Claim extends Skill {
 
 	@Override
 	public Rectangle getUv() {
-		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
+		return new Rectangle(96f / 256f, 0, 32f / 256f, 32f / 256f);
 	}
-
 }

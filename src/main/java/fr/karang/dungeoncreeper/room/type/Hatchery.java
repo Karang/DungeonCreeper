@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -27,16 +27,12 @@
 package fr.karang.dungeoncreeper.room.type;
 
 /**
- * 
- * @source http://dungeonkeeper.wikia.com/wiki/Hatchery
  * @author L5D
- *
+ * @source http://dungeonkeeper.wikia.com/wiki/Hatchery
  */
 public class Hatchery extends Room {
-	
-	public Hatchery(){
+	public Hatchery() {
 		setBuyPrice(300);
 		setBuyPrice(150);
 	}
-	
 }

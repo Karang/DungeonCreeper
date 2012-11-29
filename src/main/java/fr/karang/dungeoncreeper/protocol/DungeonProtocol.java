@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,8 +26,13 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
+import fr.karang.dungeoncreeper.DungeonConfig;
+import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
+import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
+
 import org.spout.api.chat.ChatArguments;
 import org.spout.api.command.Command;
 import org.spout.api.exception.UnknownPacketException;
@@ -36,21 +41,16 @@ import org.spout.api.protocol.MessageCodec;
 import org.spout.api.protocol.Protocol;
 import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.DungeonConfig;
-import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
-import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
-import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
-
 public class DungeonProtocol extends Protocol {
 	public static final byte PROTOCOL_VERSION = 0;
 	public static final int defaultPort = 25565;
-	
+
 	/*
-	 * C->S Client send handshake
-	 * S->C Server send player list
-	 * S->C Server send world list
-	 */
-	
+		 * C->S Client send handshake
+		 * S->C Server send player list
+		 * S->C Server send world list
+		 */
+
 	public DungeonProtocol() {
 		super("Dungeon", defaultPort, new DungeonCodecLookupService(), new DungeonHandlerLookupService());
 	}
@@ -95,7 +95,6 @@ public class DungeonProtocol extends Protocol {
 	@Override
 	public void initializeSession(Session session) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }

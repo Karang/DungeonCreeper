@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -29,10 +29,8 @@ package fr.karang.dungeoncreeper.material.natural;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class SolidRock extends DCMaterial {
-
 	public SolidRock() {
 		super("Unbreakable Dirt", "model://DungeonCreeper/resources/block/natural/solidrock/solidrock.spm");
 		setHardness(-1.0F);
 	}
-
 }

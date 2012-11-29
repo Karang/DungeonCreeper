@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,12 +26,24 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
-import org.spout.api.protocol.HandlerLookupService;
+import fr.karang.dungeoncreeper.protocol.handler.PlayerChangeClassHandler;
+import fr.karang.dungeoncreeper.protocol.handler.PlayerChatHandler;
+import fr.karang.dungeoncreeper.protocol.handler.PlayerKickHandler;
+import fr.karang.dungeoncreeper.protocol.handler.PlayerSkillHandler;
+import fr.karang.dungeoncreeper.protocol.handler.PlayerSpawnHandler;
+import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerHandshakeHandler;
+import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerListHandler;
+import fr.karang.dungeoncreeper.protocol.handler.lobby.WorldListHandler;
+import fr.karang.dungeoncreeper.protocol.message.PlayerChangeClassMessage;
+import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
+import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
+import fr.karang.dungeoncreeper.protocol.message.PlayerSkillMessage;
+import fr.karang.dungeoncreeper.protocol.message.PlayerSpawnMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
+import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
 
-import fr.karang.dungeoncreeper.protocol.handler.*;
-import fr.karang.dungeoncreeper.protocol.handler.lobby.*;
-import fr.karang.dungeoncreeper.protocol.message.*;
-import fr.karang.dungeoncreeper.protocol.message.lobby.*;
+import org.spout.api.protocol.HandlerLookupService;
 
 public class DungeonHandlerLookupService extends HandlerLookupService {
 	public DungeonHandlerLookupService() {
@@ -40,7 +52,7 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 			bind(WorldListMessage.class, WorldListHandler.class); // 0x00
 			bind(PlayerListMessage.class, PlayerListHandler.class); //0x01
 			bind(PlayerHandshakeMessage.class, PlayerHandshakeHandler.class); // 0x02
-			
+
 			// Players messages
 			bind(PlayerSpawnMessage.class, PlayerSpawnHandler.class); // 0x10
 			//bind(PlayerMoveMessage.class, PlayerMoveHandler.class); // 0x11
@@ -49,7 +61,7 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 			bind(PlayerChangeClassMessage.class, PlayerChangeClassHandler.class); // 0x14
 			bind(PlayerChatMessage.class, PlayerChatHandler.class); // 0x15
 			bind(PlayerKickMessage.class, PlayerKickHandler.class); // 0x16
-			
+
 			// Team messages
 			//bind(TeamColorMessage.class, TeamColorHandler.class); // 0x20
 			//bind(TeamGoldMessage.class, TeamGoldHandler.class); // 0x21

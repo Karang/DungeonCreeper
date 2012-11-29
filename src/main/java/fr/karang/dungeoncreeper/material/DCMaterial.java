@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,66 +26,69 @@
  */
 package fr.karang.dungeoncreeper.material;
 
+import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.player.Team.TeamColor;
+import fr.karang.dungeoncreeper.world.DungeonGame;
+
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 import org.spout.api.material.block.BlockFace;
 
-import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
-import fr.karang.dungeoncreeper.world.DungeonGame;
-
 public abstract class DCMaterial extends BlockMaterial {
-
 	public DCMaterial(String name, String model) {
-		super((short)0, name, model);
+		super((short) 0, name, model);
 	}
-	
+
 	public DCMaterial(short dataMask, String name, String model) {
 		super(dataMask, name, model);
 	}
-	
+
 	public DCMaterial(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
-	
-	public final DungeonGame getGame(Block block){
+
+	public final DungeonGame getGame(Block block) {
 		return DungeonCreeper.getInstance().getLobby().getGame(block.getWorld());
 	}
-	
+
 	public final TeamColor getOwner(Block block) {
 		DungeonGame game = getGame(block);
 		return game.getTerritory(block.getX(), block.getZ());
 	}
-	
+
 	public final TeamColor getOwner(World w, int x, int z) {
 		DungeonGame game = DungeonCreeper.getInstance().getLobby().getGame(w);
 		return game.getTerritory(x, z);
 	}
-	
+
 	public boolean isClaimedBy(Block block, Team team) {
 		return getOwner(block) == team.getColor();
 	}
 
-	public boolean isClaimedBlockByOtherTeam(Block block, Team team){
+	public boolean isClaimedBlockByOtherTeam(Block block, Team team) {
 		TeamColor owner = getOwner(block);
-		if (owner == null)
+		if (owner == null) {
 			return false;
+		}
 		return owner != team.getColor();
 	}
 
-	public boolean isNextClaimedBlock(Block block, Team team){
-		if (isClaimedBy(block.translate(BlockFace.NORTH), team))
+	public boolean isNextClaimedBlock(Block block, Team team) {
+		if (isClaimedBy(block.translate(BlockFace.NORTH), team)) {
 			return true;
-		if (isClaimedBy(block.translate(BlockFace.SOUTH), team))
+		}
+		if (isClaimedBy(block.translate(BlockFace.SOUTH), team)) {
 			return true;
-		if (isClaimedBy(block.translate(BlockFace.WEST), team))
+		}
+		if (isClaimedBy(block.translate(BlockFace.WEST), team)) {
 			return true;
-		if (isClaimedBy(block.translate(BlockFace.EAST), team))
+		}
+		if (isClaimedBy(block.translate(BlockFace.EAST), team)) {
 			return true;
+		}
 		return false;
 	}
-	
 }

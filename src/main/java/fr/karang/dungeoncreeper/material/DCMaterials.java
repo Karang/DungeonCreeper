@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,12 +26,22 @@
  */
 package fr.karang.dungeoncreeper.material;
 
-import org.spout.api.material.BlockMaterial;
-
-import fr.karang.dungeoncreeper.material.dungeon.*;
+import fr.karang.dungeoncreeper.material.dungeon.Bridge;
+import fr.karang.dungeoncreeper.material.dungeon.DungeonHeart;
+import fr.karang.dungeoncreeper.material.dungeon.Floor;
+import fr.karang.dungeoncreeper.material.dungeon.GoldBag;
+import fr.karang.dungeoncreeper.material.dungeon.Wall;
 import fr.karang.dungeoncreeper.material.dungeon.room.Hatchery;
 import fr.karang.dungeoncreeper.material.dungeon.room.Lair;
-import fr.karang.dungeoncreeper.material.natural.*;
+import fr.karang.dungeoncreeper.material.natural.Dirt;
+import fr.karang.dungeoncreeper.material.natural.GemOre;
+import fr.karang.dungeoncreeper.material.natural.GoldOre;
+import fr.karang.dungeoncreeper.material.natural.Lava;
+import fr.karang.dungeoncreeper.material.natural.SolidRock;
+import fr.karang.dungeoncreeper.material.natural.UnclaimedFloor;
+import fr.karang.dungeoncreeper.material.natural.Water;
+
+import org.spout.api.material.BlockMaterial;
 
 public class DCMaterials {
 	// Natural materials
@@ -43,22 +53,19 @@ public class DCMaterials {
 	public static final Water WATER = new Water();
 	public static final GoldOre GOLD_ORE = new GoldOre();
 	public static final GemOre GEM_ORE = new GemOre();
-	
 	// Dungeon materials
 	public static final DungeonHeart DUNGEON_HEART = new DungeonHeart();
 	public static final Wall WALL = new Wall();
 	public static final Floor FLOOR = new Floor();
 	public static final Bridge BRIDGE = new Bridge();
-	
 	// Dungeon rooms
 	public static final Lair LAIR = new Lair();
 	public static final Hatchery HATCHERY = new Hatchery();
-	
 	// Dungeon decorations
 	public static final GoldBag GOLD_BAG = new GoldBag();
-	
+
 	//Add BatchEffect
-	static{
-		
+	static {
+
 	}
 }

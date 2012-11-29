@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,6 +32,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.room.instance.RoomContainer;
+import fr.karang.dungeoncreeper.room.instance.RoomInstance;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
+import fr.karang.dungeoncreeper.world.DungeonGame;
+
 import org.spout.api.Spout;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.discrete.Point;
@@ -41,15 +47,8 @@ import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
 import org.spout.api.model.mesh.Mesh;
 
-import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.room.instance.RoomContainer;
-import fr.karang.dungeoncreeper.room.instance.RoomInstance;
-import fr.karang.dungeoncreeper.room.type.Room.Rooms;
-import fr.karang.dungeoncreeper.world.DungeonGame;
-
 public class Team {
-	
-	public enum TeamColor{
+	public enum TeamColor {
 		/*
 		*	Neutral :128/128/128
 		*	Red :255/0/0
@@ -57,18 +56,17 @@ public class Team {
 		*	Green :0/255/0
 		*	Yellow :255/255/0
 		*/
-		
+
 		NEUTRAL("Neutral", Color.GRAY),
 		RED("Red", Color.RED),
 		BLUE("Blue", Color.BLUE),
 		GREEN("Green", Color.GREEN),
 		YELLOW("Yellow", Color.YELLOW);
-
-		private Map<Material,Mesh> teamMesh = new HashMap<Material, Mesh>();
+		private Map<Material, Mesh> teamMesh = new HashMap<Material, Mesh>();
 		private final String name;
 		private final int color;
 
-		TeamColor(String name, Color color){
+		TeamColor(String name, Color color) {
 			this.name = name;
 			this.color = color.getRGB();
 		}
@@ -84,45 +82,44 @@ public class Team {
 		public Mesh getTeamMesh(Material material) {
 			return teamMesh.get(material);
 		}
-		
-		static{
-			NEUTRAL.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			RED.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			BLUE.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			GREEN.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			YELLOW.teamMesh.put(DCMaterials.BRIDGE, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			
-			NEUTRAL.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			RED.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			BLUE.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			GREEN.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			YELLOW.teamMesh.put(DCMaterials.FLOOR, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
-			
-			NEUTRAL.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wall.uvs"));
-			RED.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallRed.uvs"));
-			BLUE.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallBlue.uvs"));
-			GREEN.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallGreen.uvs"));
-			YELLOW.teamMesh.put(DCMaterials.WALL, (Mesh)Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallYellow.uvs"));
+
+		static {
+			NEUTRAL.teamMesh.put(DCMaterials.BRIDGE, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			RED.teamMesh.put(DCMaterials.BRIDGE, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			BLUE.teamMesh.put(DCMaterials.BRIDGE, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			GREEN.teamMesh.put(DCMaterials.BRIDGE, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.BRIDGE, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+
+			NEUTRAL.teamMesh.put(DCMaterials.FLOOR, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			RED.teamMesh.put(DCMaterials.FLOOR, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			BLUE.teamMesh.put(DCMaterials.FLOOR, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			GREEN.teamMesh.put(DCMaterials.FLOOR, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.FLOOR, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/bridge/bridge.uvs"));
+
+			NEUTRAL.teamMesh.put(DCMaterials.WALL, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wall.uvs"));
+			RED.teamMesh.put(DCMaterials.WALL, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallRed.uvs"));
+			BLUE.teamMesh.put(DCMaterials.WALL, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallBlue.uvs"));
+			GREEN.teamMesh.put(DCMaterials.WALL, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallGreen.uvs"));
+			YELLOW.teamMesh.put(DCMaterials.WALL, (Mesh) Spout.getFilesystem().getResource("cubemesh://DungeonCreeper/resources/block/dungeon/wall/wallYellow.uvs"));
 		}
 
 	}
 
 	private static int ID_GEN = 0;
-	private static Map<Integer,Team> teams = new HashMap<Integer, Team>();
-	
-	public static Team getTeam(int id){
+	private static Map<Integer, Team> teams = new HashMap<Integer, Team>();
+
+	public static Team getTeam(int id) {
 		return teams.get(id);
 	}
-	
-	private static void addTeam(Team team){
+
+	private static void addTeam(Team team) {
 		teams.put(team.getId(), team);
 	}
-	
+
 	private final int id;
 	private final DungeonGame game;
-
 	private final TeamColor color;
-	private final Map<Rooms,RoomContainer> rooms = new HashMap<Rooms,RoomContainer>();
+	private final Map<Rooms, RoomContainer> rooms = new HashMap<Rooms, RoomContainer>();
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	private int gold = 0;
@@ -174,16 +171,17 @@ public class Team {
 	public boolean hasRoom(Rooms type, int surface) {
 		RoomContainer container = rooms.get(type);
 
-		if( container != null )
+		if (container != null) {
 			return container.getSurface() >= surface;
+		}
 
-			return false;
+		return false;
 	}
 
 	public void addRoom(RoomInstance roomInstance) {
 		RoomContainer container = rooms.get(roomInstance.getRoom());
 
-		if( container == null){
+		if (container == null) {
 			container = new RoomContainer(roomInstance.getRoom());
 			rooms.put(roomInstance.getRoom(), container);
 		}
@@ -194,8 +192,9 @@ public class Team {
 	public void removeRoom(RoomInstance roomInstance) {
 		RoomContainer container = rooms.get(roomInstance.getRoom());
 
-		if( container == null)
+		if (container == null) {
 			throw new IllegalStateException("RoomContainer unfinded");
+		}
 
 		container.removeRoom(roomInstance);
 	}

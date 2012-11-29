@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,10 +26,6 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
-import org.spout.api.entity.Entity;
-import org.spout.api.entity.Player;
-import org.spout.api.math.Rectangle;
-
 import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.player.Team;
@@ -38,8 +34,11 @@ import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
-public class Build extends Skill {
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.math.Rectangle;
 
+public class Build extends Skill {
 	public Build(int id) {
 		super(id, "build");
 	}
@@ -50,24 +49,27 @@ public class Build extends Skill {
 		Team team = source.get(DungeonPlayer.class).getTeam();
 		Rectangle rect = source.get(Imp.class).getBuildRect();
 
-		if( rect == null ){
-			if(source instanceof Player)
-				((Player)source).sendMessage("Sélection incomplète !");
+		if (rect == null) {
+			if (source instanceof Player) {
+				((Player) source).sendMessage("Sélection incomplète !");
+			}
 			return;
 		}
 
-		int price = room.getRoom().getBuyPrice() * (int)(rect.getWidth() * rect.getHeight());
+		int price = room.getRoom().getBuyPrice() * (int) (rect.getWidth() * rect.getHeight());
 
-		if (team.getGold() < price){
-			if(source instanceof Player)
-				((Player)source).sendMessage("Votre équipe ne possède pas assez d'or");
+		if (team.getGold() < price) {
+			if (source instanceof Player) {
+				((Player) source).sendMessage("Votre équipe ne possède pas assez d'or");
+			}
 			return;
 		}
 
 		//TODO : Vérifier que la sélection est libre (pas de mur, pas de pièce)
-		if(!Room.validToBuild(source.getWorld(),rect,team)){
-			if(source instanceof Player)
-				((Player)source).sendMessage("La sélection contient des zones non-capturées");
+		if (!Room.validToBuild(source.getWorld(), rect, team)) {
+			if (source instanceof Player) {
+				((Player) source).sendMessage("La sélection contient des zones non-capturées");
+			}
 			return;
 		}
 
@@ -75,10 +77,9 @@ public class Build extends Skill {
 		team.setGold(team.getGold() - price);
 		//TODO : Construire la pièce
 	}
-	
+
 	@Override
 	public Rectangle getUv() {
-		return new Rectangle(96f/256f, 0, 32f/256f, 32f/256f);
+		return new Rectangle(96f / 256f, 0, 32f / 256f, 32f / 256f);
 	}
-	
 }

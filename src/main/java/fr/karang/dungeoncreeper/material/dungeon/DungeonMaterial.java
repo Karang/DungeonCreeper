@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,24 +26,22 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import org.spout.api.material.Material;
-
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
-public class DungeonMaterial extends DCMaterial {
+import org.spout.api.material.Material;
 
+public class DungeonMaterial extends DCMaterial {
 	public DungeonMaterial(String name, String model) {
 		super(name, model);
 		//TODO : Correct the method to add BatchEffect, not RenderEffect to Material
 		//addBatchEffect(BatchEffects.TEAM_BATCH_EFFECT);
 	}
-	
+
 	public DungeonMaterial(short dataMask, String name, String model) {
 		super(dataMask, name, model);
 	}
-	
+
 	public DungeonMaterial(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
-
 }

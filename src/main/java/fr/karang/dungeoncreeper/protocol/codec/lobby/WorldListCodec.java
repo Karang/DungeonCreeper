@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -28,15 +28,14 @@ package fr.karang.dungeoncreeper.protocol.codec.lobby;
 
 import java.io.IOException;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.spout.api.protocol.MessageCodec;
-
 import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+
+import org.spout.api.protocol.MessageCodec;
 
 public class WorldListCodec extends MessageCodec<WorldListMessage> {
-
 	public WorldListCodec() {
 		super(WorldListMessage.class, 0x0);
 	}
@@ -57,5 +56,4 @@ public class WorldListCodec extends MessageCodec<WorldListMessage> {
 		buffer.writeInt(message.getMaxPlayers());
 		return buffer;
 	}
-	
 }

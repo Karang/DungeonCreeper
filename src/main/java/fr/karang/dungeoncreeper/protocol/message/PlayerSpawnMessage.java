@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -31,26 +31,26 @@ import org.spout.api.protocol.Message;
 public class PlayerSpawnMessage implements Message {
 	private String name;
 	private float x, y, z;
-	
+
 	public PlayerSpawnMessage(String name, float x, float y, float z) {
 		this.name = name;
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public float getX() {
 		return x;
 	}
-	
+
 	public float getY() {
 		return y;
 	}
-	
+
 	public float getZ() {
 		return z;
 	}

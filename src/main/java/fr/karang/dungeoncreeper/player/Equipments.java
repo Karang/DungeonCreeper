@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -48,25 +48,24 @@ import fr.karang.dungeoncreeper.component.entity.Vampire;
 import fr.karang.dungeoncreeper.component.entity.Warlock;
 
 public class Equipments {
-
 	private static Map<Integer, Class<? extends CreatureComponent>> byID = new HashMap<Integer, Class<? extends CreatureComponent>>();
-	private static Map<Class<? extends CreatureComponent>,Integer> byClass = new HashMap<Class<? extends CreatureComponent>,Integer>();
+	private static Map<Class<? extends CreatureComponent>, Integer> byClass = new HashMap<Class<? extends CreatureComponent>, Integer>();
 	private static int id = 0;
-	
-	private static void register(Class<? extends CreatureComponent> component){
+
+	private static void register(Class<? extends CreatureComponent> component) {
 		byID.put(id, component);
-		byClass.put(component,id++);
+		byClass.put(component, id++);
 	}
-	
-	public static int getIdByCreatureComponent(Class<? extends CreatureComponent> component){
+
+	public static int getIdByCreatureComponent(Class<? extends CreatureComponent> component) {
 		return byClass.get(component);
 	}
-	
-	public static Class<? extends CreatureComponent> getCreatureComponentById(int id){
+
+	public static Class<? extends CreatureComponent> getCreatureComponentById(int id) {
 		return byID.get(id);
 	}
-	
-	static{
+
+	static {
 		register(BileDemon.class);
 		register(BlackKnights.class);
 		register(DarkAngels.class);
@@ -84,5 +83,4 @@ public class Equipments {
 		register(Vampire.class);
 		register(Warlock.class);
 	}
-	
 }

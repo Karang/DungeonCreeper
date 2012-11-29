@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -31,22 +31,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
+import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
 import org.spout.api.Spout;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
 import org.spout.api.math.MathHelper;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.skill.Skill;
-
 public abstract class CreatureComponent extends EntityComponent {
-
 	private Map<Skill, Integer> requiredLevel = new HashMap<Skill, Integer>();
 	private List<Skill> skills = new ArrayList<Skill>();
-	
+
 	@Override
 	public void onAttached() {
 		getData().put(DungeonData.HEALTH, 10);
@@ -55,22 +54,22 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.SKILLSLOT, 1);
 		getData().put(DungeonData.LEVEL, 1);
 	}
-	
+
 	@Override
 	public void onTick(float dt) {
 		PlayerInputState input = ((Player) getOwner()).input();
-		
+
 		if (input.getFire1()) {
 			primaryInterract();
 		}
-		
+
 		if (input.getInteract()) {
 			secondaryInterract();
 		}
-		
+
 		//TODO: slot selection
 	}
-	
+
 	public List<Skill> getSkills() {
 		return skills;
 	}
@@ -79,19 +78,19 @@ public abstract class CreatureComponent extends EntityComponent {
 		requiredLevel.put(skill, level);
 		skills.add(skill);
 	}
-	
+
 	public Skill getPrimarySkill() {
 		return skills.get(0);
 	}
-	
+
 	public Skill getSecondarySkill() {
 		return skills.get(getSlot());
 	}
-	
-	public void setSlot(int slot){
+
+	public void setSlot(int slot) {
 		getData().put(DungeonData.SKILLSLOT, MathHelper.clamp(slot, 1, skills.size() - 1));
 	}
-	
+
 	public int getSlot() {
 		return getData().get(DungeonData.SKILLSLOT);
 	}
@@ -115,8 +114,8 @@ public abstract class CreatureComponent extends EntityComponent {
 		event.getSkill().initCooldown(event.getEntity());
 		event.getSkill().handle(event.getEntity());
 	}
-	
-	public boolean hasRequired(Team team){
+
+	public boolean hasRequired(Team team) {
 		return true;
 	}
 }

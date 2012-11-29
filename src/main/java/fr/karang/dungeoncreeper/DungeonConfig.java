@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -36,16 +36,14 @@ import org.spout.api.util.config.yaml.YamlConfiguration;
 public class DungeonConfig extends ConfigurationHolderConfiguration {
 	// Client config
 	public static final ConfigurationHolder USERNAME = new ConfigurationHolder("Imp", "client", "username");
-	
 	// Server config
 	public static final ConfigurationHolder HOST = new ConfigurationHolder("127.0.0.1", "server", "host");
 	public static final ConfigurationHolder PORT = new ConfigurationHolder(25565, "server", "port");
-	
 	// Worlds config
 	public static final ConfigurationHolder WORLD_MAX_WIDTH = new ConfigurationHolder(10, "world", "maxwidth");
 	public static final ConfigurationHolder WORLD_MAX_LENGTH = new ConfigurationHolder(10, "world", "maxlength");
 	public static final ConfigurationHolder WORLD_MAX_PLAYERS = new ConfigurationHolder(20, "world", "maxplayers");
-	
+
 	public DungeonConfig(File dataFolder) {
 		super(new YamlConfiguration(new File(dataFolder, "config.yml")));
 	}

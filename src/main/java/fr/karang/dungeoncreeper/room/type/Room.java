@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -26,35 +26,33 @@
  */
 package fr.karang.dungeoncreeper.room.type;
 
-import org.spout.api.geo.World;
-import org.spout.api.geo.cuboid.Block;
-import org.spout.api.math.Rectangle;
-
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-public abstract class Room {
+import org.spout.api.geo.World;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.math.Rectangle;
 
-	public enum Rooms{
+public abstract class Room {
+	public enum Rooms {
 		LAIR(new Lair()),
 		HATCHERY(new Hatchery());
-		
 		private Room room;
-		
-		Rooms(Room room){
+
+		Rooms(Room room) {
 			this.room = room;
 		}
-		
-		public Room getRoom(){
+
+		public Room getRoom() {
 			return room;
 		}
 	}
-	
+
 	private int buyPrice = 0;
 	private int sellPrice = 0;
-	
+
 	public int getBuyPrice() {
 		return buyPrice;
 	}
@@ -82,14 +80,14 @@ public abstract class Room {
 	}
 
 	public static boolean validToBuild(World world, Rectangle rect, Team team) {
-		for(int x = (int) rect.getX() ; x < rect.getX() + rect.getHeight() ; x++){
-			for(int z = (int) rect.getY() ; z < rect.getY() + rect.getHeight() ; z++){
+		for (int x = (int) rect.getX(); x < rect.getX() + rect.getHeight(); x++) {
+			for (int z = (int) rect.getY(); z < rect.getY() + rect.getHeight(); z++) {
 				Block block = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z);
-				if(!((DCMaterial)block.getMaterial()).isClaimedBy(block, team) || block.getMaterial() != DCMaterials.FLOOR)
+				if (!((DCMaterial) block.getMaterial()).isClaimedBy(block, team) || block.getMaterial() != DCMaterials.FLOOR) {
 					return false;
+				}
 			}
 		}
 		return true;
 	}
-
 }

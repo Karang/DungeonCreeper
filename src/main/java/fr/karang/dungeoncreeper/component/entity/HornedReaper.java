@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -32,11 +32,10 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  * @source http://dungeonkeeper.wikia.com/wiki/Horned_Reaper
  */
 public class HornedReaper extends CreatureComponent {
-
-	public HornedReaper(){
+	public HornedReaper() {
 		addSkill(Skills.STUN_FIREBALL, 1);
 	}
-	
+
 	@Override
 	public void onAttached() {
 		super.onAttached();

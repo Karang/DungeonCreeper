@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -27,7 +27,6 @@
 package fr.karang.dungeoncreeper.material.dungeon;
 
 public class Bridge extends DungeonMaterial {
-
 	public Bridge() {
 		super("Bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
 	}

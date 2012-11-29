@@ -1,7 +1,7 @@
 /*
  * This file is part of DungeonCreeper.
  *
- * Copyright (c) 2012-2012, ${project.organization.name} <${url}/>
+ * Copyright (c) 2012-2012, Karang <http://arthur.hennequin.free.fr/>
  * DungeonCreeper is licensed under the SpoutDev License Version 1.
  *
  * DungeonCreeper is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ import org.spout.api.protocol.Message;
 public class EntityVelocityMessage implements Message {
 	private final int id;
 	private final int velocityX, velocityY, velocityZ;
-	
+
 	public EntityVelocityMessage(int id, int velocityX, int velocityY, int velocityZ) {
 		this.id = id;
 		this.velocityX = velocityX;
@@ -42,7 +42,7 @@ public class EntityVelocityMessage implements Message {
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getVelocityX() {
 		return velocityX;
 	}
@@ -54,7 +54,7 @@ public class EntityVelocityMessage implements Message {
 	public int getVelocityZ() {
 		return velocityZ;
 	}
-	
+
 	public int getChannelId() {
 		return 0;
 	}

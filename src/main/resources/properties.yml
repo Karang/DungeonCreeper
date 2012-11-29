@@ -1,12 +1,12 @@
-name: DungeonCreeper
+name: ${project.name}
 version: b${buildNumber}
 description: ${project.description}
-authors: [Karang,L5D]
+authors: [Karang, L5D]
 website: https://github.com/Karang/DungeonCreeper
 
-main: fr.karang.dungeoncreeper.DungeonCreeper
+main: ${mainClass}
 load: startup
 platform: BOTH
 
 data:
-    protocol: 42
+    protocol: ${protocolVersion}
