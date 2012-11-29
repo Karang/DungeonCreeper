@@ -60,14 +60,37 @@ public abstract class CreatureComponent extends EntityComponent {
 		PlayerInputState input = ((Player) getOwner()).input();
 
 		if (input.getFire1()) {
-			primaryInterract();
-		}
-
-		if (input.getInteract()) {
-			secondaryInterract();
+			if (getCastType()==1) {
+				if (getPrimarySkill().stepCast(getOwner(), dt)) {
+					primaryInterract();
+					resetCast(0);
+				}
+			} else {
+				resetCast(1);
+			}
+		} else if (input.getInteract()) {
+			if (getCastType()==1) {
+				if (getSecondarySkill().stepCast(getOwner(), dt)) {
+					secondaryInterract();
+					resetCast(0);
+				}
+			} else {
+				resetCast(2);
+			}
+		} else {
+			resetCast(0);
 		}
 
 		//TODO: slot selection
+	}
+	
+	private void resetCast(int type) {
+		getData().put(DungeonData.CAST_TIME, 0L);
+		getData().put(DungeonData.CAST_TYPE, type);
+	}
+	
+	private int getCastType() {
+		return getData().get(DungeonData.CAST_TYPE);
 	}
 
 	public List<Skill> getSkills() {

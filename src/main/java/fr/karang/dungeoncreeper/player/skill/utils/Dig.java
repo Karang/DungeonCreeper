@@ -32,17 +32,22 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.map.DefaultedKey;
+import org.spout.api.map.DefaultedKeyImpl;
 import org.spout.api.material.BlockMaterial;
+import org.spout.api.math.Vector3;
 
 public class Dig extends Skill {
+	public static final long cast_time = 500L;
+	public static final DefaultedKey<Vector3> BLOCK = new DefaultedKeyImpl<Vector3>("dig_block", Vector3.ZERO);
+
 	public Dig(int id) {
 		super(id, 200, "dig");
 	}
 
 	@Override
 	public void handle(Entity source) {
-		source.get(HitBlockComponent.class).setRange(4f);
-		Block block = source.get(HitBlockComponent.class).getTargetBlock();
+		Block block = getBlock(source);
 		if (block != null) {
 			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
 				block.setMaterial(BlockMaterial.AIR);
@@ -56,5 +61,27 @@ public class Dig extends Skill {
 				block.setMaterial(BlockMaterial.AIR);
 			}
 		}
+	}
+	
+	private Block getBlock(Entity source) {
+		source.get(HitBlockComponent.class).setRange(4f);
+		return source.get(HitBlockComponent.class).getTargetBlock();
+	}
+	
+	@Override
+	public boolean stepCast(Entity source, float dt) {
+		if (getCastTime(source) == 0L) {
+			source.getData().put(BLOCK, getBlock(source).getPosition());
+		} else if (getBlock(source).getPosition().compareTo(source.getData().get(BLOCK)) != 0) {
+			resetCast(source);
+			return false;
+		}
+		
+		addCastTime(source, dt);
+		
+		if (getCastTime(source) >= cast_time) {
+			return true;
+		}
+		return false;
 	}
 }

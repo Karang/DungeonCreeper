@@ -97,7 +97,7 @@ public class DungeonGenerator implements WorldGenerator {
 	}
 
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
-		return !(chunkX < 0 || chunkY < 0 || chunkZ < 0 || chunkX > dungeonWidth || chunkY > dungeonHeight || chunkZ > dungeonLength);
+		return !(chunkX<0 || chunkY<0 || chunkZ<0 || chunkX>=dungeonWidth || chunkY>=dungeonHeight || chunkZ>=dungeonLength);
 	}
 
 	public int getSize() {

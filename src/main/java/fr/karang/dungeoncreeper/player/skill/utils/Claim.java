@@ -61,17 +61,17 @@ public class Claim extends Skill {
 			DCMaterial material = (DCMaterial) block.getMaterial();
 
 			if (material.isClaimedBy(block, team)) {
-				if (source instanceof Player) {
-					System.out.println("Block déjà claim");
-					((Player) source).sendMessage("Block déjà claim");
+				if(source instanceof Player){
+					System.out.println("Block already claimed.");
+					((Player)source).sendMessage("Block already claimed.");
 				}
 				return;
 			}
 
 			if (!material.isNextClaimedBlock(block, team)) {
-				if (source instanceof Player) {
-					System.out.println("Pas de block voisin claim");
-					((Player) source).sendMessage("Pas de block voisin claim");
+				if (source instanceof Player){
+					System.out.println("No claimed adjacent block.");
+					((Player)source).sendMessage("No claimed adjacent block.");
 				}
 				return;
 			}
