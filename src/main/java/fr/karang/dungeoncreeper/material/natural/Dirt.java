@@ -31,6 +31,6 @@ import fr.karang.dungeoncreeper.material.DCMaterial;
 public class Dirt extends DCMaterial {
 	public Dirt() {
 		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
-		this.setHardness(1.f);
+		setHardness(0.5f);
 	}
 }

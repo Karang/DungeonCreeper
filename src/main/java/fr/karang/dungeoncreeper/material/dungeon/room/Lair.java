@@ -31,5 +31,6 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 public class Lair extends DungeonMaterial {
 	public Lair() {
 		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm"); // TODO : Make Lair design
+	
 	}
 }

@@ -31,5 +31,6 @@ import fr.karang.dungeoncreeper.material.DCMaterial;
 public class UnclaimedFloor extends DCMaterial {
 	public UnclaimedFloor() {
 		super("Unclaimed Floor", "model://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.spm");
+		setHardness(-1.0f);
 	}
 }

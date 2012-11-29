@@ -31,6 +31,7 @@ import fr.karang.dungeoncreeper.material.DCMaterial;
 public class Lava extends DCMaterial {
 	public Lava() {
 		super("Lava", "model://DungeonCreeper/resources/block/natural/lava/lava.spm");
+		setHardness(-1f);
 	}
 
 	@Override

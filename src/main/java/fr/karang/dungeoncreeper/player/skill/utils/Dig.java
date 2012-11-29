@@ -38,7 +38,6 @@ import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Vector3;
 
 public class Dig extends Skill {
-	public static final long cast_time = 500L;
 	public static final DefaultedKey<Vector3> BLOCK = new DefaultedKeyImpl<Vector3>("dig_block", Vector3.ZERO);
 
 	public Dig(int id) {
@@ -72,7 +71,7 @@ public class Dig extends Skill {
 	public boolean stepCast(Entity source, float dt) {
 		Block block = getBlock(source);
 		
-		if (block == null) {
+		if (block == null || block.getMaterial().getHardness() == -1) {
 			resetCast(source);
 			return false;
 		}
@@ -86,7 +85,7 @@ public class Dig extends Skill {
 		
 		addCastTime(source, dt);
 		
-		if (getCastTime(source) >= cast_time) {
+		if (getCastTime(source) >= block.getMaterial().getHardness()*5000) {
 			return true;
 		}
 		return false;
