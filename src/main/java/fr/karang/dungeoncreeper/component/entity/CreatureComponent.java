@@ -61,7 +61,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 		if (input.getFire1()) {
 			if (getCastType()==1) {
-				if (getPrimarySkill().stepCast(getOwner(), dt)) {
+				if (getPrimarySkill().canUse(getOwner()) && getPrimarySkill().stepCast(getOwner(), dt)) {
 					primaryInterract();
 					resetCast(0);
 				}
@@ -70,7 +70,7 @@ public abstract class CreatureComponent extends EntityComponent {
 			}
 		} else if (input.getInteract()) {
 			if (getCastType()==1) {
-				if (getSecondarySkill().stepCast(getOwner(), dt)) {
+				if (getSecondarySkill().canUse(getOwner()) && getSecondarySkill().stepCast(getOwner(), dt)) {
 					secondaryInterract();
 					resetCast(0);
 				}
@@ -120,7 +120,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void primaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getPrimarySkill()));
-		if (event.isCancelled() || !event.getSkill().canUse(event.getEntity())) {
+		if (event.isCancelled()) {
 			System.out.println("Action canceled");
 			return;
 		}
@@ -130,7 +130,7 @@ public abstract class CreatureComponent extends EntityComponent {
 
 	public void secondaryInterract() {
 		EntitySkillUseEvent event = Spout.getEngine().getEventManager().callEvent(new EntitySkillUseEvent(getOwner(), getSecondarySkill()));
-		if (event.isCancelled() || !event.getSkill().canUse(event.getEntity())) {
+		if (event.isCancelled()) {
 			System.out.println("Action canceled");
 			return;
 		}
