@@ -24,19 +24,13 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.projectiles;
+package fr.karang.dungeoncreeper.component.entity;
 
+import org.spout.api.Spout;
 import org.spout.api.entity.EntityPrefab;
 
-import fr.karang.dungeoncreeper.component.entity.DungeonEntities;
-
-public class Knives extends Projectile {
-	public Knives(int id) {
-		super(id, 1000, 3000, "knives");
-	}
-
-	@Override
-	public EntityPrefab getProjectile() {
-		return DungeonEntities.KNIFE;
-	}
+public class DungeonEntities {
+	public static final EntityPrefab ARROW = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
+	public static final EntityPrefab FIREBALL = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
+	public static final EntityPrefab KNIFE = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
 }

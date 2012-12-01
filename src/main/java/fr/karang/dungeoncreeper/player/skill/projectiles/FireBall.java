@@ -26,19 +26,17 @@
  */
 package fr.karang.dungeoncreeper.player.skill.projectiles;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
+import org.spout.api.entity.EntityPrefab;
 
-import org.spout.api.entity.Entity;
+import fr.karang.dungeoncreeper.component.entity.DungeonEntities;
 
-public class FireBall extends Skill {
+public class FireBall extends Projectile {
 	public FireBall(int id) {
-		super(id, "fireball");
-		// TODO Auto-generated constructor stub
+		super(id, 1000, 3000, "fireball");
 	}
 
 	@Override
-	public void handle(Entity source) {
-		// TODO Auto-generated method stub
-
+	public EntityPrefab getProjectile() {
+		return DungeonEntities.FIREBALL;
 	}
 }

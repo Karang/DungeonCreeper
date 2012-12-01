@@ -29,18 +29,18 @@ package fr.karang.dungeoncreeper.player.skill.projectiles;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.entity.EntityPrefab;
 
 public abstract class Projectile extends Skill {
-	public Projectile(int id, String skill_name) {
-		super(id, "proj_" + skill_name);
-		// TODO Auto-generated constructor stub
+	public Projectile(int id, long max_cooldown, long cast_time, String skill_name) {
+		super(id, max_cooldown, cast_time, "proj_" + skill_name);
 	}
 
 	@Override
 	public void handle(Entity source) {
-		// TODO Auto-generated method stub
-
+		Entity projectile = getProjectile().createEntity(source.getTransform().getPosition());
+		source.getWorld().spawnEntity(projectile);
 	}
 
-	public abstract Object getProjectile();
+	public abstract EntityPrefab getProjectile();
 }

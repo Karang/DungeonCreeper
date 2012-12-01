@@ -26,15 +26,17 @@
  */
 package fr.karang.dungeoncreeper.player.skill.projectiles;
 
+import org.spout.api.entity.EntityPrefab;
+
+import fr.karang.dungeoncreeper.component.entity.DungeonEntities;
+
 public class Arrow extends Projectile {
 	public Arrow(int id) {
-		super(id, "arrow");
-		// TODO Auto-generated constructor stub
+		super(id, 1000, 3000, "arrow");
 	}
 
 	@Override
-	public Object getProjectile() {
-		// TODO Auto-generated method stub
-		return null;
+	public EntityPrefab getProjectile() {
+		return DungeonEntities.ARROW;
 	}
 }

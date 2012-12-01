@@ -1,5 +1,6 @@
 Name: "Arrow"
 Components:
+    - org.spout.engine.entity.component.EntityRendererComponent
     - fr.karang.dungeoncreeper.component.entity.ProjectileComponent
 Data:
     Damages: 1
