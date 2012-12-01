@@ -30,6 +30,7 @@ import java.awt.Color;
 
 import fr.karang.dungeoncreeper.DungeonConfig;
 import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.render.DungeonResources;
 
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
@@ -40,16 +41,12 @@ import org.spout.api.gui.component.RenderPartsHolderComponent;
 import org.spout.api.gui.render.RenderPart;
 import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
-import org.spout.api.render.Font;
-import org.spout.api.render.RenderMaterial;
 
 public class LobbyScreen extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final Color GUI_BROWN = new Color(110, 70, 0, 200);
 	private static final Color GUI_GREEN = new Color(100, 160, 0, 200);
 	private static final Color GUI_GREY = new Color(128, 128, 128, 200);
-	private final RenderMaterial colorMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/GUIRoundedRect.smt");
-	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget[][] gamesTab = new Widget[5][3];
 	private Widget[] playersTab = new Widget[6];
 	private int idGame, idPlayer;
@@ -88,14 +85,14 @@ public class LobbyScreen extends Screen {
 		final Widget box = new Widget();
 		final RenderPartsHolderComponent titlerect = box.add(RenderPartsHolderComponent.class);
 		RenderPart rect = new RenderPart();
-		rect.setRenderMaterial(colorMaterial);
+		rect.setRenderMaterial(DungeonResources.COLOR_MAT);
 		rect.setColor(bg);
 		rect.setSprite(new Rectangle(x * SCALE, y, w * SCALE, h));
 		rect.setSource(new Rectangle(0, 0, 0, 0));
 		titlerect.add(rect);
 		box.setGeometry(new Rectangle(x * SCALE, y, 0, 0));
 		final LabelComponent title = box.add(LabelComponent.class);
-		title.setFont(FONT);
+		title.setFont(DungeonResources.FONT);
 		title.setText(label);
 		attachWidget(DungeonCreeper.getInstance(), box);
 		return box;

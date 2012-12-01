@@ -33,6 +33,7 @@ import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.render.DungeonResources;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
@@ -46,16 +47,11 @@ import org.spout.api.gui.component.RenderPartsHolderComponent;
 import org.spout.api.gui.render.RenderPart;
 import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
-import org.spout.api.render.Font;
-import org.spout.api.render.RenderMaterial;
 
 public class HUD extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
-	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
-	private final RenderMaterial crosshairMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
-	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
 	private int slot = 1;
@@ -124,16 +120,16 @@ public class HUD extends Screen {
 		LabelComponent txtLevel = level.add(LabelComponent.class);
 		
 		life.setGeometry(new Rectangle(-0.3f, -0.75f, 0, 0));
-		txtLife.setFont(FONT);
+		txtLife.setFont(DungeonResources.FONT);
 		
 		gold.setGeometry(new Rectangle(0, 0.8f, 0, 0));
-		txtGold.setFont(FONT);
+		txtGold.setFont(DungeonResources.FONT);
 		
 		mana.setGeometry(new Rectangle(0.3f, -0.75f, 0, 0));
-		txtMana.setFont(FONT);
+		txtMana.setFont(DungeonResources.FONT);
 		
 		level.setGeometry(new Rectangle(0, -0.75f, 0, 0));
-		txtLevel.setFont(FONT);
+		txtLevel.setFont(DungeonResources.FONT);
 		
 		attachWidget(DungeonCreeper.getInstance(), life);
 		attachWidget(DungeonCreeper.getInstance(), gold);
@@ -145,14 +141,14 @@ public class HUD extends Screen {
 		Widget crosshair = new Widget();
 
 		RenderPart cross = new RenderPart();
-		cross.setRenderMaterial(skillMaterial);
+		cross.setRenderMaterial(DungeonResources.SKILL_MAT);
 		cross.setSource(new Rectangle(0, 0.75f, 0.02f, 0.02f));
 		cross.setSprite(new Rectangle(-0.025f * SCALE, -0.025f, 0.05f * SCALE, 0.05f));
 
 		crosshair.add(RenderPartsHolderComponent.class).add(cross);
 		
 		RenderPart cast = new RenderPart();
-		cast.setRenderMaterial(crosshairMaterial);
+		cast.setRenderMaterial(DungeonResources.CROSSHAIR_MAT);
 		cast.setSource(new Rectangle(0, 0, 1, 1));
 		cast.setSprite(new Rectangle(-0.1f * SCALE, -0.1f, 0.2f * SCALE, 0.2f));
 
@@ -167,14 +163,14 @@ public class HUD extends Screen {
 
 		RenderPart selectSecondary = new RenderPart();
 		selectSecondary.setColor(Color.WHITE);
-		selectSecondary.setRenderMaterial(skillMaterial);
+		selectSecondary.setRenderMaterial(DungeonResources.SKILL_MAT);
 		selectSecondary.setSprite(new Rectangle(x + SKILL_OFFSET * SCALE, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 		selectSecondary.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectSecondary, 0);
 
 		RenderPart selectPrincipal = new RenderPart();
 		selectPrincipal.setColor(Color.WHITE);
-		selectPrincipal.setRenderMaterial(skillMaterial);
+		selectPrincipal.setRenderMaterial(DungeonResources.SKILL_MAT);
 		selectPrincipal.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 		selectPrincipal.setSource(new Rectangle(32f / 256f, 224f / 256f, 32f / 256f, 32f / 256f));
 		bar.add(selectPrincipal, 1);
@@ -182,7 +178,7 @@ public class HUD extends Screen {
 		for (int j = 0; j < nbSlots; j++) {
 			RenderPart cooldown = new RenderPart();
 			cooldown.setColor(Color.WHITE);
-			cooldown.setRenderMaterial(skillMaterial);
+			cooldown.setRenderMaterial(DungeonResources.SKILL_MAT);
 			cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, 0));
 			cooldown.setSource(new Rectangle(0, 224f / 256f, 32f / 256f, 32f / 256f));
 			bar.add(cooldown, 2 + j);
@@ -193,7 +189,7 @@ public class HUD extends Screen {
 		for (Skill skill : skills) {
 			RenderPart icon = new RenderPart();
 			icon.setColor(Color.WHITE);
-			icon.setRenderMaterial(skillMaterial);
+			icon.setRenderMaterial(DungeonResources.SKILL_MAT);
 			icon.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE));
 			icon.setSource(skill.getUv());
 			bar.add(icon, 2 + i++);

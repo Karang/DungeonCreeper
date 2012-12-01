@@ -24,48 +24,25 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper;
+package fr.karang.dungeoncreeper.render;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.gui.HUD;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.render.DungeonResources;
-
-import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.component.components.CameraComponent;
-import org.spout.api.entity.Player;
-import org.spout.api.event.EventHandler;
-import org.spout.api.event.Listener;
-import org.spout.api.event.player.PlayerJoinEvent;
-import org.spout.api.event.server.ClientEnableEvent;
+import org.spout.api.render.Font;
+import org.spout.api.render.RenderMaterial;
 
-public class DungeonListener implements Listener {
-	private DungeonCreeper plugin;
+public class DungeonResources {
+	public static final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 
-	public DungeonListener(DungeonCreeper plugin) {
-		this.plugin = plugin;
-	}
-
-	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		plugin.getLobby().playerJoin(event.getPlayer());
-	}
-
-	@EventHandler
-	public void onClientEnable(ClientEnableEvent event) {
-		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
-		
-		DungeonResources.init();
-
-		player.add(Imp.class);
-		player.add(DungeonPlayer.class);
-
-		final HUD hud = new HUD(player);
-		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
-
-		CameraComponent camera = player.get(CameraComponent.class);
-		camera.setScale(0.5f);
-		camera.setSpeed(10f);
+	// GUI
+	public static final RenderMaterial COLOR_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/GUIRoundedRect.smt");
+	public static final RenderMaterial SKILL_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
+	public static final RenderMaterial CROSSHAIR_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
+	
+	// Terrain
+	public static final RenderMaterial TERRAIN_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/terrain.smt");
+	
+	public static void init() {
+		TERRAIN_MAT.addRenderEffect(RenderEffects.BUMP);
+		CROSSHAIR_MAT.addRenderEffect(RenderEffects.GUI_CAST);
 	}
 }
