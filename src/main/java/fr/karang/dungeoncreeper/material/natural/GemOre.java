@@ -31,6 +31,6 @@ import fr.karang.dungeoncreeper.material.DCMaterial;
 public class GemOre extends DCMaterial {
 	public GemOre() {
 		super("Gem Ore", "model://DungeonCreeper/resources/block/natural/gemore/gemore.spm");
-		setHardness(-1);
+		setHardness(1f);
 	}
 }
