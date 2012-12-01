@@ -60,6 +60,11 @@ public class Imp extends CreatureComponent {
 		getData().put(DungeonData.GOLD_AMOUNT, 0);
 	}
 
+	public void addGold(int amount) {
+		int gold = getData().get(DungeonData.GOLD_AMOUNT);
+		getData().put(DungeonData.GOLD_AMOUNT, gold + amount);
+	}
+	
 	public Rooms getRoomClaim() {
 		return roomClaim;
 	}

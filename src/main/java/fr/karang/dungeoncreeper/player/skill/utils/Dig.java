@@ -26,6 +26,10 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
+import java.util.Random;
+
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
@@ -41,6 +45,8 @@ public class Dig extends Skill {
 	public static final DefaultedKey<Long> TIME = new DefaultedKeyImpl<Long>("dig_time", 0L);
 	public static final DefaultedKey<Vector3> BLOCK = new DefaultedKeyImpl<Vector3>("dig_block", Vector3.ZERO);
 
+	private final Random rand = new Random();
+	
 	public Dig(int id) {
 		super(id, 200, "dig");
 	}
@@ -52,11 +58,17 @@ public class Dig extends Skill {
 			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
 				block.setMaterial(BlockMaterial.AIR);
 			} else if (block.getMaterial().isMaterial(DCMaterials.GEM_ORE)) {
-				//TODO : Give gold
-			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_BAG)) {
-				//TODO : Give gold
-				block.setMaterial(BlockMaterial.AIR);
+				CreatureComponent cc = source.get(CreatureComponent.class);
+				if (cc instanceof Imp) {
+					((Imp) cc).addGold(rand.nextInt(20) + 5);
+				}
 			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_ORE)) {
+				CreatureComponent cc = source.get(CreatureComponent.class);
+				if (cc instanceof Imp) {
+					((Imp) cc).addGold(rand.nextInt(20) + 5);
+				}
+				block.setMaterial(BlockMaterial.AIR);
+			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_BAG)) {
 				//TODO : Give gold
 				block.setMaterial(BlockMaterial.AIR);
 			}

@@ -31,17 +31,22 @@ import java.util.List;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
+import org.spout.api.chat.ChatArguments;
+import org.spout.api.chat.style.ChatStyle;
 import org.spout.api.entity.Player;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
+import org.spout.api.gui.component.LabelComponent;
 import org.spout.api.gui.component.RenderPartsHolderComponent;
 import org.spout.api.gui.render.RenderPart;
 import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
+import org.spout.api.render.Font;
 import org.spout.api.render.RenderMaterial;
 
 public class HUD extends Screen {
@@ -50,58 +55,53 @@ public class HUD extends Screen {
 	private static final float SKILL_SIZE = 0.19f;
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
 	private final RenderMaterial crosshairMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
+	private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
 	private int slot = 1;
 	private final Player player;
+	
+	private final Widget life = new Widget();
+	private final Widget gold = new Widget();
+	private final Widget mana = new Widget();
+	private final Widget level = new Widget();
 
 	public HUD(Player player) {
 		if (Spout.getPlatform() != Platform.CLIENT) {
 			throw new IllegalStateException("Only clients can have an HUD screen.");
 		}
-
+		
 		this.player = player;
 		this.setTakesInput(false);
 
 		skillBar.add(RenderPartsHolderComponent.class);
 
 		CreatureComponent cc = ((Client) Spout.getEngine()).getActivePlayer().get(CreatureComponent.class);
-		buildSkillBar(cc.getSkills());
-
-		//setCooldown(2, 0.7f);
-		//selectSecondarySlot(2);
-
-		Widget cursor = new Widget();
-
-		RenderPart part = new RenderPart();
-		part.setRenderMaterial(skillMaterial);
-		part.setSource(new Rectangle(0, 0.75f, 0.02f, 0.02f));
-		part.setSprite(new Rectangle(-0.025f * SCALE, -0.025f, 0.05f * SCALE, 0.05f));
-
-		cursor.add(RenderPartsHolderComponent.class).add(part);
 		
-		RenderPart part2 = new RenderPart();
-		part2.setRenderMaterial(crosshairMaterial);
-		part2.setSource(new Rectangle(0, 0, 1, 1));
-		part2.setSprite(new Rectangle(-0.1f * SCALE, -0.1f, 0.2f * SCALE, 0.2f));
-
-		cursor.add(RenderPartsHolderComponent.class).add(part2);
-		this.attachWidget(DungeonCreeper.getInstance(), cursor);
-
-		this.attachWidget(DungeonCreeper.getInstance(), skillBar);
+		buildSkillBar(cc.getSkills());
+		buildCrosshair();
+		buildInfos();
 	}
 
 	@Override
 	public void onTick(float dt) {
 		CreatureComponent cc = player.get(CreatureComponent.class);
+		
 		int slot = 0;
+		
 		for (Skill skill : cc.getSkills()) {
 			skill.updateCooldown(dt, player);
 			setCooldown(slot++, skill.getCooldown(player));
 		}
+		
 		if (this.slot != cc.getSlot()) {
 			selectSecondarySlot(cc.getSlot());
 		}
+		
+		life.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.RED, player.getData().get(DungeonData.HEALTH)));
+		gold.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.YELLOW, player.getData().get(DungeonData.GOLD_AMOUNT)));
+		mana.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.BLUE, player.getData().get(DungeonData.MANA)));
+		level.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.BRIGHT_GREEN, player.getData().get(DungeonData.LEVEL)));
 	}
 
 	public void selectSecondarySlot(int slot) {
@@ -116,7 +116,50 @@ public class HUD extends Screen {
 		float x = cooldown.getSprite().getX();
 		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
 	}
+	
+	public void buildInfos() {
+		LabelComponent txtLife = life.add(LabelComponent.class);
+		LabelComponent txtGold = gold.add(LabelComponent.class);
+		LabelComponent txtMana = mana.add(LabelComponent.class);
+		LabelComponent txtLevel = level.add(LabelComponent.class);
+		
+		life.setGeometry(new Rectangle(-0.3f, -0.75f, 0, 0));
+		txtLife.setFont(FONT);
+		
+		gold.setGeometry(new Rectangle(0, 0.8f, 0, 0));
+		txtGold.setFont(FONT);
+		
+		mana.setGeometry(new Rectangle(0.3f, -0.75f, 0, 0));
+		txtMana.setFont(FONT);
+		
+		level.setGeometry(new Rectangle(0, -0.75f, 0, 0));
+		txtLevel.setFont(FONT);
+		
+		attachWidget(DungeonCreeper.getInstance(), life);
+		attachWidget(DungeonCreeper.getInstance(), gold);
+		attachWidget(DungeonCreeper.getInstance(), mana);
+		attachWidget(DungeonCreeper.getInstance(), level);
+	}
 
+	public void buildCrosshair() {
+		Widget crosshair = new Widget();
+
+		RenderPart cross = new RenderPart();
+		cross.setRenderMaterial(skillMaterial);
+		cross.setSource(new Rectangle(0, 0.75f, 0.02f, 0.02f));
+		cross.setSprite(new Rectangle(-0.025f * SCALE, -0.025f, 0.05f * SCALE, 0.05f));
+
+		crosshair.add(RenderPartsHolderComponent.class).add(cross);
+		
+		RenderPart cast = new RenderPart();
+		cast.setRenderMaterial(crosshairMaterial);
+		cast.setSource(new Rectangle(0, 0, 1, 1));
+		cast.setSprite(new Rectangle(-0.1f * SCALE, -0.1f, 0.2f * SCALE, 0.2f));
+
+		crosshair.get(RenderPartsHolderComponent.class).add(cast);
+		attachWidget(DungeonCreeper.getInstance(), crosshair);
+	}
+	
 	public void buildSkillBar(List<Skill> skills) {
 		RenderPartsHolderComponent bar = skillBar.get(RenderPartsHolderComponent.class);
 		nbSlots = skills.size();
@@ -156,5 +199,7 @@ public class HUD extends Screen {
 			bar.add(icon, 2 + i++);
 			x += SKILL_OFFSET * SCALE;
 		}
+		
+		attachWidget(DungeonCreeper.getInstance(), skillBar);
 	}
 }
