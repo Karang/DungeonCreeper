@@ -29,20 +29,16 @@ package fr.karang.dungeoncreeper.component.entity;
 import org.spout.api.component.components.EntityComponent;
 import org.spout.api.math.Vector3;
 
+import fr.karang.dungeoncreeper.data.DungeonData;
+
 public class ProjectileComponent extends EntityComponent {
-	private final int damages;
-	
-	public ProjectileComponent(int damages) {
-		this.damages = damages;
-	}
-	
 	@Override
 	public void onTick(float dt) {
 		
 	}
 	
 	public int getDamages() {
-		return damages;
+		return getData().get(DungeonData.DAMAGES);
 	}
 	
 	public Vector3 getVelocity() {

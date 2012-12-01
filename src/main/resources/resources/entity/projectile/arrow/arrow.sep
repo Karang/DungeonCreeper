@@ -1,0 +1,6 @@
+Name: "Arrow"
+Components:
+    - fr.karang.dungeoncreeper.component.entity.ProjectileComponent
+Data:
+    Damages: 1
+    Model: model://DungeonCreeper/resources/entity/projectile/arrow/arrow.spm
