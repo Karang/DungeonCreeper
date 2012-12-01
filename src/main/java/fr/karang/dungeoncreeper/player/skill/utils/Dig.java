@@ -38,6 +38,7 @@ import org.spout.api.material.BlockMaterial;
 import org.spout.api.math.Vector3;
 
 public class Dig extends Skill {
+	public static final DefaultedKey<Long> TIME = new DefaultedKeyImpl<Long>("dig_time", 0L);
 	public static final DefaultedKey<Vector3> BLOCK = new DefaultedKeyImpl<Vector3>("dig_block", Vector3.ZERO);
 
 	public Dig(int id) {
@@ -78,6 +79,7 @@ public class Dig extends Skill {
 		
 		if (getCastTime(source) == 0L) {
 			source.getData().put(BLOCK, block.getPosition());
+			source.getData().put(TIME, (long) (block.getMaterial().getHardness()*5000L));
 		} else if (block.getPosition().compareTo(source.getData().get(BLOCK)) != 0) {
 			resetCast(source);
 			return false;
@@ -89,5 +91,14 @@ public class Dig extends Skill {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public float getCastPercent(Entity source) {
+		long time = source.getData().get(TIME);
+		if (time == 0L) {
+			return 0f;
+		}
+		return (float) getCastTime(source) / time;
 	}
 }

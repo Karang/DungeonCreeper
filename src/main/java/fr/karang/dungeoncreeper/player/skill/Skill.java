@@ -114,6 +114,13 @@ public abstract class Skill {
 		source.getData().put(DungeonData.CAST_TIME, (long)(getCastTime(source) + dt * 1000));
 	}
 	
+	public float getCastPercent(Entity source) {
+		if (cast_time == 0L) {
+			return 0f;
+		}
+		return (float) getCastTime(source) / cast_time;
+	}
+	
 	public long getCastTime(Entity source) {
 		return source.getData().get(DungeonData.CAST_TIME);
 	}

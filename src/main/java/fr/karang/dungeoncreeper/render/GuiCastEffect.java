@@ -26,7 +26,32 @@
  */
 package fr.karang.dungeoncreeper.render;
 
-public class RenderEffects {
-	public static BumpEffect BUMP = new BumpEffect();
-	public static GuiCastEffect GUI_CAST = new GuiCastEffect();
+import org.spout.api.Client;
+import org.spout.api.Spout;
+import org.spout.api.entity.Player;
+import org.spout.api.render.effect.RenderEffect;
+import org.spout.api.render.effect.SnapshotRender;
+
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
+public class GuiCastEffect implements RenderEffect {
+	
+	private Player player;
+
+	public GuiCastEffect() {
+		player = ((Client) Spout.getEngine()).getActivePlayer();
+	}
+	
+	public void preRender(SnapshotRender snap) {
+		Skill skill = player.get(CreatureComponent.class).getSkillInCast();
+		
+		if (skill == null) {
+			snap.getMaterial().getShader().setUniform("angle", 0f);
+		} else {
+			snap.getMaterial().getShader().setUniform("angle", skill.getCastPercent(player));
+		}
+	}
+
+	public void postRender(SnapshotRender snapshotRender) { }
 }

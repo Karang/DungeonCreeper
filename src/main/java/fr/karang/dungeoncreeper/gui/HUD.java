@@ -49,6 +49,7 @@ public class HUD extends Screen {
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
 	private final RenderMaterial skillMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
+	private final RenderMaterial crosshairMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
 	private Widget skillBar = new Widget();
 	private int nbSlots = 0;
 	private int slot = 1;
@@ -78,6 +79,13 @@ public class HUD extends Screen {
 		part.setSprite(new Rectangle(-0.025f * SCALE, -0.025f, 0.05f * SCALE, 0.05f));
 
 		cursor.add(RenderPartsHolderComponent.class).add(part);
+		
+		RenderPart part2 = new RenderPart();
+		part2.setRenderMaterial(crosshairMaterial);
+		part2.setSource(new Rectangle(0, 0, 1, 1));
+		part2.setSprite(new Rectangle(-0.1f * SCALE, -0.1f, 0.2f * SCALE, 0.2f));
+
+		cursor.add(RenderPartsHolderComponent.class).add(part2);
 		this.attachWidget(DungeonCreeper.getInstance(), cursor);
 
 		this.attachWidget(DungeonCreeper.getInstance(), skillBar);

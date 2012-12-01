@@ -60,6 +60,8 @@ public class DungeonListener implements Listener {
 		// Render materials
 		RenderMaterial rm = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/terrain.smt");
 		rm.addRenderEffect(RenderEffects.BUMP);
+		RenderMaterial rm2 = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
+		rm2.addRenderEffect(RenderEffects.GUI_CAST);
 
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);

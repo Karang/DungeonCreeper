@@ -93,6 +93,14 @@ public abstract class CreatureComponent extends EntityComponent {
 		return getData().get(DungeonData.CAST_TYPE);
 	}
 
+	public Skill getSkillInCast() {
+		if (getCastType()==1)
+			return getPrimarySkill();
+		if (getCastType()==2)
+			return getSecondarySkill();
+		return null;
+	}
+	
 	public List<Skill> getSkills() {
 		return skills;
 	}
