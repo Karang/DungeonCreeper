@@ -37,6 +37,7 @@ public class DungeonData {
 	public static final DefaultedKey<Integer> DAMAGES = new DefaultedKeyImpl<Integer>("damages", 0);
 	public static final DefaultedKey<Integer> SKILLSLOT = new DefaultedKeyImpl<Integer>("skillslot", 0);
 	public static final DefaultedKey<Integer> LEVEL = new DefaultedKeyImpl<Integer>("level", 1);
+	public static final DefaultedKey<Integer> XP = new DefaultedKeyImpl<Integer>("xp", 0);
 	public static final DefaultedKey<Integer> MANA = new DefaultedKeyImpl<Integer>("mana", 1);
 	public static final DefaultedKey<Integer> MAX_MANA = new DefaultedKeyImpl<Integer>("max_mana", 1);
 	public static final DefaultedKey<Long> CAST_TIME = new DefaultedKeyImpl<Long>("cast_time", 0L);

@@ -24,19 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Vampire
+ * @source http://dungeonkeeper.wikia.com/wiki/Dark_Elf
  */
-public class Vampire extends CreatureComponent {
-	public Vampire() {
-		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.SLOW, 3);
-		addSkill(Skills.BITE, 8);
-		addSkill(Skills.RAISE_DEAD, 10);
+public class DarkElf extends CreatureComponent {
+	public DarkElf() {
+		addSkill(Skills.ARROW, 1);
+		addSkill(Skills.KNIVES, 4);
+		addSkill(Skills.GUIDED_BOLT, 8);
 	}
 
 	@Override

@@ -24,18 +24,23 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skills;
+import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Bile_Demon
+ * @source http://dungeonkeeper.wikia.com/wiki/Goblin
  */
-public class BileDemon extends CreatureComponent {
-	public BileDemon() {
-		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.GAS_CLOUD, 4);
-		addSkill(Skills.GAS_MISSILE, 8);
+public class Gobelin extends CreatureComponent {
+	public Gobelin() {
+		addSkill(Skills.ATTACKSWORD, 1);
+	}
+
+	public boolean hasRequired(Team team) {
+		return team.hasRoom(Rooms.LAIR, 5);
 	}
 
 	@Override

@@ -26,7 +26,7 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 

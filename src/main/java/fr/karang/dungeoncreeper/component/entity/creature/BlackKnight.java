@@ -24,18 +24,22 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Dark_Elf
+ * The Imp is your most important creature you have. They do
+ * everything that your other creatures can't, including digging,
+ * claiming land, installing traps, rescuing knocked out creatures,
+ * etc. They do not fight, and instead will run from battle. In
+ * order to expand, you need these.
+ * @source http://dungeonkeeper.wikia.com/wiki/Black_Knight
  */
-public class DarkElf extends CreatureComponent {
-	public DarkElf() {
-		addSkill(Skills.ARROW, 1);
-		addSkill(Skills.KNIVES, 4);
-		addSkill(Skills.GUIDED_BOLT, 8);
+public class BlackKnight extends CreatureComponent {
+	public BlackKnight() {
+		addSkill(Skills.ATTACKSWORD, 1);
 	}
 
 	@Override

@@ -24,21 +24,12 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.projectile;
 
-import fr.karang.dungeoncreeper.player.skill.Skills;
+import fr.karang.dungeoncreeper.component.entity.ProjectileComponent;
 
-/**
- * @source http://dungeonkeeper.wikia.com/wiki/Rogue
- */
-public class Rogue extends CreatureComponent {
-	public Rogue() {
-		addSkill(Skills.ATTACKSWORD, 1);
-		addSkill(Skills.INVISIBILITY, 1);
-	}
-
-	@Override
-	public void onAttached() {
-		super.onAttached();
+public class ArrowEntity extends ProjectileComponent {
+	public ArrowEntity() {
+		super(1);
 	}
 }

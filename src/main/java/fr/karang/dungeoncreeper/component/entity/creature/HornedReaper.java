@@ -24,18 +24,17 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Maiden
+ * @source http://dungeonkeeper.wikia.com/wiki/Horned_Reaper
  */
-public class Maiden extends CreatureComponent {
-	public Maiden() {
-		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.MAIDEN_WEB, 1);
-		addSkill(Skills.POISON_SPIT, 1);
+public class HornedReaper extends CreatureComponent {
+	public HornedReaper() {
+		addSkill(Skills.STUN_FIREBALL, 1);
 	}
 
 	@Override

@@ -24,16 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Firefly
+ * @source http://dungeonkeeper.wikia.com/wiki/Salamander
  */
-public class Firefly extends CreatureComponent {
-	public Firefly() {
-		addSkill(Skills.WHIRLWIND, 8);
+public class Salamender extends CreatureComponent {
+	public Salamender() {
+		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.FIREBALL, 4);
+		addSkill(Skills.SPIT, 8);
 	}
 
 	@Override

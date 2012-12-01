@@ -43,6 +43,9 @@ import org.spout.api.entity.state.PlayerInputState;
 import org.spout.api.math.MathHelper;
 
 public abstract class CreatureComponent extends EntityComponent {
+	//7, 12, 16, 20, 30, 50, 70, 90
+	private static final int[] levelXp = {5, 12, 24, 40, 60, 90, 140, 210, 300};
+	
 	private Map<Skill, Integer> requiredLevel = new HashMap<Skill, Integer>();
 	private List<Skill> skills = new ArrayList<Skill>();
 
@@ -53,6 +56,7 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.DAMAGES, 0);
 		getData().put(DungeonData.SKILLSLOT, 1);
 		getData().put(DungeonData.LEVEL, 1);
+		getData().put(DungeonData.XP, 0);
 	}
 
 	@Override
@@ -82,6 +86,23 @@ public abstract class CreatureComponent extends EntityComponent {
 		}
 
 		//TODO: slot selection
+	}
+	
+	public void addXp(int amount) {
+		int xp = getData().get(DungeonData.XP);
+		xp += amount;
+		
+		int level = getData().get(DungeonData.LEVEL);
+		
+		if (level==10) {
+			return;
+		}
+		
+		if (xp >= levelXp[level-1]) {
+			getData().put(DungeonData.LEVEL, level + 1);
+		}
+		
+		getData().put(DungeonData.XP, xp);
 	}
 	
 	private void resetCast(int type) {

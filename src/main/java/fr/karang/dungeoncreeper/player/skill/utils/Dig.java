@@ -28,8 +28,7 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 
 import java.util.Random;
 
-import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
@@ -55,19 +54,25 @@ public class Dig extends Skill {
 	public void handle(Entity source) {
 		Block block = getBlock(source);
 		if (block != null) {
+			Imp cc = source.get(Imp.class);
+			
+			if (cc == null) {
+				throw new IllegalStateException("Only Imps can dig.");
+			}
+			
 			if (block.getMaterial().isMaterial(DCMaterials.DIRT)) {
 				block.setMaterial(BlockMaterial.AIR);
+				cc.addXp(1);
+				
 			} else if (block.getMaterial().isMaterial(DCMaterials.GEM_ORE)) {
-				CreatureComponent cc = source.get(CreatureComponent.class);
-				if (cc instanceof Imp) {
-					((Imp) cc).addGold(rand.nextInt(20) + 5);
-				}
+				cc.addGold(rand.nextInt(20) + 5);
+				cc.addXp(5);
+				
 			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_ORE)) {
-				CreatureComponent cc = source.get(CreatureComponent.class);
-				if (cc instanceof Imp) {
-					((Imp) cc).addGold(rand.nextInt(20) + 5);
-				}
+				cc.addGold(rand.nextInt(20) + 5);
+				cc.addXp(5);
 				block.setMaterial(BlockMaterial.AIR);
+				
 			} else if (block.getMaterial().isMaterial(DCMaterials.GOLD_BAG)) {
 				//TODO : Give gold
 				block.setMaterial(BlockMaterial.AIR);

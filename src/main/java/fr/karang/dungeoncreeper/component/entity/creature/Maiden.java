@@ -24,24 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * The Imp is your most important creature you have. They do
- * everything that your other creatures can't, including digging,
- * claiming land, installing traps, rescuing knocked out creatures,
- * etc. They do not fight, and instead will run from battle. In
- * order to expand, you need these.
- * @source http://dungeonkeeper.wikia.com/wiki/Warlock
+ * @source http://dungeonkeeper.wikia.com/wiki/Maiden
  */
-public class Warlock extends CreatureComponent {
-	public Warlock() {
+public class Maiden extends CreatureComponent {
+	public Maiden() {
 		addSkill(Skills.HANDTOHAND, 1);
-		addSkill(Skills.FIREBALL, 1);
-		addSkill(Skills.HEAL, 2);
-		addSkill(Skills.FIREBOMB, 8);
+		addSkill(Skills.MAIDEN_WEB, 1);
+		addSkill(Skills.POISON_SPIT, 1);
 	}
 
 	@Override

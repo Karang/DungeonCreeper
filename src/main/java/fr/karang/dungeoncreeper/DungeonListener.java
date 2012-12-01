@@ -26,7 +26,7 @@
  */
 package fr.karang.dungeoncreeper;
 
-import fr.karang.dungeoncreeper.component.entity.Imp;
+import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.render.DungeonResources;

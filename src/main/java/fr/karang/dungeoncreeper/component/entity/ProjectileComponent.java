@@ -26,21 +26,26 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import fr.karang.dungeoncreeper.player.skill.Skills;
+import org.spout.api.component.components.EntityComponent;
+import org.spout.api.math.Vector3;
 
-/**
- * @source http://dungeonkeeper.wikia.com/wiki/Dark_Angel
- */
-public class DarkAngels extends CreatureComponent {
-	public DarkAngels() {
-		addSkill(Skills.ATTACKSWORD, 1);
-		addSkill(Skills.DISRUPTION, 4);
-		addSkill(Skills.HAIL_STORM, 8);
-		addSkill(Skills.SKELETON_ARMY, 10);
+public class ProjectileComponent extends EntityComponent {
+	private final int damages;
+	
+	public ProjectileComponent(int damages) {
+		this.damages = damages;
 	}
-
+	
 	@Override
-	public void onAttached() {
-		super.onAttached();
+	public void onTick(float dt) {
+		
+	}
+	
+	public int getDamages() {
+		return damages;
+	}
+	
+	public Vector3 getVelocity() {
+		return Vector3.ONE;
 	}
 }

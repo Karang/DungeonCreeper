@@ -29,23 +29,23 @@ package fr.karang.dungeoncreeper.player;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.karang.dungeoncreeper.component.entity.BileDemon;
-import fr.karang.dungeoncreeper.component.entity.BlackKnights;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.component.entity.DarkAngels;
-import fr.karang.dungeoncreeper.component.entity.DarkElf;
-import fr.karang.dungeoncreeper.component.entity.DarkMistress;
-import fr.karang.dungeoncreeper.component.entity.Firefly;
-import fr.karang.dungeoncreeper.component.entity.Gobelin;
-import fr.karang.dungeoncreeper.component.entity.HornedReaper;
-import fr.karang.dungeoncreeper.component.entity.Imp;
-import fr.karang.dungeoncreeper.component.entity.Maiden;
-import fr.karang.dungeoncreeper.component.entity.Rogue;
-import fr.karang.dungeoncreeper.component.entity.Salamender;
-import fr.karang.dungeoncreeper.component.entity.Skeleton;
-import fr.karang.dungeoncreeper.component.entity.Troll;
-import fr.karang.dungeoncreeper.component.entity.Vampire;
-import fr.karang.dungeoncreeper.component.entity.Warlock;
+import fr.karang.dungeoncreeper.component.entity.creature.BileDemon;
+import fr.karang.dungeoncreeper.component.entity.creature.BlackKnight;
+import fr.karang.dungeoncreeper.component.entity.creature.DarkAngel;
+import fr.karang.dungeoncreeper.component.entity.creature.DarkElf;
+import fr.karang.dungeoncreeper.component.entity.creature.DarkMistress;
+import fr.karang.dungeoncreeper.component.entity.creature.Firefly;
+import fr.karang.dungeoncreeper.component.entity.creature.Gobelin;
+import fr.karang.dungeoncreeper.component.entity.creature.HornedReaper;
+import fr.karang.dungeoncreeper.component.entity.creature.Imp;
+import fr.karang.dungeoncreeper.component.entity.creature.Maiden;
+import fr.karang.dungeoncreeper.component.entity.creature.Rogue;
+import fr.karang.dungeoncreeper.component.entity.creature.Salamender;
+import fr.karang.dungeoncreeper.component.entity.creature.Skeleton;
+import fr.karang.dungeoncreeper.component.entity.creature.Troll;
+import fr.karang.dungeoncreeper.component.entity.creature.Vampire;
+import fr.karang.dungeoncreeper.component.entity.creature.Warlock;
 
 public class Equipments {
 	private static Map<Integer, Class<? extends CreatureComponent>> byID = new HashMap<Integer, Class<? extends CreatureComponent>>();
@@ -67,8 +67,8 @@ public class Equipments {
 
 	static {
 		register(BileDemon.class);
-		register(BlackKnights.class);
-		register(DarkAngels.class);
+		register(BlackKnight.class);
+		register(DarkAngel.class);
 		register(DarkElf.class);
 		register(DarkMistress.class);
 		register(Firefly.class);

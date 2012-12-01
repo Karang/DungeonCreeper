@@ -24,16 +24,20 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.component.entity.creature;
 
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 
 /**
- * @source http://dungeonkeeper.wikia.com/wiki/Troll
+ * @source http://dungeonkeeper.wikia.com/wiki/Mistress
  */
-public class Troll extends CreatureComponent {
-	public Troll() {
+public class DarkMistress extends CreatureComponent {
+	public DarkMistress() {
 		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.LIGHTNING, 4);
+		addSkill(Skills.FREEZE, 8);
+		addSkill(Skills.HAIL_STORM, 10);
 	}
 
 	@Override
