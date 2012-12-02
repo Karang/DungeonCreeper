@@ -45,6 +45,7 @@ import org.spout.api.geo.discrete.Transform;
 import org.spout.api.material.Material;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
+import org.spout.api.math.Vector4;
 import org.spout.api.model.mesh.Mesh;
 
 public class Team {
@@ -65,10 +66,12 @@ public class Team {
 		private Map<Material, Mesh> teamMesh = new HashMap<Material, Mesh>();
 		private final String name;
 		private final int color;
+		private final Vector4 vector;
 
 		TeamColor(String name, Color color) {
 			this.name = name;
 			this.color = color.getRGB();
+			this.vector = new Vector4(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
 		}
 
 		public String getName() {
@@ -77,6 +80,10 @@ public class Team {
 
 		public int getColor() {
 			return color;
+		}
+		
+		public Vector4 getVector() {
+			return vector;
 		}
 
 		public Mesh getTeamMesh(Material material) {

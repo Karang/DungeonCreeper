@@ -84,7 +84,7 @@ public abstract class CreatureComponent extends EntityComponent {
 		} else {
 			resetCast(0);
 		}
-
+		
 		//TODO: slot selection
 	}
 	

@@ -124,6 +124,10 @@ public abstract class Skill {
 	public long getCastTime(Entity source) {
 		return source.getData().get(DungeonData.CAST_TIME);
 	}
+	
+	public int getManaCost() {
+		return 0;
+	}
 
 	public Rectangle getUv() {
 		return new Rectangle(0, 0, 32f / 256f, 32f / 256f);

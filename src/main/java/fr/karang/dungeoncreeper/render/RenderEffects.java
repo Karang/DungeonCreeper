@@ -29,4 +29,5 @@ package fr.karang.dungeoncreeper.render;
 public class RenderEffects {
 	public static BumpEffect BUMP = new BumpEffect();
 	public static GuiCastEffect GUI_CAST = new GuiCastEffect();
+	public static TeamEffect TEAM_EFFECT = new TeamEffect();
 }

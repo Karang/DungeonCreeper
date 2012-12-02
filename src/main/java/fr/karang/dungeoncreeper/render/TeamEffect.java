@@ -26,27 +26,32 @@
  */
 package fr.karang.dungeoncreeper.render;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.render.Font;
-import org.spout.api.render.RenderMaterial;
+import org.spout.api.entity.Player;
+import org.spout.api.math.Vector4;
+import org.spout.api.render.effect.RenderEffect;
+import org.spout.api.render.effect.SnapshotRender;
 
-public class DungeonResources {
-	public static final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
+import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.player.Team;
 
-	// GUI
-	public static final RenderMaterial COLOR_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/GUIRoundedRect.smt");
-	public static final RenderMaterial SKILL_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
-	public static final RenderMaterial CROSSHAIR_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/crosshair.smt");
-	
-	// Terrain
-	public static final RenderMaterial TERRAIN_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/terrain.smt");
-	
-	// Entities
-	public static final RenderMaterial PROJ_MAT = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/entity/projectile/proj.smt");
-	
-	public static void init() {
-		TERRAIN_MAT.addRenderEffect(RenderEffects.BUMP);
-		CROSSHAIR_MAT.addRenderEffect(RenderEffects.GUI_CAST);
-		PROJ_MAT.addRenderEffect(RenderEffects.TEAM_EFFECT);
+public class TeamEffect implements RenderEffect {
+	private Player player;
+	public TeamEffect() {
+		player = ((Client) Spout.getEngine()).getActivePlayer();
+		
 	}
+	public void preRender(SnapshotRender snap) {
+		// TODO: Make this depends on the entity rendered.
+		Team team = player.get(DungeonPlayer.class).getTeam();
+		if (team==null) {
+			snap.getMaterial().getShader().setUniform("teamColor", new Vector4(0.0, 0.0, 255.0, 255.0));
+		} else {
+			snap.getMaterial().getShader().setUniform("teamColor", team.getColor().getVector());
+		}
+	}
+
+	public void postRender(SnapshotRender snapshotRender) { }
+
 }
