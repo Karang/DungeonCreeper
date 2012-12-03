@@ -40,6 +40,7 @@ import org.spout.api.material.block.BlockFace;
 public class GoldBag extends DCMaterial {
 	public GoldBag() {
 		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
+		
 	}
 
 	@Override

@@ -27,14 +27,29 @@
 package fr.karang.dungeoncreeper.component.entity;
 
 import org.spout.api.component.components.EntityComponent;
+import org.spout.api.component.components.PhysicsComponent;
+import org.spout.api.entity.Entity;
 import org.spout.api.math.Vector3;
+
+import com.bulletphysics.collision.shapes.BoxShape;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 
 public class ProjectileComponent extends EntityComponent {
+	
+	private PhysicsComponent physics;
+	private Entity shooter;
+	
+	@Override
+	public void onAttached() {
+		physics = getOwner().add(PhysicsComponent.class);
+		physics.setCollisionShape(new BoxShape(1, 1, 1));
+	}
+	
 	@Override
 	public void onTick(float dt) {
-		
+		//System.out.println("phys: " + physics.getAngularVelocity());
+		getOwner().getTransform().translate(physics.getLinearVelocity().multiply(dt));
 	}
 	
 	public int getDamages() {
@@ -43,5 +58,17 @@ public class ProjectileComponent extends EntityComponent {
 	
 	public Vector3 getVelocity() {
 		return Vector3.ONE;
+	}
+	
+	public Entity getShooter() {
+		return shooter;
+	}
+	
+	public void setShooter(Entity shooter) {
+		this.shooter = shooter;
+	}
+	
+	public PhysicsComponent getPhysics() {
+		return physics;
 	}
 }

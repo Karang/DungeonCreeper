@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper.player.skill.projectiles;
 
+import fr.karang.dungeoncreeper.component.entity.ProjectileComponent;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.entity.Entity;
@@ -40,6 +41,8 @@ public abstract class Projectile extends Skill {
 	public void handle(Entity source) {
 		Entity projectile = getProjectile().createEntity(source.getTransform().getPosition());
 		source.getWorld().spawnEntity(projectile);
+		projectile.get(ProjectileComponent.class).getPhysics()
+		.applyImpulse(source.getTransform().getTransform().forwardVector());
 	}
 
 	public abstract EntityPrefab getProjectile();

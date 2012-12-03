@@ -38,6 +38,7 @@ import fr.karang.dungeoncreeper.player.Team;
 
 public class TeamEffect implements RenderEffect {
 	private Player player;
+	
 	public TeamEffect() {
 		player = ((Client) Spout.getEngine()).getActivePlayer();
 		

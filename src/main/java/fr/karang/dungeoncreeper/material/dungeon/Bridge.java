@@ -26,8 +26,12 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import org.spout.api.collision.CollisionStrategy;
+
 public class Bridge extends DungeonMaterial {
 	public Bridge() {
 		super("Bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+		
+		setCollision(CollisionStrategy.SOLID);
 	}
 }

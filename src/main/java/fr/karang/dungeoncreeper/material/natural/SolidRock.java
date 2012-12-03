@@ -26,11 +26,14 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
+import org.spout.api.collision.CollisionStrategy;
+
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class SolidRock extends DCMaterial {
 	public SolidRock() {
 		super("Unbreakable Dirt", "model://DungeonCreeper/resources/block/natural/solidrock/solidrock.spm");
 		setHardness(-1.0F);
+		setCollision(CollisionStrategy.SOLID);
 	}
 }

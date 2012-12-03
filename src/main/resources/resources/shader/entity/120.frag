@@ -13,4 +13,4 @@ void main() {
 	} else {
 		gl_FragColor = tex;
 	}
-} 
+}

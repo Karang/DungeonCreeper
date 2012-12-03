@@ -28,12 +28,14 @@ package fr.karang.dungeoncreeper.material.dungeon;
 
 import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
 
+import org.spout.api.collision.CollisionStrategy;
 import org.spout.api.component.components.BlockComponent;
 import org.spout.api.material.ComplexMaterial;
 
 public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
 	public DungeonHeart() {
 		super("Dungeon Heart", "model://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.spm");
+		setCollision(CollisionStrategy.SOLID);
 	}
 
 	public BlockComponent createBlockComponent() {

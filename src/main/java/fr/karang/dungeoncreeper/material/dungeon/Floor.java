@@ -26,8 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import org.spout.api.collision.CollisionStrategy;
+
 public class Floor extends DungeonMaterial {
 	public Floor() {
 		super("Floor", "model://DungeonCreeper/resources/block/dungeon/floor/floor.spm");
+		setCollision(CollisionStrategy.SOLID);
 	}
 }

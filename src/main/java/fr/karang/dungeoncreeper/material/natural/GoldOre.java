@@ -26,11 +26,14 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
+import org.spout.api.collision.CollisionStrategy;
+
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class GoldOre extends DCMaterial {
 	public GoldOre() {
 		super("Gold Ore", "model://DungeonCreeper/resources/block/natural/goldore/goldore.spm");
 		setHardness(1f);
+		setCollision(CollisionStrategy.SOLID);
 	}
 }

@@ -29,6 +29,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.player.Team.TeamColor;
 
+import org.spout.api.collision.CollisionStrategy;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.ChunkSnapshot;
 import org.spout.api.math.Vector3;
@@ -60,5 +61,6 @@ public class Wall extends DungeonMaterial {
 
 			}
 		});
+		setCollision(CollisionStrategy.SOLID);
 	}
 }
