@@ -37,8 +37,20 @@ import org.spout.api.math.Rectangle;
 
 public abstract class Room {
 	public enum Rooms {
+		CASINO(new Casino()),
+		COMBAT_PIT(new CombatPit()),
+		GRAVEYARD(new Graveyard()),
+		GUARD_ROOM(new GuardRoom()),
+		HATCHERY(new Hatchery()),
 		LAIR(new Lair()),
-		HATCHERY(new Hatchery());
+		LIBRARY(new Library()),
+		PRISON(new Prison()),
+		TORTURE_CHAMBER(new TortureChamber()),
+		TRAINING_ROOM(new TrainingRoom()),
+		TREASURY(new Treasury()),
+		UNHOLY_TEMPLE(new UnholyTemple()),
+		WORKSHOP(new Workshop());
+		
 		private Room room;
 
 		Rooms(Room room) {

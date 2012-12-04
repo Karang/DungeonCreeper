@@ -51,11 +51,11 @@ import org.spout.api.model.mesh.Mesh;
 public class Team {
 	public enum TeamColor {
 		/*
-		*	Neutral :128/128/128
-		*	Red :255/0/0
-		*	Blue :0/0/255
-		*	Green :0/255/0
-		*	Yellow :255/255/0
+		*	Neutral : 128/128/128
+		*	Red : 255/0/0
+		*	Blue : 0/0/255
+		*	Green : 0/255/0
+		*	Yellow : 255/255/0
 		*/
 
 		NEUTRAL("Neutral", Color.GRAY),
