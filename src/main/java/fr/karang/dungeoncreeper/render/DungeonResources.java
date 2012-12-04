@@ -47,6 +47,6 @@ public class DungeonResources {
 	public static void init() {
 		TERRAIN_MAT.addRenderEffect(RenderEffects.BUMP);
 		CROSSHAIR_MAT.addRenderEffect(RenderEffects.GUI_CAST);
-		PROJ_MAT.addRenderEffect(RenderEffects.TEAM_EFFECT);
+		PROJ_MAT.addEntityEffect(RenderEffects.TEAM_EFFECT);
 	}
 }

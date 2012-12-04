@@ -26,26 +26,18 @@
  */
 package fr.karang.dungeoncreeper.render;
 
-import org.spout.api.Client;
-import org.spout.api.Spout;
-import org.spout.api.entity.Player;
 import org.spout.api.math.Vector4;
-import org.spout.api.render.effect.RenderEffect;
-import org.spout.api.render.effect.SnapshotRender;
+import org.spout.api.render.effect.EntityEffect;
+import org.spout.api.render.effect.SnapshotEntity;
 
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
+import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.Team;
 
-public class TeamEffect implements RenderEffect {
-	private Player player;
+public class TeamEffect implements EntityEffect {
 	
-	public TeamEffect() {
-		player = ((Client) Spout.getEngine()).getActivePlayer();
+	public void preRenderEntity(SnapshotEntity snap) {
+		Team team = Team.getTeam(snap.getEntity().getData().get(DungeonData.TEAM));
 		
-	}
-	public void preRender(SnapshotRender snap) {
-		// TODO: Make this depends on the entity rendered.
-		Team team = player.get(DungeonPlayer.class).getTeam();
 		if (team==null) {
 			snap.getMaterial().getShader().setUniform("teamColor", new Vector4(0.0, 0.0, 255.0, 255.0));
 		} else {
@@ -53,6 +45,6 @@ public class TeamEffect implements RenderEffect {
 		}
 	}
 
-	public void postRender(SnapshotRender snapshotRender) { }
+	public void postRenderEntity(SnapshotEntity snap) { }
 
 }
