@@ -30,6 +30,7 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
 public class WoodenDoor extends DungeonMaterial {
 	public WoodenDoor() {
-		super("WoodenDoor", (String) null);
+		super("WoodenDoor", "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
+		this.setTransparent();
 	}
 }

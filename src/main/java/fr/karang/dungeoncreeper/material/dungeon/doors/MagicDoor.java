@@ -30,6 +30,6 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
 public class MagicDoor extends DungeonMaterial {
 	public MagicDoor() {
-		super("MagicDoor", (String) null);
+		super("MagicDoor", "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
 	}
 }

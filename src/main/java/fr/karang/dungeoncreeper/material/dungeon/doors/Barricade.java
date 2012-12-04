@@ -30,6 +30,6 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
 public class Barricade extends DungeonMaterial {
 	public Barricade() {
-		super("Barricade", (String) null);
+		super("Barricade", "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
 	}
 }

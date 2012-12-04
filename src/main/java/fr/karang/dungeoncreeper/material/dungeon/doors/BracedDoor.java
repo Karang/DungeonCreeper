@@ -30,6 +30,6 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
 public class BracedDoor extends DungeonMaterial {
 	public BracedDoor() {
-		super("BracedDoor", (String) null);
+		super("BracedDoor", "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
 	}
 }
