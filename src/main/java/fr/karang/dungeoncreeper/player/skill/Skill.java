@@ -39,8 +39,8 @@ import fr.karang.dungeoncreeper.data.DungeonData;
 public abstract class Skill {
 	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
 	private final int id;
-	private final long max_cooldown;
-	private final long cast_time;
+	protected final long max_cooldown;
+	protected final long cast_time;
 	private final DefaultedKey<Long> KEY_COOLDOWN;
 
 	public Skill(int id, String skill_name) {

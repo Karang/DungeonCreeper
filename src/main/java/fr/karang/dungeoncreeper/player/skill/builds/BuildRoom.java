@@ -29,7 +29,6 @@ package fr.karang.dungeoncreeper.player.skill.builds;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
@@ -38,8 +37,8 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.math.Rectangle;
 
-public class Build extends Skill {
-	public Build(int id) {
+public class BuildRoom extends BuildSkill {
+	public BuildRoom(int id) {
 		super(id, "build");
 	}
 

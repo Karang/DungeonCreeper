@@ -27,18 +27,30 @@
 package fr.karang.dungeoncreeper.player.skill.builds;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.geo.cuboid.Block;
+import org.spout.api.material.block.BlockFace;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.material.dungeon.doors.WoodenDoor;
 
-public class PlaceDoor extends Skill {
+public class PlaceDoor extends BuildSkill {
 
 	public PlaceDoor(int id) {
-		super(id, 0L, 0L, "place_door");
+		super(id, 200L, 500L, "place_door");
 	}
 
 	@Override
 	public void handle(Entity source) {
+		Block block = getBlock(source).translate(getBlockFace(source));
 		
+		if (block.getMaterial()!=DCMaterials.AIR)
+			return;
+		
+		if (block.translate(BlockFace.NORTH).getMaterial().isOpaque() && block.translate(BlockFace.SOUTH).getMaterial().isOpaque()) {
+			block.setMaterial(WoodenDoor.WE);
+		} else if (block.translate(BlockFace.WEST).getMaterial().isOpaque() && block.translate(BlockFace.EAST).getMaterial().isOpaque()) {
+			block.setMaterial(WoodenDoor.NS);
+		}
 	}
 
 }

@@ -28,9 +28,7 @@ package fr.karang.dungeoncreeper.player.skill.builds;
 
 import org.spout.api.entity.Entity;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
-
-public class PlaceBridge extends Skill {
+public class PlaceBridge extends BuildSkill {
 
 	public PlaceBridge(int id) {
 		super(id, 0L, 0L, "place_bridge");

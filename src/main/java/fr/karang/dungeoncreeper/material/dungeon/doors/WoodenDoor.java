@@ -36,13 +36,13 @@ public class WoodenDoor extends DungeonMaterial {
 	
 	static {
 		NS = new WoodenDoor();
-		WE = new WoodenDoor("WoodenDoor_WE", 1, NS, "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
-		NS_CLOSED = new WoodenDoor("WoodenDoor_NS_closed", 2, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
-		WE_CLOSED = new WoodenDoor("WoodenDoor_WE_closed", 3, NS, "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
+		WE = new WoodenDoor("WoodenDoor_WE", 1, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
+		NS_CLOSED = new WoodenDoor("WoodenDoor_NS_closed", 2, NS, "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
+		WE_CLOSED = new WoodenDoor("WoodenDoor_WE_closed", 3, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
 	}
 	
 	public WoodenDoor() {
-		super((short)0x07, "WoodenDoor_NS", "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
+		super((short)0x07, "WoodenDoor_NS", "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
 		this.setTransparent();
 	}
 	

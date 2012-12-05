@@ -26,87 +26,72 @@
  */
 package fr.karang.dungeoncreeper.player.skill.builds;
 
-import java.util.Random;
-
-import fr.karang.dungeoncreeper.component.entity.creature.Imp;
-import fr.karang.dungeoncreeper.material.DCMaterials;
-
+import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.map.DefaultedKey;
 import org.spout.api.map.DefaultedKeyImpl;
-import org.spout.api.material.BlockMaterial;
+import org.spout.api.material.block.BlockFace;
+import org.spout.api.math.Vector3;
+import org.spout.api.util.BlockIterator;
 
-public class Dig extends BuildSkill {
-	protected final DefaultedKey<Long> TIME = new DefaultedKeyImpl<Long>("dig_time", 0L);
+import fr.karang.dungeoncreeper.player.skill.Skill;
+
+public class BuildSkill extends Skill {
+	protected final DefaultedKey<Vector3> BLOCK;
 	
-	private final Random rand = new Random();
-
-	public Dig(int id) {
-		super(id, 200, "dig");
+	public BuildSkill(int id, String skill_name) {
+		super(id, skill_name);
+		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
+	}
+	
+	public BuildSkill(int id, long max_cooldown, String skill_name) {
+		super(id, max_cooldown, skill_name);
+		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
+	}
+	
+	public BuildSkill(int id, long max_cooldown, long cast_time, String skill_name) {
+		super(id, max_cooldown, cast_time, skill_name);
+		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
 	}
 
 	@Override
 	public void handle(Entity source) {
-		Block block = getBlock(source);
-		if (block != null) {
-			Imp cc = source.get(Imp.class);
-
-			if (cc == null) {
-				throw new IllegalStateException("Only Imps can dig.");
-			}
-
-			if (block.isMaterial(DCMaterials.DIRT)) {
-				block.setMaterial(BlockMaterial.AIR);
-				cc.addXp(1);
-
-			} else if (block.isMaterial(DCMaterials.GEM_ORE)) {
-				cc.addGold(rand.nextInt(20) + 5);
-				cc.addXp(5);
-
-			} else if (block.isMaterial(DCMaterials.GOLD_ORE)) {
-				cc.addGold(rand.nextInt(20) + 5);
-				cc.addXp(5);
-				block.setMaterial(BlockMaterial.AIR);
-
-			} else if (block.isMaterial(DCMaterials.GOLD_BAG)) {
-				//TODO : Give gold
-				block.setMaterial(BlockMaterial.AIR);
-			}
-		}
+		
 	}
 	
-	@Override
 	public boolean stepCast(Entity source, float dt) {
 		Block block = getBlock(source);
-
-		if (block == null || block.getMaterial().getHardness() == -1f) {
+		
+		if (block == null) {
 			resetCast(source);
 			return false;
 		}
-
+		
 		if (getCastTime(source) == 0L) {
 			source.getData().put(BLOCK, block.getPosition());
-			source.getData().put(TIME, (long) (block.getMaterial().getHardness()*5000L));
 		} else if (block.getPosition().compareTo(source.getData().get(BLOCK)) != 0) {
 			resetCast(source);
 			return false;
 		}
-
+		
 		addCastTime(source, dt);
-
-		if (getCastTime(source) >= block.getMaterial().getHardness()*5000) {
+		
+		if (getCastTime(source) >= cast_time) {
 			return true;
 		}
 		return false;
 	}
 	
-	@Override
-	public float getCastPercent(Entity source) {
-		long time = source.getData().get(TIME);
-		if (time == 0L) {
-			return 0f;
-		}
-		return (float) getCastTime(source) / time;
+	protected Block getBlock(Entity source) {
+		source.get(HitBlockComponent.class).setRange(4f);
+		return source.get(HitBlockComponent.class).getTargetBlock();
+	}
+	
+	protected BlockFace getBlockFace(Entity source) {
+		source.get(HitBlockComponent.class).setRange(4f);
+		BlockIterator blockIt = source.get(HitBlockComponent.class).getAlignedBlocks();
+		blockIt.getTarget();
+		return blockIt.getBlockFace();
 	}
 }
