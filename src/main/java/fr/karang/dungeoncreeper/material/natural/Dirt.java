@@ -28,6 +28,8 @@ package fr.karang.dungeoncreeper.material.natural;
 
 import org.spout.api.collision.CollisionStrategy;
 
+import com.bulletphysics.collision.shapes.BoxShape;
+
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class Dirt extends DCMaterial {
@@ -35,5 +37,6 @@ public class Dirt extends DCMaterial {
 		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
 		setHardness(0.5f);
 		setCollision(CollisionStrategy.SOLID);
+		this.setCollisionShape(new BoxShape(1f, 1f, 1f));
 	}
 }

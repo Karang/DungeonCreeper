@@ -34,6 +34,7 @@ import fr.karang.dungeoncreeper.render.DungeonResources;
 import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.component.components.CameraComponent;
+import org.spout.api.component.components.PhysicsComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
@@ -60,6 +61,9 @@ public class DungeonListener implements Listener {
 
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);
+		
+		PhysicsComponent physics = player.add(PhysicsComponent.class);
+		physics.setMass(1.f);
 
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
