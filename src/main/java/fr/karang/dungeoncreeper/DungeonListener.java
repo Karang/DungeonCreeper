@@ -41,6 +41,8 @@ import org.spout.api.event.Listener;
 import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.event.server.ClientEnableEvent;
 
+import com.bulletphysics.collision.shapes.BoxShape;
+
 public class DungeonListener implements Listener {
 	private DungeonCreeper plugin;
 
@@ -62,8 +64,9 @@ public class DungeonListener implements Listener {
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);
 		
-		PhysicsComponent physics = player.add(PhysicsComponent.class);
+		/*PhysicsComponent physics = player.add(PhysicsComponent.class);
 		physics.setMass(1.f);
+		physics.setCollisionShape(new BoxShape(0.5f, 0.5f, 0.5f));*/
 
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);

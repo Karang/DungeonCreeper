@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.utils;
+package fr.karang.dungeoncreeper.player.skill.builds;
 
 import java.util.Random;
 

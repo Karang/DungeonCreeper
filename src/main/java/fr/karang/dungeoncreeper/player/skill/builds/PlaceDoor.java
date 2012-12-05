@@ -24,16 +24,21 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.natural;
+package fr.karang.dungeoncreeper.player.skill.builds;
 
-import org.spout.api.collision.CollisionStrategy;
+import org.spout.api.entity.Entity;
 
-import fr.karang.dungeoncreeper.material.DCMaterial;
+import fr.karang.dungeoncreeper.player.skill.Skill;
 
-public class Dirt extends DCMaterial {
-	public Dirt() {
-		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
-		setHardness(0.5f);
-		setCollision(CollisionStrategy.SOLID);
+public class PlaceDoor extends Skill {
+
+	public PlaceDoor(int id) {
+		super(id, 0L, 0L, "place_door");
 	}
+
+	@Override
+	public void handle(Entity source) {
+		
+	}
+
 }

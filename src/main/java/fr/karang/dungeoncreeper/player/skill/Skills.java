@@ -29,6 +29,10 @@ package fr.karang.dungeoncreeper.player.skill;
 import fr.karang.dungeoncreeper.player.skill.attacks.AttackSword;
 import fr.karang.dungeoncreeper.player.skill.attacks.Bite;
 import fr.karang.dungeoncreeper.player.skill.attacks.HandToHand;
+import fr.karang.dungeoncreeper.player.skill.builds.Dig;
+import fr.karang.dungeoncreeper.player.skill.builds.PlaceBridge;
+import fr.karang.dungeoncreeper.player.skill.builds.PlaceDoor;
+import fr.karang.dungeoncreeper.player.skill.builds.PlaceTrap;
 import fr.karang.dungeoncreeper.player.skill.misc.RaiseDead;
 import fr.karang.dungeoncreeper.player.skill.misc.SkeletonArmy;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Arrow;
@@ -49,7 +53,6 @@ import fr.karang.dungeoncreeper.player.skill.projectiles.Spit;
 import fr.karang.dungeoncreeper.player.skill.projectiles.StunFireball;
 import fr.karang.dungeoncreeper.player.skill.projectiles.Whirlwind;
 import fr.karang.dungeoncreeper.player.skill.utils.Claim;
-import fr.karang.dungeoncreeper.player.skill.utils.Dig;
 import fr.karang.dungeoncreeper.player.skill.utils.Haste;
 import fr.karang.dungeoncreeper.player.skill.utils.Heal;
 import fr.karang.dungeoncreeper.player.skill.utils.Research;
@@ -64,6 +67,13 @@ public class Skills {
 	public static final Skill ATTACKSWORD = new AttackSword(id++);
 	public static final Skill HANDTOHAND = new HandToHand(id++);
 	public static final Skill BITE = new Bite(id++);
+	/**
+	 * Build / place
+	 */
+	public static final Skill DIG = new Dig(id++);
+	public static final Skill PLACE_BRIDGE = new PlaceBridge(id++);
+	public static final Skill PLACE_DOOR = new PlaceDoor(id++);
+	public static final Skill PLACE_TRAP = new PlaceTrap(id++);
 	/**
 	 * Projectiles
 	 */
@@ -93,7 +103,6 @@ public class Skills {
 	 * Utils
 	 */
 	public static final Skill CLAIM = new Claim(id++);
-	public static final Skill DIG = new Dig(id++);
 	public static final Skill RESEARCH = new Research(id++);
 	public static final Skill TELEPORT = new Teleport(id++);
 	public static final Skill RAISE_DEAD = new RaiseDead(id++);

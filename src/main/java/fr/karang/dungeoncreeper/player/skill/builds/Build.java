@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.utils;
+package fr.karang.dungeoncreeper.player.skill.builds;
 
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
@@ -45,7 +45,7 @@ public class Build extends Skill {
 
 	@Override
 	public void handle(Entity source) {
-		Rooms room = source.get(Imp.class).getRoomClaim();
+		Rooms room =  source.get(Imp.class).getRoomClaim();
 		Team team = source.get(DungeonPlayer.class).getTeam();
 		Rectangle rect = source.get(Imp.class).getBuildRect();
 
