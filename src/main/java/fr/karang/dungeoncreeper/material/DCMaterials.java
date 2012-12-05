@@ -31,12 +31,6 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonHeart;
 import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.GoldBag;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
-import fr.karang.dungeoncreeper.material.dungeon.doors.Barricade;
-import fr.karang.dungeoncreeper.material.dungeon.doors.BracedDoor;
-import fr.karang.dungeoncreeper.material.dungeon.doors.MagicDoor;
-import fr.karang.dungeoncreeper.material.dungeon.doors.SecretDoor;
-import fr.karang.dungeoncreeper.material.dungeon.doors.SteelDoor;
-import fr.karang.dungeoncreeper.material.dungeon.doors.WoodenDoor;
 import fr.karang.dungeoncreeper.material.dungeon.room.Hatchery;
 import fr.karang.dungeoncreeper.material.dungeon.room.Lair;
 import fr.karang.dungeoncreeper.material.natural.Dirt;
@@ -65,14 +59,6 @@ public class DCMaterials {
 	public static final Wall WALL = new Wall();
 	public static final Floor FLOOR = new Floor();
 	public static final Bridge BRIDGE = new Bridge();
-	
-	// Dungeon doors
-	public static final Barricade BARRICADE = new Barricade();
-	public static final BracedDoor BRACED_DOOR = new BracedDoor();
-	public static final MagicDoor MAGIC_DOOR = new MagicDoor();
-	public static final SecretDoor SECRET_DOOR = new SecretDoor();
-	public static final SteelDoor STEEL_DOOR = new SteelDoor();
-	public static final WoodenDoor WOODEN_DOOR = new WoodenDoor();
 	
 	// Dungeon rooms
 	public static final Lair LAIR = new Lair();

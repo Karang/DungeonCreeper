@@ -27,6 +27,7 @@
 package fr.karang.dungeoncreeper.world.populator;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.material.dungeon.doors.WoodenDoor;
 import fr.karang.dungeoncreeper.player.Team;
 
 import org.spout.api.generator.WorldGeneratorObject;
@@ -74,10 +75,10 @@ public class HearthRoomObject extends WorldGeneratorObject {
 		fill(w, x + POOLRADIUS + 1, y + 1, z - POOLRADIUS - 1, x + POOLRADIUS + 1, y + 3, z - POOLRADIUS - 1, DCMaterials.WALL);
 		fill(w, x - POOLRADIUS - 1, y + 1, z - POOLRADIUS - 1, x - POOLRADIUS - 1, y + 3, z - POOLRADIUS - 1, DCMaterials.WALL);
 		
-		w.getBlock(x + RADIUS+1, y + 1, z).setMaterial(DCMaterials.WOODEN_DOOR);
-		w.getBlock(x - RADIUS-1, y + 1, z).setMaterial(DCMaterials.WOODEN_DOOR);
-		w.getBlock(x, y + 1, z + RADIUS+1).setMaterial(DCMaterials.WOODEN_DOOR);
-		w.getBlock(x, y + 1, z - RADIUS-1).setMaterial(DCMaterials.WOODEN_DOOR);
+		w.getBlock(x + RADIUS+1, y + 1, z).setMaterial(WoodenDoor.WE);
+		w.getBlock(x - RADIUS-1, y + 1, z).setMaterial(WoodenDoor.WE);
+		w.getBlock(x, y + 1, z + RADIUS+1).setMaterial(WoodenDoor.NS);
+		w.getBlock(x, y + 1, z - RADIUS-1).setMaterial(WoodenDoor.NS);
 	}
 
 	private void fill(World w, int x1, int y1, int z1, int x2, int y2, int z2, BlockMaterial material) {
