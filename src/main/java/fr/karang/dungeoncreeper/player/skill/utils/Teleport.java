@@ -32,8 +32,6 @@ import org.spout.api.component.components.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;
-import org.spout.api.material.block.BlockFace;
-import org.spout.api.util.BlockIterator;
 
 public class Teleport extends Skill {
 	public Teleport(int id) {
@@ -45,14 +43,12 @@ public class Teleport extends Skill {
 		Player player = (Player) source;
 
 		source.get(HitBlockComponent.class).setRange(30f);
-		BlockIterator blockIt = source.get(HitBlockComponent.class).getAlignedBlocks();
-		Block block = blockIt.getTarget();
-		BlockFace face = blockIt.getBlockFace();
+		Block block = source.get(HitBlockComponent.class).getLastEmpty();
 
 		if (block == null) {
 			return;
 		}
 
-		player.teleport(block.translate(face).getPosition());
+		player.teleport(block.getPosition());
 	}
 }

@@ -41,9 +41,9 @@ public class PlaceDoor extends BuildSkill {
 
 	@Override
 	public void handle(Entity source) {
-		Block block = getBlock(source).translate(getBlockFace(source));
+		Block block = getBlock(source);
 		
-		if (block.getMaterial()!=DCMaterials.AIR)
+		if (block.getMaterial() != DCMaterials.AIR)
 			return;
 		
 		if (block.translate(BlockFace.NORTH).getMaterial().isOpaque() && block.translate(BlockFace.SOUTH).getMaterial().isOpaque()) {

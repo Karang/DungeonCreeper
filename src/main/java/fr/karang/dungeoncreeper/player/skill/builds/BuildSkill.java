@@ -31,9 +31,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.map.DefaultedKey;
 import org.spout.api.map.DefaultedKeyImpl;
-import org.spout.api.material.block.BlockFace;
 import org.spout.api.math.Vector3;
-import org.spout.api.util.BlockIterator;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
@@ -85,13 +83,6 @@ public class BuildSkill extends Skill {
 	
 	protected Block getBlock(Entity source) {
 		source.get(HitBlockComponent.class).setRange(4f);
-		return source.get(HitBlockComponent.class).getTargetBlock();
-	}
-	
-	protected BlockFace getBlockFace(Entity source) {
-		source.get(HitBlockComponent.class).setRange(4f);
-		BlockIterator blockIt = source.get(HitBlockComponent.class).getAlignedBlocks();
-		blockIt.getTarget();
-		return blockIt.getBlockFace();
+		return source.get(HitBlockComponent.class).getLastEmpty();
 	}
 }
