@@ -53,6 +53,8 @@
 package fr.karang.dungeoncreeper.command;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.creature.*;
 
 import org.spout.api.Client;
 import org.spout.api.Server;
@@ -76,11 +78,56 @@ public class AdministrationCommands {
 	@CommandPermissions("dungeoncreeper.command.class")
 	public void changeClass(CommandContext args, CommandSource source) throws CommandException {
 		if (args.length() == 0) {
-			if (!(source instanceof Player)) {
-				throw new CommandException("You must be a player to change your class.");
-			}
+			source.sendMessage("You must specify a class.");
 		}
-		source.sendMessage(ChatStyle.BRIGHT_GREEN, "Class changed.");
+		
+		Player player;
+		
+		if (Spout.getEngine() instanceof Client) {
+			player = ((Client) Spout.getEngine()).getActivePlayer();
+		} else if (!(source instanceof Player)) {
+			throw new CommandException("You must be a player to change your class.");
+		} else {
+			player = (Player) source;
+		}
+		
+		player.detach(CreatureComponent.class);
+		if (args.getString(0).equalsIgnoreCase("demon")) {
+			player.add(BileDemon.class);
+		} else if (args.getString(0).equalsIgnoreCase("knight")) {
+			player.add(BlackKnight.class);
+		} else if (args.getString(0).equalsIgnoreCase("angel")) {
+			player.add(DarkAngel.class);
+		} else if (args.getString(0).equalsIgnoreCase("elf")) {
+			player.add(DarkElf.class);
+		} else if (args.getString(0).equalsIgnoreCase("mistress")) {
+			player.add(DarkMistress.class);
+		} else if (args.getString(0).equalsIgnoreCase("firefly")) {
+			player.add(Firefly.class);
+		} else if (args.getString(0).equalsIgnoreCase("gobelin")) {
+			player.add(Gobelin.class);
+		} else if (args.getString(0).equalsIgnoreCase("reaper")) {
+			player.add(HornedReaper.class);
+		} else if (args.getString(0).equalsIgnoreCase("imp")) {
+			player.add(Imp.class);
+		} else if (args.getString(0).equalsIgnoreCase("maiden")) {
+			player.add(Maiden.class);
+		} else if (args.getString(0).equalsIgnoreCase("rogue")) {
+			player.add(Rogue.class);
+		} else if (args.getString(0).equalsIgnoreCase("salamender")) {
+			player.add(Salamender.class);
+		} else if (args.getString(0).equalsIgnoreCase("skeleton")) {
+			player.add(Skeleton.class);
+		} else if (args.getString(0).equalsIgnoreCase("troll")) {
+			player.add(Troll.class);
+		} else if (args.getString(0).equalsIgnoreCase("vampire")) {
+			player.add(Vampire.class);
+		} else if (args.getString(0).equalsIgnoreCase("warlock")) {
+			player.add(Warlock.class);
+		} else {
+			player.add(Imp.class);
+		}
+		source.sendMessage(ChatStyle.BRIGHT_GREEN, "Player's class changed to: ", args.getString(0));
 	}
 
 	@Command(aliases = {"kill"}, usage = "[player]", desc = "Kill yourself or another player", min = 0, max = 1)
