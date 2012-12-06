@@ -24,35 +24,16 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.dungeon.doors;
+package fr.karang.dungeoncreeper.material.dungeon.bridges;
+
+import org.spout.api.collision.CollisionStrategy;
 
 import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
-public class WoodenDoor extends DungeonMaterial {
-	public static WoodenDoor NS;
-	public static WoodenDoor WE;
-	public static WoodenDoor NS_CLOSED;
-	public static WoodenDoor WE_CLOSED;
-	
-	static {
-		NS = new WoodenDoor();
-		WE = new WoodenDoor("WoodenDoor_WE", 1, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
-		NS_CLOSED = new WoodenDoor("WoodenDoor_NS_closed", 2, NS, "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
-		WE_CLOSED = new WoodenDoor("WoodenDoor_WE_closed", 3, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
+public class WoodenBridge extends DungeonMaterial {
+	public WoodenBridge() {
+		super("Wooden bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
+		
+		setCollision(CollisionStrategy.SOLID);
 	}
-	
-	public WoodenDoor() {
-		super((short)0x07, "WoodenDoor_NS", "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
-		this.setTransparent();
-	}
-	
-	private WoodenDoor(String name, int data, WoodenDoor parent, String model) {
-		super(name, data, parent, model);
-		this.setTransparent();
-	}
-	
-	public boolean isPlacementObstacle() {
-		return false;
-	}
-	
 }

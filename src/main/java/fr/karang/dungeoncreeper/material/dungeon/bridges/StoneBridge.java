@@ -24,14 +24,14 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.material.dungeon;
+package fr.karang.dungeoncreeper.material.dungeon.bridges;
 
-import org.spout.api.collision.CollisionStrategy;
+import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
-public class Bridge extends DungeonMaterial {
-	public Bridge() {
-		super("Bridge", "model://DungeonCreeper/resources/block/dungeon/bridge/bridge.spm");
-		
-		setCollision(CollisionStrategy.SOLID);
+public class StoneBridge extends DungeonMaterial {
+
+	public StoneBridge() {
+		super("Stone bridge", "");
 	}
+
 }

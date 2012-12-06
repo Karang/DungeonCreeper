@@ -1,2 +1,2 @@
-Mesh: cubemesh://DungeonCreeper/resources/block/natural/water/water.uvs
+Mesh: blockmesh://DungeonCreeper/resources/block/natural/water/water.obj
 Material: material://DungeonCreeper/resources/water.smt

@@ -26,11 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material;
 
-import fr.karang.dungeoncreeper.material.dungeon.Bridge;
 import fr.karang.dungeoncreeper.material.dungeon.DungeonHeart;
 import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.GoldBag;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
+import fr.karang.dungeoncreeper.material.dungeon.bridges.WoodenBridge;
 import fr.karang.dungeoncreeper.material.dungeon.room.Hatchery;
 import fr.karang.dungeoncreeper.material.dungeon.room.Lair;
 import fr.karang.dungeoncreeper.material.natural.Dirt;
@@ -58,7 +58,7 @@ public class DCMaterials {
 	public static final DungeonHeart DUNGEON_HEART = new DungeonHeart();
 	public static final Wall WALL = new Wall();
 	public static final Floor FLOOR = new Floor();
-	public static final Bridge BRIDGE = new Bridge();
+	public static final WoodenBridge BRIDGE = new WoodenBridge();
 	
 	// Dungeon rooms
 	public static final Lair LAIR = new Lair();

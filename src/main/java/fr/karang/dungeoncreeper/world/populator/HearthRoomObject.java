@@ -27,7 +27,6 @@
 package fr.karang.dungeoncreeper.world.populator;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.material.dungeon.doors.WoodenDoor;
 import fr.karang.dungeoncreeper.player.Team;
 
 import org.spout.api.generator.WorldGeneratorObject;
