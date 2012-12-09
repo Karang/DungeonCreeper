@@ -1,4 +1,4 @@
 Shader: shader://DungeonCreeper/resources/shader/entity.ssf
 
 MaterialParams:
-    Diffuse: texture://DungeonCreeper/resources/entity/imp/imp.png
+    Diffuse: texture://DungeonCreeper/resources/entity/creature/imp/imp.png

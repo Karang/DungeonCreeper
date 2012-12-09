@@ -54,6 +54,7 @@ package fr.karang.dungeoncreeper.command;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
+import fr.karang.dungeoncreeper.component.entity.CreaturePrefabs;
 import fr.karang.dungeoncreeper.component.entity.creature.*;
 
 import org.spout.api.Client;
@@ -64,6 +65,8 @@ import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
 import org.spout.api.command.annotated.CommandPermissions;
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.EntityPrefab;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
 
@@ -128,6 +131,63 @@ public class AdministrationCommands {
 			player.add(Imp.class);
 		}
 		source.sendMessage(ChatStyle.BRIGHT_GREEN, "Player's class changed to: ", args.getString(0));
+	}
+	
+	@Command(aliases = "spawn", usage = "[type]", desc = "Spawn a creature of type: type", min = 1, max = 1)
+	@CommandPermissions("dungeoncreeper.command.class")
+	public void spawnCreature(CommandContext args, CommandSource source) throws CommandException {
+		if (args.length() == 0) {
+			source.sendMessage("You must specify a type.");
+		}
+		
+		Player player;
+		
+		if (Spout.getEngine() instanceof Client) {
+			player = ((Client) Spout.getEngine()).getActivePlayer();
+		} else if (!(source instanceof Player)) {
+			throw new CommandException("You must be a player to spawn a creature.");
+		} else {
+			player = (Player) source;
+		}
+		
+		EntityPrefab prefab = CreaturePrefabs.IMP;
+		if (args.getString(0).equalsIgnoreCase("demon")) {
+			prefab = CreaturePrefabs.BILE_DEMON;
+		} else if (args.getString(0).equalsIgnoreCase("knight")) {
+			prefab = CreaturePrefabs.BLACK_KNIGHT;
+		} else if (args.getString(0).equalsIgnoreCase("angel")) {
+			prefab = CreaturePrefabs.DARK_ANGEL;
+		} else if (args.getString(0).equalsIgnoreCase("elf")) {
+			prefab = CreaturePrefabs.DARK_ELF;
+		} else if (args.getString(0).equalsIgnoreCase("mistress")) {
+			prefab = CreaturePrefabs.DARK_MISTRESS;
+		} else if (args.getString(0).equalsIgnoreCase("firefly")) {
+			prefab = CreaturePrefabs.FIREFLY;
+		} else if (args.getString(0).equalsIgnoreCase("gobelin")) {
+			prefab = CreaturePrefabs.GOBELIN;
+		} else if (args.getString(0).equalsIgnoreCase("reaper")) {
+			prefab = CreaturePrefabs.HORNED_REAPER;
+		} else if (args.getString(0).equalsIgnoreCase("imp")) {
+			prefab = CreaturePrefabs.IMP;
+		} else if (args.getString(0).equalsIgnoreCase("maiden")) {
+			prefab = CreaturePrefabs.MAIDEN;
+		} else if (args.getString(0).equalsIgnoreCase("rogue")) {
+			prefab = CreaturePrefabs.ROGUE;
+		} else if (args.getString(0).equalsIgnoreCase("salamender")) {
+			prefab = CreaturePrefabs.SALAMENDER;
+		} else if (args.getString(0).equalsIgnoreCase("skeleton")) {
+			prefab = CreaturePrefabs.SKELETON;
+		} else if (args.getString(0).equalsIgnoreCase("troll")) {
+			prefab = CreaturePrefabs.TROLL;
+		} else if (args.getString(0).equalsIgnoreCase("vampire")) {
+			prefab = CreaturePrefabs.VAMPIRE;
+		} else if (args.getString(0).equalsIgnoreCase("warlock")) {
+			prefab = CreaturePrefabs.WARLOCK;
+		}
+		
+		Entity e = prefab.createEntity(player.getTransform().getPosition());
+		e.setSavable(false);
+		player.getWorld().spawnEntity(e);
 	}
 
 	@Command(aliases = {"kill"}, usage = "[player]", desc = "Kill yourself or another player", min = 0, max = 1)

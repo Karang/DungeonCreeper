@@ -29,7 +29,7 @@ package fr.karang.dungeoncreeper.component.entity;
 import org.spout.api.Spout;
 import org.spout.api.entity.EntityPrefab;
 
-public class DungeonEntities {
+public class ProjectilePrefabs {
 	public static final EntityPrefab ARROW = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
 	public static final EntityPrefab FIREBALL = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
 	public static final EntityPrefab KNIFE = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
