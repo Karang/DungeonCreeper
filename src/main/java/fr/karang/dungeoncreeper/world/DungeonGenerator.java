@@ -58,10 +58,10 @@ public class DungeonGenerator implements WorldGenerator {
 	public DungeonGenerator(DungeonGame game, Texture textureMap) {
 		this.game = game;
 		this.textureMap = textureMap;
-		this.dungeonWidth = textureMap.getImage().getWidth() / Chunk.BLOCKS.SIZE;
-		this.dungeonLength = textureMap.getImage().getHeight() / Chunk.BLOCKS.SIZE;
-		this.dungeonBlockWidth = textureMap.getImage().getWidth();
-		this.dungeonBlockLength = textureMap.getImage().getHeight();
+		this.dungeonWidth = textureMap.getWidth() / Chunk.BLOCKS.SIZE;
+		this.dungeonLength = textureMap.getHeight() / Chunk.BLOCKS.SIZE;
+		this.dungeonBlockWidth = textureMap.getWidth();
+		this.dungeonBlockLength = textureMap.getHeight();
 
 		populators.add(new DungeonPopulator());
 	}
@@ -93,7 +93,7 @@ public class DungeonGenerator implements WorldGenerator {
 		if (x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength) {
 			return -1;
 		}
-		return textureMap.getImage().getRGB(x, z);
+		return textureMap.getImage()[z*dungeonBlockWidth+x].getRGB();
 	}
 
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
