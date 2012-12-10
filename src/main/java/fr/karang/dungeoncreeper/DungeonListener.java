@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper;
 
+import fr.karang.dungeoncreeper.component.entity.InputComponent;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
@@ -63,6 +64,7 @@ public class DungeonListener implements Listener {
 
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);
+		player.add(InputComponent.class);
 		
 		/*PhysicsComponent physics = player.add(PhysicsComponent.class);
 		physics.setMass(1.f);
