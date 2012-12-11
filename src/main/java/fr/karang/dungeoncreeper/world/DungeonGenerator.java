@@ -93,7 +93,7 @@ public class DungeonGenerator implements WorldGenerator {
 		if (x < 0 || x >= dungeonBlockWidth || z < 0 || z >= dungeonBlockLength) {
 			return -1;
 		}
-		return textureMap.getImage()[z*dungeonBlockWidth+x].getRGB();
+		return textureMap.getImage()[z*dungeonBlockWidth+x];
 	}
 
 	public boolean isChunkInDungeon(int chunkX, int chunkY, int chunkZ) {
