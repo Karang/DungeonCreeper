@@ -34,15 +34,12 @@ import fr.karang.dungeoncreeper.render.DungeonResources;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.component.components.CameraComponent;
-import org.spout.api.component.components.PhysicsComponent;
+import org.spout.api.component.implementation.CameraComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.event.server.ClientEnableEvent;
-
-import com.bulletphysics.collision.shapes.BoxShape;
 
 public class DungeonListener implements Listener {
 	private DungeonCreeper plugin;

@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.player;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
+import org.spout.api.component.type.EntityComponent;
 
-import org.spout.api.component.components.EntityComponent;
+import fr.karang.dungeoncreeper.data.DungeonData;
 
 public class DungeonPlayer extends EntityComponent {
 	@Override

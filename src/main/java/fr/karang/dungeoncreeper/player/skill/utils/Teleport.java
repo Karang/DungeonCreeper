@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-import org.spout.api.component.components.HitBlockComponent;
+import org.spout.api.component.implementation.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;

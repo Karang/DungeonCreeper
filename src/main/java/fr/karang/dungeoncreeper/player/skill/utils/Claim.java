@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-import org.spout.api.component.components.HitBlockComponent;
+import org.spout.api.component.implementation.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;

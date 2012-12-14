@@ -29,7 +29,7 @@ package fr.karang.dungeoncreeper.material.dungeon;
 import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
 
 import org.spout.api.collision.CollisionStrategy;
-import org.spout.api.component.components.BlockComponent;
+import org.spout.api.component.type.BlockComponent;
 import org.spout.api.material.ComplexMaterial;
 
 public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
