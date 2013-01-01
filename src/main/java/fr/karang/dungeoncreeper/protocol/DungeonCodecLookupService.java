@@ -39,6 +39,8 @@ import org.spout.api.protocol.CodecLookupService;
 
 public class DungeonCodecLookupService extends CodecLookupService {
 	public DungeonCodecLookupService() {
+		super(50);
+		
 		try {
 			// Lobby messages
 			bind(WorldListCodec.class); // 0x00

@@ -26,6 +26,8 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
+import java.net.InetSocketAddress;
+
 import fr.karang.dungeoncreeper.DungeonConfig;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
@@ -88,13 +90,14 @@ public class DungeonProtocol extends Protocol {
 	}
 
 	@Override
-	public Message getIntroductionMessage(String playerName) {
-		return new PlayerHandshakeMessage(PROTOCOL_VERSION, DungeonConfig.USERNAME.getString(), "localhost", 25565);//TODO : Configure host & port
-	}
-
-	@Override
 	public void initializeSession(Session session) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Message getIntroductionMessage(String playerName,
+			InetSocketAddress addr) {
+		return new PlayerHandshakeMessage(PROTOCOL_VERSION, DungeonConfig.USERNAME.getString(), "localhost", 25565);//TODO : Configure host & port
 	}
 }

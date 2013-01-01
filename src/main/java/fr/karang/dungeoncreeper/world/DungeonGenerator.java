@@ -39,6 +39,7 @@ import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.render.Texture;
+import org.spout.api.util.cuboid.CuboidBlockMaterialBuffer;
 import org.spout.api.util.cuboid.CuboidShortBuffer;
 
 public class DungeonGenerator implements WorldGenerator {
@@ -66,7 +67,7 @@ public class DungeonGenerator implements WorldGenerator {
 		populators.add(new DungeonPopulator());
 	}
 
-	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
+	public void generate(CuboidBlockMaterialBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
 		if (!isChunkInDungeon(chunkX, chunkY, chunkZ)) {
 			return; // Chunk out of bound
 		}
@@ -76,12 +77,12 @@ public class DungeonGenerator implements WorldGenerator {
 			for (int z = zz; z < zz + Chunk.BLOCKS.SIZE; z++) {
 				for (int y = 0; y < 3 /*Chunk.BLOCKS.SIZE*/ ; y++) {
 					if ((x == 0) || (x == dungeonBlockWidth) || (z == 0) || (z == dungeonBlockLength)) {
-						blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
+						blockData.set(x, y, z, DCMaterials.SOLID_ROCK);
 					} else {
 						if (y == 0 /*|| y==4*/) { // To obtain a good view from height
-							blockData.set(x, y, z, DCMaterials.SOLID_ROCK.getId());
+							blockData.set(x, y, z, DCMaterials.SOLID_ROCK);
 						} else if (y < 4) {
-							blockData.set(x, y, z, DCMaterials.DIRT.getId());
+							blockData.set(x, y, z, DCMaterials.DIRT);
 						}
 					}
 				}

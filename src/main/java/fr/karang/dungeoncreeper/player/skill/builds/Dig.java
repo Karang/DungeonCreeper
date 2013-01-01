@@ -31,7 +31,7 @@ import java.util.Random;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 
-import org.spout.api.component.implementation.HitBlockComponent;
+import org.spout.api.component.impl.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.map.DefaultedKey;

@@ -34,12 +34,12 @@ import fr.karang.dungeoncreeper.render.DungeonResources;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.component.implementation.CameraComponent;
+import org.spout.api.component.impl.CameraComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
+import org.spout.api.event.engine.EngineStartEvent;
 import org.spout.api.event.player.PlayerJoinEvent;
-import org.spout.api.event.server.ClientEnableEvent;
 
 public class DungeonListener implements Listener {
 	private DungeonCreeper plugin;
@@ -54,7 +54,7 @@ public class DungeonListener implements Listener {
 	}
 
 	@EventHandler
-	public void onClientEnable(ClientEnableEvent event) {
+	public void onClientEnable(EngineStartEvent event) {
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
 		
 		DungeonResources.init();

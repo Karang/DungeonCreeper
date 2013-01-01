@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-import org.spout.api.component.implementation.HitBlockComponent;
+import org.spout.api.component.impl.HitBlockComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
@@ -83,21 +83,21 @@ public class Claim extends Skill {
 			if (material.isClaimedBlockByOtherTeam(block, team)) {
 				System.out.println("Declaim other team");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
-					DCMaterials.DIRT.onPlacement(block, DCMaterials.DIRT.getData(), cause);
+					DCMaterials.DIRT.onPlacement(block, DCMaterials.DIRT.getData(), null, null, false, cause);
 					team.getGame().setTerritory(x, z, null);
 				} else {
-					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), cause);
-					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.DIRT.getData(), cause);
+					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
+					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
 					team.getGame().setTerritory(x, z, null);
 				}
 			} else {
 				System.out.println("Claim");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
-					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), cause);
+					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), null, null, false,  cause);
 					team.getGame().setTerritory(x, z, team.getColor());
 				} else {
-					DCMaterials.FLOOR.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.FLOOR.getData(), cause);
-					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.WALL.getData(), cause);
+					DCMaterials.FLOOR.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.FLOOR.getData(), null, null, false,  cause);
+					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.WALL.getData(), null, null, false,  cause);
 					team.getGame().setTerritory(x, z, team.getColor());
 				}
 			}
