@@ -61,6 +61,9 @@ public class HUD extends Screen {
 	private final Widget gold = new Widget();
 	private final Widget mana = new Widget();
 	private final Widget level = new Widget();
+	
+	// DEBUG
+	private final Widget creature = new Widget();
 
 	public HUD(Player player) {
 		if (Spout.getPlatform() != Platform.CLIENT) {
@@ -77,6 +80,7 @@ public class HUD extends Screen {
 		buildSkillBar(cc.getSkills());
 		buildCrosshair();
 		buildInfos();
+		buildTest();
 	}
 
 	@Override
@@ -111,6 +115,16 @@ public class HUD extends Screen {
 		RenderPart cooldown = skillBar.get(RenderPartsHolderComponent.class).get(2 + slot);
 		float x = cooldown.getSprite().getX();
 		cooldown.setSprite(new Rectangle(x, -0.95f, SKILL_SIZE * SCALE, SKILL_SIZE * percent));
+	}
+	
+	public void buildTest() {
+		LabelComponent txtCreature = creature.add(LabelComponent.class);
+		
+		creature.setGeometry(new Rectangle(-0.8f, 0, 0, 0));
+		txtCreature.setFont(DungeonResources.FONT);
+		txtCreature.setText(new ChatArguments("Imp"));
+		
+		attachWidget(DungeonCreeper.getInstance(), creature);
 	}
 	
 	public void buildInfos() {

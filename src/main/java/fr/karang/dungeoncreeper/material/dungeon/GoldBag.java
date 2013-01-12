@@ -36,10 +36,12 @@ import org.spout.api.entity.Player;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.block.BlockFace;
+import org.spout.api.model.Model;
+import org.spout.api.resource.ResourcePointer;
 
 public class GoldBag extends DCMaterial {
 	public GoldBag() {
-		super("Gold Bag", "model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm");
+		super("Gold Bag", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/dungeon/goldBag/goldBag.spm"));
 		
 	}
 

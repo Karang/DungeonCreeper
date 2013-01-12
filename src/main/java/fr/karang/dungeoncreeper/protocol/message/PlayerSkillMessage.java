@@ -55,4 +55,8 @@ public class PlayerSkillMessage implements Message {
 	public int getChannelId() {
 		return 0;
 	}
+	
+	public boolean isAsync() {
+		return false;
+	}
 }

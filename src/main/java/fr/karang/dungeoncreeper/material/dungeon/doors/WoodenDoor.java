@@ -26,6 +26,9 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon.doors;
 
+import org.spout.api.model.Model;
+import org.spout.api.resource.ResourcePointer;
+
 import fr.karang.dungeoncreeper.material.dungeon.DungeonMaterial;
 
 public class WoodenDoor extends DungeonMaterial {
@@ -36,17 +39,17 @@ public class WoodenDoor extends DungeonMaterial {
 	
 	static {
 		NS = new WoodenDoor();
-		WE = new WoodenDoor("WoodenDoor_WE", 1, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
-		NS_CLOSED = new WoodenDoor("WoodenDoor_NS_closed", 2, NS, "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
-		WE_CLOSED = new WoodenDoor("WoodenDoor_WE_closed", 3, NS, "model://DungeonCreeper/resources/block/dungeon/door/door1.spm");
+		WE = new WoodenDoor("WoodenDoor_WE", 1, NS, new ResourcePointer<Model>("model://DungeonCreeper/resources/block/dungeon/door/door1.spm"));
+		NS_CLOSED = new WoodenDoor("WoodenDoor_NS_closed", 2, NS, new ResourcePointer<Model>("model://DungeonCreeper/resources/block/dungeon/door/door2.spm"));
+		WE_CLOSED = new WoodenDoor("WoodenDoor_WE_closed", 3, NS, new ResourcePointer<Model>("model://DungeonCreeper/resources/block/dungeon/door/door1.spm"));
 	}
 	
 	public WoodenDoor() {
-		super((short)0x07, "WoodenDoor_NS", "model://DungeonCreeper/resources/block/dungeon/door/door2.spm");
+		super((short)0x07, "WoodenDoor_NS", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/dungeon/door/door2.spm"));
 		this.setTransparent();
 	}
 	
-	private WoodenDoor(String name, int data, WoodenDoor parent, String model) {
+	private WoodenDoor(String name, int data, WoodenDoor parent, ResourcePointer<Model> model) {
 		super(name, data, parent, model);
 		this.setTransparent();
 	}

@@ -29,19 +29,21 @@ package fr.karang.dungeoncreeper.material.dungeon;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 import org.spout.api.material.Material;
+import org.spout.api.model.Model;
+import org.spout.api.resource.ResourcePointer;
 
 public class DungeonMaterial extends DCMaterial {
 	public DungeonMaterial(String name, String model) {
-		super(name, model);
+		super(name, new ResourcePointer<Model>(model));
 		//TODO : Correct the method to add BatchEffect, not RenderEffect to Material
 		//addBatchEffect(BatchEffects.TEAM_BATCH_EFFECT);
 	}
 
-	public DungeonMaterial(short dataMask, String name, String model) {
+	public DungeonMaterial(short dataMask, String name, ResourcePointer<Model> model) {
 		super(dataMask, name, model);
 	}
 
-	public DungeonMaterial(String name, int data, Material parent, String model) {
+	public DungeonMaterial(String name, int data, Material parent, ResourcePointer<Model> model) {
 		super(name, data, parent, model);
 	}
 }

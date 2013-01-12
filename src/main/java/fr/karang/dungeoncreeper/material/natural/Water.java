@@ -26,11 +26,14 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
+import org.spout.api.model.Model;
+import org.spout.api.resource.ResourcePointer;
+
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class Water extends DCMaterial {
 	public Water() {
-		super("Water", "model://DungeonCreeper/resources/block/natural/water/water.spm");
+		super("Water", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/natural/water/water.spm"));
 		setTransparent().setOpacity(10).setHardness(-1.0f);
 	}
 }

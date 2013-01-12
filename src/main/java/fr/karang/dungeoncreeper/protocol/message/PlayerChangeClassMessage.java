@@ -63,4 +63,8 @@ public class PlayerChangeClassMessage implements Message {
 	public int getChannelId() {
 		return 0;
 	}
+
+	public boolean isAsync() {
+		return false;
+	}
 }

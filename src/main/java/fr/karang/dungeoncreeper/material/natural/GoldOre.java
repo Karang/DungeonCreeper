@@ -27,12 +27,14 @@
 package fr.karang.dungeoncreeper.material.natural;
 
 import org.spout.api.collision.CollisionStrategy;
+import org.spout.api.model.Model;
+import org.spout.api.resource.ResourcePointer;
 
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class GoldOre extends DCMaterial {
 	public GoldOre() {
-		super("Gold Ore", "model://DungeonCreeper/resources/block/natural/goldore/goldore.spm");
+		super("Gold Ore", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/natural/goldore/goldore.spm"));
 		setHardness(1f);
 		setCollision(CollisionStrategy.SOLID);
 	}
