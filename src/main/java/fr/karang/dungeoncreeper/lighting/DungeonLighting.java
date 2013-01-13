@@ -24,11 +24,19 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.render;
+package fr.karang.dungeoncreeper.lighting;
 
-public class RenderEffects {
-	public static final BumpEffect BUMP = new BumpEffect();
-	public static final LightBufferEffect LIGHTING = new LightBufferEffect();
-	public static final GuiCastEffect GUI_CAST = new GuiCastEffect();
-	public static final TeamEffect TEAM_EFFECT = new TeamEffect();
+import org.spout.api.Spout;
+
+public class DungeonLighting {
+	public static BlockLightingManager LAVA_LIGHT = new BlockLightingManager("lava");
+	public static BlockLightingManager WATER_LIGHT = new BlockLightingManager("water");
+	private static boolean initialized = false;
+	
+	public static void initialize() {
+		if (initialized) {
+			Spout.getLogger().info("Dungeon lighting initialized more than once");
+			return;
+		}
+	}
 }

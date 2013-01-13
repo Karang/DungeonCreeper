@@ -24,11 +24,21 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.render;
+package fr.karang.dungeoncreeper.lighting;
 
-public class RenderEffects {
-	public static final BumpEffect BUMP = new BumpEffect();
-	public static final LightBufferEffect LIGHTING = new LightBufferEffect();
-	public static final GuiCastEffect GUI_CAST = new GuiCastEffect();
-	public static final TeamEffect TEAM_EFFECT = new TeamEffect();
+import org.spout.api.util.cuboid.CuboidNibbleLightBuffer;
+
+public class CuboidLightBuffer extends CuboidNibbleLightBuffer {
+	
+	protected CuboidLightBuffer(CuboidLightBuffer buffer) {
+		super(buffer);
+	}
+	
+	protected CuboidLightBuffer(int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ) {
+		super(id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ);
+	}
+	
+	protected CuboidLightBuffer(int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
+		super(id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
+	}
 }

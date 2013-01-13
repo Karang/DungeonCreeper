@@ -1,9 +1,10 @@
 #version 120
 	
 attribute vec4 vPosition;
-attribute vec4 vColor;
+attribute float vlava;
 attribute vec4 vNormal;
 attribute vec2 vTexCoord;
+attribute float vwater;
 
 varying vec4 color;
 varying vec4 normal;
@@ -19,8 +20,16 @@ void main()
 {
 	gl_Position = Projection * View  * Model * vPosition;
 	
+	vec4 lavaColor = vec4(1.0, 0.0, 0.0, 1.0);
+	vec4 waterColor = vec4(0.0, 0.0, 1.0, 1.0);
+	
+	vec4 ambient = vec4(0.33, 0.33, 0.33, 1.0);
+	
+	vec4 diffuse = lavaColor*vlava + waterColor*vwater;
+	diffuse = clamp(diffuse, 0.0, 1.0);
+	
 	uvcoord = vTexCoord;
-	color = vColor;
+	color = ambient + diffuse;
 	normal = vNormal;
 	
 	eyePos = Camera;

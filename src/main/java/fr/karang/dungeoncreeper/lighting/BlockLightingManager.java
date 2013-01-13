@@ -24,11 +24,34 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.render;
+package fr.karang.dungeoncreeper.lighting;
 
-public class RenderEffects {
-	public static final BumpEffect BUMP = new BumpEffect();
-	public static final LightBufferEffect LIGHTING = new LightBufferEffect();
-	public static final GuiCastEffect GUI_CAST = new GuiCastEffect();
-	public static final TeamEffect TEAM_EFFECT = new TeamEffect();
+import org.spout.api.lighting.LightingManager;
+import org.spout.api.util.cuboid.ImmutableCuboidBlockMaterialBuffer;
+
+public class BlockLightingManager extends LightingManager<CuboidLightBuffer> {
+	public BlockLightingManager(String name) {
+		super(name);
+	}
+
+	@Override
+	public CuboidLightBuffer deserialize(int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
+		return new CuboidLightBuffer(getId(), baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
+	}
+
+	@Override
+	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz, int[] oldHy, int[] newHy, int changedColumns) {
+	}
+
+	@Override
+	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y, int[] z, int changedBlocks) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by, int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
+		// TODO Auto-generated method stub
+		
+	}
 }

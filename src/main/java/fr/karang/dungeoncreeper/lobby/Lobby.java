@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.karang.dungeoncreeper.lighting.DungeonLighting;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
@@ -78,6 +79,8 @@ public class Lobby {
 		DungeonGame game = new DungeonGame(gameId, textureMap.getWidth(), textureMap.getHeight());
 		DungeonGenerator generator = new DungeonGenerator(game, textureMap);
 		World world = Spout.getEngine().loadWorld("dungeon_" + gameId, generator);
+		world.addLightingManager(DungeonLighting.LAVA_LIGHT);
+		world.addLightingManager(DungeonLighting.WATER_LIGHT);
 		game.setWorld(world);
 
 		if (world.getAge() <= 0) {
