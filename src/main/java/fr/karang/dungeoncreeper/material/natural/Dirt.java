@@ -27,14 +27,12 @@
 package fr.karang.dungeoncreeper.material.natural;
 
 import org.spout.api.collision.CollisionStrategy;
-import org.spout.api.model.Model;
-import org.spout.api.resource.ResourcePointer;
 
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class Dirt extends DCMaterial {
 	public Dirt() {
-		super("Dirt", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/natural/dirt/dirt.spm"));
+		super("Dirt", "model://DungeonCreeper/resources/block/natural/dirt/dirt.spm");
 		setHardness(0.5f);
 		setCollision(CollisionStrategy.SOLID);
 	}

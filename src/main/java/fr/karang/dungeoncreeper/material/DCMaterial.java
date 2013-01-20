@@ -36,19 +36,17 @@ import org.spout.api.geo.cuboid.Block;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 import org.spout.api.material.block.BlockFace;
-import org.spout.api.model.Model;
-import org.spout.api.resource.ResourcePointer;
 
 public abstract class DCMaterial extends BlockMaterial {
-	public DCMaterial(String name, ResourcePointer<Model> model) {
+	public DCMaterial(String name, String model) {
 		super((short) 0, name, model);
 	}
 
-	public DCMaterial(short dataMask, String name, ResourcePointer<Model> model) {
+	public DCMaterial(short dataMask, String name, String model) {
 		super(dataMask, name, model);
 	}
 
-	public DCMaterial(String name, int data, Material parent, ResourcePointer<Model> model) {
+	public DCMaterial(String name, int data, Material parent, String model) {
 		super(name, data, parent, model);
 	}
 

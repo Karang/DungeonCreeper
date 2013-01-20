@@ -27,14 +27,12 @@
 package fr.karang.dungeoncreeper.material.natural;
 
 import org.spout.api.collision.CollisionStrategy;
-import org.spout.api.model.Model;
-import org.spout.api.resource.ResourcePointer;
 
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class UnclaimedFloor extends DCMaterial {
 	public UnclaimedFloor() {
-		super("Unclaimed Floor", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.spm"));
+		super("Unclaimed Floor", "model://DungeonCreeper/resources/block/natural/unclaimedfloor/unclaimedfloor.spm");
 		setHardness(-1.0f);
 		setCollision(CollisionStrategy.SOLID);
 	}

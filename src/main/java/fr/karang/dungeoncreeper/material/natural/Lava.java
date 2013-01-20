@@ -26,14 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.natural;
 
-import org.spout.api.model.Model;
-import org.spout.api.resource.ResourcePointer;
-
 import fr.karang.dungeoncreeper.material.DCMaterial;
 
 public class Lava extends DCMaterial {
 	public Lava() {
-		super("Lava", new ResourcePointer<Model>("model://DungeonCreeper/resources/block/natural/lava/lava.spm"));
+		super("Lava", "model://DungeonCreeper/resources/block/natural/lava/lava.spm");
 		setTransparent().setHardness(-1f);setHardness(-1f);
 	}
 

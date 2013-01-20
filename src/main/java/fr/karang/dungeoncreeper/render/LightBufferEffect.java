@@ -50,7 +50,7 @@ public class LightBufferEffect implements BufferEffect {
 		 * file://Vanilla/shaders/terrain.120.vert 
 		 * file://Vanilla/shaders/terrain.330.vert
 		 */
-
+		
 		TFloatArrayList lavaLightBuffer = (TFloatArrayList) container.getBuffers().get(1);
 		TFloatArrayList waterLightBuffer = (TFloatArrayList) container.getBuffers().get(4);
 
