@@ -40,7 +40,7 @@ import org.spout.api.Spout;
 import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
-import org.spout.api.math.MathHelper;
+import org.spout.api.math.GenericMath;
 
 public abstract class CreatureComponent extends EntityComponent {
 	//7, 12, 16, 20, 30, 50, 70, 90
@@ -140,7 +140,7 @@ public abstract class CreatureComponent extends EntityComponent {
 	}
 
 	public void setSlot(int slot) {
-		getData().put(DungeonData.SKILLSLOT, MathHelper.clamp(slot, 1, skills.size() - 1));
+		getData().put(DungeonData.SKILLSLOT, GenericMath.clamp(slot, 1, skills.size() - 1));
 	}
 
 	public int getSlot() {

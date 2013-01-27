@@ -27,6 +27,7 @@
 package fr.karang.dungeoncreeper.lighting;
 
 import org.spout.api.lighting.LightingManager;
+import org.spout.api.util.cuboid.ChunkCuboidLightBufferWrapper;
 import org.spout.api.util.cuboid.ImmutableCuboidBlockMaterialBuffer;
 
 public class BlockLightingManager extends LightingManager<CuboidLightBuffer> {
@@ -40,17 +41,28 @@ public class BlockLightingManager extends LightingManager<CuboidLightBuffer> {
 	}
 
 	@Override
-	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz, int[] oldHy, int[] newHy, int changedColumns) {
-	}
-
-	@Override
-	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y, int[] z, int changedBlocks) {
+	protected void resolve(
+			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
+			ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y,
+			int[] z, int changedBlocks) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void resolve(CuboidLightBuffer light, ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by, int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
+	protected void resolve(
+			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
+			ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by,
+			int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void resolve(
+			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
+			ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz,
+			int[] oldHy, int[] newHy, int changedColumns) {
 		// TODO Auto-generated method stub
 		
 	}
