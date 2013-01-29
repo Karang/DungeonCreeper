@@ -27,31 +27,23 @@
 package fr.karang.dungeoncreeper.lighting;
 
 import org.spout.api.lighting.LightingManager;
+import org.spout.api.lighting.Modifiable;
 import org.spout.api.util.cuboid.ChunkCuboidLightBufferWrapper;
 import org.spout.api.util.cuboid.ImmutableCuboidBlockMaterialBuffer;
 
-public class BlockLightingManager extends LightingManager<CuboidLightBuffer> {
+public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuffer> {
 	public BlockLightingManager(String name) {
 		super(name);
 	}
 
 	@Override
-	public CuboidLightBuffer deserialize(int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
-		return new CuboidLightBuffer(getId(), baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
-	}
-
-	@Override
-	protected void resolve(
-			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
-			ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y,
-			int[] z, int changedBlocks) {
+	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y, int[] z, int changedBlocks) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void resolve(
-			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
+	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light,
 			ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by,
 			int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
 		// TODO Auto-generated method stub
@@ -59,11 +51,16 @@ public class BlockLightingManager extends LightingManager<CuboidLightBuffer> {
 	}
 
 	@Override
-	protected void resolve(
-			ChunkCuboidLightBufferWrapper<CuboidLightBuffer> light,
+	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light,
 			ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz,
 			int[] oldHy, int[] newHy, int changedColumns) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public DungeonCuboidLightBuffer deserialize(Modifiable holder, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
+		return new DungeonCuboidLightBuffer(holder, getId(), baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
+	}
+
 }

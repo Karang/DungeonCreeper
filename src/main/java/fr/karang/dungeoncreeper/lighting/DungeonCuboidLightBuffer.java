@@ -26,19 +26,20 @@
  */
 package fr.karang.dungeoncreeper.lighting;
 
+import org.spout.api.lighting.Modifiable;
 import org.spout.api.util.cuboid.CuboidNibbleLightBuffer;
 
-public class CuboidLightBuffer extends CuboidNibbleLightBuffer {
+public class DungeonCuboidLightBuffer extends CuboidNibbleLightBuffer {
 	
-	protected CuboidLightBuffer(CuboidLightBuffer buffer) {
+	protected DungeonCuboidLightBuffer(DungeonCuboidLightBuffer buffer) {
 		super(buffer);
 	}
-	
-	protected CuboidLightBuffer(int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ) {
-		super(id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ);
+
+	protected DungeonCuboidLightBuffer(Modifiable holder, int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ) {
+		super(holder, id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ);
 	}
-	
-	protected CuboidLightBuffer(int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
-		super(id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
+
+	protected DungeonCuboidLightBuffer(Modifiable holder, int id, int baseX, int baseY, int baseZ, int sizeX, int sizeY, int sizeZ, byte[] data) {
+		super(holder, id, baseX, baseY, baseZ, sizeX, sizeY, sizeZ, data);
 	}
 }
