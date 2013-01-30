@@ -1,3 +1,4 @@
+#Shader: shader://DungeonCreeper/resources/shader/entity/animatedEntity.ssf
 Shader: shader://DungeonCreeper/resources/shader/entity.ssf
 
 MaterialParams:

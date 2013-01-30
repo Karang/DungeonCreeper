@@ -1,3 +1,6 @@
 Mesh: mesh://DungeonCreeper/resources/entity/creature/imp/imp.obj
 Material: material://DungeonCreeper/resources/entity/creature/imp/imp.smt
+Skeleton: skeleton://DungeonCreeper/resources/entity/creature/imp/imp.ske
+Animation:
+    idle: animation://DungeonCreeper/resources/entity/creature/imp/imp_idle.sam
     

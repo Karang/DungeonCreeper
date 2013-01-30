@@ -36,9 +36,9 @@ public class CreaturePrefabs {
 	public static final EntityPrefab DARK_ELF = null;
 	public static final EntityPrefab DARK_MISTRESS = null;
 	public static final EntityPrefab FIREFLY = null;
-	public static final EntityPrefab GOBELIN = null;
+	public static final EntityPrefab GOBELIN = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/creature/gobelin/gobelin.sep");
 	public static final EntityPrefab HORNED_REAPER = null;
-	public static final EntityPrefab IMP = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/creature/imp/imp.sep");;
+	public static final EntityPrefab IMP = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/creature/imp/imp.sep");
 	public static final EntityPrefab MAIDEN = null;
 	public static final EntityPrefab ROGUE = null;
 	public static final EntityPrefab SALAMENDER = null;

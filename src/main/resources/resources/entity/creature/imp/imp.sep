@@ -1,5 +1,6 @@
 Name: "Imp"
 Components:
+    - org.spout.engine.entity.component.SpoutAnimationComponent
     - org.spout.engine.entity.component.EntityRendererComponent
 Data:
     Model: model://DungeonCreeper/resources/entity/creature/imp/imp.spm

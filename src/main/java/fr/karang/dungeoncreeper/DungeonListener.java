@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper;
 
+import fr.karang.dungeoncreeper.component.entity.CreaturePrefabs;
 import fr.karang.dungeoncreeper.component.entity.InputComponent;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
@@ -34,12 +35,18 @@ import fr.karang.dungeoncreeper.render.DungeonResources;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
+import org.spout.api.component.impl.AnimationComponent;
 import org.spout.api.component.impl.CameraComponent;
+import org.spout.api.component.impl.ModelHolderComponent;
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.EntityPrefab;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.engine.EngineStartEvent;
 import org.spout.api.event.player.PlayerJoinEvent;
+import org.spout.api.model.Model;
+import org.spout.api.model.animation.Animation;
 
 public class DungeonListener implements Listener {
 	private DungeonCreeper plugin;
@@ -73,5 +80,30 @@ public class DungeonListener implements Listener {
 		CameraComponent camera = player.get(CameraComponent.class);
 		camera.setScale(0.5f);
 		camera.setSpeed(10f);
+		
+		{
+			EntityPrefab prefab = CreaturePrefabs.IMP;
+			Entity e = prefab.createEntity(player.getTransform().getPosition().add(0, 10, 0));
+			e.setSavable(false);
+			player.getWorld().spawnEntity(e);
+			
+			Model model = e.get(ModelHolderComponent.class).getModels().get(0);
+			AnimationComponent ac = e.get(AnimationComponent.class);
+			
+			Animation a = model.getAnimations().get("idle");
+			
+			ac.playAnimation(model, a, true);
+			
+			System.out.println("Spawn Imp");
+		}
+		{
+			EntityPrefab prefab = CreaturePrefabs.GOBELIN;
+			Entity e = prefab.createEntity(player.getTransform().getPosition().add(0, 14, 0));
+			e.setSavable(false);
+			player.getWorld().spawnEntity(e);
+			System.out.println("Spawn Gobelin");
+		}
+
+		
 	}
 }
