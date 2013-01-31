@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.player.skill.utils;
 
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
-import org.spout.api.component.impl.HitBlockComponent;
+import org.spout.api.component.impl.InteractComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;
@@ -42,8 +42,8 @@ public class Teleport extends Skill {
 	public void handle(Entity source) {
 		Player player = (Player) source;
 
-		source.get(HitBlockComponent.class).setRange(30f);
-		Block block = source.get(HitBlockComponent.class).getLastEmpty();
+		source.get(InteractComponent.class).setRange(30f);
+		Block block = source.get(InteractComponent.class).getLastEmpty();
 
 		if (block == null) {
 			return;

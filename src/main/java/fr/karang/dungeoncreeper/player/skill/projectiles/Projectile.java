@@ -41,15 +41,15 @@ public abstract class Projectile extends Skill {
 
 	@Override
 	public void handle(Entity source) {
-		Entity projectile = getProjectile().createEntity(source.getTransform().getPosition());
+		Entity projectile = getProjectile().createEntity(source.getScene().getPosition());
 		if (source.get(DungeonPlayer.class).getTeam()==null) {
 			projectile.getData().put(DungeonData.TEAM, -1);
 		} else {
 			projectile.getData().put(DungeonData.TEAM, source.get(DungeonPlayer.class).getTeam().getId());
 		}
 		source.getWorld().spawnEntity(projectile);
-		projectile.get(ProjectileComponent.class).getPhysics()
-		.applyImpulse(source.getTransform().getTransform().forwardVector());
+		//projectile.get(ProjectileComponent.class).getPhysics()
+		//.applyImpulse(source.getScene().getTransform().forwardVector());
 	}
 
 	public abstract EntityPrefab getProjectile();

@@ -40,7 +40,7 @@ public class BumpEffect implements RenderEffect {
 	}
 
 	public void preRender(SnapshotRender snap) {
-		snap.getMaterial().getShader().setUniform("Camera", player.getTransform().getPosition());
+		snap.getMaterial().getShader().setUniform("Camera", player.getScene().getPosition());
 	}
 
 	public void postRender(SnapshotRender snapshotRender) {

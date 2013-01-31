@@ -26,7 +26,6 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.component.impl.PhysicsComponent;
 import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.math.Vector3;
@@ -37,19 +36,19 @@ import fr.karang.dungeoncreeper.data.DungeonData;
 
 public class ProjectileComponent extends EntityComponent {
 	
-	private PhysicsComponent physics;
+	//private PhysicsComponent physics;
 	private Entity shooter;
 	
 	@Override
 	public void onAttached() {
-		physics = getOwner().add(PhysicsComponent.class);
-		physics.setCollisionShape(new BoxShape(1, 1, 1));
+		//physics = getOwner().add(PhysicsComponent.class);
+		//physics.setCollisionShape(new BoxShape(1, 1, 1));
 	}
 	
 	@Override
 	public void onTick(float dt) {
 		//System.out.println("phys: " + physics.getAngularVelocity());
-		getOwner().getTransform().translate(physics.getLinearVelocity().multiply(dt));
+		//getOwner().getScene().getTransform().translate(physics.getLinearVelocity().multiply(dt));
 	}
 	
 	public int getDamages() {
@@ -68,7 +67,7 @@ public class ProjectileComponent extends EntityComponent {
 		this.shooter = shooter;
 	}
 	
-	public PhysicsComponent getPhysics() {
-		return physics;
-	}
+	//public PhysicsComponent getPhysics() {
+		//return physics;
+	//}
 }

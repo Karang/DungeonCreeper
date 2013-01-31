@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.component.entity;
 
 import org.spout.api.Spout;
 import org.spout.api.component.impl.CameraComponent;
-import org.spout.api.component.impl.TransformComponent;
+import org.spout.api.component.impl.SceneComponent;
 import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
@@ -59,8 +59,8 @@ public class InputComponent extends EntityComponent {
 	@Override
 	public void onTick(float dt){
 		PlayerInputState inputState = player.input();
-		TransformComponent tc = player.getTransform();
-		Transform ts = tc.getTransformLive();
+		SceneComponent sc = player.getScene();
+		Transform ts = sc.getTransform();
 
 		Vector3 offset = Vector3.ZERO;
 		if (inputState.getForward()) {
@@ -81,6 +81,7 @@ public class InputComponent extends EntityComponent {
 		if (inputState.getCrouch()) {
 			offset = offset.subtract(ts.upVector().multiply(camera.getSpeed()).multiply(dt));
 		}
-		tc.translateAndSetRotation(offset, QuaternionMath.rotation(inputState.pitch(), inputState.yaw(), ts.getRotation().getRoll()));
+		ts.translateAndSetRotation(offset, QuaternionMath.rotation(inputState.pitch(), inputState.yaw(), ts.getRotation().getRoll()));
+		sc.setTransform(ts);
 	}
 }

@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
-import org.spout.api.component.impl.HitBlockComponent;
+import org.spout.api.component.impl.InteractComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
@@ -49,7 +49,7 @@ public class Claim extends Skill {
 	@Override
 	public void handle(Entity source) {
 		System.out.println("Claim");
-		Block block = source.get(HitBlockComponent.class).getTargetBlock();
+		Block block = source.get(InteractComponent.class).getTargetBlock();
 		Team team = source.get(DungeonPlayer.class).getTeam();
 		BlockCause cause = new BlockCause(source);
 

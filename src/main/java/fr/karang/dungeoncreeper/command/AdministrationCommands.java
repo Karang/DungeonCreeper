@@ -185,7 +185,7 @@ public class AdministrationCommands {
 			prefab = CreaturePrefabs.WARLOCK;
 		}
 		
-		Entity e = prefab.createEntity(player.getTransform().getPosition());
+		Entity e = prefab.createEntity(player.getScene().getTransform().getPosition());
 		e.setSavable(false);
 		player.getWorld().spawnEntity(e);
 	}

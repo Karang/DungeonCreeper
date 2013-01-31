@@ -83,7 +83,7 @@ public class DungeonListener implements Listener {
 		
 		{
 			EntityPrefab prefab = CreaturePrefabs.IMP;
-			Entity e = prefab.createEntity(player.getTransform().getPosition().add(0, 10, 0));
+			Entity e = prefab.createEntity(player.getScene().getTransform().getPosition().add(0, 10, 0));
 			e.setSavable(false);
 			player.getWorld().spawnEntity(e);
 			
@@ -98,7 +98,7 @@ public class DungeonListener implements Listener {
 		}
 		{
 			EntityPrefab prefab = CreaturePrefabs.GOBELIN;
-			Entity e = prefab.createEntity(player.getTransform().getPosition().add(0, 14, 0));
+			Entity e = prefab.createEntity(player.getScene().getTransform().getPosition().add(0, 14, 0));
 			e.setSavable(false);
 			player.getWorld().spawnEntity(e);
 			System.out.println("Spawn Gobelin");

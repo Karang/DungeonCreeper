@@ -31,7 +31,7 @@ import java.util.Random;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 
-import org.spout.api.component.impl.HitBlockComponent;
+import org.spout.api.component.impl.InteractComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.map.DefaultedKey;
@@ -104,8 +104,8 @@ public class Dig extends BuildSkill {
 	
 	@Override
 	protected Block getBlock(Entity source) {
-		source.get(HitBlockComponent.class).setRange(4f);
-		return source.get(HitBlockComponent.class).getTargetBlock();
+		source.get(InteractComponent.class).setRange(4f);
+		return source.get(InteractComponent.class).getTargetBlock();
 	}
 	
 	@Override

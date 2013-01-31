@@ -26,7 +26,7 @@
  */
 package fr.karang.dungeoncreeper.player.skill.builds;
 
-import org.spout.api.component.impl.HitBlockComponent;
+import org.spout.api.component.impl.InteractComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.map.DefaultedKey;
@@ -82,7 +82,7 @@ public class BuildSkill extends Skill {
 	}
 	
 	protected Block getBlock(Entity source) {
-		source.get(HitBlockComponent.class).setRange(4f);
-		return source.get(HitBlockComponent.class).getLastEmpty();
+		source.get(InteractComponent.class).setRange(4f);
+		return source.get(InteractComponent.class).getLastEmpty();
 	}
 }
