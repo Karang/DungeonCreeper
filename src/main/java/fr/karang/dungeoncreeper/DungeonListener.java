@@ -27,7 +27,7 @@
 package fr.karang.dungeoncreeper;
 
 import fr.karang.dungeoncreeper.component.entity.CreaturePrefabs;
-import fr.karang.dungeoncreeper.component.entity.InputComponent;
+import fr.karang.dungeoncreeper.component.entity.DungeonInputExecutor;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
@@ -47,6 +47,7 @@ import org.spout.api.event.engine.EngineStartEvent;
 import org.spout.api.event.player.PlayerJoinEvent;
 import org.spout.api.model.Model;
 import org.spout.api.model.animation.Animation;
+import org.spout.api.plugin.Platform;
 
 public class DungeonListener implements Listener {
 	private DungeonCreeper plugin;
@@ -61,14 +62,22 @@ public class DungeonListener implements Listener {
 	}
 
 	@EventHandler
-	public void onClientEnable(EngineStartEvent event) {
+	public void onGameStart(EngineStartEvent event) {
+		if (Spout.getPlatform() != Platform.CLIENT) {
+			return;
+		}
+		
 		final Player player = ((Client) Spout.getEngine()).getActivePlayer();
 		
 		DungeonResources.init();
 
 		player.add(Imp.class);
 		player.add(DungeonPlayer.class);
-		player.add(InputComponent.class);
+		CameraComponent camera = player.add(CameraComponent.class);
+		camera.setScale(0.5f);
+		camera.setSpeed(10f);
+		
+		((Client) Spout.getEngine()).getInputManager().addInputExecutors(new DungeonInputExecutor(player));
 		
 		/*PhysicsComponent physics = player.add(PhysicsComponent.class);
 		physics.setMass(1.f);
@@ -77,11 +86,7 @@ public class DungeonListener implements Listener {
 		final HUD hud = new HUD(player);
 		((Client) Spout.getEngine()).getScreenStack().openScreen(hud);
 
-		CameraComponent camera = player.get(CameraComponent.class);
-		camera.setScale(0.5f);
-		camera.setSpeed(10f);
-		
-		{
+		/*{
 			EntityPrefab prefab = CreaturePrefabs.IMP;
 			Entity e = prefab.createEntity(player.getScene().getTransform().getPosition().add(0, 10, 0));
 			e.setSavable(false);
@@ -103,7 +108,7 @@ public class DungeonListener implements Listener {
 			player.getWorld().spawnEntity(e);
 			System.out.println("Spawn Gobelin");
 		}
-
+*/
 		
 	}
 }

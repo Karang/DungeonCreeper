@@ -26,38 +26,26 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.Spout;
 import org.spout.api.component.impl.CameraComponent;
 import org.spout.api.component.impl.SceneComponent;
-import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
 import org.spout.api.geo.discrete.Transform;
+import org.spout.api.input.InputExecutor;
 import org.spout.api.math.QuaternionMath;
 import org.spout.api.math.Vector3;
-import org.spout.api.plugin.Platform;
 
-public class InputComponent extends EntityComponent {
+public class DungeonInputExecutor implements InputExecutor {
 
 	private Player player;
 	private CameraComponent camera;
 
-	@Override
-	public void onAttached(){
-		if(Spout.getPlatform() != Platform.CLIENT){
-			throw new IllegalStateException("InputComponent is only for client");
-		}
-
-		if(!(getOwner() instanceof Player)){
-			throw new IllegalStateException("InputComponent is only for player");
-		}
-
-		player = (Player) getOwner();
-		camera = (CameraComponent)player.get(CameraComponent.class);
+	public DungeonInputExecutor(Player player) {
+		this.player = player;
+		camera = player.get(CameraComponent.class);
 	}
 
-	@Override
-	public void onTick(float dt){
+	public void execute(float dt) {
 		PlayerInputState inputState = player.input();
 		SceneComponent sc = player.getScene();
 		Transform ts = sc.getTransform();
@@ -81,6 +69,7 @@ public class InputComponent extends EntityComponent {
 		if (inputState.getCrouch()) {
 			offset = offset.subtract(ts.upVector().multiply(camera.getSpeed()).multiply(dt));
 		}
+
 		ts.translateAndSetRotation(offset, QuaternionMath.rotation(inputState.pitch(), inputState.yaw(), ts.getRotation().getRoll()));
 		sc.setTransform(ts);
 	}
