@@ -35,6 +35,7 @@ import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.gui.Screen;
 import org.spout.api.gui.Widget;
@@ -49,7 +50,7 @@ public class RoomSelection extends Screen {
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
 	private final RenderMaterial roomMaterial = (RenderMaterial) Spout.getFilesystem().getResource("material://DungeonCreeper/resources/gui/skillMaterial.smt");
-	private Widget selectionScreen = new Widget();
+	private Widget selectionScreen = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
 	private int nbRooms = 0;
 
 	public RoomSelection(Team team) {

@@ -31,6 +31,7 @@ import java.util.Map;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
 import org.spout.api.gui.Screen;
@@ -42,8 +43,8 @@ import org.spout.api.render.Font;
 public class GameCreationScreen extends Screen {
 	private static final float SCALE = 0.75f;
 	private static final float OPTW = 0.3f * SCALE;
-	private final Widget backButton = new Widget();
-	private final Widget worldPreview = new Widget();
+	private final Widget backButton = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+	private final Widget worldPreview = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
 	private final Map<String, OptionWidget> options = new HashMap<String, OptionWidget>();
 	private final Lobby lobby;
 	private final DungeonCreeper plugin;
@@ -66,8 +67,8 @@ public class GameCreationScreen extends Screen {
 
 	private static class OptionWidget {
 		private final Font FONT = (Font) Spout.getFilesystem().getResource("font://DungeonCreeper/resources/gui/DKFont.ttf");
-		private Widget title = new Widget();
-		private Widget value = new Widget();
+		private Widget title = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+		private Widget value = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
 		private String[] values;
 		private int i = 0;
 

@@ -36,7 +36,7 @@ import org.spout.api.math.QuaternionMath;
 import org.spout.api.math.Vector3;
 
 public class DungeonInputExecutor implements InputExecutor {
-
+	private final float speed = 10;
 	private Player player;
 	private CameraComponent camera;
 
@@ -52,22 +52,22 @@ public class DungeonInputExecutor implements InputExecutor {
 
 		Vector3 offset = Vector3.ZERO;
 		if (inputState.getForward()) {
-			offset = offset.subtract(ts.forwardVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.subtract(ts.forwardVector().multiply(speed).multiply(dt));
 		}
 		if (inputState.getBackward()) {
-			offset = offset.add(ts.forwardVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.add(ts.forwardVector().multiply(speed).multiply(dt));
 		}
 		if (inputState.getLeft()) {
-			offset = offset.subtract(ts.rightVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.subtract(ts.rightVector().multiply(speed).multiply(dt));
 		}
 		if (inputState.getRight()) {
-			offset = offset.add(ts.rightVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.add(ts.rightVector().multiply(speed).multiply(dt));
 		}
 		if (inputState.getJump()) {
-			offset = offset.add(ts.upVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.add(ts.upVector().multiply(speed).multiply(dt));
 		}
 		if (inputState.getCrouch()) {
-			offset = offset.subtract(ts.upVector().multiply(camera.getSpeed()).multiply(dt));
+			offset = offset.subtract(ts.upVector().multiply(speed).multiply(dt));
 		}
 
 		ts.translateAndSetRotation(offset, QuaternionMath.rotation(inputState.pitch(), inputState.yaw(), ts.getRotation().getRoll()));

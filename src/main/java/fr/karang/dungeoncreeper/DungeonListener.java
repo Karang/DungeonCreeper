@@ -75,7 +75,6 @@ public class DungeonListener implements Listener {
 		player.add(DungeonPlayer.class);
 		CameraComponent camera = player.add(CameraComponent.class);
 		camera.setScale(0.5f);
-		camera.setSpeed(10f);
 		
 		((Client) Spout.getEngine()).getInputManager().addInputExecutors(new DungeonInputExecutor(player));
 		

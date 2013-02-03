@@ -32,6 +32,7 @@ import fr.karang.dungeoncreeper.DungeonConfig;
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.render.DungeonResources;
 
+import org.spout.api.Client;
 import org.spout.api.Spout;
 import org.spout.api.chat.ChatArguments;
 import org.spout.api.gui.Screen;
@@ -82,7 +83,7 @@ public class LobbyScreen extends Screen {
 	}
 
 	public Widget newTextBox(ChatArguments label, Color bg, float x, float y, float w, float h) {
-		final Widget box = new Widget();
+		final Widget box = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
 		final RenderPartsHolderComponent titlerect = box.add(RenderPartsHolderComponent.class);
 		RenderPart rect = new RenderPart();
 		rect.setRenderMaterial(DungeonResources.COLOR_MAT);
