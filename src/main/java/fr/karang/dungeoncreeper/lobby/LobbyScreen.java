@@ -83,7 +83,7 @@ public class LobbyScreen extends Screen {
 	}
 
 	public Widget newTextBox(ChatArguments label, Color bg, float x, float y, float w, float h) {
-		final Widget box = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+		final Widget box = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 		final RenderPartsHolderComponent titlerect = box.add(RenderPartsHolderComponent.class);
 		RenderPart rect = new RenderPart();
 		rect.setRenderMaterial(DungeonResources.COLOR_MAT);

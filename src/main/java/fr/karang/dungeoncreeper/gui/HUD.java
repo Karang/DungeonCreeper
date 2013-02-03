@@ -52,18 +52,18 @@ public class HUD extends Screen {
 	private static final float SCALE = 0.75f; // TODO: Apply directly from engine
 	private static final float SKILL_OFFSET = 0.2f;
 	private static final float SKILL_SIZE = 0.19f;
-	private Widget skillBar = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+	private Widget skillBar = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 	private int nbSlots = 0;
 	private int slot = 1;
 	private final Player player;
 	
-	private final Widget life = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
-	private final Widget gold = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
-	private final Widget mana = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
-	private final Widget level = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+	private final Widget life = ((Client) Spout.getEngine()).getScreenStack().createWidget();
+	private final Widget gold = ((Client) Spout.getEngine()).getScreenStack().createWidget();
+	private final Widget mana = ((Client) Spout.getEngine()).getScreenStack().createWidget();
+	private final Widget level = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 	
 	// DEBUG
-	private final Widget creature = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+	private final Widget creature = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 
 	public HUD(Player player) {
 		if (Spout.getPlatform() != Platform.CLIENT) {
@@ -152,7 +152,7 @@ public class HUD extends Screen {
 	}
 
 	public void buildCrosshair() {
-		Widget crosshair = ((Client) Spout.getEngine()).getScreenStack().makeWidget();
+		Widget crosshair = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 
 		RenderPart cross = new RenderPart();
 		cross.setRenderMaterial(DungeonResources.SKILL_MAT);
