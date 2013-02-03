@@ -84,8 +84,8 @@ public class GameCreationScreen extends Screen {
 		}
 
 		public void setPos(float x, float y) {
-			title.setGeometry(new Rectangle(x, y, 0, 0));
-			value.setGeometry(new Rectangle(x + OPTW, y, 0, 0));
+			title.getTransform().translate(x, y, 0);
+			value.getTransform().translate(x + OPTW, y, 0);
 		}
 
 		public void attach(Screen screen, DungeonCreeper plugin) {

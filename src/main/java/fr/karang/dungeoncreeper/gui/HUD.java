@@ -120,7 +120,7 @@ public class HUD extends Screen {
 	public void buildTest() {
 		LabelComponent txtCreature = creature.add(LabelComponent.class);
 		
-		creature.setGeometry(new Rectangle(-0.8f, 0, 0, 0));
+		creature.getTransform().translate(-0.8f, 0, 0);
 		txtCreature.setFont(DungeonResources.FONT);
 		txtCreature.setText(new ChatArguments("Imp"));
 		
@@ -133,16 +133,16 @@ public class HUD extends Screen {
 		LabelComponent txtMana = mana.add(LabelComponent.class);
 		LabelComponent txtLevel = level.add(LabelComponent.class);
 		
-		life.setGeometry(new Rectangle(-0.3f, -0.75f, 0, 0));
+		life.getTransform().translate(-0.3f, -0.75f, 0);
 		txtLife.setFont(DungeonResources.FONT);
 		
-		gold.setGeometry(new Rectangle(0, 0.8f, 0, 0));
+		gold.getTransform().translate(0, 0.8f, 0);
 		txtGold.setFont(DungeonResources.FONT);
 		
-		mana.setGeometry(new Rectangle(0.3f, -0.75f, 0, 0));
+		mana.getTransform().translate(0.3f, -0.75f, 0);
 		txtMana.setFont(DungeonResources.FONT);
 		
-		level.setGeometry(new Rectangle(0, -0.75f, 0, 0));
+		level.getTransform().translate(0, -0.75f, 0);
 		txtLevel.setFont(DungeonResources.FONT);
 		
 		attachWidget(DungeonCreeper.getInstance(), life);

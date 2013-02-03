@@ -91,7 +91,7 @@ public class LobbyScreen extends Screen {
 		rect.setSprite(new Rectangle(x * SCALE, y, w * SCALE, h));
 		rect.setSource(new Rectangle(0, 0, 0, 0));
 		titlerect.add(rect);
-		box.setGeometry(new Rectangle(x * SCALE, y, 0, 0));
+		box.getTransform().translate(x * SCALE, y, 0);
 		final LabelComponent title = box.add(LabelComponent.class);
 		title.setFont(DungeonResources.FONT);
 		title.setText(label);
