@@ -36,26 +36,28 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 		super(name);
 	}
 
+	/**
+	 * Recalculates lighting after a change to the block materials at a given set of block coordinates.
+	 */
 	@Override
 	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y, int[] z, int changedBlocks) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Recalculates lighting after a change to the block materials at a given set of cuboid regions.
+	 */
 	@Override
-	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light,
-			ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by,
-			int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
-		// TODO Auto-generated method stub
+	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by, int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
 		
 	}
 
+	/**
+	 * Recalculates lighting after a change to the world surface height.
+	 */
 	@Override
-	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light,
-			ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz,
-			int[] oldHy, int[] newHy, int changedColumns) {
-		// TODO Auto-generated method stub
-		
+	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] hx, int[] hz, int[] oldHy, int[] newHy, int changedColumns) {
+		// Shouldn't be happening
 	}
 
 	@Override
