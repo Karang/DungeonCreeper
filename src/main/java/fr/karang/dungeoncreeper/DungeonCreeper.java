@@ -84,16 +84,16 @@ public class DungeonCreeper extends CommonPlugin {
 
 		if (Spout.getPlatform() == Platform.CLIENT) {
 			InputManager input = ((Client) Spout.getEngine()).getInputManager();
-			input.bind(Keyboard.KEY_F1, "slot 0");
-			input.bind(Keyboard.KEY_F2, "slot 1");
-			input.bind(Keyboard.KEY_F3, "slot 2");
-			input.bind(Keyboard.KEY_F4, "slot 3");
-			input.bind(Keyboard.KEY_F5, "slot 4");
-			input.bind(Keyboard.KEY_F6, "slot 5");
-			input.bind(Keyboard.KEY_F7, "slot 6");
-			input.bind(Keyboard.KEY_F8, "slot 7");
-			input.bind(Keyboard.KEY_F9, "slot 8");
-			input.bind(Keyboard.KEY_F10, "slot 9");
+			input.bind(Keyboard.KEY_0, "slot 0");
+			input.bind(Keyboard.KEY_1, "slot 1");
+			input.bind(Keyboard.KEY_2, "slot 2");
+			input.bind(Keyboard.KEY_3, "slot 3");
+			input.bind(Keyboard.KEY_4, "slot 4");
+			input.bind(Keyboard.KEY_5, "slot 5");
+			input.bind(Keyboard.KEY_6, "slot 6");
+			input.bind(Keyboard.KEY_7, "slot 7");
+			input.bind(Keyboard.KEY_8, "slot 8");
+			input.bind(Keyboard.KEY_9, "slot 9");
 		}
 
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");
