@@ -24,42 +24,42 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.entity;
+package fr.karang.dungeoncreeper.protocol.codec.entity;
 
-import org.spout.api.protocol.Message;
+import java.io.IOException;
 
-public class EntityVelocityMessage implements Message {
-	private final int id;
-	private final int velocityX, velocityY, velocityZ;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntityTeleportMessage;
 
-	public EntityVelocityMessage(int id, int velocityX, int velocityY, int velocityZ) {
-		this.id = id;
-		this.velocityX = velocityX;
-		this.velocityY = velocityY;
-		this.velocityZ = velocityZ;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+
+import org.spout.api.protocol.MessageCodec;
+
+public class EntityTeleportCodec extends MessageCodec<EntityTeleportMessage> {
+	public EntityTeleportCodec() {
+		super(EntityTeleportMessage.class, 0x15);
 	}
 
-	public int getId() {
-		return id;
+	@Override
+	public EntityTeleportMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
+		int x = buffer.readInt();
+		int y = buffer.readInt();
+		int z = buffer.readInt();
+		float pitch = buffer.readFloat();
+		float yaw = buffer.readFloat();
+		return new EntityTeleportMessage(id, x, y, z, pitch, yaw);
 	}
 
-	public int getVelocityX() {
-		return velocityX;
-	}
-
-	public int getVelocityY() {
-		return velocityY;
-	}
-
-	public int getVelocityZ() {
-		return velocityZ;
-	}
-
-	public int getChannelId() {
-		return 0;
-	}
-	
-	public boolean isAsync() {
-		return false;
+	@Override
+	public ChannelBuffer encode(EntityTeleportMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getId());
+		buffer.writeInt(message.getX());
+		buffer.writeInt(message.getY());
+		buffer.writeInt(message.getZ());
+		buffer.writeFloat(message.getPitch());
+		buffer.writeFloat(message.getYaw());
+		return buffer;
 	}
 }

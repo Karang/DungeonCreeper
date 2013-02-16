@@ -24,53 +24,42 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.entity;
+package fr.karang.dungeoncreeper.protocol.codec.entity;
 
-import org.spout.api.protocol.Message;
+import java.io.IOException;
 
-public class EntityMoveMessage implements Message {
-	private final int id;
-	private final int deltaX, deltaY, deltaZ;
-	private final float pitch, yaw;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntityMoveMessage;
 
-	public EntityMoveMessage(int id, int deltaX, int deltaY, int deltaZ, float pitch, float yaw) {
-		this.id = id;
-		this.deltaX = deltaX;
-		this.deltaY = deltaY;
-		this.deltaZ = deltaZ;
-		this.pitch = pitch;
-		this.yaw = yaw;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+
+import org.spout.api.protocol.MessageCodec;
+
+public class EntityMoveCodec extends MessageCodec<EntityMoveMessage> {
+	public EntityMoveCodec() {
+		super(EntityMoveMessage.class, 0x15);
 	}
 
-	public int getId() {
-		return id;
+	@Override
+	public EntityMoveMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
+		int x = buffer.readByte();
+		int y = buffer.readByte();
+		int z = buffer.readByte();
+		float pitch = buffer.readFloat();
+		float yaw = buffer.readFloat();
+		return new EntityMoveMessage(id, x, y, z, pitch, yaw);
 	}
 
-	public int getDeltaX() {
-		return deltaX;
-	}
-
-	public int getDeltaY() {
-		return deltaY;
-	}
-
-	public int getDeltaZ() {
-		return deltaZ;
-	}
-
-	public float getPitch() {
-		return pitch;
-	}
-
-	public float getYaw() {
-		return yaw;
-	}
-
-	public int getChannelId() {
-		return 0;
-	}
-
-	public boolean isAsync() {
-		return false;
+	@Override
+	public ChannelBuffer encode(EntityMoveMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getId());
+		buffer.writeByte(message.getDeltaX());
+		buffer.writeByte(message.getDeltaY());
+		buffer.writeByte(message.getDeltaZ());
+		buffer.writeFloat(message.getPitch());
+		buffer.writeFloat(message.getYaw());
+		return buffer;
 	}
 }

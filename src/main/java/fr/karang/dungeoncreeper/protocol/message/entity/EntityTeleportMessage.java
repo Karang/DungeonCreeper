@@ -30,13 +30,16 @@ import org.spout.api.protocol.Message;
 
 public class EntityTeleportMessage implements Message {
 	private final int id;
-	private final int X, Y, Z;
+	private final int x, y, z; 
+	private final float yaw, pitch;
 
-	public EntityTeleportMessage(int id, int X, int Y, int Z) {
+	public EntityTeleportMessage(int id, int x, int y, int z, float yaw, float pitch) {
 		this.id = id;
-		this.X = X;
-		this.Y = Y;
-		this.Z = Z;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.yaw = yaw;
+		this.pitch = pitch;
 	}
 
 	public int getId() {
@@ -44,17 +47,25 @@ public class EntityTeleportMessage implements Message {
 	}
 
 	public int getX() {
-		return X;
+		return x;
 	}
 
 	public int getY() {
-		return Y;
+		return y;
 	}
 
 	public int getZ() {
-		return Z;
+		return z;
 	}
 
+	public float getYaw() {
+		return yaw;
+	}
+	
+	public float getPitch() {
+		return pitch;
+	}
+	
 	public int getChannelId() {
 		return 0;
 	}
