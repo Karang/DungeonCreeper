@@ -34,6 +34,7 @@ import fr.karang.dungeoncreeper.protocol.handler.PlayerSpawnHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerHandshakeHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerListHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.WorldListHandler;
+import fr.karang.dungeoncreeper.protocol.handler.world.ChunkDataHandler;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChangeClassMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
@@ -42,6 +43,7 @@ import fr.karang.dungeoncreeper.protocol.message.PlayerSpawnMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
+import fr.karang.dungeoncreeper.protocol.message.world.ChunkDataMessage;
 
 import org.spout.api.protocol.HandlerLookupService;
 
@@ -67,6 +69,8 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 			//bind(TeamGoldMessage.class, TeamGoldHandler.class); // 0x21
 
 			// World messages
+			bind(ChunkDataMessage.class, ChunkDataHandler.class); //0x30
+			
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
 		}

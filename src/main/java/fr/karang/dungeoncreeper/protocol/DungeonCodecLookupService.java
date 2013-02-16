@@ -34,6 +34,7 @@ import fr.karang.dungeoncreeper.protocol.codec.PlayerSpawnCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
+import fr.karang.dungeoncreeper.protocol.codec.world.ChunkDataCodec;
 
 import org.spout.api.protocol.CodecLookupService;
 
@@ -62,6 +63,7 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			// EntityMessages
 
 			// World messages
+			bind(ChunkDataCodec.class); //0x30
 
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);

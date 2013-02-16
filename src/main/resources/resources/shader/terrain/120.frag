@@ -22,5 +22,5 @@ void main() {
 	vec4 vDiffuse = color * diffuse;
 	vDiffuse.a = color.a;
 	
-	gl_FragColor =  vDiffuse * base;
+	gl_FragColor =  vec4(diffuse, diffuse, diffuse, 1.0) * base;
 } 
