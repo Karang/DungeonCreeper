@@ -30,6 +30,7 @@ import java.util.logging.Level;
 
 import fr.karang.dungeoncreeper.command.AdministrationCommands;
 import fr.karang.dungeoncreeper.command.PlayerCommands;
+import fr.karang.dungeoncreeper.input.InputCommandExecutor;
 import fr.karang.dungeoncreeper.lobby.Lobby;
 import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
 
@@ -37,12 +38,13 @@ import org.spout.api.Client;
 import org.spout.api.Engine;
 import org.spout.api.Spout;
 import org.spout.api.command.CommandRegistrationsFactory;
+import org.spout.api.command.RootCommand;
 import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
 import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
 import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.exception.ConfigurationException;
 import org.spout.api.input.InputManager;
-import org.spout.api.input.Keyboard;
+import org.spout.api.input.Mouse;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.Platform;
 import org.spout.api.protocol.Protocol;
@@ -77,23 +79,22 @@ public class DungeonCreeper extends CommonPlugin {
 		}
 
 		// Commands
+		RootCommand root = engine.getRootCommand();
 		CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
-		engine.getRootCommand().addSubCommands(this, AdministrationCommands.class, commandRegFactory);
-		engine.getRootCommand().addSubCommands(this, PlayerCommands.class, commandRegFactory);
+		root.addSubCommands(this, AdministrationCommands.class, commandRegFactory);
+		root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
 		engine.getEventManager().registerEvents(new DungeonListener(this), this);
 
 		if (Spout.getPlatform() == Platform.CLIENT) {
-			InputManager input = ((Client) Spout.getEngine()).getInputManager();
-			input.bind(Keyboard.KEY_0, "slot 0");
-			input.bind(Keyboard.KEY_1, "slot 1");
-			input.bind(Keyboard.KEY_2, "slot 2");
-			input.bind(Keyboard.KEY_3, "slot 3");
-			input.bind(Keyboard.KEY_4, "slot 4");
-			input.bind(Keyboard.KEY_5, "slot 5");
-			input.bind(Keyboard.KEY_6, "slot 6");
-			input.bind(Keyboard.KEY_7, "slot 7");
-			input.bind(Keyboard.KEY_8, "slot 8");
-			input.bind(Keyboard.KEY_9, "slot 9");
+			final InputManager input = ((Client) engine).getInputManager();
+			input.bind(Mouse.MOUSE_SCROLLUP, "skillbar_left");
+			input.bind(Mouse.MOUSE_SCROLLDOWN, "skillbar_right");
+			
+			final InputCommandExecutor exe = new InputCommandExecutor();
+			root.addSubCommand(this, "+skillbar_left").setArgBounds(0, 0).setHelp("Changes skillbar slot!")
+					.setExecutor(Platform.CLIENT, exe);
+			root.addSubCommand(this, "+skillbar_right").setArgBounds(0, 0).setHelp("Changes skillbar slot!")
+					.setExecutor(Platform.CLIENT, exe);
 		}
 
 		getLogger().info("DungeonCreeper " + getDescription().getVersion() + " enabled!");

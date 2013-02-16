@@ -84,8 +84,6 @@ public abstract class CreatureComponent extends EntityComponent {
 		} else {
 			resetCast(0);
 		}
-		
-		//TODO: slot selection
 	}
 	
 	public void addXp(int amount) {
@@ -139,6 +137,10 @@ public abstract class CreatureComponent extends EntityComponent {
 		return skills.get(getSlot());
 	}
 
+	public int getSlotAmount() {
+		return skills.size();
+	}
+	
 	public void setSlot(int slot) {
 		getData().put(DungeonData.SKILLSLOT, GenericMath.clamp(slot, 1, skills.size() - 1));
 	}
