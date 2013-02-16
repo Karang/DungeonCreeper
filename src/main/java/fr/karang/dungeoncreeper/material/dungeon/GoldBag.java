@@ -49,8 +49,10 @@ public class GoldBag extends DCMaterial {
 			return;
 		}
 
-		if (entity instanceof Player) {
-			if (entity.has(Imp.class)) {
+		if (entity instanceof Player) {	
+			Imp imp = entity.get(Imp.class);
+			
+			if (imp != null) {
 				//TODO: check the player's team
 				//TODO: get the real amount of gold
 				//entity.get(Imp.class).addGold(5); Replace by a item added in the imp inventory
