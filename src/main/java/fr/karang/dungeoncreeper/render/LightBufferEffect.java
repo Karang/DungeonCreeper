@@ -101,6 +101,8 @@ public class LightBufferEffect implements BufferEffect {
 				for (int yy = ys; yy <= yi; yy++) {
 					for (int zz = zs; zz <= zi; zz++) {
 						ChunkSnapshot chunk = chunkModel.getChunkFromBlock(xx, yy, zz);
+						//chunk.getLightBuffers()[0].
+						
 						BlockMaterial m = chunk.getBlockMaterial(xx, yy, zz);
 						if (!m.isOpaque()) {
 							lavaLight += chunk.getBlockLight(xx, yy, zz);

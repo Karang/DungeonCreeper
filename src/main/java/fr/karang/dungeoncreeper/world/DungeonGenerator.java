@@ -40,7 +40,6 @@ import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.render.Texture;
 import org.spout.api.util.cuboid.CuboidBlockMaterialBuffer;
-import org.spout.api.util.cuboid.CuboidShortBuffer;
 
 public class DungeonGenerator implements WorldGenerator {
 	//  Floor altitude
@@ -53,11 +52,9 @@ public class DungeonGenerator implements WorldGenerator {
 	private final int dungeonBlockWidth;
 	private final int dungeonBlockLength;
 	private Texture textureMap;
-	private final DungeonGame game;
 	private List<Populator> populators = new ArrayList<Populator>();
 
-	public DungeonGenerator(DungeonGame game, Texture textureMap) {
-		this.game = game;
+	public DungeonGenerator(Texture textureMap) {
 		this.textureMap = textureMap;
 		this.dungeonWidth = textureMap.getWidth() / Chunk.BLOCKS.SIZE;
 		this.dungeonLength = textureMap.getHeight() / Chunk.BLOCKS.SIZE;
@@ -131,9 +128,5 @@ public class DungeonGenerator implements WorldGenerator {
 
 	public String getName() {
 		return "Dungeon";
-	}
-
-	public DungeonGame getGame() {
-		return game;
 	}
 }

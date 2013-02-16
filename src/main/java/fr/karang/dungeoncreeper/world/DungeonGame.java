@@ -32,34 +32,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.Team.TeamColor;
 
+import org.spout.api.component.type.WorldComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.geo.World;
+import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
-public class DungeonGame {
-	private final int id;
-	private World world;
+public class DungeonGame extends WorldComponent{
 	private Map<String, Team> teams = new HashMap<String, Team>();
 	private List<Player> players = new ArrayList<Player>();
-	private final TeamColor[][] territory;
-	private final int width, height;
-	private boolean canJoin;
-
-	public DungeonGame(int id, int width, int height) {
-		this.id = id;
-		this.canJoin = true;
-
-		this.width = width;
-		this.height = height;
-		territory = new TeamColor[width][height];
-	}
-
-	public void setWorld(World world) {
-		this.world = world;
-	}
+	private boolean canJoin = true;
 
 	public void start() {
 		canJoin = false;
@@ -77,26 +63,16 @@ public class DungeonGame {
 		players.add(player);
 	}
 
-	public World getWorld() {
-		return world;
+	public void setTerritory(World world, int x, int z, TeamColor color) {
+		Chunk chunk = world.getChunk(x, 0, z);
+		byte[][] territory = chunk.getDataMap().get(DungeonData.TERRITORY);
+		territory[x & Chunk.BLOCKS.MASK][z & Chunk.BLOCKS.MASK] = (byte)color.ordinal();
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setTerritory(int x, int z, TeamColor color) {
-		if (x < 0 || x >= width || z < 0 || x >= height) {
-			throw new IllegalAccessError("Out of array");
-		}
-		territory[x][z] = color;
-	}
-
-	public TeamColor getTerritory(int x, int z) {
-		if (x < 0 || x >= width || z < 0 || x >= height) {
-			throw new IllegalAccessError("Out of array");
-		}
-		return territory[x][z];
+	public TeamColor getTerritory(World world, int x, int z) {
+		Chunk chunk = world.getChunk(x, 0, z);
+		byte[][] territory = chunk.getDataMap().get(DungeonData.TERRITORY);
+		return TeamColor.values()[territory[x & Chunk.BLOCKS.MASK][z & Chunk.BLOCKS.MASK]];
 	}
 
 	public Team createTeam(int color, Point point) {

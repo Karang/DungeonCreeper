@@ -27,12 +27,16 @@
 package fr.karang.dungeoncreeper.material;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.Team.TeamColor;
 import fr.karang.dungeoncreeper.world.DungeonGame;
 
+import org.spout.api.Spout;
+import org.spout.api.geo.LoadOption;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
+import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.Material;
 import org.spout.api.material.block.BlockFace;
@@ -51,17 +55,22 @@ public abstract class DCMaterial extends BlockMaterial {
 	}
 
 	public final DungeonGame getGame(Block block) {
-		return DungeonCreeper.getInstance().getLobby().getGame(block.getWorld());
+		return block.getWorld().getComponentHolder().get(DungeonGame.class);
 	}
 
 	public final TeamColor getOwner(Block block) {
-		DungeonGame game = getGame(block);
-		return game.getTerritory(block.getX(), block.getZ());
+		//Spout.getScheduler().getSnapshotLock().readLock(DungeonCreeper.getInstance());
+		byte[][] territory = block.getChunk().getDataMap().get(DungeonData.TERRITORY);
+		//Spout.getScheduler().getSnapshotLock().readUnlock(DungeonCreeper.getInstance());
+		return TeamColor.values()[territory[block.getX() & Chunk.BLOCKS.MASK][block.getZ() & Chunk.BLOCKS.MASK]];
 	}
 
 	public final TeamColor getOwner(World w, int x, int z) {
-		DungeonGame game = DungeonCreeper.getInstance().getLobby().getGame(w);
-		return game.getTerritory(x, z);
+		Spout.getScheduler().getSnapshotLock().readLock(DungeonCreeper.getInstance());
+		Chunk chunk = w.getChunk(x, 0, z);
+		Spout.getScheduler().getSnapshotLock().readUnlock(DungeonCreeper.getInstance());
+		byte[][] territory = chunk.getDataMap().get(DungeonData.TERRITORY);
+		return TeamColor.values()[territory[x & Chunk.BLOCKS.MASK][z & Chunk.BLOCKS.MASK]];
 	}
 
 	public boolean isClaimedBy(Block block, Team team) {

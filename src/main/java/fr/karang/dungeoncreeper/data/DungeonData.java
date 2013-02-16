@@ -26,6 +26,7 @@
  */
 package fr.karang.dungeoncreeper.data;
 
+import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.map.DefaultedKey;
 import org.spout.api.map.DefaultedKeyImpl;
 
@@ -42,4 +43,7 @@ public class DungeonData {
 	public static final DefaultedKey<Integer> MAX_MANA = new DefaultedKeyImpl<Integer>("max_mana", 1);
 	public static final DefaultedKey<Long> CAST_TIME = new DefaultedKeyImpl<Long>("cast_time", 0L);
 	public static final DefaultedKey<Integer> CAST_TYPE = new DefaultedKeyImpl<Integer>("cast_type", 0);
+	
+	//Chunk data
+	public static final DefaultedKey<byte[][]> TERRITORY = new DefaultedKeyImpl<byte[][]>("TERRITORY", new byte[Chunk.BLOCKS.SIZE][Chunk.BLOCKS.SIZE]);
 }

@@ -47,6 +47,7 @@ public class Wall extends DungeonMaterial {
 
 				ChunkSnapshot c = snapshotMesh.getSnapshotModel().getChunkFromBlock(v.getFloorX(), v.getFloorY(), v.getFloorZ());
 				DCMaterial material = (DCMaterial) c.getBlockMaterial(v.getFloorX(), v.getFloorY(), v.getFloorZ());
+				//TODO : replace getOwner to get data from ChunkSnapshot
 				TeamColor team = material.getOwner(world, v.getFloorX(), v.getFloorZ());
 
 				if (team != null) {

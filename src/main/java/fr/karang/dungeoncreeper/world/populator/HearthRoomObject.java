@@ -53,7 +53,7 @@ public class HearthRoomObject extends WorldGeneratorObject {
 		//Claim territory
 		for (int i = x - RADIUS; i < x + RADIUS; i++) {
 			for (int j = z - RADIUS; j < z + RADIUS; j++) {
-				team.getGame().setTerritory(x, z, team.getColor());
+				team.getGame().setTerritory(w, x, z, team.getColor());
 			}
 		}
 

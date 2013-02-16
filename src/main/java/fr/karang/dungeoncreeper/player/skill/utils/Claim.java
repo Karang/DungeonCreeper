@@ -84,21 +84,21 @@ public class Claim extends Skill {
 				System.out.println("Declaim other team");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.DIRT.onPlacement(block, DCMaterials.DIRT.getData(), null, null, false, cause);
-					team.getGame().setTerritory(x, z, null);
+					team.getGame().setTerritory(block.getWorld(), x, z, null);
 				} else {
 					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
 					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(x, z, null);
+					team.getGame().setTerritory(block.getWorld(), x, z, null);
 				}
 			} else {
 				System.out.println("Claim");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(x, z, team.getColor());
+					team.getGame().setTerritory(block.getWorld(), x, z, team.getColor());
 				} else {
 					DCMaterials.FLOOR.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.FLOOR.getData(), null, null, false,  cause);
 					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.WALL.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(x, z, team.getColor());
+					team.getGame().setTerritory(block.getWorld(), x, z, team.getColor());
 				}
 			}
 		} else {

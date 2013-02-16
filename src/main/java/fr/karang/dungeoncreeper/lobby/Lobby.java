@@ -28,10 +28,7 @@ package fr.karang.dungeoncreeper.lobby;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import fr.karang.dungeoncreeper.lighting.DungeonLighting;
 import fr.karang.dungeoncreeper.player.DungeonPlayer;
@@ -51,15 +48,14 @@ import org.spout.api.protocol.Session;
 import org.spout.api.render.Texture;
 
 public class Lobby {
-	private static final int LOADER_THREAD_COUNT = 16;
 	private Engine engine;
 	private List<Player> players = new ArrayList<Player>();
-	private Map<World, DungeonGame> games = new HashMap<World, DungeonGame>();
 	private LobbyScreen screen;
 	private int gameId = 0;
 
 	public Lobby() {
 		engine = Spout.getEngine();
+		
 		/*if (engine.getPlatform() == Platform.CLIENT) {
 			screen = new LobbyScreen(this);
 			((Client) engine).getScreenStack().openScreen(screen);
@@ -76,12 +72,15 @@ public class Lobby {
 
 	public void createNewGame() {
 		Texture textureMap = (Texture) Spout.getFilesystem().getResource("texture://DungeonCreeper/resources/4rivers.png");
-		DungeonGame game = new DungeonGame(gameId, textureMap.getWidth(), textureMap.getHeight());
-		DungeonGenerator generator = new DungeonGenerator(game, textureMap);
+		
+		DungeonGenerator generator = new DungeonGenerator(textureMap);
+		
 		World world = Spout.getEngine().loadWorld("dungeon_" + gameId, generator);
+		
 		world.addLightingManager(DungeonLighting.LAVA_LIGHT);
 		world.addLightingManager(DungeonLighting.WATER_LIGHT);
-		game.setWorld(world);
+		
+		world.getComponentHolder().add(DungeonGame.class);
 
 		if (world.getAge() <= 0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));
@@ -114,22 +113,19 @@ public class Lobby {
 			}
 		}*/
 
-		games.put(world, game);
 		gameId++;
 	}
 
 	public void removeAllGames() {
-		for (Entry<World, DungeonGame> entry : games.entrySet()) {
-			engine.unloadWorld(entry.getKey(), false);
-			deleteFolder(entry.getKey().getDirectory());
+		for (World world : Spout.getEngine().getWorlds()) {
+			engine.unloadWorld(world, false);
+			deleteFolder(world.getDirectory());
 		}
-		games.clear();
 	}
 
-	public void removeGame(DungeonGame game) {
-		engine.unloadWorld(game.getWorld(), false);
-		deleteFolder(game.getWorld().getDirectory());
-		games.remove(game);
+	public void removeGame(World world) {
+		engine.unloadWorld(world, false);
+		deleteFolder(world.getDirectory());
 	}
 
 	private void deleteFolder(File file) {
@@ -151,8 +147,8 @@ public class Lobby {
 	}
 
 	public void sendGameList(Session session) {
-		for (DungeonGame game : games.values()) {
-			session.send(false, true, new WorldListMessage(game.getWorld().getName(), 0, 10));
+		for (World world : Spout.getEngine().getWorlds()) {
+			session.send(false, true, new WorldListMessage(world.getName(), 0, 10));
 		}
 	}
 
@@ -162,15 +158,5 @@ public class Lobby {
 
 	public List<Player> getPlayers() {
 		return players;
-	}
-
-	public DungeonGame getGame(World world) {
-		DungeonGame game = games.get(world);
-
-		if (game == null) {
-			throw new IllegalStateException("No game in this world");
-		}
-
-		return game;
 	}
 }
