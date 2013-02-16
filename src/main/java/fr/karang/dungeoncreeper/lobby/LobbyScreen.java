@@ -40,6 +40,7 @@ import org.spout.api.gui.Widget;
 import org.spout.api.gui.component.LabelComponent;
 import org.spout.api.gui.component.RenderPartsHolderComponent;
 import org.spout.api.gui.render.RenderPart;
+import org.spout.api.gui.render.RenderPartPack;
 import org.spout.api.math.Rectangle;
 import org.spout.api.plugin.Platform;
 
@@ -85,12 +86,13 @@ public class LobbyScreen extends Screen {
 	public Widget newTextBox(ChatArguments label, Color bg, float x, float y, float w, float h) {
 		final Widget box = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 		final RenderPartsHolderComponent titlerect = box.add(RenderPartsHolderComponent.class);
+		final RenderPartPack pack = new RenderPartPack(DungeonResources.COLOR_MAT);
 		RenderPart rect = new RenderPart();
-		rect.setRenderMaterial(DungeonResources.COLOR_MAT);
 		rect.setColor(bg);
 		rect.setSprite(new Rectangle(x * SCALE, y, w * SCALE, h));
 		rect.setSource(new Rectangle(0, 0, 0, 0));
-		titlerect.add(rect);
+		pack.add(rect);
+		titlerect.add(pack);
 		box.getTransform().setPosition(x * SCALE, y);
 		final LabelComponent title = box.add(LabelComponent.class);
 		title.setFont(DungeonResources.FONT);
