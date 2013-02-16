@@ -26,7 +26,6 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.component.impl.CameraComponent;
 import org.spout.api.component.impl.SceneComponent;
 import org.spout.api.entity.Player;
 import org.spout.api.entity.state.PlayerInputState;
@@ -38,17 +37,14 @@ import org.spout.api.math.Vector3;
 public class DungeonInputExecutor implements InputExecutor {
 	private final float speed = 10;
 	private Player player;
-	private CameraComponent camera;
 
 	public DungeonInputExecutor(Player player) {
 		this.player = player;
-		camera = player.get(CameraComponent.class);
 	}
 
-	public void execute(float dt) {
+	public void execute(float dt, Transform ts) {
 		PlayerInputState inputState = player.input();
 		SceneComponent sc = player.getScene();
-		Transform ts = sc.getTransform();
 
 		Vector3 offset = Vector3.ZERO;
 		if (inputState.getForward()) {
