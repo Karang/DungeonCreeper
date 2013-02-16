@@ -26,8 +26,14 @@
  */
 package fr.karang.dungeoncreeper.lighting;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import org.spout.api.lighting.LightingManager;
 import org.spout.api.lighting.Modifiable;
+import org.spout.api.material.BlockMaterial;
+import org.spout.api.material.block.BlockFace;
+import org.spout.api.material.block.BlockFaces;
 import org.spout.api.util.cuboid.ChunkCuboidLightBufferWrapper;
 import org.spout.api.util.cuboid.ImmutableCuboidBlockMaterialBuffer;
 
@@ -36,12 +42,104 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 		super(name);
 	}
 
+	class Element{
+		private final int x,y,z;
+		private final BlockFace next;
+		private final boolean increase;
+
+		public Element(int x, int y, int z, BlockFace next, boolean increase){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+			this.next = next;
+			this.increase = increase;
+		}
+
+		public int getX(){
+			return x;
+		}
+
+		public int getY(){
+			return y;
+		}
+
+		public int getZ(){
+			return z;
+		}
+
+		public BlockFace getNext(){
+			return next;
+		}
+
+		public boolean increase() {
+			return increase;
+		}
+	}
+
 	/**
 	 * Recalculates lighting after a change to the block materials at a given set of block coordinates.
 	 */
 	@Override
 	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] x, int[] y, int[] z, int changedBlocks) {
-		
+
+		Queue<Element> queue = new LinkedList<BlockLightingManager.Element>();
+
+		for(int i = 0; i < changedBlocks; i++){
+			int xx = x[i];
+			int yy = y[i];
+			int zz = z[i];
+
+			BlockMaterial blockMaterial = material.get(xx, yy, zz);
+			//boolean occlusion = blockMaterial.getOcclusion(blockMaterial.getData()).get(BlockFaces.NESWBT);
+			byte lightValue = blockMaterial.getLightLevel(blockMaterial.getData());
+			
+			DungeonCuboidLightBuffer currentLightBuffer = light.getLightBuffer(xx, yy, zz);
+			byte currentValue = currentLightBuffer.get(xx, yy, zz);
+
+			if(lightValue > currentValue){
+				currentLightBuffer.set(xx, yy, zz, lightValue);
+
+				for(BlockFace face : BlockFaces.NESWBT){
+					queue.add(new Element(xx, yy, zz, face, true));
+				}
+			}else{
+				//TODO : Implement decrease light
+
+				for(BlockFace face : BlockFaces.NESWBT){
+					queue.add(new Element(xx, yy, zz, face, true));
+				}
+			}
+		}
+
+		while(!queue.isEmpty()){
+			Element element = queue.poll();
+
+			if(element.increase()){
+				int sourceX = element.getX();
+				int sourceY = element.getY();
+				int sourceZ = element.getZ();
+
+				int currentX = sourceX + element.getNext().getOffset().getFloorX();
+				int currentY = sourceY + element.getNext().getOffset().getFloorY();
+				int currentZ = sourceZ + element.getNext().getOffset().getFloorZ();
+
+				byte sourceLight = (byte) (light.getLightBuffer(sourceX,sourceY,sourceZ).get(sourceX,sourceY,sourceZ) - 1);
+				
+				DungeonCuboidLightBuffer currentLightBuffer = light.getLightBuffer(currentX,currentY,currentZ);
+				byte currentLight = currentLightBuffer.get(currentX,currentY,currentZ);
+
+				if(sourceLight >= 0 && sourceLight > currentLight){
+					currentLightBuffer.set(currentX,currentY,currentZ,sourceLight);
+					for(BlockFace face : BlockFaces.NESWBT){
+						if(!face.equals(element.getNext().getOpposite()))
+							queue.add(new Element(currentX, currentY, currentZ, face, true));
+					}
+				}
+			}else{
+
+			}
+		}
+
 	}
 
 	/**
@@ -49,7 +147,7 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 	 */
 	@Override
 	protected void resolve(ChunkCuboidLightBufferWrapper<DungeonCuboidLightBuffer> light, ImmutableCuboidBlockMaterialBuffer material, int[] bx, int[] by, int[] bz, int[] tx, int[] ty, int[] tz, int changedCuboids) {
-		
+
 	}
 
 	/**
