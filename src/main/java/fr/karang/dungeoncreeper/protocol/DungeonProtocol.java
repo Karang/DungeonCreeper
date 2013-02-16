@@ -96,8 +96,7 @@ public class DungeonProtocol extends Protocol {
 	}
 
 	@Override
-	public Message getIntroductionMessage(String playerName,
-			InetSocketAddress addr) {
-		return new PlayerHandshakeMessage(PROTOCOL_VERSION, DungeonConfig.USERNAME.getString(), "localhost", 25565);//TODO : Configure host & port
+	public Message getIntroductionMessage(String playerName, InetSocketAddress addr) {
+		return new PlayerHandshakeMessage(PROTOCOL_VERSION, DungeonConfig.USERNAME.getString(), addr.getHostName(), addr.getPort());
 	}
 }

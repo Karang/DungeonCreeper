@@ -28,17 +28,54 @@ package fr.karang.dungeoncreeper.protocol.handler;
 
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 
+import org.spout.api.Client;
+import org.spout.api.Spout;
+import org.spout.api.chat.ChatArguments;
+import org.spout.api.entity.Player;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
 public class PlayerChatHandler extends MessageHandler<PlayerChatMessage> {
 	@Override
 	public void handleServer(Session session, PlayerChatMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
 
+		Player player = session.getPlayer();
+		String text = message.getMessage();
+		text = text.trim();
+
+		if (text.length() > 100) {
+			//session.disconnect("Chat message is too long."); TODO Don't disconnect people...
+			text = text.substring(0, 99);
+		}
+		String command;
+		ChatArguments args;
+		if (text.startsWith("/")) {
+			int spaceIndex = text.indexOf(" ");
+			if (spaceIndex != -1) {
+				command = text.substring(1, spaceIndex);
+				text = text.substring(spaceIndex + 1);
+			} else {
+				command = text.substring(1);
+				text = "";
+			}
+		} else {
+			command = "say";
+		}
+
+		args = ChatArguments.fromString(text);
+		player.processCommand(command, args);
 	}
 
 	@Override
 	public void handleClient(Session session, PlayerChatMessage message) {
-
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		ChatArguments text = ChatArguments.fromString(message.getMessage());
+		((Client)Spout.getEngine()).getScreenStack().getConsole().addMessage(text);
 	}
 }
