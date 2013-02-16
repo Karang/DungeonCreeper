@@ -20,8 +20,8 @@ void main()
 {
 	gl_Position = Projection * View  * Model * vPosition;
 	
-	vec4 lavaColor = vec4(1.0, 0.0, 0.0, 1.0);
-	vec4 waterColor = vec4(0.0, 0.0, 1.0, 1.0);
+	vec4 lavaColor = vec4(1.0, 0.9, 0.9, 1.0);
+	vec4 waterColor = vec4(0.9, 0.9, 1.0, 1.0);
 	
 	vec4 ambient = vec4(0.33, 0.33, 0.33, 1.0);
 	
