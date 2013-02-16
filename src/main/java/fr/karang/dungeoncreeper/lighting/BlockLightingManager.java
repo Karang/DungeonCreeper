@@ -94,6 +94,10 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 			byte lightValue = blockMaterial.getLightLevel(blockMaterial.getData());
 			
 			DungeonCuboidLightBuffer currentLightBuffer = light.getLightBuffer(xx, yy, zz);
+			
+			if(currentLightBuffer == null)
+				continue;
+			
 			byte currentValue = currentLightBuffer.get(xx, yy, zz);
 
 			if(lightValue > currentValue){
@@ -102,11 +106,33 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 				for(BlockFace face : BlockFaces.NESWBT){
 					queue.add(new Element(xx, yy, zz, face, true));
 				}
-			}else{
-				//TODO : Implement decrease light
-
+			}else if(lightValue < currentValue){
+				boolean requireUpdate = true;
+				byte minLight = 0;
+				
 				for(BlockFace face : BlockFaces.NESWBT){
-					queue.add(new Element(xx, yy, zz, face, true));
+					int nextX = xx + face.getOffset().getFloorX();
+					int nextY = yy + face.getOffset().getFloorY();
+					int nextZ = zz + face.getOffset().getFloorZ();
+					
+					byte nextLight = light.getLightBuffer( nextX, nextY, nextZ).get( nextX, nextY, nextZ);
+					
+					if(nextLight + 1 == currentValue){
+						requireUpdate = false;
+						break;
+					}
+					
+					if(nextLight + 1 < minLight)
+						minLight = (byte)(nextLight + 1);
+					
+				}
+
+				if(requireUpdate){
+					currentLightBuffer.set(xx, yy, zz, minLight);
+					
+					for(BlockFace face : BlockFaces.NESWBT){
+						queue.add(new Element(xx, yy, zz, face, true));
+					}
 				}
 			}
 		}
@@ -126,6 +152,10 @@ public class BlockLightingManager extends LightingManager<DungeonCuboidLightBuff
 				byte sourceLight = (byte) (light.getLightBuffer(sourceX,sourceY,sourceZ).get(sourceX,sourceY,sourceZ) - 1);
 				
 				DungeonCuboidLightBuffer currentLightBuffer = light.getLightBuffer(currentX,currentY,currentZ);
+				
+				if(currentLightBuffer == null)
+					continue;
+				
 				byte currentLight = currentLightBuffer.get(currentX,currentY,currentZ);
 
 				if(sourceLight >= 0 && sourceLight > currentLight){
