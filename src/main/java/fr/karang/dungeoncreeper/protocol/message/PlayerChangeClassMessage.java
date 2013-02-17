@@ -26,38 +26,25 @@
  */
 package fr.karang.dungeoncreeper.protocol.message;
 
-import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.component.entity.creature.Imp;
-import fr.karang.dungeoncreeper.player.Equipments;
+import fr.karang.dungeoncreeper.component.entity.Creature;
 
-import org.spout.api.component.type.EntityComponent;
 import org.spout.api.protocol.Message;
 
 public class PlayerChangeClassMessage implements Message {
 	private String name;
-	private short classId;
+	private Creature creature;
 
-	public PlayerChangeClassMessage(String name, short classId) {
+	public PlayerChangeClassMessage(String name, Creature creature) {
 		this.name = name;
-		this.classId = classId;
+		this.creature = creature;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public int getClassId() {
-		return classId;
-	}
-
-	public Class<? extends EntityComponent> getPlayerClass() {
-		Class<? extends CreatureComponent> classs = Equipments.getCreatureComponentById(classId);
-
-		if (classs != null) {
-			return classs;
-		}
-
-		return Imp.class; // Fallback
+	public Creature getCreature() {
+		return creature;
 	}
 
 	public int getChannelId() {

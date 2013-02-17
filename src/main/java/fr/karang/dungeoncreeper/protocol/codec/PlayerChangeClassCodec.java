@@ -28,6 +28,7 @@ package fr.karang.dungeoncreeper.protocol.codec;
 
 import java.io.IOException;
 
+import fr.karang.dungeoncreeper.component.entity.Creature;
 import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChangeClassMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -44,14 +45,14 @@ public class PlayerChangeClassCodec extends MessageCodec<PlayerChangeClassMessag
 	public PlayerChangeClassMessage decode(ChannelBuffer buffer) throws IOException {
 		String name = ChannelBufferUtils.readString(buffer);
 		short classId = buffer.readShort();
-		return new PlayerChangeClassMessage(name, classId);
+		return new PlayerChangeClassMessage(name, Creature.values()[classId]);
 	}
 
 	@Override
 	public ChannelBuffer encode(PlayerChangeClassMessage message) throws IOException {
 		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
 		ChannelBufferUtils.writeString(buffer, message.getName());
-		buffer.writeFloat(message.getClassId());
+		buffer.writeShort((short)message.getCreature().ordinal());
 		return buffer;
 	}
 }
