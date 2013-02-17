@@ -1,2 +1,2 @@
-Mesh: cubemesh://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.uvs
+Mesh: blockmesh://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.obj
 Material: material://DungeonCreeper/resources/terrain.smt

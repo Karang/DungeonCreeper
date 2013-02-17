@@ -26,45 +26,11 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
-
 import org.spout.api.collision.CollisionStrategy;
-import org.spout.api.component.type.BlockComponent;
-import org.spout.api.material.ComplexMaterial;
 
-public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
-	public static DungeonHeartPart N;
-	public static DungeonHeartPart S;
-	public static DungeonHeartPart E;
-	public static DungeonHeartPart W;
-	public static DungeonHeartPart NE;
-	public static DungeonHeartPart NW;
-	public static DungeonHeartPart SE;
-	public static DungeonHeartPart SW;
-	
-	static {
-		N = new DungeonHeartPart("N");
-		S = new DungeonHeartPart("S");
-		E = new DungeonHeartPart("E");
-		W = new DungeonHeartPart("W");
-		NE = new DungeonHeartPart("NE");
-		NW = new DungeonHeartPart("NW");
-		SE = new DungeonHeartPart("SE");
-		SW = new DungeonHeartPart("SW");
-	}
-	
-	public DungeonHeart() {
-		super("Dungeon Heart", "model://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart.spm");
+public class DungeonHeartPart extends DungeonMaterial {
+	public DungeonHeartPart(String suffix) {
+		super("DungeonHeart"+suffix, "model://DungeonCreeper/resources/block/dungeon/dungeonheart/dungeonheart"+suffix+".spm");
 		setCollision(CollisionStrategy.SOLID);
-		this.setTransparent();
-	}
-
-	@Override
-	public byte getLightLevel(short data) {
-		return 5;
-	}
-	
-	public BlockComponent createBlockComponent() {
-		return new DungeonHeartComponent();
 	}
 }

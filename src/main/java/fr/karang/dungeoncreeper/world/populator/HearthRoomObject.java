@@ -27,6 +27,7 @@
 package fr.karang.dungeoncreeper.world.populator;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
+import fr.karang.dungeoncreeper.material.dungeon.DungeonHeart;
 import fr.karang.dungeoncreeper.player.Team;
 
 import org.spout.api.generator.WorldGeneratorObject;
@@ -34,8 +35,7 @@ import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
 
 public class HearthRoomObject extends WorldGeneratorObject {
-	private static int RADIUS = 4;
-	private static int POOLRADIUS = 2;
+	private static int RADIUS = 2;
 	Team team;
 
 	public HearthRoomObject(Team team) {
@@ -58,21 +58,21 @@ public class HearthRoomObject extends WorldGeneratorObject {
 		}
 
 		// Make place
-		fill(w, x - RADIUS, y + 1, z - RADIUS, x + RADIUS, y + 3, z + RADIUS, DCMaterials.AIR);
+		fill(w, x - RADIUS, y - 1, z - RADIUS, x + RADIUS, y + 1, z + RADIUS, DCMaterials.AIR);
 		fill(w, x - RADIUS, y, z - RADIUS, x + RADIUS, y, z + RADIUS, DCMaterials.FLOOR);
 
-		// Make the lava pool
-		fill(w, x - POOLRADIUS, y, z - POOLRADIUS, x + POOLRADIUS, y, z + POOLRADIUS, DCMaterials.LAVA);
-		fill(w, x - POOLRADIUS + 1, y, z - POOLRADIUS + 1, x + POOLRADIUS - 1, y, z + POOLRADIUS - 1, DCMaterials.FLOOR);
-
 		// Place the dungeon hearth
-		w.getBlock(x, y + 3, z).setMaterial(DCMaterials.GOLD_BAG);
-
-		// And the pillars
-		fill(w, x + POOLRADIUS + 1, y + 1, z + POOLRADIUS + 1, x + POOLRADIUS + 1, y + 3, z + POOLRADIUS + 1, DCMaterials.WALL);
-		fill(w, x - POOLRADIUS - 1, y + 1, z + POOLRADIUS + 1, x - POOLRADIUS - 1, y + 3, z + POOLRADIUS + 1, DCMaterials.WALL);
-		fill(w, x + POOLRADIUS + 1, y + 1, z - POOLRADIUS - 1, x + POOLRADIUS + 1, y + 3, z - POOLRADIUS - 1, DCMaterials.WALL);
-		fill(w, x - POOLRADIUS - 1, y + 1, z - POOLRADIUS - 1, x - POOLRADIUS - 1, y + 3, z - POOLRADIUS - 1, DCMaterials.WALL);
+		w.getBlock(x, y, z).setMaterial(DCMaterials.DUNGEON_HEART);
+		
+		w.getBlock(x, y, z-1).setMaterial(DungeonHeart.N);
+		w.getBlock(x, y, z+1).setMaterial(DungeonHeart.S);
+		w.getBlock(x+1, y, z).setMaterial(DungeonHeart.E);
+		w.getBlock(x-1, y, z).setMaterial(DungeonHeart.W);
+		
+		w.getBlock(x+1, y, z-1).setMaterial(DungeonHeart.NE);
+		w.getBlock(x-1, y, z-1).setMaterial(DungeonHeart.NW);
+		w.getBlock(x+1, y, z+1).setMaterial(DungeonHeart.SE);
+		w.getBlock(x-1, y, z+1).setMaterial(DungeonHeart.SW);
 	}
 
 	private void fill(World w, int x1, int y1, int z1, int x2, int y2, int z2, BlockMaterial material) {
