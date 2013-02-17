@@ -27,7 +27,9 @@
 package fr.karang.dungeoncreeper.world;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.world.populator.DungeonPopulator;
@@ -42,6 +44,24 @@ import org.spout.api.render.Texture;
 import org.spout.api.util.cuboid.CuboidBlockMaterialBuffer;
 
 public class DungeonGenerator implements WorldGenerator {
+	
+	private final static Map<Texture, DungeonGenerator> generators = new HashMap<Texture, DungeonGenerator>();
+	
+	public static DungeonGenerator getGenerator(Texture texture){
+		DungeonGenerator generator = generators.get(texture);
+		
+		if(generator == null){
+			generator = new DungeonGenerator(texture);
+			generators.put(texture, generator);
+		}
+		
+		return generator;
+	}
+	
+	public static void clearGenerators(){
+		generators.clear();
+	}
+	
 	//  Floor altitude
 	public final static int FLOOR_HEIGHT = 1;
 	// Dungeon size (in chunks)
@@ -54,7 +74,7 @@ public class DungeonGenerator implements WorldGenerator {
 	private Texture textureMap;
 	private List<Populator> populators = new ArrayList<Populator>();
 
-	public DungeonGenerator(Texture textureMap) {
+	private DungeonGenerator(Texture textureMap) {
 		this.textureMap = textureMap;
 		this.dungeonWidth = textureMap.getWidth() / Chunk.BLOCKS.SIZE;
 		this.dungeonLength = textureMap.getHeight() / Chunk.BLOCKS.SIZE;
