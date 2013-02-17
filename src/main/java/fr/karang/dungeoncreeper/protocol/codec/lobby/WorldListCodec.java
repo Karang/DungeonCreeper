@@ -37,7 +37,7 @@ import org.spout.api.protocol.MessageCodec;
 
 public class WorldListCodec extends MessageCodec<WorldListMessage> {
 	public WorldListCodec() {
-		super(WorldListMessage.class, 0x0);
+		super(WorldListMessage.class, 0x00);
 	}
 
 	@Override

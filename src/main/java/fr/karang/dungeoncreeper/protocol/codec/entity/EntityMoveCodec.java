@@ -37,7 +37,7 @@ import org.spout.api.protocol.MessageCodec;
 
 public class EntityMoveCodec extends MessageCodec<EntityMoveMessage> {
 	public EntityMoveCodec() {
-		super(EntityMoveMessage.class, 0x15);
+		super(EntityMoveMessage.class, 0x11);
 	}
 
 	@Override

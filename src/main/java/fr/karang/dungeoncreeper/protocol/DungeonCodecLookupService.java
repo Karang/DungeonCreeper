@@ -26,10 +26,15 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
-import fr.karang.dungeoncreeper.protocol.codec.PlayerChangeClassCodec;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerChatCodec;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerKickCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityDieCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityMoveCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySpawnCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityTeleportCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityUnderSkillCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityUseSkillCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntityYawCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
@@ -47,20 +52,29 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			bind(PlayerListCodec.class); // 0x01
 			bind(PlayerHandshakeCodec.class); // 0x02
 
-			// Players messages
+			//Entity messages
 			bind(EntitySpawnCodec.class); // 0x10
-			bind(PlayerChangeClassCodec.class); // 0x14
-			bind(PlayerChatCodec.class); // 0x15
-			bind(PlayerKickCodec.class); // 0x16
-
+			bind(EntityMoveCodec.class); //0x11
+			bind(EntityTeleportCodec.class); //0x12
+			bind(EntityYawCodec.class); //0x13
+			bind(EntityUseSkillCodec.class); //0x14
+			bind(EntityUnderSkillCodec.class); //0x15
+			bind(EntityDieCodec.class); //0x16
+			
 			// Team messages
 			//bind(TeamColorCodec.class); // 0x20
-			//bind(TeamGoldCodec.class); // 0x21
-
-			// EntityMessages
+			//bind(TeamGoldUpdateCodec.class); // 0x21
+			//bind(TeamJoinCodec.class); // 0x22
+			//bind(TeamNotificationCodec.class); // 0x23
 
 			// World messages
-			bind(ChunkDataCodec.class); //0x30
+			bind(ChunkDataCodec.class); // 0x30
+			//bind(BlockBreakCodec.class); // 0x31
+			//bind(BlockPlaceCodec.class); // 0x32
+			
+			// Players messages
+			bind(PlayerChatCodec.class); // 0x41
+			bind(PlayerKickCodec.class); // 0x42
 
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);

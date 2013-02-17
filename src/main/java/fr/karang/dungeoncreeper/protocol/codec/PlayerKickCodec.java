@@ -37,7 +37,7 @@ import org.spout.api.protocol.MessageCodec;
 
 public class PlayerKickCodec extends MessageCodec<PlayerKickMessage> {
 	public PlayerKickCodec() {
-		super(PlayerKickMessage.class, 0x16);
+		super(PlayerKickMessage.class, 0x42);
 	}
 
 	@Override

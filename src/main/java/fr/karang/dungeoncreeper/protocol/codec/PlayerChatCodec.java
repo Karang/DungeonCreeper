@@ -37,7 +37,7 @@ import org.spout.api.protocol.MessageCodec;
 
 public class PlayerChatCodec extends MessageCodec<PlayerChatMessage> {
 	public PlayerChatCodec() {
-		super(PlayerChatMessage.class, 0x15);
+		super(PlayerChatMessage.class, 0x41);
 	}
 
 	@Override

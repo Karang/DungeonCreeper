@@ -24,21 +24,23 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.handler;
+package fr.karang.dungeoncreeper.protocol.handler.entity;
 
 import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
 
+import org.spout.api.geo.World;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
-public class PlayerSpawnHandler extends MessageHandler<EntitySpawnMessage> {
-	@Override
-	public void handleServer(Session session, EntitySpawnMessage message) {
-
-	}
-
+public class EntitySpawnHandler extends MessageHandler<EntitySpawnMessage> {
 	@Override
 	public void handleClient(Session session, EntitySpawnMessage message) {
-
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		World world = session.getPlayer().getWorld();
+		
+		
 	}
 }

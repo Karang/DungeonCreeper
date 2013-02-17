@@ -38,7 +38,7 @@ import fr.karang.dungeoncreeper.protocol.message.world.ChunkDataMessage;
 public class ChunkDataCodec  extends MessageCodec<ChunkDataMessage>{
 
 	public ChunkDataCodec() {
-		super(ChunkDataMessage.class, 0x00);
+		super(ChunkDataMessage.class, 0x30);
 	}
 	
 	@Override

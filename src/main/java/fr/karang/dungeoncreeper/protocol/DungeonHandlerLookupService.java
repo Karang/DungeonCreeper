@@ -26,15 +26,13 @@
  */
 package fr.karang.dungeoncreeper.protocol;
 
-import fr.karang.dungeoncreeper.protocol.handler.PlayerChangeClassHandler;
 import fr.karang.dungeoncreeper.protocol.handler.PlayerChatHandler;
 import fr.karang.dungeoncreeper.protocol.handler.PlayerKickHandler;
-import fr.karang.dungeoncreeper.protocol.handler.PlayerSpawnHandler;
+import fr.karang.dungeoncreeper.protocol.handler.entity.EntitySpawnHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerHandshakeHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerListHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.WorldListHandler;
 import fr.karang.dungeoncreeper.protocol.handler.world.ChunkDataHandler;
-import fr.karang.dungeoncreeper.protocol.message.PlayerChangeClassMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
 import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
@@ -54,9 +52,8 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 			bind(PlayerHandshakeMessage.class, PlayerHandshakeHandler.class); // 0x02
 
 			// Players messages
-			bind(EntitySpawnMessage.class, PlayerSpawnHandler.class); // 0x10
+			bind(EntitySpawnMessage.class, EntitySpawnHandler.class); // 0x10
 			//bind(PlayerMoveMessage.class, PlayerMoveHandler.class); // 0x11
-			bind(PlayerChangeClassMessage.class, PlayerChangeClassHandler.class); // 0x14
 			bind(PlayerChatMessage.class, PlayerChatHandler.class); // 0x15
 			bind(PlayerKickMessage.class, PlayerKickHandler.class); // 0x16
 
