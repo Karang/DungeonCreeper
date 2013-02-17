@@ -24,35 +24,39 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec.entity;
+package fr.karang.dungeoncreeper.protocol.message.entity;
 
-import java.io.IOException;
+import org.spout.api.protocol.Message;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.spout.api.protocol.MessageCodec;
+public class EntitySkillMessage  implements Message {
 
-import fr.karang.dungeoncreeper.protocol.message.entity.EntityUseSkillMessage;
-
-public class EntityUseSkillCodec extends MessageCodec<EntityUseSkillMessage> {
-
-	public EntityUseSkillCodec() {
-		super(EntityUseSkillMessage.class, 0x14);
+	private final int caster;
+	private final int target;
+	private final byte skill;
+	
+	public EntitySkillMessage(int caster, int target, byte skill) {
+		this.caster = caster;
+		this.target = target;
+		this.skill = skill;
+	}
+	
+	public int getCaster() {
+		return caster;
+	}
+	public int getTarget() {
+		return target;
+	}
+	
+	public byte getSkillId() {
+		return skill;
+	}
+	
+	public boolean isAsync() {
+		return false;
 	}
 
-	@Override
-	public EntityUseSkillMessage decode(ChannelBuffer buffer) throws IOException {
-		int id = buffer.readInt();
-		byte skill = buffer.readByte();
-		return new EntityUseSkillMessage(id, skill);
-	}
-
-	@Override
-	public ChannelBuffer encode(EntityUseSkillMessage message) throws IOException {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getEntityId());
-		buffer.writeByte(message.getSkillId());
-		return buffer;
+	public int getChannelId() {
+		return 0;
 	}
 
 }

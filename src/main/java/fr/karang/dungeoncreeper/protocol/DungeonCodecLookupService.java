@@ -32,8 +32,7 @@ import fr.karang.dungeoncreeper.protocol.codec.entity.EntityDieCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityMoveCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySpawnCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityTeleportCodec;
-import fr.karang.dungeoncreeper.protocol.codec.entity.EntityUnderSkillCodec;
-import fr.karang.dungeoncreeper.protocol.codec.entity.EntityUseSkillCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySkillCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityYawCodec;
 import fr.karang.dungeoncreeper.protocol.codec.game.TeamGoldUpdateCodec;
 import fr.karang.dungeoncreeper.protocol.codec.game.TeamJoinCodec;
@@ -62,8 +61,7 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			bind(EntityMoveCodec.class); //0x11
 			bind(EntityTeleportCodec.class); //0x12
 			bind(EntityYawCodec.class); //0x13
-			bind(EntityUseSkillCodec.class); //0x14
-			bind(EntityUnderSkillCodec.class); //0x15
+			bind(EntitySkillCodec.class); //0x15
 			bind(EntityDieCodec.class); //0x16
 			
 			// Team messages

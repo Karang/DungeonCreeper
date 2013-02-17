@@ -24,34 +24,50 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.entity;
+package fr.karang.dungeoncreeper.protocol.handler.entity;
 
-import org.spout.api.protocol.Message;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntityDieMessage;
 
-public class EntityUseSkillMessage  implements Message {
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
-	private final int id;
-	private final byte skill;
-	
-	public EntityUseSkillMessage(int id, byte skill) {
-		this.id = id;
-		this.skill = skill;
-	}
-	
-	public int getEntityId() {
-		return id;
-	}
-	
-	public byte getSkillId() {
-		return skill;
-	}
-	
-	public boolean isAsync() {
-		return false;
-	}
-
-	public int getChannelId() {
-		return 0;
+public class EntityDieHandler extends MessageHandler<EntityDieMessage> {
+	@Override
+	public void handleServer(Session session, EntityDieMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity entity = world.getEntity(message.getEntityId());
+		
+		if(entity == null){
+			return;
+		}
+		
+		entity.remove();
 	}
 
+	@Override
+	public void handleClient(Session session, EntityDieMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity entity = world.getEntity(message.getEntityId());
+		
+		if(entity == null){
+			return;
+		}
+		
+		entity.remove();
+	}
 }
