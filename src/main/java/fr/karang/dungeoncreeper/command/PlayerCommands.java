@@ -95,7 +95,7 @@ public class PlayerCommands {
 		player.get(CreatureComponent.class).setSlot(slot);
 	}
 
-	@Command(aliases = "join", usage = "[id]", desc = "Change of team", min = 1, max = 1)
+	@Command(aliases = "join", usage = "[Red,Green,Blue,Yellow,Neutral]", desc = "Change of team", min = 1, max = 1)
 	@CommandPermissions("dungeoncreeper.command.slot")
 	public void changeTeam(CommandContext args, CommandSource source) throws CommandException {
 		Player player;
@@ -108,16 +108,16 @@ public class PlayerCommands {
 			player = (Player) source;
 		}
 
-		int id = Integer.parseInt(args.get(0).getPlainString());
+		TeamColor color = TeamColor.valueOf(args.get(0).getPlainString().toUpperCase());
+		
+		if(color == null){
+			Spout.log("TeamColor  " + args.get(0).getPlainString() + " don't exist");
+			return;
+		}
 
 		World world = player.getWorld();
-		
 		PartyComponent party = world.getComponentHolder().get(PartyComponent.class);
-		
-		TeamColor color = TeamColor.values()[id];
-		
 		Entity heart = party.getTeam(color);
-		
 		player.get(DungeonPlayer.class).setTeam(heart);
 	}
 }
