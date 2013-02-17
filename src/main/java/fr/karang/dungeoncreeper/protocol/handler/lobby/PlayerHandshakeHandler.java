@@ -57,13 +57,13 @@ public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessag
 			Spout.getEngine().getEventManager().callEvent(new PlayerConnectEvent(session, message.getUsername()));
 		
 			EntitySpawnMessage spawn = new EntitySpawnMessage(session.getPlayer().getId(), message.getUsername(), (byte)0, (byte)1, 0, 0, 0);
-			for (Player p : player.getWorld().getPlayers()) {
+			for (Player p : session.getPlayer().getWorld().getPlayers()) {
 				Session s = p.getSession();
 				if (s!=null) {
-					s.send(true,  true, spawn);
+					s.send(false, true, spawn);
 				}
 				Point pos = p.getScene().getPosition();
-				session.send(true, true, new EntitySpawnMessage(p.getId(), p.getName(), (byte)0, (byte)1, pos.getX(), pos.getY(), pos.getZ()));
+				session.send(false, true, new EntitySpawnMessage(p.getId(), p.getName(), (byte)0, (byte)1, pos.getX(), pos.getY(), pos.getZ()));
 			}
 		} else {
 			session.disconnect(false, new Object[]{"Handshake already exchanged."});

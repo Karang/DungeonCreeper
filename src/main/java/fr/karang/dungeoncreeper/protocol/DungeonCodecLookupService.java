@@ -44,7 +44,7 @@ import org.spout.api.protocol.CodecLookupService;
 
 public class DungeonCodecLookupService extends CodecLookupService {
 	public DungeonCodecLookupService() {
-		super(50);
+		super(512);
 		
 		try {
 			// Lobby messages
