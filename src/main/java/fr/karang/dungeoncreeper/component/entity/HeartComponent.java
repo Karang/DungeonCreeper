@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Player;
@@ -44,19 +45,19 @@ import fr.karang.dungeoncreeper.material.dungeon.DungeonResource;
 public class HeartComponent extends EntityComponent {
 
 	private PartyComponent party = null;
-	
+
 	private TeamColor color;
-	
+
 	private final Map<Class<? extends DungeonResource>, TeamResource> resources = new HashMap<Class<? extends DungeonResource>, TeamResource>();
-	
+
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	private int gold = 0;
-	
+
 	public void setColor(TeamColor color){
 		this.color = color;
 	}
-	
+
 	public void setSpawn(Transform transform){
 		spawn = transform;
 	}
@@ -99,6 +100,39 @@ public class HeartComponent extends EntityComponent {
 		return party;
 	}
 
+	public void liberateResources(Map<Class<? extends DungeonResource>,Integer> resources){
+		for(Entry<Class<? extends DungeonResource>, Integer> entry : resources.entrySet()){
+			liberateResources(entry.getKey(), entry.getValue());
+		}
+	}
+	
+	public void useResources(Map<Class<? extends DungeonResource>,Integer> resources){
+		for(Entry<Class<? extends DungeonResource>, Integer> entry : resources.entrySet()){
+			useResources(entry.getKey(), entry.getValue());
+		}
+	}
+	
+	public boolean canChangeClass(Creature oldClass, Creature newClass){
+		HashMap<Class<? extends DungeonResource>,Integer> required = new HashMap<Class<? extends DungeonResource>,Integer>(newClass.getRequired());
+
+		if(oldClass != null){
+			for(Entry<Class<? extends DungeonResource>, Integer> entry : oldClass.getRequired().entrySet()){
+				Integer value = required.remove(entry.getKey());
+
+				if(value != null && value - entry.getValue() >= 0){
+					required.put(entry.getKey(), value - entry.getValue());
+				}
+			}
+		}
+
+		for(Entry<Class<? extends DungeonResource>, Integer> entry : required.entrySet()){
+			if(!hasResources(entry.getKey(), entry.getValue()))
+				return false;
+		}
+
+		return true;
+	}
+
 	public boolean hasResources(Class<? extends DungeonResource> type, int required) {
 		TeamResource furniture = resources.get(type);
 		return furniture != null && furniture.hasResources(required);
@@ -124,7 +158,7 @@ public class HeartComponent extends EntityComponent {
 
 		furniture.removeResources(removed);
 	}
-	
+
 	public void useResources(Class<? extends DungeonResource> type, int use) {
 		TeamResource furniture = resources.get(type);
 
@@ -135,7 +169,7 @@ public class HeartComponent extends EntityComponent {
 
 		furniture.useResources(use);
 	}
-	
+
 	public void liberateResources(Class<? extends DungeonResource> type, int liberated) {
 		TeamResource furniture = resources.get(type);
 
