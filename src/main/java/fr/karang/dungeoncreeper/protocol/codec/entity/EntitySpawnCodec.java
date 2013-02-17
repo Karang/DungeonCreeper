@@ -24,39 +24,43 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message;
+package fr.karang.dungeoncreeper.protocol.codec.entity;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
+import java.io.IOException;
 
-import org.spout.api.protocol.Message;
+import fr.karang.dungeoncreeper.protocol.ChannelBufferUtils;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
 
-public class PlayerSkillMessage implements Message {
-	private int skillId;
-	private boolean endCooldown;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 
-	public PlayerSkillMessage(int skillId, boolean endCooldown) {
-		this.skillId = skillId;
-		this.endCooldown = endCooldown;
+import org.spout.api.protocol.MessageCodec;
+
+public class EntitySpawnCodec extends MessageCodec<EntitySpawnMessage> {
+	public EntitySpawnCodec() {
+		super(EntitySpawnMessage.class, 0x10);
 	}
 
-	public PlayerSkillMessage(Skill skill) {
-		this.skillId = skill.getId();
-		this.endCooldown = false;
+	@Override
+	public EntitySpawnMessage decode(ChannelBuffer buffer) throws IOException {
+		String name = ChannelBufferUtils.readString(buffer);
+		byte type = buffer.readByte();
+		byte team = buffer.readByte();
+		float x = buffer.readFloat();
+		float y = buffer.readFloat();
+		float z = buffer.readFloat();
+		return new EntitySpawnMessage(name, type, team, x, y, z);
 	}
 
-	public int getSkill() {
-		return skillId;
-	}
-
-	public boolean getEndCoolDown() {
-		return endCooldown;
-	}
-
-	public int getChannelId() {
-		return 0;
-	}
-	
-	public boolean isAsync() {
-		return false;
+	@Override
+	public ChannelBuffer encode(EntitySpawnMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		ChannelBufferUtils.writeString(buffer, message.getName());
+		buffer.writeByte(message.getType());
+		buffer.writeByte(message.getTeamId());
+		buffer.writeFloat(message.getX());
+		buffer.writeFloat(message.getY());
+		buffer.writeFloat(message.getZ());
+		return buffer;
 	}
 }

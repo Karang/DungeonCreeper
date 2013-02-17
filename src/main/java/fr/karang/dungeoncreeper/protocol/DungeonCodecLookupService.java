@@ -29,8 +29,7 @@ package fr.karang.dungeoncreeper.protocol;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerChangeClassCodec;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerChatCodec;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerKickCodec;
-import fr.karang.dungeoncreeper.protocol.codec.PlayerSkillCodec;
-import fr.karang.dungeoncreeper.protocol.codec.PlayerSpawnCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySpawnCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
@@ -49,9 +48,7 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			bind(PlayerHandshakeCodec.class); // 0x02
 
 			// Players messages
-			bind(PlayerSpawnCodec.class); // 0x10
-			//bind(PlayerDamageCodec.class); // 0x12
-			bind(PlayerSkillCodec.class); // 0x13
+			bind(EntitySpawnCodec.class); // 0x10
 			bind(PlayerChangeClassCodec.class); // 0x14
 			bind(PlayerChatCodec.class); // 0x15
 			bind(PlayerKickCodec.class); // 0x16

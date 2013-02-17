@@ -24,33 +24,54 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec;
+package fr.karang.dungeoncreeper.protocol.message.entity;
 
-import java.io.IOException;
+import org.spout.api.protocol.Message;
 
-import fr.karang.dungeoncreeper.protocol.message.PlayerSkillMessage;
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
+public class EntitySpawnMessage implements Message {
+	private final String name;
+	private final float x, y, z;
+	private final byte type;
+	private final byte team;
 
-import org.spout.api.protocol.MessageCodec;
-
-public class PlayerSkillCodec extends MessageCodec<PlayerSkillMessage> {
-	public PlayerSkillCodec() {
-		super(PlayerSkillMessage.class, 0x13);
+	public EntitySpawnMessage(String name, byte type, byte team, float x, float y, float z) {
+		this.name = name;
+		this.type = type;
+		this.team = team;
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 
-	@Override
-	public PlayerSkillMessage decode(ChannelBuffer buffer) throws IOException {
-		int id = buffer.readInt();
-		boolean endCooldown = buffer.readByte() != 0;
-		return new PlayerSkillMessage(id, endCooldown);
+	public String getName() {
+		return name;
 	}
 
-	@Override
-	public ChannelBuffer encode(PlayerSkillMessage message) throws IOException {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getSkill());
-		buffer.writeByte(message.getEndCoolDown() ? 1 : 0);
-		return buffer;
+	public byte getType() {
+		return type;
+	}
+	
+	public byte getTeamId() {
+		return team;
+	}
+	
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public float getZ() {
+		return z;
+	}
+
+	public int getChannelId() {
+		return 0;
+	}
+	
+	public boolean isAsync() {
+		return false;
 	}
 }

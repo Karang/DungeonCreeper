@@ -26,19 +26,19 @@
  */
 package fr.karang.dungeoncreeper.protocol.handler;
 
-import fr.karang.dungeoncreeper.protocol.message.PlayerSpawnMessage;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
 
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
-public class PlayerSpawnHandler extends MessageHandler<PlayerSpawnMessage> {
+public class PlayerSpawnHandler extends MessageHandler<EntitySpawnMessage> {
 	@Override
-	public void handleServer(Session session, PlayerSpawnMessage message) {
+	public void handleServer(Session session, EntitySpawnMessage message) {
 
 	}
 
 	@Override
-	public void handleClient(Session session, PlayerSpawnMessage message) {
+	public void handleClient(Session session, EntitySpawnMessage message) {
 
 	}
 }
