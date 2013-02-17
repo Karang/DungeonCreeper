@@ -30,18 +30,17 @@ import fr.karang.dungeoncreeper.protocol.codec.PlayerChatCodec;
 import fr.karang.dungeoncreeper.protocol.codec.PlayerKickCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityDieCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityMoveCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySkillBlockCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySkillCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySpawnCodec;
 import fr.karang.dungeoncreeper.protocol.codec.entity.EntityTeleportCodec;
-import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySkillCodec;
-import fr.karang.dungeoncreeper.protocol.codec.entity.EntityYawCodec;
+import fr.karang.dungeoncreeper.protocol.codec.entity.EntitySkillEntityCodec;
 import fr.karang.dungeoncreeper.protocol.codec.game.TeamGoldUpdateCodec;
 import fr.karang.dungeoncreeper.protocol.codec.game.TeamJoinCodec;
 import fr.karang.dungeoncreeper.protocol.codec.game.TeamNotificationCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
-import fr.karang.dungeoncreeper.protocol.codec.world.BlockBreakCodec;
-import fr.karang.dungeoncreeper.protocol.codec.world.BlockPlaceCodec;
 import fr.karang.dungeoncreeper.protocol.codec.world.ChunkDataCodec;
 
 import org.spout.api.protocol.CodecLookupService;
@@ -60,8 +59,9 @@ public class DungeonCodecLookupService extends CodecLookupService {
 			bind(EntitySpawnCodec.class); // 0x10
 			bind(EntityMoveCodec.class); //0x11
 			bind(EntityTeleportCodec.class); //0x12
-			bind(EntityYawCodec.class); //0x13
-			bind(EntitySkillCodec.class); //0x15
+			bind(EntitySkillCodec.class); //0x13
+			bind(EntitySkillBlockCodec.class); //0x14
+			bind(EntitySkillEntityCodec.class); //0x15
 			bind(EntityDieCodec.class); //0x16
 			
 			// Team messages
@@ -72,8 +72,8 @@ public class DungeonCodecLookupService extends CodecLookupService {
 
 			// World messages
 			bind(ChunkDataCodec.class); // 0x30
-			bind(BlockBreakCodec.class); // 0x31
-			bind(BlockPlaceCodec.class); // 0x32
+			//bind(BlockBreakCodec.class); // 0x31 //removed
+			//bind(BlockPlaceCodec.class); // 0x32 //removed
 			
 			// Players messages
 			bind(PlayerChatCodec.class); // 0x41

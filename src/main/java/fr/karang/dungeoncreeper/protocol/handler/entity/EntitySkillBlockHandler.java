@@ -24,35 +24,43 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec.entity;
+package fr.karang.dungeoncreeper.protocol.handler.entity;
 
-import java.io.IOException;
+import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillBlockMessage;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.spout.api.protocol.MessageCodec;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.protocol.message.entity.EntityYawMessage;
-
-public class EntityYawCodec extends MessageCodec<EntityYawMessage> {
-
-	public EntityYawCodec() {
-		super(EntityYawMessage.class, 0x13);
+public class EntitySkillBlockHandler extends MessageHandler<EntitySkillBlockMessage> {
+	@Override
+	public void handleServer(Session session, EntitySkillBlockMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Skill skill = Skill.getSkill(message.getSkillId());
+		
+		if(skill == null)
+			return;
+		
+		
 	}
 
 	@Override
-	public EntityYawMessage decode(ChannelBuffer buffer) throws IOException {
-		int id = buffer.readInt();
-		float yaw = buffer.readFloat();
-		return new EntityYawMessage(id, yaw);
+	public void handleClient(Session session, EntitySkillBlockMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		
 	}
-
-	@Override
-	public ChannelBuffer encode(EntityYawMessage message) throws IOException {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getEntityId());
-		buffer.writeFloat(message.getYaw());
-		return buffer;
-	}
-
 }

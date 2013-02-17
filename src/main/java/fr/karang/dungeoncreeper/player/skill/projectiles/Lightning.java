@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Lightning extends Skill {
-	public Lightning(int id) {
+	public Lightning(byte id) {
 		super(id, "lightning");
 		// TODO Auto-generated constructor stub
 	}

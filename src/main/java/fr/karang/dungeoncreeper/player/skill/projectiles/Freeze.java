@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Freeze extends Skill {
-	public Freeze(int id) {
+	public Freeze(byte id) {
 		super(id, "freeze");
 		// TODO Auto-generated constructor stub
 	}

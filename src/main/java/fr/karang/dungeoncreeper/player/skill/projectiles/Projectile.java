@@ -35,7 +35,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.entity.EntityPrefab;
 
 public abstract class Projectile extends Skill {
-	public Projectile(int id, long max_cooldown, long cast_time, String skill_name) {
+	public Projectile(byte id, long max_cooldown, long cast_time, String skill_name) {
 		super(id, max_cooldown, cast_time, "proj_" + skill_name);
 	}
 

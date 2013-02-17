@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class GuidedBolt extends Skill {
-	public GuidedBolt(int id) {
+	public GuidedBolt(byte id) {
 		super(id, "guidedbolt");
 		// TODO Auto-generated constructor stub
 	}

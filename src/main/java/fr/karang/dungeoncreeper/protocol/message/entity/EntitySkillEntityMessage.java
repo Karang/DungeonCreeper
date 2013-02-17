@@ -24,44 +24,31 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.world;
+package fr.karang.dungeoncreeper.protocol.message.entity;
 
 import org.spout.api.protocol.Message;
 
-public class BlockPlaceMessage implements Message {
+public class EntitySkillEntityMessage  implements Message {
 
-	private final int x;
-	private final int z;
-	private final byte type;
-	private final byte data;
-	private final boolean isGround;
+	private final int caster;
+	private final int target;
+	private final byte skill;
 	
-	public BlockPlaceMessage(int x, int z, byte type, byte data, boolean isGround) {
-		this.x = x;
-		this.z = z;
-		this.type = type;
-		this.data = data;
-		this.isGround = isGround;
+	public EntitySkillEntityMessage(int caster, int target, byte skill) {
+		this.caster = caster;
+		this.target = target;
+		this.skill = skill;
 	}
 	
-	public int getX() {
-		return x;
+	public int getCaster() {
+		return caster;
+	}
+	public int getTarget() {
+		return target;
 	}
 	
-	public int getZ() {
-		return z;
-	}
-	
-	public byte getType() {
-		return type;
-	}
-	
-	public byte getData() {
-		return data;
-	}
-	
-	public boolean isGround() {
-		return isGround;
+	public byte getSkillId() {
+		return skill;
 	}
 	
 	public boolean isAsync() {

@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Whirlwind extends Skill {
-	public Whirlwind(int id) {
+	public Whirlwind(byte id) {
 		super(id, "whirlwind");
 		// TODO Auto-generated constructor stub
 	}

@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Speed extends Skill {
-	public Speed(int id) {
+	public Speed(byte id) {
 		super(id, "speed");
 	}
 

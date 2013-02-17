@@ -24,21 +24,56 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player.skill.utils;
+package fr.karang.dungeoncreeper.protocol.handler.entity;
 
-import fr.karang.dungeoncreeper.player.skill.Skill;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillEntityMessage;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
-public class Slow extends Skill {
-	public Slow(byte id) {
-		super(id, "slow");
-		// TODO Auto-generated constructor stub
+public class EntitySkillEntityHandler extends MessageHandler<EntitySkillEntityMessage> {
+	@Override
+	public void handleServer(Session session, EntitySkillEntityMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity caster = message.getCaster() != -1 ? world.getEntity(message.getCaster()) : null;
+		Entity target = message.getTarget() != -1 ? world.getEntity(message.getTarget()) : null;
+		
+		if(caster != null){
+			return;
+		}
+		
+		if(target != null){
+			return;
+		}
 	}
 
 	@Override
-	public void handle(Entity source) {
-		// TODO Auto-generated method stub
-
+	public void handleClient(Session session, EntitySkillEntityMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity caster = message.getCaster() != -1 ? world.getEntity(message.getCaster()) : null;
+		Entity target = message.getTarget() != -1 ? world.getEntity(message.getTarget()) : null;
+		
+		if(caster != null){
+			return;
+		}
+		
+		if(target != null){
+			return;
+		}
 	}
 }

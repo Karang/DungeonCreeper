@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class FireBomb extends Skill {
-	public FireBomb(int id) {
+	public FireBomb(byte id) {
 		super(id, "firebomb");
 		// TODO Auto-generated constructor stub
 	}

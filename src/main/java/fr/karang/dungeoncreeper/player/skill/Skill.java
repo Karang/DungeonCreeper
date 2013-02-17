@@ -37,21 +37,21 @@ import org.spout.api.math.Rectangle;
 import fr.karang.dungeoncreeper.data.DungeonData;
 
 public abstract class Skill {
-	private static Map<Integer, Skill> skills = new HashMap<Integer, Skill>();
-	private final int id;
+	private static Map<Byte, Skill> skills = new HashMap<Byte, Skill>();
+	private final byte id;
 	protected final long max_cooldown;
 	protected final long cast_time;
 	private final DefaultedKey<Long> KEY_COOLDOWN;
 
-	public Skill(int id, String skill_name) {
+	public Skill(byte id, String skill_name) {
 		this(id, 0L, skill_name);
 	}
 	
-	public Skill(int id, long max_cooldown, String skill_name) {
+	public Skill(byte id, long max_cooldown, String skill_name) {
 		this(id, max_cooldown, 0L, skill_name);
 	}
 
-	public Skill(int id, long max_cooldown, long cast_time, String skill_name) {
+	public Skill(byte id, long max_cooldown, long cast_time, String skill_name) {
 		this.id = id;
 		this.max_cooldown = max_cooldown;
 		this.cast_time = cast_time;
@@ -87,7 +87,7 @@ public abstract class Skill {
 		}
 	}
 
-	public int getId() {
+	public byte getId() {
 		return id;
 	}
 

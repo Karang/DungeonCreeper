@@ -30,7 +30,7 @@ import org.spout.api.entity.Entity;
 
 public class PlaceTrap extends BuildSkill {
 
-	public PlaceTrap(int id) {
+	public PlaceTrap(byte id) {
 		super(id, 0L, 0L, "place_trap");
 	}
 

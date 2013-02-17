@@ -38,17 +38,17 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 public class BuildSkill extends Skill {
 	protected final DefaultedKey<Vector3> BLOCK;
 	
-	public BuildSkill(int id, String skill_name) {
+	public BuildSkill(byte id, String skill_name) {
 		super(id, skill_name);
 		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
 	}
 	
-	public BuildSkill(int id, long max_cooldown, String skill_name) {
+	public BuildSkill(byte id, long max_cooldown, String skill_name) {
 		super(id, max_cooldown, skill_name);
 		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
 	}
 	
-	public BuildSkill(int id, long max_cooldown, long cast_time, String skill_name) {
+	public BuildSkill(byte id, long max_cooldown, long cast_time, String skill_name) {
 		super(id, max_cooldown, cast_time, skill_name);
 		BLOCK = new DefaultedKeyImpl<Vector3>(skill_name + "_block", Vector3.ZERO);
 	}

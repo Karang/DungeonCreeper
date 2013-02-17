@@ -31,7 +31,7 @@ import org.spout.api.entity.EntityPrefab;
 import fr.karang.dungeoncreeper.resource.ProjectilePrefabs;
 
 public class Knives extends Projectile {
-	public Knives(int id) {
+	public Knives(byte id) {
 		super(id, 1000, 3000, "knives");
 	}
 

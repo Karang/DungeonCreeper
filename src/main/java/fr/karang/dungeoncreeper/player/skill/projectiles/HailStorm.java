@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class HailStorm extends Skill {
-	public HailStorm(int id) {
+	public HailStorm(byte id) {
 		super(id, "hailstorm");
 		// TODO Auto-generated constructor stub
 	}

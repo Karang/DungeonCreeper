@@ -43,16 +43,14 @@ public class EntitySkillCodec extends MessageCodec<EntitySkillMessage> {
 	@Override
 	public EntitySkillMessage decode(ChannelBuffer buffer) throws IOException {
 		int caster = buffer.readInt();
-		int target = buffer.readInt();
 		byte skill = buffer.readByte();
-		return new EntitySkillMessage(caster, target, skill);
+		return new EntitySkillMessage(caster, skill);
 	}
 
 	@Override
 	public ChannelBuffer encode(EntitySkillMessage message) throws IOException {
 		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
 		buffer.writeInt(message.getCaster());
-		buffer.writeInt(message.getTarget());
 		buffer.writeByte(message.getSkillId());
 		return buffer;
 	}

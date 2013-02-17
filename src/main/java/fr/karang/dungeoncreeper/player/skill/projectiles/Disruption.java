@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Disruption extends Skill {
-	public Disruption(int id) {
+	public Disruption(byte id) {
 		super(id, "disruption");
 		// TODO Auto-generated constructor stub
 	}

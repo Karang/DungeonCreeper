@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class GasMissile extends Skill {
-	public GasMissile(int id) {
+	public GasMissile(byte id) {
 		super(id, "gasmissile");
 		// TODO Auto-generated constructor stub
 	}

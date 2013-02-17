@@ -43,7 +43,7 @@ public class Dig extends BuildSkill {
 	
 	private final Random rand = new Random();
 
-	public Dig(int id) {
+	public Dig(byte id) {
 		super(id, 200, "dig");
 	}
 

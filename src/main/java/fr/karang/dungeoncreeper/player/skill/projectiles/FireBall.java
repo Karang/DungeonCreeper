@@ -31,7 +31,7 @@ import org.spout.api.entity.EntityPrefab;
 import fr.karang.dungeoncreeper.resource.ProjectilePrefabs;
 
 public class FireBall extends Projectile {
-	public FireBall(int id) {
+	public FireBall(byte id) {
 		super(id, 1000, 3000, "fireball");
 	}
 

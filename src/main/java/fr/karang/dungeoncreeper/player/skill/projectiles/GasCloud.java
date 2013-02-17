@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class GasCloud extends Skill {
-	public GasCloud(int id) {
+	public GasCloud(byte id) {
 		super(id, "gascloud");
 		// TODO Auto-generated constructor stub
 	}

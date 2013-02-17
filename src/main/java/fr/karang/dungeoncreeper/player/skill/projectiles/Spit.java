@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Spit extends Skill {
-	public Spit(int id) {
+	public Spit(byte id) {
 		super(id, "spit");
 		// TODO Auto-generated constructor stub
 	}

@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Heal extends Skill {
-	public Heal(int id) {
+	public Heal(byte id) {
 		super(id, "heal");
 		// TODO Auto-generated constructor stub
 	}

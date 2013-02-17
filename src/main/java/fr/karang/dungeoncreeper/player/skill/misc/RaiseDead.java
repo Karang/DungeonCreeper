@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class RaiseDead extends Skill {
-	public RaiseDead(int id) {
+	public RaiseDead(byte id) {
 		super(id, "raisedead");
 		// TODO Auto-generated constructor stub
 	}

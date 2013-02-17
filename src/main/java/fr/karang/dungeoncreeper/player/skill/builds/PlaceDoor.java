@@ -35,7 +35,7 @@ import fr.karang.dungeoncreeper.material.dungeon.doors.WoodenDoor;
 
 public class PlaceDoor extends BuildSkill {
 
-	public PlaceDoor(int id) {
+	public PlaceDoor(byte id) {
 		super(id, 200L, 500L, "place_door");
 	}
 

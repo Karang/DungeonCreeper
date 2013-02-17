@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class StunFireball extends Skill {
-	public StunFireball(int id) {
+	public StunFireball(byte id) {
 		super(id, "stunfireball");
 		// TODO Auto-generated constructor stub
 	}

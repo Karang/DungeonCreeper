@@ -42,7 +42,7 @@ import org.spout.api.geo.cuboid.Block;
 import org.spout.api.math.Rectangle;
 
 public class Claim extends Skill {
-	public Claim(int id) {
+	public Claim(byte id) {
 		super(id, "claim");
 	}
 

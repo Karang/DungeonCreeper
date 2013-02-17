@@ -24,35 +24,46 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec.world;
+package fr.karang.dungeoncreeper.protocol.handler.entity;
 
-import java.io.IOException;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillMessage;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.spout.api.protocol.MessageCodec;
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.Player;
+import org.spout.api.geo.World;
+import org.spout.api.protocol.MessageHandler;
+import org.spout.api.protocol.Session;
 
-import fr.karang.dungeoncreeper.protocol.message.world.BlockBreakMessage;
-
-public class BlockBreakCodec  extends MessageCodec<BlockBreakMessage>{
-
-	public BlockBreakCodec() {
-		super(BlockBreakMessage.class, 0x31);
-	}
-	
+public class EntitySkillHandler extends MessageHandler<EntitySkillMessage> {
 	@Override
-	public BlockBreakMessage decode(ChannelBuffer buffer) throws IOException {
-		int x = buffer.readInt();
-		int z = buffer.readInt();
-		return new BlockBreakMessage(x, z);
+	public void handleServer(Session session, EntitySkillMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity caster = message.getCaster() != -1 ? world.getEntity(message.getCaster()) : null;
+		
+		if(caster != null){
+			return;
+		}
 	}
 
 	@Override
-	public ChannelBuffer encode(BlockBreakMessage message) throws IOException {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getX());
-		buffer.writeInt(message.getZ());
-		return buffer;
+	public void handleClient(Session session, EntitySkillMessage message) {
+		if (!session.hasPlayer()) {
+			return;
+		}
+		
+		Player player = session.getPlayer();
+		World world = player.getWorld();
+		
+		Entity caster = message.getCaster() != -1 ? world.getEntity(message.getCaster()) : null;
+		
+		if(caster != null){
+			return;
+		}
 	}
-
 }

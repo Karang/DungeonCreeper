@@ -28,6 +28,9 @@ package fr.karang.dungeoncreeper.protocol;
 
 import fr.karang.dungeoncreeper.protocol.handler.PlayerChatHandler;
 import fr.karang.dungeoncreeper.protocol.handler.PlayerKickHandler;
+import fr.karang.dungeoncreeper.protocol.handler.entity.EntitySkillBlockHandler;
+import fr.karang.dungeoncreeper.protocol.handler.entity.EntitySkillEntityHandler;
+import fr.karang.dungeoncreeper.protocol.handler.entity.EntitySkillHandler;
 import fr.karang.dungeoncreeper.protocol.handler.entity.EntitySpawnHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerHandshakeHandler;
 import fr.karang.dungeoncreeper.protocol.handler.lobby.PlayerListHandler;
@@ -35,6 +38,9 @@ import fr.karang.dungeoncreeper.protocol.handler.lobby.WorldListHandler;
 import fr.karang.dungeoncreeper.protocol.handler.world.ChunkDataHandler;
 import fr.karang.dungeoncreeper.protocol.message.PlayerChatMessage;
 import fr.karang.dungeoncreeper.protocol.message.PlayerKickMessage;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillBlockMessage;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillEntityMessage;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySkillMessage;
 import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
@@ -54,6 +60,9 @@ public class DungeonHandlerLookupService extends HandlerLookupService {
 			// Players messages
 			bind(EntitySpawnMessage.class, EntitySpawnHandler.class); // 0x10
 			//bind(PlayerMoveMessage.class, PlayerMoveHandler.class); // 0x11
+			bind(EntitySkillMessage.class, EntitySkillHandler.class); // 0x13
+			bind(EntitySkillBlockMessage.class, EntitySkillBlockHandler.class); // 0x14
+			bind(EntitySkillEntityMessage.class, EntitySkillEntityHandler.class); // 0x15
 			bind(PlayerChatMessage.class, PlayerChatHandler.class); // 0x15
 			bind(PlayerKickMessage.class, PlayerKickHandler.class); // 0x16
 

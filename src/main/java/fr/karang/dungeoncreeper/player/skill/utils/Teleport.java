@@ -34,7 +34,7 @@ import org.spout.api.entity.Player;
 import org.spout.api.geo.cuboid.Block;
 
 public class Teleport extends Skill {
-	public Teleport(int id) {
+	public Teleport(byte id) {
 		super(id, 5000, 3000, "teleport");
 	}
 

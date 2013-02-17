@@ -59,7 +59,7 @@ import fr.karang.dungeoncreeper.player.skill.utils.Slow;
 import fr.karang.dungeoncreeper.player.skill.utils.Teleport;
 
 public class Skills {
-	public static int id = 0;
+	public static byte id = 0;
 	/**
 	 * Attack
 	 */

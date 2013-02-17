@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Haste extends Skill {
-	public Haste(int id) {
+	public Haste(byte id) {
 		super(id, "haste");
 	}
 

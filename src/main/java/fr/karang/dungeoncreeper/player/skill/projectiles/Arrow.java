@@ -31,7 +31,7 @@ import org.spout.api.entity.EntityPrefab;
 import fr.karang.dungeoncreeper.resource.ProjectilePrefabs;
 
 public class Arrow extends Projectile {
-	public Arrow(int id) {
+	public Arrow(byte id) {
 		super(id, 1000, 3000, "arrow");
 	}
 

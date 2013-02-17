@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Invisibility extends Skill {
-	public Invisibility(int id) {
+	public Invisibility(byte id) {
 		super(id, "invisibility");
 		// TODO Auto-generated constructor stub
 	}

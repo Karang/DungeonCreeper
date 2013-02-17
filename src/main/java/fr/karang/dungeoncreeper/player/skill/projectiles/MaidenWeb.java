@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class MaidenWeb extends Skill {
-	public MaidenWeb(int id) {
+	public MaidenWeb(byte id) {
 		super(id, "maidenweb");
 		// TODO Auto-generated constructor stub
 	}

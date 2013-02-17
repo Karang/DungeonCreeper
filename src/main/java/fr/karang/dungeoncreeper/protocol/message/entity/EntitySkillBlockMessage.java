@@ -24,42 +24,45 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.codec.world;
+package fr.karang.dungeoncreeper.protocol.message.entity;
 
-import java.io.IOException;
+import org.spout.api.protocol.Message;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.spout.api.protocol.MessageCodec;
+public class EntitySkillBlockMessage  implements Message {
 
-import fr.karang.dungeoncreeper.protocol.message.world.BlockPlaceMessage;
-
-
-public class BlockPlaceCodec  extends MessageCodec<BlockPlaceMessage>{
-
-	public BlockPlaceCodec() {
-		super(BlockPlaceMessage.class, 0x32);
+	private final int caster;
+	private final int x, z;
+	private final byte skill;
+	
+	public EntitySkillBlockMessage(int caster, int x, int z, byte skill) {
+		this.caster = caster;
+		this.x = x;
+		this.z = z;
+		this.skill = skill;
 	}
 	
-	@Override
-	public BlockPlaceMessage decode(ChannelBuffer buffer) throws IOException {
-		int x = buffer.readInt();
-		int z = buffer.readInt();
-		byte type = buffer.readByte();
-		byte data = buffer.readByte();
-		boolean isGround = buffer.readByte() == 0;
-		return new BlockPlaceMessage(x, z, type, data, isGround);
+	public int getCaster() {
+		return caster;
 	}
 
-	@Override
-	public ChannelBuffer encode(BlockPlaceMessage message) throws IOException {
-		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getX());
-		buffer.writeInt(message.getZ());
-		buffer.writeByte(message.getType());
-		buffer.writeByte(message.getData());
-		buffer.writeByte(message.isGround()?0:1);
-		return buffer;
+	public int getX() {
+		return x;
+	}
+
+	public int getZ() {
+		return z;
+	}
+
+	public byte getSkillId() {
+		return skill;
+	}
+	
+	public boolean isAsync() {
+		return false;
+	}
+
+	public int getChannelId() {
+		return 0;
 	}
 
 }

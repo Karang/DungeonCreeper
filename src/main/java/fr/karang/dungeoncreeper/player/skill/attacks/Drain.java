@@ -32,7 +32,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.math.Rectangle;
 
 public class Drain extends Skill {
-	public Drain(int id) {
+	public Drain(byte id) {
 		super(id, 1000, "drain");
 	}
 

@@ -37,7 +37,7 @@ import org.spout.api.entity.Player;
 import org.spout.api.math.Rectangle;
 
 public class BuildRoom extends BuildSkill {
-	public BuildRoom(int id) {
+	public BuildRoom(byte id) {
 		super(id, "build");
 	}
 

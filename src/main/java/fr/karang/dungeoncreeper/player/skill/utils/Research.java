@@ -31,7 +31,7 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 
 public class Research extends Skill {
-	public Research(int id) {
+	public Research(byte id) {
 		super(id, "research");
 	}
 

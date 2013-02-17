@@ -30,7 +30,7 @@ import org.spout.api.entity.Entity;
 
 public class PlaceBridge extends BuildSkill {
 
-	public PlaceBridge(int id) {
+	public PlaceBridge(byte id) {
 		super(id, 0L, 0L, "place_bridge");
 	}
 

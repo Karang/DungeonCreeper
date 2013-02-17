@@ -32,7 +32,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.math.Rectangle;
 
 public class Attack extends Skill {
-	public Attack(int id) {
+	public Attack(byte id) {
 		super(id, 1000, "attacksword");
 	}
 

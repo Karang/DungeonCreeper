@@ -31,22 +31,17 @@ import org.spout.api.protocol.Message;
 public class EntitySkillMessage  implements Message {
 
 	private final int caster;
-	private final int target;
 	private final byte skill;
 	
-	public EntitySkillMessage(int caster, int target, byte skill) {
+	public EntitySkillMessage(int caster, byte skill) {
 		this.caster = caster;
-		this.target = target;
 		this.skill = skill;
 	}
 	
 	public int getCaster() {
 		return caster;
 	}
-	public int getTarget() {
-		return target;
-	}
-	
+
 	public byte getSkillId() {
 		return skill;
 	}
