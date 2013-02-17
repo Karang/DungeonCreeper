@@ -31,8 +31,14 @@ import fr.karang.dungeoncreeper.material.dungeon.Floor;
 import fr.karang.dungeoncreeper.material.dungeon.GoldBag;
 import fr.karang.dungeoncreeper.material.dungeon.Wall;
 import fr.karang.dungeoncreeper.material.dungeon.bridges.WoodenBridge;
+import fr.karang.dungeoncreeper.material.dungeon.furniture.Bed;
+import fr.karang.dungeoncreeper.material.dungeon.furniture.Coop;
+import fr.karang.dungeoncreeper.material.dungeon.furniture.Desk;
+import fr.karang.dungeoncreeper.material.dungeon.furniture.Target;
 import fr.karang.dungeoncreeper.material.dungeon.room.Hatchery;
 import fr.karang.dungeoncreeper.material.dungeon.room.Lair;
+import fr.karang.dungeoncreeper.material.dungeon.room.Library;
+import fr.karang.dungeoncreeper.material.dungeon.room.TrainingRoom;
 import fr.karang.dungeoncreeper.material.natural.Dirt;
 import fr.karang.dungeoncreeper.material.natural.GemOre;
 import fr.karang.dungeoncreeper.material.natural.GoldOre;
@@ -63,6 +69,14 @@ public class DCMaterials {
 	// Dungeon rooms
 	public static final Lair LAIR = new Lair();
 	public static final Hatchery HATCHERY = new Hatchery();
+	public static final Library LIBRARY = new Library();
+	public static final TrainingRoom TRAININGROOM = new TrainingRoom();
+	
+	// Dungeon furnitures
+	public static final Coop COOP = new Coop();
+	public static final Bed BED = new Bed();
+	public static final Desk DESK = new Desk();
+	public static final Target TARGET = new Target();
 	
 	// Dungeon decorations
 	public static final GoldBag GOLD_BAG = new GoldBag();
