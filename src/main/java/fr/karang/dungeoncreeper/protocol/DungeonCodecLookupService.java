@@ -41,6 +41,8 @@ import fr.karang.dungeoncreeper.protocol.codec.game.TeamNotificationCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerHandshakeCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.PlayerListCodec;
 import fr.karang.dungeoncreeper.protocol.codec.lobby.WorldListCodec;
+import fr.karang.dungeoncreeper.protocol.codec.world.BlockBreakCodec;
+import fr.karang.dungeoncreeper.protocol.codec.world.BlockPlaceCodec;
 import fr.karang.dungeoncreeper.protocol.codec.world.ChunkDataCodec;
 
 import org.spout.api.protocol.CodecLookupService;
@@ -72,8 +74,8 @@ public class DungeonCodecLookupService extends CodecLookupService {
 
 			// World messages
 			bind(ChunkDataCodec.class); // 0x30
-			//bind(BlockBreakCodec.class); // 0x31
-			//bind(BlockPlaceCodec.class); // 0x32
+			bind(BlockBreakCodec.class); // 0x31
+			bind(BlockPlaceCodec.class); // 0x32
 			
 			// Players messages
 			bind(PlayerChatCodec.class); // 0x41

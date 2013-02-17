@@ -24,52 +24,35 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.world;
+package fr.karang.dungeoncreeper.protocol.codec.world;
 
-import org.spout.api.protocol.Message;
+import java.io.IOException;
 
-public class BlockPlaceMessage implements Message {
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+import org.spout.api.protocol.MessageCodec;
 
-	private final int x;
-	private final int z;
-	private final byte type;
-	private final byte data;
-	private final boolean isGround;
-	
-	public BlockPlaceMessage(int x, int z, byte type, byte data, boolean isGround) {
-		this.x = x;
-		this.z = z;
-		this.type = type;
-		this.data = data;
-		this.isGround = isGround;
+import fr.karang.dungeoncreeper.protocol.message.world.BlockBreakMessage;
+
+public class BlockBreakCodec  extends MessageCodec<BlockBreakMessage>{
+
+	public BlockBreakCodec() {
+		super(BlockBreakMessage.class, 0x31);
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
-	public int getZ() {
-		return z;
-	}
-	
-	public byte getType() {
-		return type;
-	}
-	
-	public byte getData() {
-		return data;
-	}
-	
-	public boolean isGround() {
-		return isGround;
-	}
-	
-	public boolean isAsync() {
-		return false;
+	@Override
+	public BlockBreakMessage decode(ChannelBuffer buffer) throws IOException {
+		int x = buffer.readInt();
+		int z = buffer.readInt();
+		return new BlockBreakMessage(x, z);
 	}
 
-	public int getChannelId() {
-		return 0;
+	@Override
+	public ChannelBuffer encode(BlockBreakMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getX());
+		buffer.writeInt(message.getZ());
+		return buffer;
 	}
 
 }

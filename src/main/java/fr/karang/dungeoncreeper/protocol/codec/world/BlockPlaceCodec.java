@@ -24,52 +24,42 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.protocol.message.world;
+package fr.karang.dungeoncreeper.protocol.codec.world;
 
-import org.spout.api.protocol.Message;
+import java.io.IOException;
 
-public class BlockPlaceMessage implements Message {
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+import org.spout.api.protocol.MessageCodec;
 
-	private final int x;
-	private final int z;
-	private final byte type;
-	private final byte data;
-	private final boolean isGround;
-	
-	public BlockPlaceMessage(int x, int z, byte type, byte data, boolean isGround) {
-		this.x = x;
-		this.z = z;
-		this.type = type;
-		this.data = data;
-		this.isGround = isGround;
+import fr.karang.dungeoncreeper.protocol.message.world.BlockPlaceMessage;
+
+
+public class BlockPlaceCodec  extends MessageCodec<BlockPlaceMessage>{
+
+	public BlockPlaceCodec() {
+		super(BlockPlaceMessage.class, 0x32);
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
-	public int getZ() {
-		return z;
-	}
-	
-	public byte getType() {
-		return type;
-	}
-	
-	public byte getData() {
-		return data;
-	}
-	
-	public boolean isGround() {
-		return isGround;
-	}
-	
-	public boolean isAsync() {
-		return false;
+	@Override
+	public BlockPlaceMessage decode(ChannelBuffer buffer) throws IOException {
+		int x = buffer.readInt();
+		int z = buffer.readInt();
+		byte type = buffer.readByte();
+		byte data = buffer.readByte();
+		boolean isGround = buffer.readByte() == 0;
+		return new BlockPlaceMessage(x, z, type, data, isGround);
 	}
 
-	public int getChannelId() {
-		return 0;
+	@Override
+	public ChannelBuffer encode(BlockPlaceMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getX());
+		buffer.writeInt(message.getZ());
+		buffer.writeByte(message.getType());
+		buffer.writeByte(message.getData());
+		buffer.writeByte(message.isGround()?0:1);
+		return buffer;
 	}
 
 }
