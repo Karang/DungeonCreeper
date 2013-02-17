@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class DarkMistress extends CreatureComponent {
 	public DarkMistress() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.LIGHTNING, 4);
 		addSkill(Skills.FREEZE, 8);
 		addSkill(Skills.HAIL_STORM, 10);

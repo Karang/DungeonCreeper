@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class DarkAngel extends CreatureComponent {
 	public DarkAngel() {
-		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.DISRUPTION, 4);
 		addSkill(Skills.HAIL_STORM, 8);
 		addSkill(Skills.SKELETON_ARMY, 10);

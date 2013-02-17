@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class BileDemon extends CreatureComponent {
 	public BileDemon() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.GAS_CLOUD, 4);
 		addSkill(Skills.GAS_MISSILE, 8);
 	}

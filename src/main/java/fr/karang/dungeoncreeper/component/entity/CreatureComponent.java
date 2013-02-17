@@ -45,7 +45,7 @@ import org.spout.api.math.GenericMath;
 public abstract class CreatureComponent extends EntityComponent {
 	//7, 12, 16, 20, 30, 50, 70, 90
 	private static final int[] levelXp = {5, 12, 24, 40, 60, 90, 140, 210, 300};
-	
+
 	private Map<Skill, Integer> requiredLevel = new HashMap<Skill, Integer>();
 	private List<Skill> skills = new ArrayList<Skill>();
 
@@ -57,6 +57,28 @@ public abstract class CreatureComponent extends EntityComponent {
 		getData().put(DungeonData.SKILLSLOT, 1);
 		getData().put(DungeonData.LEVEL, 1);
 		getData().put(DungeonData.XP, 0);
+	}
+
+	public int getHealth(){
+		return (int)getData().get(DungeonData.HEALTH);
+	}
+
+	public void setHealth(int health){
+		if(health <= 0){
+			//TODO : Kill and respawn
+		}
+
+		getData().put(DungeonData.HEALTH, health);
+	}
+
+	public void damage(int damage){
+		int health = getHealth() - damage;
+
+		if(health <= 0){
+			//TODO : Kill and respawn
+		}
+
+		setHealth(health);
 	}
 
 	@Override
@@ -85,29 +107,29 @@ public abstract class CreatureComponent extends EntityComponent {
 			resetCast(0);
 		}
 	}
-	
+
 	public void addXp(int amount) {
 		int xp = getData().get(DungeonData.XP);
 		xp += amount;
-		
+
 		int level = getData().get(DungeonData.LEVEL);
-		
+
 		if (level==10) {
 			return;
 		}
-		
+
 		if (xp >= levelXp[level-1]) {
 			getData().put(DungeonData.LEVEL, level + 1);
 		}
-		
+
 		getData().put(DungeonData.XP, xp);
 	}
-	
+
 	private void resetCast(int type) {
 		getData().put(DungeonData.CAST_TIME, 0L);
 		getData().put(DungeonData.CAST_TYPE, type);
 	}
-	
+
 	private int getCastType() {
 		return getData().get(DungeonData.CAST_TYPE);
 	}
@@ -119,7 +141,7 @@ public abstract class CreatureComponent extends EntityComponent {
 			return getSecondarySkill();
 		return null;
 	}
-	
+
 	public List<Skill> getSkills() {
 		return skills;
 	}
@@ -140,7 +162,7 @@ public abstract class CreatureComponent extends EntityComponent {
 	public int getSlotAmount() {
 		return skills.size();
 	}
-	
+
 	public void setSlot(int slot) {
 		getData().put(DungeonData.SKILLSLOT, GenericMath.clamp(slot, 1, skills.size() - 1));
 	}

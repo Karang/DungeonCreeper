@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Skeleton extends CreatureComponent {
 	public Skeleton() {
-		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.ATTACK, 1);
 	}
 
 	@Override

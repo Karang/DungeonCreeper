@@ -36,7 +36,7 @@ import fr.karang.dungeoncreeper.room.type.Room.Rooms;
  */
 public class Gobelin extends CreatureComponent {
 	public Gobelin() {
-		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.ATTACK, 1);
 	}
 
 	public boolean hasRequired(Team team) {

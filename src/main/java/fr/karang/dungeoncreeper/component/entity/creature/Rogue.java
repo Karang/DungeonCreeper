@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Rogue extends CreatureComponent {
 	public Rogue() {
-		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.INVISIBILITY, 1);
 	}
 

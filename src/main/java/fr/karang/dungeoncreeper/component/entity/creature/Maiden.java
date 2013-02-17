@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Maiden extends CreatureComponent {
 	public Maiden() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.MAIDEN_WEB, 1);
 		addSkill(Skills.POISON_SPIT, 1);
 	}

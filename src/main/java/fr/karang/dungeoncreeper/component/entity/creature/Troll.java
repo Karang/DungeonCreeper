@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Troll extends CreatureComponent {
 	public Troll() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.PLACE_BRIDGE, 1);
 		addSkill(Skills.PLACE_DOOR, 1);
 		addSkill(Skills.PLACE_TRAP, 1);

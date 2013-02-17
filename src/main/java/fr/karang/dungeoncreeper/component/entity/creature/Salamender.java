@@ -34,7 +34,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Salamender extends CreatureComponent {
 	public Salamender() {
-		addSkill(Skills.ATTACKSWORD, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.FIREBALL, 4);
 		addSkill(Skills.SPIT, 8);
 	}

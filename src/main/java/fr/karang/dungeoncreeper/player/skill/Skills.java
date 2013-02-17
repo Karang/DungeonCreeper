@@ -26,9 +26,8 @@
  */
 package fr.karang.dungeoncreeper.player.skill;
 
-import fr.karang.dungeoncreeper.player.skill.attacks.AttackSword;
-import fr.karang.dungeoncreeper.player.skill.attacks.Bite;
-import fr.karang.dungeoncreeper.player.skill.attacks.HandToHand;
+import fr.karang.dungeoncreeper.player.skill.attacks.Attack;
+import fr.karang.dungeoncreeper.player.skill.attacks.Drain;
 import fr.karang.dungeoncreeper.player.skill.builds.Dig;
 import fr.karang.dungeoncreeper.player.skill.builds.PlaceBridge;
 import fr.karang.dungeoncreeper.player.skill.builds.PlaceDoor;
@@ -64,9 +63,8 @@ public class Skills {
 	/**
 	 * Attack
 	 */
-	public static final Skill ATTACKSWORD = new AttackSword(id++);
-	public static final Skill HANDTOHAND = new HandToHand(id++);
-	public static final Skill BITE = new Bite(id++);
+	public static final Skill ATTACK = new Attack(id++);
+	public static final Skill DRAIN = new Drain(id++);
 	/**
 	 * Build / place
 	 */

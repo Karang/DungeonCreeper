@@ -100,7 +100,7 @@ public class HUD extends Screen {
 			selectSecondarySlot(cc.getSlot());
 		}
 		
-		life.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.RED, player.getData().get(DungeonData.HEALTH)));
+		life.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.RED, cc.getHealth()));
 		gold.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.YELLOW, player.getData().get(DungeonData.GOLD_AMOUNT)));
 		mana.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.BLUE, player.getData().get(DungeonData.MANA)));
 		level.get(LabelComponent.class).setText(new ChatArguments(ChatStyle.BRIGHT_GREEN, player.getData().get(DungeonData.LEVEL)));

@@ -31,9 +31,9 @@ import fr.karang.dungeoncreeper.player.skill.Skill;
 import org.spout.api.entity.Entity;
 import org.spout.api.math.Rectangle;
 
-public class HandToHand extends Skill {
-	public HandToHand(int id) {
-		super(id, 1000, "handtohand");
+public class Attack extends Skill {
+	public Attack(int id) {
+		super(id, 1000, "attacksword");
 	}
 
 	public void handle(Entity source) {

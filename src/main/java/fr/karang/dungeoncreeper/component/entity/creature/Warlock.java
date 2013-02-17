@@ -39,7 +39,7 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Warlock extends CreatureComponent {
 	public Warlock() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.FIREBALL, 1);
 		addSkill(Skills.HEAL, 2);
 		addSkill(Skills.FIREBOMB, 8);

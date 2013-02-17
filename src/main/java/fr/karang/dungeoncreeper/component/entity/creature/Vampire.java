@@ -34,9 +34,9 @@ import fr.karang.dungeoncreeper.player.skill.Skills;
  */
 public class Vampire extends CreatureComponent {
 	public Vampire() {
-		addSkill(Skills.HANDTOHAND, 1);
+		addSkill(Skills.ATTACK, 1);
 		addSkill(Skills.SLOW, 3);
-		addSkill(Skills.BITE, 8);
+		addSkill(Skills.DRAIN, 8);
 		addSkill(Skills.RAISE_DEAD, 10);
 	}
 

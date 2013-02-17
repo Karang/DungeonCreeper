@@ -29,16 +29,19 @@ package fr.karang.dungeoncreeper.player.skill.attacks;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.entity.Entity;
+import org.spout.api.math.Rectangle;
 
-public class Bite extends Skill {
-	public Bite(int id) {
-		super(id, "bite");
-		// TODO Auto-generated constructor stub
+public class Drain extends Skill {
+	public Drain(int id) {
+		super(id, 1000, "drain");
+	}
+
+	public void handle(Entity source) {
+		//TODO : raycast on entity, damage it
 	}
 
 	@Override
-	public void handle(Entity source) {
-		// TODO Auto-generated method stub
-
+	public Rectangle getUv() {
+		return new Rectangle(32f / 256f, 0, 32f / 256f, 32f / 256f);
 	}
 }
