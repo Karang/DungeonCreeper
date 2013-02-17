@@ -26,10 +26,8 @@
  */
 package fr.karang.dungeoncreeper.component.world;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import fr.karang.dungeoncreeper.component.entity.HeartComponent;
@@ -46,8 +44,8 @@ import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
 public class PartyComponent extends WorldComponent{
+	
 	private Map<TeamColor, Entity> teams = new HashMap<TeamColor, Entity>();
-	private List<Player> players = new ArrayList<Player>();
 	private GameState state = GameState.LOBBY;
 
 	public void start() {
@@ -74,7 +72,6 @@ public class PartyComponent extends WorldComponent{
 
 	public void join(Player player, String team) {
 		teams.get(team).get(HeartComponent.class).playerJoin(player);
-		players.add(player);
 	}
 
 	public void setTerritory(World world, int x, int z, TeamColor color) {

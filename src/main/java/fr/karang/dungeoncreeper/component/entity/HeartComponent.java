@@ -50,7 +50,7 @@ public class HeartComponent extends EntityComponent {
 	private final Map<Rooms, RoomContainer> rooms = new HashMap<Rooms, RoomContainer>();
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
-	private int gold = 0, mana = 0;
+	private int gold = 0;
 	
 	public void setColor(TeamColor color){
 		this.color = color;
