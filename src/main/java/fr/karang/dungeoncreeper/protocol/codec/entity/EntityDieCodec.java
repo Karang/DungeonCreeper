@@ -26,6 +26,10 @@
  */
 package fr.karang.dungeoncreeper.protocol.codec.entity;
 
+import java.io.IOException;
+
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.spout.api.protocol.MessageCodec;
 
 import fr.karang.dungeoncreeper.protocol.message.entity.EntityDieMessage;
@@ -36,4 +40,16 @@ public class EntityDieCodec extends MessageCodec<EntityDieMessage> {
 		super(EntityDieMessage.class, 0x16);
 	}
 
+	@Override
+	public EntityDieMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
+		return new EntityDieMessage(id);
+	}
+
+	@Override
+	public ChannelBuffer encode(EntityDieMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getEntityId());
+		return buffer;
+	}
 }

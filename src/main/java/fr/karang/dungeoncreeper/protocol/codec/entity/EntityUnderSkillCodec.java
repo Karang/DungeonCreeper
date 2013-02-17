@@ -26,6 +26,10 @@
  */
 package fr.karang.dungeoncreeper.protocol.codec.entity;
 
+import java.io.IOException;
+
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.spout.api.protocol.MessageCodec;
 
 import fr.karang.dungeoncreeper.protocol.message.entity.EntityUnderSkillMessage;
@@ -34,6 +38,21 @@ public class EntityUnderSkillCodec extends MessageCodec<EntityUnderSkillMessage>
 
 	public EntityUnderSkillCodec() {
 		super(EntityUnderSkillMessage.class, 0x15);
+	}
+
+	@Override
+	public EntityUnderSkillMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
+		byte skill = buffer.readByte();
+		return new EntityUnderSkillMessage(id, skill);
+	}
+
+	@Override
+	public ChannelBuffer encode(EntityUnderSkillMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getEntityId());
+		buffer.writeByte(message.getSkillId());
+		return buffer;
 	}
 
 }

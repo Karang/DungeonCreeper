@@ -26,6 +26,10 @@
  */
 package fr.karang.dungeoncreeper.protocol.codec.entity;
 
+import java.io.IOException;
+
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.spout.api.protocol.MessageCodec;
 
 import fr.karang.dungeoncreeper.protocol.message.entity.EntityYawMessage;
@@ -34,6 +38,21 @@ public class EntityYawCodec extends MessageCodec<EntityYawMessage> {
 
 	public EntityYawCodec() {
 		super(EntityYawMessage.class, 0x13);
+	}
+
+	@Override
+	public EntityYawMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
+		float yaw = buffer.readFloat();
+		return new EntityYawMessage(id, yaw);
+	}
+
+	@Override
+	public ChannelBuffer encode(EntityYawMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getEntityId());
+		buffer.writeFloat(message.getYaw());
+		return buffer;
 	}
 
 }

@@ -24,48 +24,33 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.protocol.codec.game;
 
-import org.spout.api.component.type.EntityComponent;
-import org.spout.api.entity.Entity;
-import org.spout.api.math.Vector3;
+import java.io.IOException;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+import org.spout.api.protocol.MessageCodec;
 
-public class ProjectileComponent extends EntityComponent {
-	
-	//private PhysicsComponent physics;
-	private Entity shooter;
-	
+import fr.karang.dungeoncreeper.protocol.message.team.TeamGoldUpdateMessage;
+
+public class TeamGoldUpdateCodec extends MessageCodec<TeamGoldUpdateMessage> {
+
+	public TeamGoldUpdateCodec() {
+		super(TeamGoldUpdateMessage.class, 0x21);
+	}
+
 	@Override
-	public void onAttached() {
-		//physics = getOwner().add(PhysicsComponent.class);
-		//physics.setCollisionShape(new BoxShape(1, 1, 1));
+	public TeamGoldUpdateMessage decode(ChannelBuffer buffer) throws IOException {
+		int amount = buffer.readInt();
+		return new TeamGoldUpdateMessage(amount);
 	}
-	
+
 	@Override
-	public void onTick(float dt) {
-		//System.out.println("phys: " + physics.getAngularVelocity());
-		//getOwner().getScene().getTransform().translate(physics.getLinearVelocity().multiply(dt));
+	public ChannelBuffer encode(TeamGoldUpdateMessage message) throws IOException {
+		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getAmount());
+		return buffer;
 	}
-	
-	public int getDamages() {
-		return getData().get(DungeonData.DAMAGES);
-	}
-	
-	public Vector3 getVelocity() {
-		return Vector3.ONE;
-	}
-	
-	public Entity getShooter() {
-		return shooter;
-	}
-	
-	public void setShooter(Entity shooter) {
-		this.shooter = shooter;
-	}
-	
-	//public PhysicsComponent getPhysics() {
-		//return physics;
-	//}
+
 }
