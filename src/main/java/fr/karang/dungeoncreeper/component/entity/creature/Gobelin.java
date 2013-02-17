@@ -27,7 +27,7 @@
 package fr.karang.dungeoncreeper.component.entity.creature;
 
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.player.skill.Skills;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
@@ -39,8 +39,8 @@ public class Gobelin extends CreatureComponent {
 		addSkill(Skills.ATTACK, 1);
 	}
 
-	public boolean hasRequired(Team team) {
-		return team.hasRoom(Rooms.LAIR, 5);
+	public boolean hasRequired(HeartComponent hearth) {
+		return hearth.hasRoom(Rooms.LAIR, 5);
 	}
 
 	@Override

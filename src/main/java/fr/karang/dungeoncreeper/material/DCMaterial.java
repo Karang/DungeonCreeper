@@ -27,13 +27,12 @@
 package fr.karang.dungeoncreeper.material;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
+import fr.karang.dungeoncreeper.component.world.PartyComponent;
 import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
-import fr.karang.dungeoncreeper.world.DungeonGame;
+import fr.karang.dungeoncreeper.game.TeamColor;
 
 import org.spout.api.Spout;
-import org.spout.api.geo.LoadOption;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Block;
 import org.spout.api.geo.cuboid.Chunk;
@@ -54,8 +53,8 @@ public abstract class DCMaterial extends BlockMaterial {
 		super(name, data, parent, model);
 	}
 
-	public final DungeonGame getGame(Block block) {
-		return block.getWorld().getComponentHolder().get(DungeonGame.class);
+	public final PartyComponent getGame(Block block) {
+		return block.getWorld().getComponentHolder().get(PartyComponent.class);
 	}
 
 	public final TeamColor getOwner(Block block) {
@@ -73,29 +72,29 @@ public abstract class DCMaterial extends BlockMaterial {
 		return TeamColor.values()[territory[x & Chunk.BLOCKS.MASK][z & Chunk.BLOCKS.MASK]];
 	}
 
-	public boolean isClaimedBy(Block block, Team team) {
-		return getOwner(block) == team.getColor();
+	public boolean isClaimedBy(Block block, HeartComponent hearthComponent) {
+		return getOwner(block) == hearthComponent.getColor();
 	}
 
-	public boolean isClaimedBlockByOtherTeam(Block block, Team team) {
+	public boolean isClaimedBlockByOtherTeam(Block block, HeartComponent heartComponent) {
 		TeamColor owner = getOwner(block);
 		if (owner == null) {
 			return false;
 		}
-		return owner != team.getColor();
+		return owner != heartComponent.getColor();
 	}
 
-	public boolean isNextClaimedBlock(Block block, Team team) {
-		if (isClaimedBy(block.translate(BlockFace.NORTH), team)) {
+	public boolean isNextClaimedBlock(Block block, HeartComponent hearth) {
+		if (isClaimedBy(block.translate(BlockFace.NORTH), hearth)) {
 			return true;
 		}
-		if (isClaimedBy(block.translate(BlockFace.SOUTH), team)) {
+		if (isClaimedBy(block.translate(BlockFace.SOUTH), hearth)) {
 			return true;
 		}
-		if (isClaimedBy(block.translate(BlockFace.WEST), team)) {
+		if (isClaimedBy(block.translate(BlockFace.WEST), hearth)) {
 			return true;
 		}
-		if (isClaimedBy(block.translate(BlockFace.EAST), team)) {
+		if (isClaimedBy(block.translate(BlockFace.EAST), hearth)) {
 			return true;
 		}
 		return false;

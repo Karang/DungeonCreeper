@@ -26,8 +26,8 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
+import fr.karang.dungeoncreeper.game.TeamColor;
 import fr.karang.dungeoncreeper.material.DCMaterial;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
 
 import org.spout.api.collision.CollisionStrategy;
 import org.spout.api.geo.World;

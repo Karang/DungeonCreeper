@@ -26,11 +26,11 @@
  */
 package fr.karang.dungeoncreeper.player.skill.utils;
 
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.event.BlockCause;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
@@ -50,17 +50,18 @@ public class Claim extends Skill {
 	public void handle(Entity source) {
 		System.out.println("Claim");
 		Block block = source.get(InteractComponent.class).getTargetBlock();
-		Team team = source.get(DungeonPlayer.class).getTeam();
+		Entity hearth = source.get(DungeonPlayer.class).getTeam();
+		HeartComponent heartComponent = hearth.get(HeartComponent.class);
 		BlockCause cause = new BlockCause(source);
 
-		if (team == null) {
+		if (heartComponent == null) {
 			throw new IllegalStateException("Must have a team");
 		}
 
 		if (block != null) {
 			DCMaterial material = (DCMaterial) block.getMaterial();
 
-			if (material.isClaimedBy(block, team)) {
+			if (material.isClaimedBy(block, heartComponent)) {
 				if(source instanceof Player){
 					System.out.println("Block already claimed.");
 					((Player)source).sendMessage("Block already claimed.");
@@ -68,7 +69,7 @@ public class Claim extends Skill {
 				return;
 			}
 
-			if (!material.isNextClaimedBlock(block, team)) {
+			if (!material.isNextClaimedBlock(block, heartComponent)) {
 				if (source instanceof Player){
 					System.out.println("No claimed adjacent block.");
 					((Player)source).sendMessage("No claimed adjacent block.");
@@ -80,25 +81,25 @@ public class Claim extends Skill {
 			int x = block.getX();
 			int z = block.getZ();
 
-			if (material.isClaimedBlockByOtherTeam(block, team)) {
+			if (material.isClaimedBlockByOtherTeam(block, heartComponent)) {
 				System.out.println("Declaim other team");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.DIRT.onPlacement(block, DCMaterials.DIRT.getData(), null, null, false, cause);
-					team.getGame().setTerritory(block.getWorld(), x, z, null);
+					heartComponent.getGame().setTerritory(block.getWorld(), x, z, null);
 				} else {
 					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
 					DCMaterials.DIRT.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.DIRT.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(block.getWorld(), x, z, null);
+					heartComponent.getGame().setTerritory(block.getWorld(), x, z, null);
 				}
 			} else {
 				System.out.println("Claim");
 				if (block.getY() == DungeonGenerator.FLOOR_HEIGHT) {
 					DCMaterials.FLOOR.onPlacement(block, DCMaterials.FLOOR.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(block.getWorld(), x, z, team.getColor());
+					heartComponent.getGame().setTerritory(block.getWorld(), x, z, heartComponent.getColor());
 				} else {
 					DCMaterials.FLOOR.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z), DCMaterials.FLOOR.getData(), null, null, false,  cause);
 					DCMaterials.WALL.onPlacement(world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT + 1, z), DCMaterials.WALL.getData(), null, null, false,  cause);
-					team.getGame().setTerritory(block.getWorld(), x, z, team.getColor());
+					heartComponent.getGame().setTerritory(block.getWorld(), x, z, heartComponent.getColor());
 				}
 			}
 		} else {

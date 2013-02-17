@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.world;
+package fr.karang.dungeoncreeper.component.world;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,34 +32,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.player.Team.TeamColor;
+import fr.karang.dungeoncreeper.game.GameState;
+import fr.karang.dungeoncreeper.game.TeamColor;
 
 import org.spout.api.component.type.WorldComponent;
+import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
+import org.spout.api.geo.LoadOption;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
-public class DungeonGame extends WorldComponent{
-	private Map<String, Team> teams = new HashMap<String, Team>();
+public class PartyComponent extends WorldComponent{
+	private Map<String, Entity> teams = new HashMap<String, Entity>();
 	private List<Player> players = new ArrayList<Player>();
-	private boolean canJoin = true;
+	private GameState state = GameState.LOBBY;
 
 	public void start() {
-		canJoin = false;
-		for (Team team : teams.values()) {
-			team.respawnPlayers();
+		if(state != GameState.LOBBY)
+			throw new IllegalStateException("Can't start a already started game");
+		
+		state = GameState.GAME;
+		
+		//TODO : Don't respawn player, just allow them to go out of the hearth room
+		for (Entity entity : teams.values()) {
+			HeartComponent hearth = entity.get(HeartComponent.class);
+			hearth.respawnPlayers();
 		}
 	}
-
-	public boolean canJoin() {
-		return canJoin;
+	
+	public void end() {
+		if(state != GameState.GAME)
+			throw new IllegalStateException("Can't start a already started game");
+		
+		state = GameState.END;
+		
+		//TODO : End game gui
 	}
 
 	public void join(Player player, String team) {
-		teams.get(team).playerJoin(player);
+		teams.get(team).get(HeartComponent.class).playerJoin(player);
 		players.add(player);
 	}
 
@@ -75,21 +89,26 @@ public class DungeonGame extends WorldComponent{
 		return TeamColor.values()[territory[x & Chunk.BLOCKS.MASK][z & Chunk.BLOCKS.MASK]];
 	}
 
-	public Team createTeam(int color, Point point) {
+	public HeartComponent createTeam(int color, Point point) {
 		for (TeamColor t : TeamColor.values()) {
 			if (t.getColor() == color) {
-				Team team = teams.get(t.getName());
-				if (team == null) {
-					team = new Team(t, point, this);
-					teams.put(t.getName(), team);
+				Entity hearth = teams.get(t.getName());
+				if (hearth == null) {
+					hearth = point.getWorld().createAndSpawnEntity(point, HeartComponent.class, LoadOption.LOAD_GEN);
+					hearth.get(HeartComponent.class).setColor(t);
+					teams.put(t.getName(), hearth);
 				}
-				return team;
+				return hearth.get(HeartComponent.class);
 			}
 		}
 		return null;
 	}
 
-	public Collection<Team> getTeams() {
+	public Collection<Entity> getTeams() {
 		return teams.values();
+	}
+
+	public Entity getTeam(TeamColor color) {
+		return teams.get(color.getName());
 	}
 }

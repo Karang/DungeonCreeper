@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.world.populator;
 
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.material.DCMaterials;
 import fr.karang.dungeoncreeper.material.dungeon.DungeonHeart;
-import fr.karang.dungeoncreeper.player.Team;
 
 import org.spout.api.generator.WorldGeneratorObject;
 import org.spout.api.geo.World;
@@ -36,10 +36,10 @@ import org.spout.api.material.BlockMaterial;
 
 public class HearthRoomObject extends WorldGeneratorObject {
 	private static int RADIUS = 2;
-	Team team;
+	HeartComponent hearth;
 
-	public HearthRoomObject(Team team) {
-		this.team = team;
+	public HearthRoomObject(HeartComponent hearth) {
+		this.hearth = hearth;
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class HearthRoomObject extends WorldGeneratorObject {
 		//Claim territory
 		for (int i = x - RADIUS; i < x + RADIUS; i++) {
 			for (int j = z - RADIUS; j < z + RADIUS; j++) {
-				team.getGame().setTerritory(w, x, z, team.getColor());
+				hearth.getGame().setTerritory(w, x, z, hearth.getColor());
 			}
 		}
 

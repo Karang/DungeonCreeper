@@ -54,8 +54,8 @@ package fr.karang.dungeoncreeper.command;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.component.entity.CreaturePrefabs;
 import fr.karang.dungeoncreeper.component.entity.creature.*;
+import fr.karang.dungeoncreeper.resource.CreaturePrefabs;
 
 import org.spout.api.Client;
 import org.spout.api.Server;

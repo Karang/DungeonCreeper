@@ -31,8 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import fr.karang.dungeoncreeper.player.Team;
-import fr.karang.dungeoncreeper.world.DungeonGame;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
+import fr.karang.dungeoncreeper.component.world.PartyComponent;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 import org.spout.api.generator.Populator;
@@ -73,11 +73,11 @@ public class DungeonPopulator extends Populator {
 				WorldGeneratorObject obj = materials.get(color);
 
 				if (obj == null) {
-					DungeonGame game = chunk.getWorld().getComponentHolder().get(DungeonGame.class);
-					Team team = game.createTeam(color, new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
-					if (team != null) {
-						System.out.println("Add Heart : " + team.getId());
-						obj = new HearthRoomObject(team);
+					PartyComponent game = chunk.getWorld().getComponentHolder().get(PartyComponent.class);
+					HeartComponent hearth = game.createTeam(color, new Point(chunk.getWorld(), x, DungeonGenerator.FLOOR_HEIGHT + 1, z));
+					if (hearth != null) {
+						System.out.println("Add Heart : " + hearth.getColor());
+						obj = new HearthRoomObject(hearth);
 					}
 				}
 

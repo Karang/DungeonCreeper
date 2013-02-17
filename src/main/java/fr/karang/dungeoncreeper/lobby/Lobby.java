@@ -30,11 +30,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
+import fr.karang.dungeoncreeper.component.world.PartyComponent;
 import fr.karang.dungeoncreeper.lighting.DungeonLighting;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerListMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.WorldListMessage;
-import fr.karang.dungeoncreeper.world.DungeonGame;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 import org.spout.api.Engine;
@@ -80,7 +80,7 @@ public class Lobby {
 		world.addLightingManager(DungeonLighting.LAVA_LIGHT);
 		world.addLightingManager(DungeonLighting.WATER_LIGHT);
 		
-		world.getComponentHolder().add(DungeonGame.class);
+		world.getComponentHolder().add(PartyComponent.class);
 
 		if (world.getAge() <= 0) {
 			world.setSpawnPoint(new Transform(generator.getSpectatorSpawn(world), Quaternion.IDENTITY, Vector3.ONE));

@@ -26,13 +26,9 @@
  */
 package fr.karang.dungeoncreeper.material.dungeon;
 
-import fr.karang.dungeoncreeper.component.block.DungeonHeartComponent;
-
 import org.spout.api.collision.CollisionStrategy;
-import org.spout.api.component.type.BlockComponent;
-import org.spout.api.material.ComplexMaterial;
 
-public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
+public class DungeonHeart extends DungeonMaterial {
 	public static DungeonHeartPart N;
 	public static DungeonHeartPart S;
 	public static DungeonHeartPart E;
@@ -62,9 +58,5 @@ public class DungeonHeart extends DungeonMaterial implements ComplexMaterial {
 	@Override
 	public byte getLightLevel(short data) {
 		return 5;
-	}
-	
-	public BlockComponent createBlockComponent() {
-		return new DungeonHeartComponent();
 	}
 }

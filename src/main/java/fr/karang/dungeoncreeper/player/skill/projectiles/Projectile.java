@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.player.skill.projectiles;
 
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
 import fr.karang.dungeoncreeper.component.entity.ProjectileComponent;
 import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.entity.Entity;

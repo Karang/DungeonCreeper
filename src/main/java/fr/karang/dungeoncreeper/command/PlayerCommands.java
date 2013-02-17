@@ -54,8 +54,9 @@ package fr.karang.dungeoncreeper.command;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
 import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
+import fr.karang.dungeoncreeper.component.world.PartyComponent;
+import fr.karang.dungeoncreeper.game.TeamColor;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
@@ -63,8 +64,10 @@ import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
 import org.spout.api.command.annotated.CommandPermissions;
+import org.spout.api.entity.Entity;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
+import org.spout.api.geo.World;
 import org.spout.api.plugin.Platform;
 
 public class PlayerCommands {
@@ -107,6 +110,14 @@ public class PlayerCommands {
 
 		int id = Integer.parseInt(args.get(0).getPlainString());
 
-		player.get(DungeonPlayer.class).setTeam(Team.getTeam(id));
+		World world = player.getWorld();
+		
+		PartyComponent party = world.getComponentHolder().get(PartyComponent.class);
+		
+		TeamColor color = TeamColor.values()[id];
+		
+		Entity heart = party.getTeam(color);
+		
+		player.get(DungeonPlayer.class).setTeam(heart);
 	}
 }

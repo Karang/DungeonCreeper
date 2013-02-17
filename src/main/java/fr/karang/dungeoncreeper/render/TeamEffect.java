@@ -30,13 +30,14 @@ import org.spout.api.math.Vector4;
 import org.spout.api.render.effect.EntityEffect;
 import org.spout.api.render.effect.SnapshotEntity;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 
 public class TeamEffect implements EntityEffect {
 	
 	public void preRenderEntity(SnapshotEntity snap) {
-		Team team = Team.getTeam(snap.getEntity().getData().get(DungeonData.TEAM));
+		DungeonPlayer player = snap.getEntity().get(DungeonPlayer.class);
+		HeartComponent team = player.getTeam().get(HeartComponent.class);
 		
 		if (team==null) {
 			snap.getMaterial().getShader().setUniform("teamColor", new Vector4(0.0, 0.0, 255.0, 255.0));

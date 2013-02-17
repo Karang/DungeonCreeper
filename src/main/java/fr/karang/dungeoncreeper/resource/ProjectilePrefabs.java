@@ -24,23 +24,13 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.player;
+package fr.karang.dungeoncreeper.resource;
 
-import org.spout.api.component.type.EntityComponent;
+import org.spout.api.Spout;
+import org.spout.api.entity.EntityPrefab;
 
-import fr.karang.dungeoncreeper.data.DungeonData;
-
-public class DungeonPlayer extends EntityComponent {
-	@Override
-	public void onAttached() {
-		getData().put(DungeonData.TEAM, -1);
-	}
-
-	public void setTeam(Team team) {
-		getData().put(DungeonData.TEAM, team.getId());
-	}
-
-	public Team getTeam() {
-		return Team.getTeam(getData().get(DungeonData.TEAM));
-	}
+public class ProjectilePrefabs {
+	public static final EntityPrefab ARROW = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
+	public static final EntityPrefab FIREBALL = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
+	public static final EntityPrefab KNIFE = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
 }

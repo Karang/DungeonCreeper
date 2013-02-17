@@ -28,7 +28,7 @@ package fr.karang.dungeoncreeper.player.skill.projectiles;
 
 import org.spout.api.entity.EntityPrefab;
 
-import fr.karang.dungeoncreeper.component.entity.ProjectilePrefabs;
+import fr.karang.dungeoncreeper.resource.ProjectilePrefabs;
 
 public class Arrow extends Projectile {
 	public Arrow(int id) {

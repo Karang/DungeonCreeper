@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.room.type;
 
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.material.DCMaterial;
 import fr.karang.dungeoncreeper.material.DCMaterials;
-import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.world.DungeonGenerator;
 
 import org.spout.api.geo.World;
@@ -81,7 +81,7 @@ public abstract class Room {
 		this.sellPrice = sellPrice;
 	}
 
-	public boolean hasRequired(Team team) {
+	public boolean hasRequired(HeartComponent hearth) {
 		// TODO : Implement in each room type
 		return true;
 	}
@@ -91,11 +91,11 @@ public abstract class Room {
 		return new Rectangle(0f, 0f, 1f, 1f);
 	}
 
-	public static boolean validToBuild(World world, Rectangle rect, Team team) {
+	public static boolean validToBuild(World world, Rectangle rect, HeartComponent hearthComponent) {
 		for (int x = (int) rect.getX(); x < rect.getX() + rect.getHeight(); x++) {
 			for (int z = (int) rect.getY(); z < rect.getY() + rect.getHeight(); z++) {
 				Block block = world.getBlock(x, DungeonGenerator.FLOOR_HEIGHT, z);
-				if (!((DCMaterial) block.getMaterial()).isClaimedBy(block, team) || block.getMaterial() != DCMaterials.FLOOR) {
+				if (!((DCMaterial) block.getMaterial()).isClaimedBy(block, hearthComponent) || block.getMaterial() != DCMaterials.FLOOR) {
 					return false;
 				}
 			}

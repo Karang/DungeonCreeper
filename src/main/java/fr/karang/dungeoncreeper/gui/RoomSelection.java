@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.karang.dungeoncreeper.DungeonCreeper;
-import fr.karang.dungeoncreeper.player.Team;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
 
@@ -44,7 +44,7 @@ import org.spout.api.plugin.Platform;
 public class RoomSelection extends Screen {
 	private Widget selectionScreen = ((Client) Spout.getEngine()).getScreenStack().createWidget();
 
-	public RoomSelection(Team team) {
+	public RoomSelection(HeartComponent team) {
 		if (Spout.getPlatform() != Platform.CLIENT) {
 			throw new IllegalStateException("Only clients can have an RoomSelection screen.");
 		}
@@ -60,7 +60,7 @@ public class RoomSelection extends Screen {
 		this.attachWidget(DungeonCreeper.getInstance(), selectionScreen);
 	}
 
-	public List<Room> getAvaivableRoom(Team team) {
+	public List<Room> getAvaivableRoom(HeartComponent team) {
 		List<Room> list = new ArrayList<Room>();
 
 		for (Rooms room : Room.Rooms.values()) {

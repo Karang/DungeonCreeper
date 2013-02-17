@@ -26,9 +26,9 @@
  */
 package fr.karang.dungeoncreeper.player.skill.builds;
 
+import fr.karang.dungeoncreeper.component.entity.DungeonPlayer;
+import fr.karang.dungeoncreeper.component.entity.HeartComponent;
 import fr.karang.dungeoncreeper.component.entity.creature.Imp;
-import fr.karang.dungeoncreeper.player.DungeonPlayer;
-import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.room.instance.RoomInstance;
 import fr.karang.dungeoncreeper.room.type.Room;
 import fr.karang.dungeoncreeper.room.type.Room.Rooms;
@@ -45,7 +45,8 @@ public class BuildRoom extends BuildSkill {
 	@Override
 	public void handle(Entity source) {
 		Rooms room =  source.get(Imp.class).getRoomClaim();
-		Team team = source.get(DungeonPlayer.class).getTeam();
+		Entity hearth = source.get(DungeonPlayer.class).getTeam();
+		HeartComponent hearthComponent = hearth.get(HeartComponent.class);
 		Rectangle rect = source.get(Imp.class).getBuildRect();
 
 		if (rect == null) {
@@ -57,7 +58,7 @@ public class BuildRoom extends BuildSkill {
 
 		int price = room.getRoom().getBuyPrice() * (int) (rect.getWidth() * rect.getHeight());
 
-		if (team.getGold() < price) {
+		if (hearthComponent.getGold() < price) {
 			if (source instanceof Player) {
 				((Player) source).sendMessage("Votre équipe ne possède pas assez d'or");
 			}
@@ -65,15 +66,15 @@ public class BuildRoom extends BuildSkill {
 		}
 
 		//TODO : Vérifier que la sélection est libre (pas de mur, pas de pièce)
-		if (!Room.validToBuild(source.getWorld(), rect, team)) {
+		if (!Room.validToBuild(source.getWorld(), rect, hearthComponent)) {
 			if (source instanceof Player) {
 				((Player) source).sendMessage("La sélection contient des zones non-capturées");
 			}
 			return;
 		}
 
-		team.addRoom(new RoomInstance(room, rect));
-		team.setGold(team.getGold() - price);
+		hearthComponent.addRoom(new RoomInstance(room, rect));
+		hearthComponent.setGold(hearthComponent.getGold() - price);
 		//TODO : Construire la pièce
 	}
 

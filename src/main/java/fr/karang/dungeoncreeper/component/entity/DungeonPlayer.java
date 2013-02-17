@@ -26,11 +26,29 @@
  */
 package fr.karang.dungeoncreeper.component.entity;
 
-import org.spout.api.Spout;
-import org.spout.api.entity.EntityPrefab;
+import org.spout.api.component.type.EntityComponent;
+import org.spout.api.entity.Entity;
 
-public class ProjectilePrefabs {
-	public static final EntityPrefab ARROW = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
-	public static final EntityPrefab FIREBALL = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
-	public static final EntityPrefab KNIFE = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/projectile/arrow/arrow.sep");
+import fr.karang.dungeoncreeper.data.DungeonData;
+
+public class DungeonPlayer extends EntityComponent {
+	
+	Entity heart = null;
+	
+	@Override
+	public void onAttached() {
+		getData().put(DungeonData.TEAM, -1);
+	}
+
+	public void setTeam(Entity hearth) {
+		this.heart = hearth;
+		getData().put(DungeonData.TEAM, hearth.getId());
+	}
+
+	public Entity getTeam() {
+		if(heart == null){
+			heart = getOwner().getWorld().getEntity(getData().get(DungeonData.TEAM));
+		}
+		return heart;
+	}
 }

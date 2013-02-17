@@ -33,7 +33,6 @@ import java.util.Map;
 
 import fr.karang.dungeoncreeper.data.DungeonData;
 import fr.karang.dungeoncreeper.event.entity.EntitySkillUseEvent;
-import fr.karang.dungeoncreeper.player.Team;
 import fr.karang.dungeoncreeper.player.skill.Skill;
 
 import org.spout.api.Spout;
@@ -189,9 +188,5 @@ public abstract class CreatureComponent extends EntityComponent {
 		}
 		event.getSkill().initCooldown(event.getEntity());
 		event.getSkill().handle(event.getEntity());
-	}
-
-	public boolean hasRequired(Team team) {
-		return true;
 	}
 }

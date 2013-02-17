@@ -24,26 +24,10 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity;
+package fr.karang.dungeoncreeper.game;
 
-import org.spout.api.Spout;
-import org.spout.api.entity.EntityPrefab;
-
-public class CreaturePrefabs {
-	public static final EntityPrefab BILE_DEMON = null;
-	public static final EntityPrefab BLACK_KNIGHT = null;
-	public static final EntityPrefab DARK_ANGEL = null;
-	public static final EntityPrefab DARK_ELF = null;
-	public static final EntityPrefab DARK_MISTRESS = null;
-	public static final EntityPrefab FIREFLY = null;
-	public static final EntityPrefab GOBELIN = null;//(EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/creature/gobelin/gobelin.sep");
-	public static final EntityPrefab HORNED_REAPER = null;
-	public static final EntityPrefab IMP = (EntityPrefab) Spout.getFilesystem().getResource("entity://DungeonCreeper/resources/entity/creature/imp/imp.sep");
-	public static final EntityPrefab MAIDEN = null;
-	public static final EntityPrefab ROGUE = null;
-	public static final EntityPrefab SALAMENDER = null;
-	public static final EntityPrefab SKELETON = null;
-	public static final EntityPrefab TROLL = null;
-	public static final EntityPrefab VAMPIRE = null;
-	public static final EntityPrefab WARLOCK = null;
+public enum GameState {
+	LOBBY,
+	GAME,
+	END;
 }
