@@ -37,17 +37,18 @@ import org.spout.api.geo.discrete.Transform;
 
 import fr.karang.dungeoncreeper.component.world.PartyComponent;
 import fr.karang.dungeoncreeper.data.DungeonData;
+import fr.karang.dungeoncreeper.game.TeamResource;
 import fr.karang.dungeoncreeper.game.TeamColor;
-import fr.karang.dungeoncreeper.room.instance.RoomContainer;
-import fr.karang.dungeoncreeper.room.instance.RoomInstance;
-import fr.karang.dungeoncreeper.room.type.Room.Rooms;
+import fr.karang.dungeoncreeper.material.dungeon.DungeonResource;
 
 public class HeartComponent extends EntityComponent {
 
 	private PartyComponent party = null;
 	
 	private TeamColor color;
-	private final Map<Rooms, RoomContainer> rooms = new HashMap<Rooms, RoomContainer>();
+	
+	private final Map<Class<? extends DungeonResource>, TeamResource> resources = new HashMap<Class<? extends DungeonResource>, TeamResource>();
+	
 	private List<Player> players = new ArrayList<Player>();
 	private Transform spawn;
 	private int gold = 0;
@@ -98,35 +99,52 @@ public class HeartComponent extends EntityComponent {
 		return party;
 	}
 
-	public boolean hasRoom(Rooms type, int surface) {
-		RoomContainer container = rooms.get(type);
-
-		if (container != null) {
-			return container.getSurface() >= surface;
-		}
-
-		return false;
+	public boolean hasResources(Class<? extends DungeonResource> type, int required) {
+		TeamResource furniture = resources.get(type);
+		return furniture != null && furniture.hasResources(required);
 	}
 
-	public void addRoom(RoomInstance roomInstance) {
-		RoomContainer container = rooms.get(roomInstance.getRoom());
+	public void addResources(Class<? extends DungeonResource> type, int added) {
+		TeamResource furniture = resources.get(type);
 
-		if (container == null) {
-			container = new RoomContainer(roomInstance.getRoom());
-			rooms.put(roomInstance.getRoom(), container);
+		if(furniture == null){
+			furniture = new TeamResource(type);
+			resources.put(type, furniture);
 		}
 
-		container.addRoom(roomInstance);
+		furniture.addResources(added);
 	}
 
-	public void removeRoom(RoomInstance roomInstance) {
-		RoomContainer container = rooms.get(roomInstance.getRoom());
+	public void removeResources(Class<? extends DungeonResource> type, int removed) {
+		TeamResource furniture = resources.get(type);
 
-		if (container == null) {
-			throw new IllegalStateException("RoomContainer unfinded");
+		if(furniture == null || !furniture.hasResources(removed)){
+			throw new IllegalStateException("This party don't have enough resources");
 		}
 
-		container.removeRoom(roomInstance);
+		furniture.removeResources(removed);
+	}
+	
+	public void useResources(Class<? extends DungeonResource> type, int use) {
+		TeamResource furniture = resources.get(type);
+
+		if(furniture == null){
+			furniture = new TeamResource(type);
+			resources.put(type, furniture);
+		}
+
+		furniture.useResources(use);
+	}
+	
+	public void liberateResources(Class<? extends DungeonResource> type, int liberated) {
+		TeamResource furniture = resources.get(type);
+
+		if(furniture == null){
+			furniture = new TeamResource(type);
+			resources.put(type, furniture);
+		}
+
+		furniture.unuseResources(liberated);
 	}
 
 	@Override

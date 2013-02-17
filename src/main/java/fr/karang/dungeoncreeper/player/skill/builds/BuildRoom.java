@@ -73,7 +73,6 @@ public class BuildRoom extends BuildSkill {
 			return;
 		}
 
-		hearthComponent.addRoom(new RoomInstance(room, rect));
 		hearthComponent.setGold(hearthComponent.getGold() - price);
 		//TODO : Construire la pièce
 	}

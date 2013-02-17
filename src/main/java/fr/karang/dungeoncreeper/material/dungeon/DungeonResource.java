@@ -24,21 +24,22 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package fr.karang.dungeoncreeper.component.entity.creature;
+package fr.karang.dungeoncreeper.material.dungeon;
 
-import fr.karang.dungeoncreeper.component.entity.CreatureComponent;
-import fr.karang.dungeoncreeper.player.skill.Skills;
+import org.spout.api.material.Material;
 
-/**
- * @source http://dungeonkeeper.wikia.com/wiki/Goblin
- */
-public class Gobelin extends CreatureComponent {
-	public Gobelin() {
-		addSkill(Skills.ATTACK, 1);
+public class DungeonResource extends DungeonMaterial {
+	public DungeonResource(String name, String model) {
+		super(name, model);
+		//TODO : Correct the method to add BatchEffect, not RenderEffect to Material
+		//addBatchEffect(BatchEffects.TEAM_BATCH_EFFECT);
 	}
 
-	@Override
-	public void onAttached() {
-		super.onAttached();
+	public DungeonResource(short dataMask, String name, String model) {
+		super(dataMask, name, model);
+	}
+
+	public DungeonResource(String name, int data, Material parent, String model) {
+		super(name, data, parent, model);
 	}
 }
