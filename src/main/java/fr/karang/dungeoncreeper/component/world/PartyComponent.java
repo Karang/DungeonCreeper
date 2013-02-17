@@ -46,7 +46,7 @@ import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.geo.discrete.Point;
 
 public class PartyComponent extends WorldComponent{
-	private Map<String, Entity> teams = new HashMap<String, Entity>();
+	private Map<TeamColor, Entity> teams = new HashMap<TeamColor, Entity>();
 	private List<Player> players = new ArrayList<Player>();
 	private GameState state = GameState.LOBBY;
 
@@ -96,7 +96,7 @@ public class PartyComponent extends WorldComponent{
 				if (hearth == null) {
 					hearth = point.getWorld().createAndSpawnEntity(point, HeartComponent.class, LoadOption.LOAD_GEN);
 					hearth.get(HeartComponent.class).setColor(t);
-					teams.put(t.getName(), hearth);
+					teams.put(t, hearth);
 				}
 				return hearth.get(HeartComponent.class);
 			}
@@ -109,6 +109,6 @@ public class PartyComponent extends WorldComponent{
 	}
 
 	public Entity getTeam(TeamColor color) {
-		return teams.get(color.getName());
+		return teams.get(color);
 	}
 }
