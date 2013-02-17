@@ -43,18 +43,20 @@ public class EntitySpawnCodec extends MessageCodec<EntitySpawnMessage> {
 
 	@Override
 	public EntitySpawnMessage decode(ChannelBuffer buffer) throws IOException {
+		int id = buffer.readInt();
 		String name = ChannelBufferUtils.readString(buffer);
 		byte type = buffer.readByte();
 		byte team = buffer.readByte();
 		float x = buffer.readFloat();
 		float y = buffer.readFloat();
 		float z = buffer.readFloat();
-		return new EntitySpawnMessage(name, type, team, x, y, z);
+		return new EntitySpawnMessage(id, name, type, team, x, y, z);
 	}
 
 	@Override
 	public ChannelBuffer encode(EntitySpawnMessage message) throws IOException {
 		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+		buffer.writeInt(message.getEntityId());
 		ChannelBufferUtils.writeString(buffer, message.getName());
 		buffer.writeByte(message.getType());
 		buffer.writeByte(message.getTeamId());

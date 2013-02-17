@@ -42,7 +42,7 @@ public class EntityTeleportMessage implements Message {
 		this.pitch = pitch;
 	}
 
-	public int getId() {
+	public int getEntityId() {
 		return id;
 	}
 

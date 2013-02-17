@@ -29,12 +29,14 @@ package fr.karang.dungeoncreeper.protocol.message.entity;
 import org.spout.api.protocol.Message;
 
 public class EntitySpawnMessage implements Message {
+	private final int id;
 	private final String name;
 	private final float x, y, z;
 	private final byte type;
 	private final byte team;
 
-	public EntitySpawnMessage(String name, byte type, byte team, float x, float y, float z) {
+	public EntitySpawnMessage(int id, String name, byte type, byte team, float x, float y, float z) {
+		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.team = team;
@@ -43,6 +45,10 @@ public class EntitySpawnMessage implements Message {
 		this.z = z;
 	}
 
+	public int getEntityId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}

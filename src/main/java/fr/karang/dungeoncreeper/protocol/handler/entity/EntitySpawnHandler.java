@@ -27,8 +27,12 @@
 package fr.karang.dungeoncreeper.protocol.handler.entity;
 
 import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
+import fr.karang.dungeoncreeper.resource.CreaturePrefabs;
 
+import org.spout.api.entity.Entity;
+import org.spout.api.entity.EntityPrefab;
 import org.spout.api.geo.World;
+import org.spout.api.geo.discrete.Point;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
@@ -41,6 +45,10 @@ public class EntitySpawnHandler extends MessageHandler<EntitySpawnMessage> {
 		
 		World world = session.getPlayer().getWorld();
 		
+		EntityPrefab prefab = CreaturePrefabs.IMP; // TODO: type lookup
 		
+		Entity e = prefab.createEntity(new Point(world, message.getX(), message.getY(), message.getZ()));
+		e.setSavable(false);
+		world.spawnEntity(e, message.getEntityId());
 	}
 }

@@ -47,7 +47,7 @@ public class EntityTeleportHandler extends MessageHandler<EntityTeleportMessage>
 		Player player = session.getPlayer();
 		World world = player.getWorld();
 		
-		Entity entity = world.getEntity(message.getId());
+		Entity entity = world.getEntity(message.getEntityId());
 		
 		if(entity == null){
 			return;
@@ -69,7 +69,7 @@ public class EntityTeleportHandler extends MessageHandler<EntityTeleportMessage>
 		Player player = session.getPlayer();
 		World world = player.getWorld();
 		
-		Entity entity = world.getEntity(message.getId());
+		Entity entity = world.getEntity(message.getEntityId());
 		
 		if(entity == null){
 			return;

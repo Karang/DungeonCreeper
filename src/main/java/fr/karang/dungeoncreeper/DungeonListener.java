@@ -31,25 +31,19 @@ import fr.karang.dungeoncreeper.component.entity.creature.Imp;
 import fr.karang.dungeoncreeper.gui.HUD;
 import fr.karang.dungeoncreeper.input.DungeonInputExecutor;
 import fr.karang.dungeoncreeper.render.DungeonResources;
-import fr.karang.dungeoncreeper.resource.CreaturePrefabs;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.component.impl.AnimationComponent;
 import org.spout.api.component.impl.CameraComponent;
-import org.spout.api.component.impl.ModelHolderComponent;
-import org.spout.api.entity.Entity;
-import org.spout.api.entity.EntityPrefab;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.engine.EngineStartEvent;
 import org.spout.api.event.player.PlayerJoinEvent;
-import org.spout.api.model.Model;
-import org.spout.api.model.animation.Animation;
 import org.spout.api.plugin.Platform;
 
 public class DungeonListener implements Listener {
+	@SuppressWarnings("unused")
 	private DungeonCreeper plugin;
 
 	public DungeonListener(DungeonCreeper plugin) {
@@ -58,7 +52,7 @@ public class DungeonListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		plugin.getLobby().playerJoin(event.getPlayer());
+		//plugin.getLobby().playerJoin(event.getPlayer());
 	}
 
 	@EventHandler

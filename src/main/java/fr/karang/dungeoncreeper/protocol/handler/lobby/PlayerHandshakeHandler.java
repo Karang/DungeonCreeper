@@ -27,11 +27,13 @@
 package fr.karang.dungeoncreeper.protocol.handler.lobby;
 
 import fr.karang.dungeoncreeper.protocol.DungeonProtocol;
+import fr.karang.dungeoncreeper.protocol.message.entity.EntitySpawnMessage;
 import fr.karang.dungeoncreeper.protocol.message.lobby.PlayerHandshakeMessage;
 
 import org.spout.api.Spout;
 import org.spout.api.entity.Player;
 import org.spout.api.event.player.PlayerConnectEvent;
+import org.spout.api.geo.discrete.Point;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.Session;
 
@@ -51,9 +53,18 @@ public class PlayerHandshakeHandler extends MessageHandler<PlayerHandshakeMessag
 				session.disconnect(false, new Object[]{"Pseudo already used."});
 			}
 
-			System.out.println("Player connected.");
-
+			System.out.println("Player connected: "+message.getUsername());
 			Spout.getEngine().getEventManager().callEvent(new PlayerConnectEvent(session, message.getUsername()));
+		
+			EntitySpawnMessage spawn = new EntitySpawnMessage(session.getPlayer().getId(), message.getUsername(), (byte)0, (byte)1, 0, 0, 0);
+			for (Player p : player.getWorld().getPlayers()) {
+				Session s = p.getSession();
+				if (s!=null) {
+					s.send(true,  true, spawn);
+				}
+				Point pos = p.getScene().getPosition();
+				session.send(true, true, new EntitySpawnMessage(p.getId(), p.getName(), (byte)0, (byte)1, pos.getX(), pos.getY(), pos.getZ()));
+			}
 		} else {
 			session.disconnect(false, new Object[]{"Handshake already exchanged."});
 		}

@@ -54,7 +54,7 @@ public class EntityTeleportCodec extends MessageCodec<EntityTeleportMessage> {
 	@Override
 	public ChannelBuffer encode(EntityTeleportMessage message) throws IOException {
 		ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
-		buffer.writeInt(message.getId());
+		buffer.writeInt(message.getEntityId());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());
 		buffer.writeInt(message.getZ());
